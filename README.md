@@ -445,4 +445,4 @@ This project is private and proprietary.
 ## Support
 
 For issues or questions, please contact the project maintainer.
-Made with love by MyMindVentures.io
+Made with love by MyMindVentures.io by The_Architect
