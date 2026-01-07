@@ -1,0 +1,53 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+env:
+  RAILWAY_PROJECT_ID: "2fc4c948-a63f-432a-b230-4e62194b666d"
+  RAILWAY_BACKEND_SERVICE: "backend"
+  RAILWAY_FRONTEND_SERVICE: "frontend"
+
+jobs:
+  deploy-backend:
+    name: Deploy backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy backend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --project "$RAILWAY_PROJECT_ID" --service "$RAILWAY_BACKEND_SERVICE" --path apps/backend
+
+  deploy-frontend:
+    name: Deploy frontend
+    runs-on: ubuntu-latest
+    needs: deploy-backend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy frontend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --project "$RAILWAY_PROJECT_ID" --service "$RAILWAY_FRONTEND_SERVICE" --path apps/frontend

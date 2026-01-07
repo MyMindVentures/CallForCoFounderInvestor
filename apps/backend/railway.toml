@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+watchPaths = ["apps/backend/**", "package.json", "package-lock.json"]
+
+[deploy]
+startCommand = "npm start"
