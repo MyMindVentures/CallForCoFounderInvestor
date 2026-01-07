@@ -1,0 +1,56 @@
+.donation-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-donate {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-donate:hover:not(:disabled) {
+  background: #229954;
+}
+
+.btn-donate:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.donation-form-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.donation-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.donation-input:focus {
+  outline: none;
+  border-color: #27ae60;
+}
+
+@media (min-width: 768px) {
+  .donation-form-inline {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .donation-input {
+    flex: 1;
+  }
+}
