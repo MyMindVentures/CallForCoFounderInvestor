@@ -27,3 +27,14 @@ jobs:
 
       - name: Run frontend E2E tests
         run: npm run test:e2e --workspace=frontend
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            frontend/playwright-report/**
+            frontend/test-results/**
+          if-no-files-found: ignore
+          retention-days: 7
