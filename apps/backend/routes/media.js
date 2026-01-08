@@ -16,28 +16,12 @@ const upload = multer({
   },
 });
 
-// Public routes
+// Public routes - specific routes first, then generic /:type catch-all
 router.get('/all', (req, res) => mediaController.getAllMedia(req, res));
 router.get('/projects', (req, res) => mediaController.getAppProjects(req, res));
 router.get('/types', (req, res) => mediaController.getMediaTypes(req, res));
-router.get('/:type', (req, res) => mediaController.getMedia(req, res));
 
-// Protected routes (admin only)
-router.post(
-  '/upload/:type',
-  authenticateToken,
-  checkDatabase,
-  upload.single('file'),
-  (req, res) => mediaController.uploadMedia(req, res)
-);
-
-router.delete(
-  '/:type',
-  authenticateToken,
-  checkDatabase,
-  (req, res) => mediaController.deleteMedia(req, res)
-);
-
+// Protected routes (admin only) - specific routes must come before generic /:type
 router.put(
   '/projects',
   authenticateToken,
@@ -57,6 +41,24 @@ router.delete(
   authenticateToken,
   checkDatabase,
   (req, res) => mediaController.deleteAppProject(req, res)
+);
+
+router.post(
+  '/upload/:type',
+  authenticateToken,
+  checkDatabase,
+  upload.single('file'),
+  (req, res) => mediaController.uploadMedia(req, res)
+);
+
+// Generic catch-all routes - must be last to avoid intercepting specific routes
+router.get('/:type', (req, res) => mediaController.getMedia(req, res));
+
+router.delete(
+  '/:type',
+  authenticateToken,
+  checkDatabase,
+  (req, res) => mediaController.deleteMedia(req, res)
 );
 
 export default router;

@@ -72,21 +72,19 @@ function FileUpload({
     };
     reader.readAsDataURL(file);
 
-    try {
-      // Simulate progress for UX
-      const progressInterval = setInterval(() => {
-        setUploadProgress((prev) => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return prev;
-          }
-          return prev + 10;
-        });
-      }, 200);
+    // Simulate progress for UX
+    const progressInterval = setInterval(() => {
+      setUploadProgress((prev) => {
+        if (prev >= 90) {
+          return prev;
+        }
+        return prev + 10;
+      });
+    }, 200);
 
+    try {
       await onUpload(file, mediaType);
       
-      clearInterval(progressInterval);
       setUploadProgress(100);
       
       setTimeout(() => {
@@ -98,6 +96,8 @@ function FileUpload({
       setIsUploading(false);
       setUploadProgress(0);
       setPreviewUrl(currentUrl);
+    } finally {
+      clearInterval(progressInterval);
     }
   }, [validateFile, onUpload, mediaType, currentUrl]);
 
