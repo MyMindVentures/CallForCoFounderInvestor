@@ -231,6 +231,7 @@
         <a href="#deal">De deal</a>
         <a href="#twoapps">2 apps = bewijs</a>
         <a href="#supportapp">Support-app</a>
+        <a href="#giveaway">Give-away project</a>
         <a href="#flows">Userflows</a>
         <a href="#deadline">Deadline-plan</a>
       </div>
@@ -351,6 +352,65 @@
  /donate
  /done
  /admin (optional)</div>
+      </div>
+    </div>
+
+    <div class="section" id="giveaway">
+      <h2>Give-away project</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Idea to Market (give-away)</h3>
+          <p>
+            Voor contributors en medebedenkers lanceer ik een <b>Idea to Market</b> give-away project.
+            Als jij ook ideeën blueprinte en samen een app tot leven wilt brengen, dan bouwen we die
+            in co-creatie. Jij brengt visie en context, ik de structuur en delivery.
+          </p>
+          <ul>
+            <li>Open voor builders, makers en strategen</li>
+            <li>Concrete output: werkende demo of MVP</li>
+            <li>Transparant proces met milestones</li>
+          </ul>
+        </div>
+        <div class="card soft">
+          <h3>Blueprint: mindmap</h3>
+          <p>
+            De basis start vanuit mijn mindmap. Wil je meebouwen? Bekijk de blueprint en stuur je
+            motivatie en expertise mee.
+          </p>
+          <ul>
+            <li><a href="https://drive.google.com/file/d/1GXPZsMV9rkitHewvShirb9WX27L283B5/view?usp=drivesdk">Mindmap bekijken (Google Drive)</a></li>
+            <li>Doel: idee → markt binnen 1 gerichte release</li>
+            <li>Focus: snelheid, learning, real users</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid two">
+        <div class="card soft">
+          <h3>De 5-stappen flow</h3>
+          <ul>
+            <li><b>1. Probleem &amp; belofte:</b> één scherpe probleemzin + gewenste uitkomst</li>
+            <li><b>2. 5-schermen structuur:</b> scope lock en de minimale flow</li>
+            <li><b>3. UX &amp; logica:</b> vibe-ready, helder voor non-tech builders</li>
+            <li><b>4. Vibe coding:</b> AI bouwt mee, jij stuurt richting en keuzes</li>
+            <li><b>5. Realiteitscheck:</b> launch-beslissing op bewijs</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Wat we bouwen (core)</h3>
+          <ul>
+            <li><b>Mobile app:</b> projecten, taken, chatflows, historiereeksen</li>
+            <li><b>AI flows:</b> prompts, tools, resources en templates per project</li>
+            <li><b>Backend &amp; data:</b> projects, tasklists, auth, workflows</li>
+            <li><b>Admin/overview:</b> usage, API-kosten, dashboards</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Meedoen?</h3>
+        <p>
+          Als je dezelfde “Idea → Market” mentaliteit hebt en samen wil shippen, reageer met je
+          idee, rol en tijdscommitment. We zetten het om in een helder stappenplan en bouwen het live.
+        </p>
       </div>
     </div>
 
