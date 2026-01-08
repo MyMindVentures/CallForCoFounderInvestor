@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Call for Investor/CoFounder Mobile Web App",
   "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "workspaces": [
     "apps/*"
   ],
@@ -16,9 +19,14 @@
     "install:all": "npm install",
     "kill-port": "node scripts/kill-port.js",
     "kill-port:3000": "node scripts/kill-port.js 3000",
-    "kill-port:5173": "node scripts/kill-port.js 5173"
+    "kill-port:5173": "node scripts/kill-port.js 5173",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "lighthouse": "lhci autorun"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.57.0",
     "concurrently": "^8.2.2"
   },
   "keywords": [],

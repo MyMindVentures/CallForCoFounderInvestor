@@ -19,7 +19,7 @@ function StatusBar() {
     }
   }, []);
 
-  const currentDay = 7 - daysRemaining + 1;
+  const currentDay = Math.min(7, 7 - daysRemaining + 1);
 
   return (
     <div className="sticky top-0 z-40">
