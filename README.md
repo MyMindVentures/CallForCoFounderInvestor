@@ -1,227 +1,248 @@
 <div align="center">
 
-# Call for Co-Founder & Investor
+  <!-- Hero banner -->
+  <img
+    src="https://capsule-render.vercel.app/api?type=waving&height=220&text=Ship%20One%20Real%20Thing&fontAlign=50&fontAlignY=40&desc=Looking%20for%20a%20Builder%20%2F%20Mentor%20to%20turn%20momentum%20back%20on&descAlign=50&descAlignY=65&animation=fadeIn"
+    alt="Ship One Real Thing"
+  />
 
-### Two partners. One turnaround. Let's flip the snowball.
+  <br/><br/>
 
-<br />
+  <!-- Badges -->
+  <p>
+    <img alt="Open to Collaboration" src="https://img.shields.io/badge/Open%20to-Collaboration-2ecc71?style=for-the-badge" />
+    <img alt="Goal" src="https://img.shields.io/badge/Goal-Ship%20One%20Small%20App-3498db?style=for-the-badge" />
+    <img alt="No hype" src="https://img.shields.io/badge/No-Hype%20%7C%20No%20Pressure-9b59b6?style=for-the-badge" />
+  </p>
 
-[![Made with Passion](https://img.shields.io/badge/Made%20with-Passion%20%E2%9D%A4%EF%B8%8F-ff6b6b?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
-[![Looking for Partners](https://img.shields.io/badge/Looking%20for-Partners-00b894?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Open%20Hearts-9b59b6?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
+  <p>
+    <b>React</b> · <b>Node.js</b> · <b>SQLite</b> · <b>Tailwind</b> · <b>Framer Motion</b>
+  </p>
 
-<br />
+  <br/>
 
-**React** · **Node.js** · **SQLite** · **Tailwind CSS** · **Framer Motion**
+  <!-- CTA buttons -->
+  <p>
+    <a href="mailto:hello@mymindventures.io">
+      <img alt="Email" src="https://img.shields.io/badge/Email-hello%40mymindventures.io-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+    </a>
+    <a href="https://wa.me/34643373346">
+      <img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-NL%20%2B%20EN-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+    </a>
+  </p>
 
-<br />
-
----
-
-<br />
-
+  <br/>
 </div>
 
-## The Story Behind This
+<hr/>
 
-> *"For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products."*
+<h2>⚡ TL;DR</h2>
 
-I'm **Kevin De Vlieger**, a 41-year-old Belgian now living in sunny **Alicante, Spain**. This project exists because I refuse to let another year pass without proof that my mind can create something real.
+<p>
+  I’m a strong product thinker who got stuck trying to build everything solo.
+  I’m looking for <b>one experienced builder or mentor</b> to help ship <b>one small, real app</b>.
+</p>
 
-<br />
+<ul>
+  <li><b>No hype</b></li>
+  <li><b>No pressure</b></li>
+  <li><b>Just clarity, focus, and finishing something properly</b></li>
+</ul>
 
-<div align="center">
+<hr/>
 
-### The Negative Snowball
-
-~~stress → fear → delays → debt~~
-
-### ⬇️ Flips To ⬇️
-
-### The Positive Snowball
-
-**structure → shipping → proof → compounding**
-
-</div>
-
-<br />
-
----
-
-<br />
-
-## What I'm Looking For
+<h2>🎯 The Only Goal That Matters</h2>
 
 <table>
-<tr>
-<td width="50%" valign="top">
-
-### 💰 Financial Support Partner
-
-**Temporary support now. Long-term upside later.**
-
-- Lifetime 20% revenue share (net)
-- Transparent revenue dashboard
-- NDA + written agreement
-- You're funding proof, not charity
-
-</td>
-<td width="50%" valign="top">
-
-### 👨‍💻 Solo Developer / Mentor
-
-**Be the bridge from architect to shipped product.**
-
-- Revenue split per project
-- Daily short check-ins
-- AI-native builder (Cursor, n8n, MCP)
-- Goal: Make me independent
-
-</td>
-</tr>
+  <tr>
+    <td width="33%" align="center">
+      <h3>✅ Runs</h3>
+      <p>Works end-to-end</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>✅ Narrow</h3>
+      <p>Solves one small problem</p>
+    </td>
+    <td width="33%" align="center">
+      <h3>✅ Showable</h3>
+      <p>No excuses, no “almost”</p>
+    </td>
+  </tr>
 </table>
 
-<br />
+<p>
+  Once that exists, momentum returns. Without it, everything stays theoretical.
+</p>
 
----
+<hr/>
 
-<br />
+<h2>🧠 Why This Repo Exists</h2>
 
-## The Quartet
+<p>
+  I spent months trying to prove something the wrong way:
+  by forcing myself to be architect, builder, debugger, and DevOps — all at once.
+</p>
 
-<div align="center">
+<p>
+  That didn’t fail because of lack of effort.
+  It failed because <b>that’s not how good products are shipped</b>.
+</p>
 
-The magic happens when four forces align:
+<p>
+  This repo exists to break that pattern <b>publicly and honestly</b>.
+</p>
 
-<br />
+<hr/>
 
-| 🧠 **Architect** | 🛠️ **Builder** | 💰 **Investor** | 🤖 **AI** |
-|:---:|:---:|:---:|:---:|
-| Me — Ideas, vision, features | You — Ship, mentor, teach | Breathing room | Leverage & speed |
-
-<br />
-
-**Structure turns it into results.**
-
-</div>
-
-<br />
-
----
-
-<br />
-
-## Two Apps Change Everything
-
-I don't need ten apps. I need **two shipped apps** to show proof:
+<h2>👋 Who I Am (Relevant Parts Only)</h2>
 
 <table>
-<tr>
-<td width="50%" align="center">
-<br />
-
-**🧬 Lifemanagement Stack**
-
-*My life back on rails*
-
-<br />
-</td>
-<td width="50%" align="center">
-<br />
-
-**💡 IdeaFabric**
-
-*Portable idea blueprint machine*
-
-<br />
-</td>
-</tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>Kevin</h3>
+      <ul>
+        <li>41, Belgian</li>
+        <li>Living in Spain</li>
+        <li>Inventor / product thinker</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>Strengths</h3>
+      <ul>
+        <li>Idea generation</li>
+        <li>Product thinking</li>
+        <li>System design</li>
+        <li>Seeing connections & opportunities</li>
+      </ul>
+    </td>
+  </tr>
 </table>
 
-<br />
+<p>
+  This is not a confidence issue. It’s a <b>structure issue</b>.
+</p>
 
----
+<hr/>
 
-<br />
+<h2>🧱 Where I’m Stuck (Concrete)</h2>
 
-## My Give Away
+<ul>
+  <li>deciding what <b>not</b> to build</li>
+  <li>knowing when something is <b>good enough</b></li>
+  <li>tooling and structure choices without overengineering</li>
+  <li>crossing the finish line instead of circling it</li>
+</ul>
 
-I was always scared of idea stealing. But months of struggling alone taught me: **ideas without execution are just dreams.**
+<p>
+  I don’t need someone to “save” the project.
+  I need someone who can say: <b>“Stop here. This ships.”</b>
+</p>
 
-So this is my gift:
-- This project and its source code
-- A mindmap for an app that helps shape ideas (frontend + n8n backend)
-- 90+ repos full of attempts and learnings
-- Everything I've documented along the way
+<hr/>
 
-**If you believe, these are yours to build with me.**
+<h2>🤝 Who I’m Looking For</h2>
 
-<br />
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>👨‍💻 Primary: Builder / Mentor</h3>
+      <p>Someone who:</p>
+      <ul>
+        <li>has shipped real-world apps</li>
+        <li>values pragmatism over perfection</li>
+        <li>understands scope discipline</li>
+        <li>can give clear, sometimes blunt feedback</li>
+      </ul>
+      <p>This could be:</p>
+      <ul>
+        <li>async guidance</li>
+        <li>occasional pairing</li>
+        <li>reviewing PRs or decisions</li>
+        <li>helping me internalize better defaults</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h3>💡 Secondary: Product Thinking Peer (Optional)</h3>
+      <p>
+        If you enjoy product strategy or idea shaping,
+        I’m happy to exchange value there too.
+      </p>
+      <h3>🎁 What You Get</h3>
+      <ul>
+        <li>full transparency</li>
+        <li>no hidden agenda</li>
+        <li>public credit / ownership of what we ship</li>
+        <li>open source visibility</li>
+        <li>a driven partner who executes</li>
+      </ul>
+      <p>
+        Compensation / revenue sharing / equity:
+        <b>possible</b>, discussed openly, proportional to involvement, <b>not assumed upfront</b>.
+      </p>
+    </td>
+  </tr>
+</table>
 
----
+<hr/>
 
-<br />
+<h2>🧩 How You Can Engage (Zero Pressure)</h2>
+
+<p>You don’t have to commit. You can:</p>
+
+<table>
+  <tr>
+    <td width="25%" align="center">🧾<br/><b>Open an issue</b><br/>Give advice</td>
+    <td width="25%" align="center">✂️<br/><b>Cut scope</b><br/>Tell me what to drop</td>
+    <td width="25%" align="center">🔍<br/><b>Spot risks</b><br/>Call out blind spots</td>
+    <td width="25%" align="center">💬<br/><b>Reach out</b><br/>One message helps</td>
+  </tr>
+</table>
+
+<br/>
 
 <div align="center">
+  <p>
+    <a href="mailto:hello@mymindventures.io">
+      <img alt="Email" src="https://img.shields.io/badge/Email-hello%40mymindventures.io-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+    </a>
+    <a href="https://wa.me/34643373346">
+      <img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-NL%20%2B%20EN-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+    </a>
+  </p>
+</div>
 
-## 💚 Support This Journey
+<hr/>
 
-If you'd like to help make this vision a reality:
+<h2>🔓 Why This Is Open Source</h2>
 
-<br />
+<p>
+  I used to worry about idea theft.
+  Now I know: <b>ideas are abundant — execution is scarce — finishing is rare</b>.
+</p>
 
-[![Donate via Wise](https://img.shields.io/badge/💳_Donate_via_Wise-00B9FF?style=for-the-badge&logoColor=white)](https://wise.com/pay/me/kevind469)
+<p>This repo contains:</p>
+<ul>
+  <li>unfinished code</li>
+  <li>rough edges</li>
+  <li>mistakes</li>
+  <li>learning in progress</li>
+</ul>
 
-<br />
+<hr/>
 
-**Or simply reach out:**
+<h2>🚀 Quick Start</h2>
 
-<br />
+<p>
+  <code>npm install</code> → <code>npm run dev</code> → <code>localhost:5173</code>
+</p>
 
-[![Email](https://img.shields.io/badge/📧_hello@mymindventures.io-EA4335?style=for-the-badge)](mailto:hello@mymindventures.io)
-[![WhatsApp](https://img.shields.io/badge/💬_WhatsApp_(NL_+_EN)-25D366?style=for-the-badge)](https://wa.me/34643373346)
-
-<br />
-
----
-
-<br />
-
-## How You Can Help
-
-| Action | Impact |
-|:---:|:---|
-| ⭐ **Star** | Help others discover this project |
-| 🍴 **Fork** | Take the code, improve it, make it your own |
-| 💬 **Reach out** | Sometimes a conversation sparks great things |
-| 🤝 **Partner** | Become the co-founder or investor I'm looking for |
-
-<br />
-
----
-
-<br />
-
-## A Promise
-
-> *"If you believe in me, I will work tirelessly to prove you right. Together, we can flip the snowball from negative to positive."*
-
-<br />
-
-**— Kevin**
-
-<br />
-
----
-
-<br />
-
-<sub>
-
-**Tech Stack:** React + Vite · Node.js + Express · SQLite · Tailwind CSS · Framer Motion · JWT Auth
-
-**Quick Start:** `npm install` → `npm run dev` → Visit `localhost:5173`
-
-</sub>
-
+<div align="center">
+  <br/>
+  <sub>
+    <b>Final note:</b> This is not about proving I can do everything alone.
+    It’s about recognizing limits, inviting collaboration, and <b>finishing something real</b>.
+    <br/>
+    <b>— Kevin</b>
+  </sub>
+  <br/><br/>
 </div>
