@@ -44,7 +44,7 @@ app.use('/api/media', mediaRoutes);
 
 // Serve static files from frontend build in production
 if (isProduction) {
-  const frontendBuildPath = path.join(__dirname, '../../frontend/dist');
+  const frontendBuildPath = path.join(__dirname, '../frontend/dist');
   app.use(express.static(frontendBuildPath));
   
   // Serve React app for all non-API routes
