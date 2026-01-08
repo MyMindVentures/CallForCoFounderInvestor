@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import getDB from './config/database.js';
 import authRoutes from './routes/auth.js';
@@ -18,6 +19,25 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === 'production';
+
+// Validate required environment variables in production
+if (isProduction) {
+  const requiredVars = [
+    'JWT_SECRET',
+    'ADMIN_USERNAME',
+    'ADMIN_PASSWORD'
+  ];
+  
+  const missing = requiredVars.filter(key => !process.env[key]);
+  if (missing.length > 0) {
+    console.error('❌ Missing required environment variables:');
+    missing.forEach(key => console.error(`   - ${key}`));
+    console.error('\n⚠️  Please set these in Railway Variables tab.');
+    console.error('   Server will not start without these variables.\n');
+    process.exit(1);
+  }
+  console.log('✅ All required environment variables are set');
+}
 
 // Initialize database
 (async () => {
@@ -45,6 +65,18 @@ app.use('/api/media', mediaRoutes);
 // Serve static files from frontend build in production
 if (isProduction) {
   const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+  const indexPath = path.join(frontendBuildPath, 'index.html');
+  
+  // Validate frontend build exists
+  if (!fs.existsSync(indexPath)) {
+    console.error('❌ Frontend build not found at:', frontendBuildPath);
+    console.error('   Expected file:', indexPath);
+    console.error('   Build command may have failed. Check build logs.');
+    console.error('   Run: npm run build\n');
+    process.exit(1);
+  }
+  console.log('✅ Frontend build found');
+  
   app.use(express.static(frontendBuildPath));
   
   // Serve React app for all non-API routes
@@ -53,7 +85,7 @@ if (isProduction) {
     if (req.path.startsWith('/api')) {
       return res.status(404).json({ error: 'API route not found' });
     }
-    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    res.sendFile(indexPath);
   });
 }
 
