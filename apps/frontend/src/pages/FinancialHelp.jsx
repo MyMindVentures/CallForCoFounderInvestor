@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import DonationButton from '../components/DonationButton';
+import { motion } from 'framer-motion';
+import { Loader2, DollarSign, Heart } from 'lucide-react';
+import { PageTransition } from '@/components/ui/page-transition';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import DonationButton from '@/components/DonationButton';
 
 function FinancialHelp() {
   const [content, setContent] = useState('');
@@ -38,63 +44,113 @@ function FinancialHelp() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-orange-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <Loader2 className="w-12 h-12 text-yellow-500 animate-spin mx-auto mb-4" />
+          <p className="text-gray-400">Loading...</p>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-orange dark:bg-gradient-dark py-8 px-4 sm:px-6 lg:px-8 bg-cover bg-center">
+    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-display font-extrabold mb-4 bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500 bg-clip-text text-transparent">
+        <motion.div 
+          className="text-center mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex justify-center mb-4">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, delay: 0.2 }}
+            >
+              <DollarSign className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400" />
+            </motion.div>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-3 sm:mb-4 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent px-2">
             Financial Support
           </h1>
-          <p className="text-xl md:text-2xl text-gray-800 dark:text-dark-700 font-medium">Your support helps turn vision into reality</p>
-        </div>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-medium px-2">
+            Your support helps turn vision into reality
+          </p>
+        </motion.div>
 
-        <div className="glass-effect rounded-2xl shadow-xl dark:shadow-dark-900/50 p-8 mb-8">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-          </div>
-        </div>
-
-        <div className="bg-gradient-orange rounded-2xl shadow-xl shadow-orange-500/30 p-8 text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-center">Make a Donation</h2>
-            <div className="glass-effect bg-white/95 dark:bg-dark-100/95 rounded-xl p-6 max-w-md mx-auto">
-              <div className="mb-4">
-                <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 dark:text-dark-600 mb-2">
-                  Amount (EUR)
-                </label>
-                <input
-                  id="amount"
-                  type="number"
-                  placeholder="Enter amount"
-                  value={donationAmount}
-                  onChange={(e) => setDonationAmount(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-gray-300 dark:border-dark-300 rounded-lg focus:border-yellow-500 dark:focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500/50 text-gray-800 dark:text-dark-700 text-lg bg-white dark:bg-dark-200"
-                  min="1"
-                  step="0.01"
-                />
-              </div>
-              <DonationButton 
-                amount={donationAmount} 
-                onDonation={handleDonation}
-              />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mb-6 sm:mb-8"
+        >
+          <Card variant="glass" size="lg">
+            <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
-            <p className="text-center mt-6 text-white/90 text-sm md:text-base font-medium">
-              Donations are processed securely via Wise. Thank you for your support! 🙏
-            </p>
-          </div>
-        </div>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <Card 
+            variant="gradient"
+            size="xl"
+            className="bg-gradient-to-br from-yellow-500/90 via-orange-500/90 to-red-500/90 text-white relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            
+            <div className="relative z-10">
+              <div className="flex justify-center mb-4">
+                <Heart className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 sm:mb-6 text-center">
+                Make a Donation
+              </h2>
+              
+              <motion.div 
+                className="backdrop-blur-xl bg-dark-200/80 rounded-xl p-4 sm:p-5 md:p-6 max-w-md mx-auto border border-white/10"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="mb-4">
+                  <Label htmlFor="amount" className="block text-sm font-semibold text-gray-200 mb-2">
+                    Amount (EUR)
+                  </Label>
+                  <Input
+                    id="amount"
+                    type="number"
+                    placeholder="Enter amount"
+                    value={donationAmount}
+                    onChange={(e) => setDonationAmount(e.target.value)}
+                    variant="glow"
+                    size="lg"
+                    min="1"
+                    step="0.01"
+                  />
+                </div>
+                <DonationButton 
+                  amount={donationAmount} 
+                  onDonation={handleDonation}
+                />
+              </motion.div>
+              
+              <p className="text-center mt-4 sm:mt-6 text-white/90 text-xs sm:text-sm md:text-base font-medium px-2">
+                Donations are processed securely via Wise. Thank you for your support! 🙏
+              </p>
+            </div>
+          </Card>
+        </motion.div>
       </div>
-    </div>
+    </PageTransition>
   );
 }
 

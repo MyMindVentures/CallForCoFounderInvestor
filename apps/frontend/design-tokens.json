@@ -1,0 +1,167 @@
+{
+  "$schema": "https://schemas.design-tokens.io/design-tokens.json",
+  "version": "1.0.0",
+  "name": "Call for Investor/CoFounder Design Tokens",
+  "description": "Design tokens for the Call for Investor/CoFounder application",
+  
+  "colors": {
+    "primary": {
+      "teal": {
+        "50": { "value": "#f0fdfa", "type": "color" },
+        "100": { "value": "#ccfbf1", "type": "color" },
+        "200": { "value": "#99f6e4", "type": "color" },
+        "300": { "value": "#5eead4", "type": "color" },
+        "400": { "value": "#2dd4bf", "type": "color" },
+        "500": { "value": "#14b8a6", "type": "color" },
+        "600": { "value": "#0d9488", "type": "color" },
+        "700": { "value": "#0f766e", "type": "color" },
+        "800": { "value": "#115e59", "type": "color" },
+        "900": { "value": "#134e4a", "type": "color" }
+      },
+      "cyan": {
+        "50": { "value": "#ecfeff", "type": "color" },
+        "100": { "value": "#cffafe", "type": "color" },
+        "200": { "value": "#a5f3fc", "type": "color" },
+        "300": { "value": "#67e8f9", "type": "color" },
+        "400": { "value": "#22d3ee", "type": "color" },
+        "500": { "value": "#06b6d4", "type": "color" },
+        "600": { "value": "#0891b2", "type": "color" },
+        "700": { "value": "#0e7490", "type": "color" },
+        "800": { "value": "#155e75", "type": "color" },
+        "900": { "value": "#164e63", "type": "color" }
+      },
+      "purple": {
+        "50": { "value": "#faf5ff", "type": "color" },
+        "100": { "value": "#f3e8ff", "type": "color" },
+        "200": { "value": "#e9d5ff", "type": "color" },
+        "300": { "value": "#d8b4fe", "type": "color" },
+        "400": { "value": "#c084fc", "type": "color" },
+        "500": { "value": "#a855f7", "type": "color" },
+        "600": { "value": "#9333ea", "type": "color" },
+        "700": { "value": "#7e22ce", "type": "color" },
+        "800": { "value": "#6b21a8", "type": "color" },
+        "900": { "value": "#581c87", "type": "color" }
+      }
+    },
+    "dark": {
+      "50": { "value": "#0a0a0f", "type": "color" },
+      "100": { "value": "#111118", "type": "color" },
+      "200": { "value": "#1a1a24", "type": "color" },
+      "300": { "value": "#252532", "type": "color" },
+      "400": { "value": "#3a3a4a", "type": "color" },
+      "500": { "value": "#525266", "type": "color" },
+      "600": { "value": "#6b6b82", "type": "color" },
+      "700": { "value": "#8e8ea0", "type": "color" },
+      "800": { "value": "#b4b4c4", "type": "color" },
+      "900": { "value": "#e0e0e8", "type": "color" }
+    },
+    "semantic": {
+      "success": { "value": "#10b981", "type": "color" },
+      "warning": { "value": "#f59e0b", "type": "color" },
+      "error": { "value": "#ef4444", "type": "color" },
+      "info": { "value": "#3b82f6", "type": "color" }
+    }
+  },
+  
+  "typography": {
+    "fontFamily": {
+      "sans": { "value": "Poppins, sans-serif", "type": "fontFamily" },
+      "display": { "value": "Poppins, sans-serif", "type": "fontFamily" },
+      "mono": { "value": "JetBrains Mono, 'Fira Code', monospace", "type": "fontFamily" }
+    },
+    "fontSize": {
+      "xs": { "value": "0.75rem", "type": "dimension" },
+      "sm": { "value": "0.875rem", "type": "dimension" },
+      "base": { "value": "1rem", "type": "dimension" },
+      "lg": { "value": "1.125rem", "type": "dimension" },
+      "xl": { "value": "1.25rem", "type": "dimension" },
+      "2xl": { "value": "1.5rem", "type": "dimension" },
+      "3xl": { "value": "1.875rem", "type": "dimension" },
+      "4xl": { "value": "2.25rem", "type": "dimension" },
+      "5xl": { "value": "3rem", "type": "dimension" },
+      "6xl": { "value": "3.75rem", "type": "dimension" }
+    },
+    "fontWeight": {
+      "light": { "value": "300", "type": "number" },
+      "normal": { "value": "400", "type": "number" },
+      "medium": { "value": "500", "type": "number" },
+      "semibold": { "value": "600", "type": "number" },
+      "bold": { "value": "700", "type": "number" },
+      "extrabold": { "value": "800", "type": "number" }
+    },
+    "lineHeight": {
+      "tight": { "value": "1.25", "type": "number" },
+      "normal": { "value": "1.5", "type": "number" },
+      "relaxed": { "value": "1.75", "type": "number" }
+    }
+  },
+  
+  "spacing": {
+    "xs": { "value": "0.25rem", "type": "dimension" },
+    "sm": { "value": "0.5rem", "type": "dimension" },
+    "md": { "value": "1rem", "type": "dimension" },
+    "lg": { "value": "1.5rem", "type": "dimension" },
+    "xl": { "value": "2rem", "type": "dimension" },
+    "2xl": { "value": "3rem", "type": "dimension" },
+    "3xl": { "value": "4rem", "type": "dimension" }
+  },
+  
+  "borderRadius": {
+    "sm": { "value": "0.25rem", "type": "dimension" },
+    "md": { "value": "0.5rem", "type": "dimension" },
+    "lg": { "value": "0.75rem", "type": "dimension" },
+    "xl": { "value": "1rem", "type": "dimension" },
+    "2xl": { "value": "1.5rem", "type": "dimension" },
+    "full": { "value": "9999px", "type": "dimension" }
+  },
+  
+  "shadows": {
+    "sm": { "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "type": "shadow" },
+    "md": { "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1)", "type": "shadow" },
+    "lg": { "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1)", "type": "shadow" },
+    "xl": { "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1)", "type": "shadow" },
+    "glow": { "value": "0 0 20px rgba(20, 184, 166, 0.5)", "type": "shadow" },
+    "glow-lg": { "value": "0 0 40px rgba(20, 184, 166, 0.6)", "type": "shadow" }
+  },
+  
+  "gradients": {
+    "primary": { "value": "linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%)", "type": "gradient" },
+    "secondary": { "value": "linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)", "type": "gradient" },
+    "accent": { "value": "linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)", "type": "gradient" },
+    "teal-purple": { "value": "linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #8b5cf6 100%)", "type": "gradient" },
+    "modern-dark": { "value": "linear-gradient(135deg, #0a0a0f 0%, #111118 50%, #1a1a24 100%)", "type": "gradient" }
+  },
+  
+  "breakpoints": {
+    "xs": { "value": "475px", "type": "dimension" },
+    "sm": { "value": "640px", "type": "dimension" },
+    "md": { "value": "768px", "type": "dimension" },
+    "lg": { "value": "1024px", "type": "dimension" },
+    "xl": { "value": "1280px", "type": "dimension" },
+    "2xl": { "value": "1536px", "type": "dimension" }
+  },
+  
+  "zIndex": {
+    "base": { "value": "0", "type": "number" },
+    "dropdown": { "value": "1000", "type": "number" },
+    "sticky": { "value": "1020", "type": "number" },
+    "fixed": { "value": "1030", "type": "number" },
+    "modal-backdrop": { "value": "1040", "type": "number" },
+    "modal": { "value": "1050", "type": "number" },
+    "popover": { "value": "1060", "type": "number" },
+    "tooltip": { "value": "1070", "type": "number" }
+  },
+  
+  "transitions": {
+    "duration": {
+      "fast": { "value": "150ms", "type": "duration" },
+      "normal": { "value": "300ms", "type": "duration" },
+      "slow": { "value": "500ms", "type": "duration" }
+    },
+    "easing": {
+      "ease-in": { "value": "cubic-bezier(0.4, 0, 1, 1)", "type": "cubicBezier" },
+      "ease-out": { "value": "cubic-bezier(0, 0, 0.2, 1)", "type": "cubicBezier" },
+      "ease-in-out": { "value": "cubic-bezier(0.4, 0, 0.2, 1)", "type": "cubicBezier" }
+    }
+  }
+}
