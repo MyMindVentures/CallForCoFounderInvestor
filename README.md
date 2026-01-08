@@ -179,7 +179,7 @@ If you'd like to help make this vision a reality:
 <br />
 
 [![Email](https://img.shields.io/badge/📧_hello@mymindventures.io-EA4335?style=for-the-badge)](mailto:hello@mymindventures.io)
-[![WhatsApp](https://img.shields.io/badge/💬_WhatsApp-25D366?style=for-the-badge)](https://wa.me/34643037037)
+[![WhatsApp](https://img.shields.io/badge/💬_WhatsApp_(NL_+_EN)-25D366?style=for-the-badge)](https://wa.me/34643037346)
 
 <br />
 
