@@ -8,16 +8,11 @@ function DarkModeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    // Default to dark mode for modern dark theme styling
-    const savedTheme = localStorage.getItem('theme');
-    
-    if (savedTheme === 'light') {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-    } else {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    }
+    // Sync component state with already-initialized DOM state
+    // (index.html inline script handles initial DOM setup to prevent flash)
+    // We only read the current state, not modify it
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    setIsDark(isDarkMode);
   }, []);
 
   const toggleDarkMode = (e) => {
