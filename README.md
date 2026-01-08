@@ -1,448 +1,227 @@
-# Call for Investor/CoFounder Mobile Web App
+<div align="center">
 
-A mobile-first web application for connecting with investors and co-founders, featuring content management, donation integration, and support messaging.
+# Call for Co-Founder & Investor
 
-## Features
+### Two partners. One turnaround. Let's flip the snowball.
 
-- **Landing Page** with navigation to all sections
-- **Storytelling Page** - Dynamic content management
-- **What I Look For** - Information for investors and co-founders
-- **Developer Help** - Instant help requests for IDEs, n8n, and Vibe Coding
-- **Financial Help** - Wise donation integration
-- **Support Page** - Public display of curated positive messages with donation amounts
-- **ADHD + Aries Page** - Explains the importance of ADHD combined with Aries strengths
-- **Admin Dashboard** - Content management, message curation, and donation overview
+<br />
 
-## Tech Stack
+[![Made with Passion](https://img.shields.io/badge/Made%20with-Passion%20%E2%9D%A4%EF%B8%8F-ff6b6b?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
+[![Looking for Partners](https://img.shields.io/badge/Looking%20for-Partners-00b894?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
+[![Open Source](https://img.shields.io/badge/Open%20Source-Open%20Hearts-9b59b6?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
 
-- **Frontend**: React + Vite
-- **Backend**: Node.js + Express
-- **Database**: SQLite (file-based, no server needed)
-- **Authentication**: JWT-based admin authentication
-- **Email**: Nodemailer for thank you emails
-- **Payment**: Wise payment redirect integration
+<br />
 
-## Prerequisites
+**React** · **Node.js** · **SQLite** · **Tailwind CSS** · **Framer Motion**
 
-- Node.js (v16 or higher)
-- **SQLite** (included automatically - no installation needed!) ⭐
-- npm or yarn
+<br />
 
-**Note**: This project uses SQLite, a file-based database. No database server installation or account creation required!
+---
 
-## Quick Start
+<br />
 
-**Fastest way to get started (no database installation needed!):**
+</div>
 
-1. **Setup project**:
-   ```bash
-   # Install dependencies
-   npm run install:all
-   
-   # Create backend .env file
-   cd apps/backend
-   cp env.example .env
-   ```
+## The Story Behind This
 
-2. **Configure `.env` file** (optional - defaults work fine):
-   ```env
-   PORT=3000
-   JWT_SECRET=your-secret-key-here
-   ADMIN_USERNAME=admin
-   ADMIN_PASSWORD=admin123
-   ```
+> *"For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products."*
 
-3. **Start the app**:
-   ```bash
-   npm run dev
-   ```
+I'm **Kevin De Vlieger**, a 41-year-old Belgian now living in sunny **Alicante, Spain**. This project exists because I refuse to let another year pass without proof that my mind can create something real.
 
-That's it! Your app will be running at `http://localhost:5173`
+<br />
 
-**Note**: SQLite database file will be automatically created in the `data/` directory. No database server needed!
+<div align="center">
 
-## Installation
+### The Negative Snowball
 
-### 1. Clone the repository
+~~stress → fear → delays → debt~~
 
-```bash
-git clone <repository-url>
-cd CallForCoFounderInvestor
-```
+### ⬇️ Flips To ⬇️
 
-### 2. Install All Dependencies
+### The Positive Snowball
 
-Install all dependencies (workspaces will be installed automatically):
+**structure → shipping → proof → compounding**
 
-```bash
-npm install
-```
+</div>
 
-This will install dependencies for:
-- Root workspace (concurrently for running both servers)
-- Backend workspace (`apps/backend`)
-- Frontend workspace (`apps/frontend`)
+<br />
 
-### 4. Environment Setup
+---
 
-Create a `.env` file in the `apps/backend` directory:
+<br />
 
-```bash
-cd apps/backend
-cp env.example .env
-```
-
-Edit `.env` with your configuration:
+## What I'm Looking For
 
-```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/callforcofounder
-JWT_SECRET=your-secret-key-change-this-in-production
-ADMIN_USERNAME=admin
-ADMIN_PASSWORD=admin123
-
-# Email configuration (SMTP)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-EMAIL_FROM=your-email@gmail.com
-
-# Wise payment link
-WISE_PAYMENT_URL=https://wise.com/pay/your-link
-```
-
-**Note**: For Gmail, you'll need to generate an App Password:
-1. Go to your Google Account settings
-2. Enable 2-Step Verification
-3. Generate an App Password for "Mail"
-
-### 5. Create Frontend Environment File (Optional)
+<table>
+<tr>
+<td width="50%" valign="top">
 
-Create a `.env` file in the `frontend` directory if you want to customize the Wise payment URL:
-
-```env
-REACT_APP_WISE_PAYMENT_URL=https://wise.com/pay/your-link
-```
-
-## Running the Application
-
-### MongoDB Setup (Choose One Option)
-
-You need MongoDB to store data. Choose the option that works best for you:
+### 💰 Financial Support Partner
 
-#### Option 1: MongoDB Atlas (Cloud - Recommended) ⭐
+**Temporary support now. Long-term upside later.**
 
-**Best for**: Quick setup, no local installation needed, free tier available
+- Lifetime 20% revenue share (net)
+- Transparent revenue dashboard
+- NDA + written agreement
+- You're funding proof, not charity
 
-1. **Sign up** at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
-2. **Create a free cluster** (M0 Sandbox)
-3. **Create a database user**:
-   - Go to "Database Access" → "Add New Database User"
-   - Choose "Password" authentication
-   - Create username and password (save these!)
-4. **Whitelist your IP**:
-   - Go to "Network Access" → "Add IP Address"
-   - Click "Allow Access from Anywhere" (for development) or add your IP
-5. **Get your connection string**:
-   - Go to "Database" → "Connect" → "Connect your application"
-   - Copy the connection string
-   - Replace `<password>` with your database user password
-   - Replace `<dbname>` with `callforcofounder` (or your preferred name)
-   - Example: `mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/callforcofounder?retryWrites=true&w=majority`
-6. **Update your `.env` file**:
-   ```env
-   MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/callforcofounder?retryWrites=true&w=majority
-   ```
+</td>
+<td width="50%" valign="top">
 
-#### Option 2: Docker MongoDB
+### 👨‍💻 Solo Developer / Mentor
 
-**Best for**: Local development with isolated environment
+**Be the bridge from architect to shipped product.**
 
-```bash
-# Run MongoDB in Docker
-docker run -d -p 27017:27017 --name mongodb mongo:latest
+- Revenue split per project
+- Daily short check-ins
+- AI-native builder (Cursor, n8n, MCP)
+- Goal: Make me independent
 
-# Your .env file should have:
-# MONGODB_URI=mongodb://localhost:27017/callforcofounder
-```
+</td>
+</tr>
+</table>
 
-#### Option 3: Local MongoDB Installation
+<br />
 
-**Best for**: Full local control
+---
 
-**Windows:**
-1. Download MongoDB from [mongodb.com/download](https://www.mongodb.com/try/download/community)
-2. Run the installer
-3. Start MongoDB:
-   ```bash
-   mongod
-   ```
-
-**macOS:**
-```bash
-# Using Homebrew
-brew tap mongodb/brew
-brew install mongodb-community
-brew services start mongodb-community
-```
+<br />
 
-**Linux (Ubuntu/Debian):**
-```bash
-# Import MongoDB GPG key
-wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
-
-# Add MongoDB repository
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+## The Quartet
 
-# Install MongoDB
-sudo apt-get update
-sudo apt-get install -y mongodb-org
+<div align="center">
 
-# Start MongoDB
-sudo systemctl start mongod
-sudo systemctl enable mongod
-```
-
-**Note**: The server will start even if MongoDB is not connected, but database operations will fail. You'll see a warning message in the console with instructions.
+The magic happens when four forces align:
 
-### Start Both Frontend and Backend Together
+<br />
 
-From the root directory, run:
+| 🧠 **Architect** | 🛠️ **Builder** | 💰 **Investor** | 🤖 **AI** |
+|:---:|:---:|:---:|:---:|
+| Me — Ideas, vision, features | You — Ship, mentor, teach | Breathing room | Leverage & speed |
 
-```bash
-# Development mode (with auto-reload)
-npm run dev
+<br />
 
-# Production mode
-npm start
-```
+**Structure turns it into results.**
 
-This will start both servers simultaneously:
-- **Backend** will run on `http://localhost:3000`
-- **Frontend** will run on `http://localhost:5173`
+</div>
 
-**If you see database errors:**
-- Check that the `data/` directory exists and is writable
-- Verify file permissions for the database file
-- Check disk space availability
-- The database file is created automatically on first run
+<br />
 
-**If you see "Port already in use" errors:**
+---
 
-The port 3000 (backend) or 5173 (frontend) might be occupied by another process. To fix this:
+<br />
 
-**Quick fix - Kill the port:**
-```bash
-# Kill port 3000 (backend)
-npm run kill-port:3000
+## Two Apps Change Everything
 
-# Kill port 5173 (frontend)
-npm run kill-port:5173
-
-# Or kill any port
-npm run kill-port <port-number>
-```
+I don't need ten apps. I need **two shipped apps** to show proof:
 
-**Manual fix:**
+<table>
+<tr>
+<td width="50%" align="center">
+<br />
 
-**Windows:**
-```bash
-# Find the process using the port
-netstat -ano | findstr :3000
-
-# Kill the process (replace <PID> with the actual process ID)
-taskkill /PID <PID> /F
-```
-
-**macOS/Linux:**
-```bash
-# Find and kill the process
-lsof -ti:3000 | xargs kill -9
-```
-
-Then restart the servers with `npm run dev`
-
-### Start Servers Individually (Optional)
-
-If you prefer to run them separately:
-
-**Backend only:**
-```bash
-npm run dev --workspace=backend
-# or
-npm start --workspace=backend
-```
-npm run dev
-**Frontend only:**
-```bash
-npm run dev --workspace=frontend
-```
-
-## Architecture
-
-This project follows a **layered architecture** pattern:
-
-### Backend Architecture
-
-- **Controllers** (`apps/backend/controllers/`) - Thin HTTP request handlers
-- **Services** (`apps/backend/services/`) - Business logic layer
-- **Repositories** (`apps/backend/repositories/`) - Data access layer (SQLite)
-- **Routes** (`apps/backend/routes/`) - API route definitions
-- **Middleware** (`apps/backend/middleware/`) - Authentication, validation
-- **Config** (`apps/backend/config/`) - Database and app configuration
-
-### Frontend Architecture
-
-- **Pages** (`apps/frontend/src/pages/`) - Route-level components
-- **Components** (`apps/frontend/src/components/`) - Reusable UI components
-- **Utils** (`apps/frontend/src/utils/`) - Helper functions and API client
-
-This separation ensures:
-- ✅ Clear separation of concerns
-- ✅ Easy testing and maintenance
-- ✅ Scalable codebase
-- ✅ Business logic separated from data access
-
-## Usage
-
-### Public Pages
-
-1. Navigate to `http://localhost:5173` in your browser
-2. Browse through the different pages using the navigation menu
-3. Submit support messages on the Support page
-4. Make donations via the Financial Help page
-
-### Admin Access
-
-1. Navigate to `http://localhost:5173/admin/login`
-2. Login with your admin credentials (default: admin/admin123)
-3. Access the dashboard to:
-   - Edit content for all pages
-   - Curate messages (mark as positive/negative and publish)
-   - View donation statistics
-
-### Admin Features
-
-#### Content Management
-- Select any page from the dropdown
-- Edit HTML content in the textarea
-- Preview changes before saving
-- Changes are immediately visible on public pages
-
-#### Message Curation
-- View all submitted messages
-- Mark messages as "Positive" or "Negative"
-- Publish selected messages to appear on the public Support page
-- Messages with donations are automatically linked
-
-#### Donation Overview
-- View total donations, count, and average
-- See detailed list of all donations
-- Track donor information
-
-## Project Structure
-
-```
-CallForCoFounderInvestor/
-├── apps/                       # Deployable applications
-│   ├── frontend/               # React + Vite frontend
-│   │   ├── src/
-│   │   │   ├── pages/         # Page components
-│   │   │   ├── components/    # Reusable components
-│   │   │   ├── utils/         # Utility functions
-│   │   │   ├── App.jsx        # Main app component
-│   │   │   └── main.jsx       # Entry point
-│   │   ├── package.json
-│   │   └── vite.config.js
-│   └── backend/                # Express.js backend
-│       ├── controllers/        # Request handlers (thin layer)
-│       ├── services/           # Business logic layer
-│       ├── repositories/       # Data access layer
-│       ├── routes/             # API route definitions
-│       ├── middleware/         # Express middleware
-│       ├── config/            # Configuration (database, etc.)
-│       ├── utils/             # Utility functions (email, etc.)
-│       ├── models/            # Legacy models (can be removed)
-│       ├── server.js          # Server entry point
-│       └── package.json
-├── packages/                   # Shared packages (future)
-├── data/                      # SQLite database files
-├── scripts/                   # Utility scripts
-├── package.json               # Root workspace config
-└── README.md
-```
-
-## API Endpoints
-
-### Public Endpoints
-- `GET /api/content/:pageId` - Get page content
-- `POST /api/messages` - Submit support message
-- `GET /api/messages/public` - Get published positive messages
-- `POST /api/donations` - Record donation
-
-### Admin Endpoints (Requires Authentication)
-- `POST /api/auth/login` - Admin login
-- `PUT /api/content/:pageId` - Update page content
-- `GET /api/messages` - Get all messages
-- `PUT /api/messages/:id/curate` - Curate message
-- `GET /api/donations` - Get donation stats
-
-## Email Configuration
-
-The app sends thank you emails automatically when messages are submitted. Configure your SMTP settings in the `.env` file.
-
-## Wise Payment Integration
-
-The donation system redirects users to Wise payment. Update the `WISE_PAYMENT_URL` in your environment variables with your actual Wise payment link.
-
-## Development
-
-### Backend Development
-- Uses ES modules (type: "module")
-- Auto-reload with `npm run dev` (Node.js watch mode)
-- MongoDB connection with Mongoose
-
-### Frontend Development
-- Vite for fast development
-- React Router for navigation
-- Axios for API calls
-- Mobile-first responsive design
-
-## Troubleshooting
-
-### MongoDB Connection Issues
-- Ensure MongoDB is running
-- Check the `MONGODB_URI` in `.env`
-- Verify MongoDB is accessible on the specified port
-
-### Email Not Sending
-- Verify SMTP credentials in `.env`
-- For Gmail, ensure App Password is used (not regular password)
-- Check firewall settings
-
-### CORS Issues
-- Backend CORS is configured to allow frontend origin
-- Ensure frontend proxy is configured in `vite.config.js`
-
-### Admin Login Issues
-- Default credentials: admin/admin123
-- Admin user is auto-created on first login
-- Check JWT_SECRET is set in `.env`
-
-## Security Notes
-
-- Change default admin credentials in production
-- Use a strong JWT_SECRET
-- Secure MongoDB connection in production
-- Use environment variables for sensitive data
-- Enable HTTPS in production
-
-## License
-
-This project is private and proprietary.
-
-## Support
-
-For issues or questions, please contact the project maintainer.
-Made with love by MyMindVentures.io by The_Architect
+**🧬 Lifemanagement Stack**
+
+*My life back on rails*
+
+<br />
+</td>
+<td width="50%" align="center">
+<br />
+
+**💡 IdeaFabric**
+
+*Portable idea blueprint machine*
+
+<br />
+</td>
+</tr>
+</table>
+
+<br />
+
+---
+
+<br />
+
+## My Give Away
+
+I was always scared of idea stealing. But months of struggling alone taught me: **ideas without execution are just dreams.**
+
+So this is my gift:
+- This project and its source code
+- A mindmap for an app that helps shape ideas (frontend + n8n backend)
+- 90+ repos full of attempts and learnings
+- Everything I've documented along the way
+
+**If you believe, these are yours to build with me.**
+
+<br />
+
+---
+
+<br />
+
+<div align="center">
+
+## 💚 Support This Journey
+
+If you'd like to help make this vision a reality:
+
+<br />
+
+[![Donate via Wise](https://img.shields.io/badge/💳_Donate_via_Wise-00B9FF?style=for-the-badge&logoColor=white)](https://wise.com/pay/me/kevind469)
+
+<br />
+
+**Or simply reach out:**
+
+<br />
+
+[![Email](https://img.shields.io/badge/📧_hello@mymindventures.io-EA4335?style=for-the-badge)](mailto:hello@mymindventures.io)
+[![WhatsApp](https://img.shields.io/badge/💬_WhatsApp-25D366?style=for-the-badge)](https://wa.me/34643037037)
+
+<br />
+
+---
+
+<br />
+
+## How You Can Help
+
+| Action | Impact |
+|:---:|:---|
+| ⭐ **Star** | Help others discover this project |
+| 🍴 **Fork** | Take the code, improve it, make it your own |
+| 💬 **Reach out** | Sometimes a conversation sparks great things |
+| 🤝 **Partner** | Become the co-founder or investor I'm looking for |
+
+<br />
+
+---
+
+<br />
+
+## A Promise
+
+> *"If you believe in me, I will work tirelessly to prove you right. Together, we can flip the snowball from negative to positive."*
+
+<br />
+
+**— Kevin**
+
+<br />
+
+---
+
+<br />
+
+<sub>
+
+**Tech Stack:** React + Vite · Node.js + Express · SQLite · Tailwind CSS · Framer Motion · JWT Auth
+
+**Quick Start:** `npm install` → `npm run dev` → Visit `localhost:5173`
+
+</sub>
+
+</div>
