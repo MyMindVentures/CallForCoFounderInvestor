@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="2200" viewBox="0 0 1200 2200">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#52e3c2" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="2200" fill="#070b14"/>
+  <rect x="40" y="40" width="1120" height="2120" rx="28" fill="url(#g1)"/>
+  <rect x="40" y="40" width="1120" height="2120" rx="28" fill="rgba(255,255,255,0.03)"/>
+
+  <foreignObject x="60" y="60" width="1080" height="2080">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        :root{
+          --text:#e7eefc; --muted:#a9b7d6; --border:rgba(231,238,252,.14);
+          --card:rgba(255,255,255,.035); --card2:rgba(255,255,255,.05);
+          --brand:#7c5cff; --brand2:#52e3c2;
+        }
+        *{box-sizing:border-box}
+        body{margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+        .top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; padding:14px 0 8px}
+        .brand{display:flex; align-items:center; gap:10px; font-weight:900; color:var(--text)}
+        .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow:0 0 0 7px rgba(124,92,255,.14)}
+        .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.04); color:var(--text); font-size:13px; font-weight:800; line-height:1}
+        .wrap{padding:6px 0 0}
+        .hero{border:1px solid var(--border); border-radius:22px; background:rgba(255,255,255,.03); padding:18px}
+        h1{margin:0; color:var(--text); font-size:34px; line-height:1.08; letter-spacing:-.03em}
+        .sub{margin:10px 0 0; color:var(--muted); line-height:1.6; font-size:15px; max-width:78ch}
+        .grid{display:grid; gap:12px; margin-top:14px}
+        .two{grid-template-columns:1fr 1fr}
+        .card{border:1px solid var(--border); border-radius:18px; background:var(--card); padding:14px}
+        .soft{background:var(--card2)}
+        h2{margin:0 0 8px; color:var(--text); font-size:18px}
+        p{margin:0; color:var(--muted); line-height:1.65}
+        ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+        li{margin:7px 0; line-height:1.6}
+        b{color:var(--text)}
+        .section{margin-top:16px}
+        .label{margin:12px 0 8px; color:rgba(231,238,252,.85); font-size:13px; letter-spacing:.10em; text-transform:uppercase}
+        .rule{margin-top:12px; padding:12px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.04); color:var(--muted); font-size:13px; line-height:1.6}
+        @media (max-width: 920px){ .two{grid-template-columns:1fr} }
+      </style>
+
+      <div class="top">
+        <div class="brand"><span class="dot"></span><span>Call for Support • README</span></div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end">
+          <span class="pill">🌕 Deadline: <span style="color:#a9b7d6">1 Feb 2026 • 23:09 (MEZ)</span></span>
+          <span class="pill">🔒 NDA-first</span>
+          <span class="pill">👤 Solo Dev Only</span>
+          <span class="pill">🌍 NL / EN</span>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="hero">
+          <h1>Two partners. One turnaround.<br/>Proof, not promises.</h1>
+          <p class="sub">
+            Dit document bundelt de volledige thread: je verhaal, positionering, de 2 rollen, de support-app,
+            userflows en het plan richting <b>🌕 1 februari 2026 • 23:09 (MEZ)</b>.
+          </p>
+        </div>
+
+        <div class="section">
+          <div class="label">Verhaal</div>
+          <div class="grid two">
+            <div class="card">
+              <h2>Wat er gebeurde</h2>
+              <p>
+                Maandenlang alles gegeven (tools, tutorials, AI coding) maar zonder brug naar uitvoering.
+                De mix van stress + financiële druk + gebrek aan begeleiding leidde tot uitputting.
+                Wat nu nodig is: <b>resultaat</b>.
+              </p>
+              <ul>
+                <li>Chats vol ideeën</li>
+                <li>Raindrops met tutorials</li>
+                <li>90+ broken repos</li>
+                <li>Verspreide data</li>
+              </ul>
+            </div>
+            <div class="card soft">
+              <h2>Je kernkracht</h2>
+              <p>
+                Jij bent de <b>architect</b>: systemen, flows en features. AI maakt dit exponentieel.
+                Wat ontbreekt is de <b>brug</b> (solo dev/mentor) om te shippen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="label">De deal</div>
+          <div class="grid two">
+            <div class="card">
+              <h2>Rol 1 — Financial Support Partner</h2>
+              <p>Tijdelijke ademruimte nu → upside later met transparantie.</p>
+              <ul>
+                <li><b>20% lifetime</b> (netto-definitie schriftelijk)</li>
+                <li><b>Transparant dashboard</b></li>
+                <li><b>NDA + overeenkomst</b></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h2>Rol 2 — Solo Developer / Mentor</h2>
+              <p>AI-native builder + mentorship → independence.</p>
+              <ul>
+                <li><b>Revenue split</b> per project (schriftelijk)</li>
+                <li><b>Dagelijkse check-ins</b></li>
+                <li><b>Agentic / MCP / n8n / vibe</b></li>
+                <li><b>Geen teams</b></li>
+              </ul>
+            </div>
+          </div>
+          <div class="rule">
+            <b>Belangrijk:</b> Geen investeringsadvies. Geen gegarandeerde returns. Revenue share &amp; “net revenue”
+            worden vastgelegd in een schriftelijke overeenkomst. NDA is verplicht vóór details.
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="label">2 apps = bewijs</div>
+          <div class="grid two">
+            <div class="card">
+              <h2>Lifemanagement stack</h2>
+              <p>Minimal workflows + structuur terug. Zonder dit wordt het monnikenwerk.</p>
+            </div>
+            <div class="card soft">
+              <h2>IdeaFabric</h2>
+              <p>Portable idea vault (Expo): capture → structure → search → iterate. Chaos wordt goudmijn.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="label">Deadline-plan</div>
+          <div class="grid two">
+            <div class="card">
+              <h2>Definition of Done</h2>
+              <ul>
+                <li>Support-app live + NDA + applications</li>
+                <li>IdeaFabric v1 demo-ready</li>
+                <li>Lifemanagement v1 minimale workflows</li>
+              </ul>
+            </div>
+            <div class="card soft">
+              <h2>Phases</h2>
+              <ul>
+                <li><b>Stabilize</b> → scope lock</li>
+                <li><b>Define MVP</b> → wat is “done”</li>
+                <li><b>Build</b> → daily output</li>
+                <li><b>Close</b> → freeze + test + demo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </foreignObject>
+</svg>
