@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="3200" viewBox="0 0 1200 3200">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="4100" viewBox="0 0 1200 4100">
   <defs>
-    <!-- Background -->
     <radialGradient id="bgA" cx="18%" cy="8%" r="75%">
       <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.55"/>
       <stop offset="0.55" stop-color="#8b5cf6" stop-opacity="0.15"/>
@@ -27,7 +26,6 @@
       <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.55"/>
     </filter>
 
-    <!-- Stars pattern -->
     <pattern id="stars" width="180" height="180" patternUnits="userSpaceOnUse">
       <circle cx="18" cy="22" r="1.2" fill="#ffffff" opacity="0.75"/>
       <circle cx="78" cy="44" r="1.0" fill="#ffffff" opacity="0.55"/>
@@ -40,14 +38,12 @@
       <circle cx="150" cy="18" r="1.0" fill="#ffffff" opacity="0.45"/>
     </pattern>
 
-    <!-- Moon gradient -->
     <radialGradient id="moon" cx="35%" cy="30%" r="70%">
       <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
       <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.65"/>
       <stop offset="1" stop-color="#22d3ee" stop-opacity="0.18"/>
     </radialGradient>
 
-    <!-- Constellation line -->
     <linearGradient id="constLine" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#22d3ee" stop-opacity="0.40"/>
       <stop offset="0.5" stop-color="#8b5cf6" stop-opacity="0.35"/>
@@ -55,14 +51,14 @@
     </linearGradient>
   </defs>
 
-  <!-- Background layers -->
-  <rect width="1200" height="3200" fill="#050611"/>
-  <rect width="1200" height="3200" fill="url(#bgA)"/>
-  <rect width="1200" height="3200" fill="url(#bgB)"/>
-  <rect width="1200" height="3200" fill="url(#bgC)"/>
-  <rect width="1200" height="3200" fill="url(#stars)" opacity="0.33"/>
+  <!-- Background -->
+  <rect width="1200" height="4100" fill="#050611"/>
+  <rect width="1200" height="4100" fill="url(#bgA)"/>
+  <rect width="1200" height="4100" fill="url(#bgB)"/>
+  <rect width="1200" height="4100" fill="url(#bgC)"/>
+  <rect width="1200" height="4100" fill="url(#stars)" opacity="0.33"/>
 
-  <!-- Constellation (pure SVG, stable) -->
+  <!-- Constellation -->
   <g opacity="0.95">
     <path d="M920 140 L1035 210 L1100 130 L1140 240 L1040 290 L960 250 Z"
           fill="none" stroke="url(#constLine)" stroke-width="2"/>
@@ -74,7 +70,7 @@
     <circle cx="960" cy="250" r="4" fill="#ffffff" opacity="0.75"/>
   </g>
 
-  <!-- Break-the-loop ring (pure SVG) -->
+  <!-- Break-the-loop ring -->
   <g transform="translate(130,165)">
     <circle cx="0" cy="0" r="64" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
     <path d="M-52,0 A52,52 0 1,1 52,0" fill="none" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
@@ -82,7 +78,7 @@
     <path d="M52,0 L36,-10 L36,10 Z" fill="#22d3ee" opacity="0.7"/>
   </g>
 
-  <!-- Snow Moon (pure SVG) -->
+  <!-- Snow Moon -->
   <g transform="translate(600,150)">
     <circle cx="0" cy="0" r="70" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
     <circle cx="0" cy="0" r="52" fill="url(#moon)" opacity="0.90"/>
@@ -91,14 +87,47 @@
     <circle cx="20" cy="-18" r="5" fill="rgba(0,0,0,0.14)"/>
   </g>
 
-  <!-- Outer glass frame -->
-  <rect x="40" y="40" width="1120" height="3120" rx="30"
+  <!-- Frame -->
+  <rect x="40" y="40" width="1120" height="4020" rx="30"
         fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.10)" filter="url(#shadow)"/>
-  <rect x="60" y="60" width="1080" height="3080" rx="26"
+  <rect x="60" y="60" width="1080" height="3980" rx="26"
         fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)"/>
 
-  <!-- HTML layout inside foreignObject (simplified CSS) -->
-  <foreignObject x="80" y="80" width="1040" height="3040">
+  <!-- Mindmap image cards (PURE SVG = GitHub-stable) -->
+  <!-- Card 1: Idea-to-Market mindmap -->
+  <g transform="translate(90,2480)">
+    <rect x="0" y="0" width="1020" height="700" rx="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)"/>
+    <rect x="20" y="56" width="980" height="624" rx="18" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="20" y="36" fill="rgba(244,247,255,0.88)" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="14" font-weight="800" letter-spacing="2">
+      MINDMAP • IDEA → MARKET (PROOF OF SYSTEM THINKING)
+    </text>
+    <text x="20" y="52" fill="rgba(244,247,255,0.62)" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="12">
+      Place file at: assets/idea-to-market-mindmap.png
+    </text>
+    <image x="20" y="56" width="980" height="624"
+           href="assets/idea-to-market-mindmap.png"
+           xlink:href="assets/idea-to-market-mindmap.png"
+           preserveAspectRatio="xMidYMid meet"/>
+  </g>
+
+  <!-- Card 2: Agentic IdeaFabric mindmap -->
+  <g transform="translate(90,3220)">
+    <rect x="0" y="0" width="1020" height="740" rx="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)"/>
+    <rect x="20" y="56" width="980" height="664" rx="18" fill="rgba(0,0,0,0.20)" stroke="rgba(255,255,255,0.10)"/>
+    <text x="20" y="36" fill="rgba(244,247,255,0.88)" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="14" font-weight="800" letter-spacing="2">
+      MINDMAP • THE AGENTIC IDEAFABRIC (BLUEPRINT)
+    </text>
+    <text x="20" y="52" fill="rgba(244,247,255,0.62)" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" font-size="12">
+      Place file at: assets/ideafabric-mindmap.png
+    </text>
+    <image x="20" y="56" width="980" height="664"
+           href="assets/ideafabric-mindmap.png"
+           xlink:href="assets/ideafabric-mindmap.png"
+           preserveAspectRatio="xMidYMid meet"/>
+  </g>
+
+  <!-- Main content (foreignObject) -->
+  <foreignObject x="80" y="80" width="1040" height="2360">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <style>
         :root{
@@ -120,12 +149,7 @@
         .pills{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
         .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.04); font-size:13px; font-weight:900; line-height:1}
 
-        .hero{
-          border:1px solid var(--border);
-          border-radius:26px;
-          padding:18px;
-          background: linear-gradient(135deg, rgba(139,92,246,.20), rgba(34,211,238,.12));
-        }
+        .hero{border:1px solid var(--border); border-radius:26px; padding:18px; background: linear-gradient(135deg, rgba(139,92,246,.20), rgba(34,211,238,.12));}
         h1{margin:0; font-size:40px; line-height:1.04; letter-spacing:-.045em}
         .lead{margin:10px 0 0; color:var(--muted); line-height:1.65; font-size:15.5px; max-width:90ch}
         .accentLine{height:2px; width:100%; background: linear-gradient(90deg, var(--b1), var(--b2), var(--b3)); border-radius:999px; margin:14px 0 12px; opacity:.95}
@@ -154,52 +178,14 @@
         b{color:var(--text)}
         .hr{height:1px; background:rgba(255,255,255,0.12); margin:12px 0}
 
-        .deadline{
-          border:1px solid rgba(255,255,255,0.18);
-          border-radius:22px;
-          padding:14px;
-          background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.12));
-        }
+        .deadline{border:1px solid rgba(255,255,255,0.18); border-radius:22px; padding:14px; background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.12));}
         .deadlineTitle{font-weight:980; letter-spacing:-.02em; font-size:18px}
         .deadlineDate{margin-top:10px; font-size:28px; font-weight:1000; letter-spacing:-.03em; line-height:1.1}
         .deadlineMeta{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55}
 
-        .code{
-          margin-top:10px;
-          border:1px solid rgba(255,255,255,0.14);
-          border-radius:18px;
-          padding:12px;
-          background: rgba(0,0,0,0.30);
-          color: rgba(244,247,255,0.92);
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-          font-size:12.5px;
-          line-height:1.55;
-          white-space:pre;
-          overflow:auto;
-        }
+        .callout{border:1px solid rgba(255,255,255,0.16); border-radius:20px; padding:12px; background: rgba(255,255,255,0.05); color: var(--muted2); font-size:13px; line-height:1.6;}
+        .code{margin-top:10px; border:1px solid rgba(255,255,255,0.14); border-radius:18px; padding:12px; background: rgba(0,0,0,0.30); color: rgba(244,247,255,0.92); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; font-size:12.5px; line-height:1.55; white-space:pre; overflow:auto;}
 
-        .callout{
-          border:1px solid rgba(255,255,255,0.16);
-          border-radius:20px;
-          padding:12px;
-          background: rgba(255,255,255,0.05);
-          color: var(--muted2);
-          font-size:13px;
-          line-height:1.6;
-        }
-
-        .footer{
-          margin-top:14px;
-          border:1px solid rgba(255,255,255,0.16);
-          border-radius:20px;
-          padding:12px;
-          background: rgba(255,255,255,0.05);
-          color: var(--muted2);
-          font-size:13px;
-          line-height:1.65;
-        }
-
-        /* Basic responsive */
         @media (max-width: 980px){
           .two,.three{grid-template-columns:1fr}
           h1{font-size:34px}
@@ -240,12 +226,12 @@
 
       <div class="section">
         <div class="labelRow">
-          <div class="label">Hard deadline</div>
-          <div class="hint">Snow Moon • culmination • visibility</div>
+          <div class="label">Snow Moon deadline</div>
+          <div class="hint">culmination • visibility • closure</div>
         </div>
 
         <div class="deadline">
-          <div class="deadlineTitle">Snow Moon (Full Moon) — non-negotiable anchor</div>
+          <div class="deadlineTitle">🌕 Snow Moon (Full Moon) — non-negotiable anchor</div>
           <div class="deadlineDate">Sunday, 1 February 2026 • 23:09 (MEZ)</div>
           <div class="deadlineMeta">
             A fixed astronomical peak that forces closure. Definition: <b>complete, showable, closed</b> (not perfect).
@@ -255,148 +241,154 @@
 
       <div class="section">
         <div class="labelRow">
-          <div class="label">Executive summary</div>
-          <div class="hint">Two people. Two apps. One turnaround.</div>
+          <div class="label">The Agentic IdeaFabric</div>
+          <div class="hint">your blueprint → your compounding system</div>
         </div>
 
-        <div class="grid three">
+        <div class="grid two">
           <div class="card">
-            <h2>Goal</h2>
-            <p>Break the loop and ship <b>two proof apps</b> before the Snow Moon deadline.</p>
+            <h2>What it is</h2>
+            <p>
+              A portable “idea operating system” that turns scattered knowledge into a structured vault:
+              ideas, prompts, tools, resources, templates, workflows—connected to execution.
+            </p>
+            <ul>
+              <li><b>Capture:</b> instantly log ideas and context</li>
+              <li><b>Blueprint:</b> convert ideas into a 5-screen MVP</li>
+              <li><b>Build:</b> vibe-coding support with agents &amp; workflows</li>
+              <li><b>Ship:</b> reality-check + decision framework</li>
+            </ul>
           </div>
+
           <div class="card soft">
-            <h2>Need</h2>
-            <p><b>1 Financial Support Partner</b> + <b>1 Solo Developer/Mentor</b> (AI-native).</p>
-          </div>
-          <div class="card">
-            <h2>Principle</h2>
-            <p><b>MVP first.</b> No feature creep. Proof beats perception. Daily visible output.</p>
+            <h2>Why users like you love it</h2>
+            <p>
+              It removes the “spread everywhere” problem: chats, bookmarks, broken repos, notes.
+              Everything becomes one searchable vault with guided execution—reducing mental load and ending the loop.
+            </p>
+            <ul>
+              <li><b>ADHD-friendly:</b> quick capture + guided next step</li>
+              <li><b>Compounding:</b> vault → templates → speed</li>
+              <li><b>Proof:</b> ideas become demos, not guilt</li>
+            </ul>
           </div>
         </div>
       </div>
 
       <div class="section">
         <div class="labelRow">
-          <div class="label">The deal</div>
-          <div class="hint">Clear roles • NDA-first</div>
+          <div class="label">Frontend: 5 pages</div>
+          <div class="hint">clear UI, glass, high contrast</div>
         </div>
 
         <div class="grid two">
           <div class="card">
-            <h2>Role 1 — Financial Support Partner</h2>
-            <p>Short-term breathing room now → long-term upside later, with transparency.</p>
+            <h2>Page 1 — Home / Command Center</h2>
+            <p>Daily focus, quick capture, active projects, “next best action”.</p>
             <ul>
-              <li><b>Lifetime 20%</b> on every app (net revenue defined in writing)</li>
-              <li><b>Transparent dashboard</b> for subscriptions &amp; revenue</li>
-              <li><b>NDA</b> + written agreement (optional JV)</li>
+              <li>Capture bar (text/voice)</li>
+              <li>Today’s focus + streak</li>
+              <li>Active project tiles</li>
+              <li>Cost/usage quick glance (optional)</li>
+            </ul>
+          </div>
+
+          <div class="card soft">
+            <h2>Page 2 — Vault (Ideas & Knowledge)</h2>
+            <p>Unified storage for ideas, chats, links, notes, snippets, repos.</p>
+            <ul>
+              <li>Tags, search, filters</li>
+              <li>Link-to-idea relations</li>
+              <li>Import queue (Raindrop/clipboard)</li>
+              <li>“Turn into blueprint” action</li>
+            </ul>
+          </div>
+
+          <div class="card soft">
+            <h2>Page 3 — Blueprint (5-screen MVP)</h2>
+            <p>Scope-lock, problem/solution, core flow, constraints, acceptance criteria.</p>
+            <ul>
+              <li>Problem promise</li>
+              <li>5 screens + userflow</li>
+              <li>Data model sketch</li>
+              <li>Definition of Done</li>
             </ul>
           </div>
 
           <div class="card">
-            <h2>Role 2 — Solo Developer / Mentor</h2>
-            <p>One trusted solo dev who ships and mentors “vibe coding” (knowledge transfer).</p>
+            <h2>Page 4 — Build (Vibe Coding Studio)</h2>
+            <p>Prompts, agent tasks, n8n triggers, checklists, PR review notes.</p>
             <ul>
-              <li><b>Revenue split</b> per project we build together (in writing)</li>
-              <li><b>Daily short checkpoints</b> + pairing/reviews</li>
-              <li><b>AI-native:</b> agentic mindset • MCP awareness • n8n workflows</li>
-              <li><b>Solo only:</b> no teams, no agencies</li>
+              <li>Prompt packs per project</li>
+              <li>Agent tasks + status</li>
+              <li>n8n workflow links</li>
+              <li>Dev notes + decisions log</li>
             </ul>
           </div>
-        </div>
 
-        <div class="callout">
-          <b>Legal baseline:</b> Collaboration request, not investment advice. No guaranteed returns.
-          Revenue share and “net revenue” definitions are subject to a written agreement. NDA required before sensitive details.
+          <div class="card">
+            <h2>Page 5 — Reality Check (Ship Decision)</h2>
+            <p>Evidence-based launch/kill/iterate decisions.</p>
+            <ul>
+              <li>Demo checklist</li>
+              <li>User signal tracking</li>
+              <li>Risk / cost / value</li>
+              <li>Decision: ship / iterate / drop</li>
+            </ul>
+          </div>
+
+          <div class="card soft">
+            <h2>UI look & feel</h2>
+            <p>High contrast glassmorphism: neon accents, cosmic background, strong hierarchy.</p>
+            <ul>
+              <li>Glass cards, crisp typography</li>
+              <li>One-tap actions everywhere</li>
+              <li>Minimal friction, maximal clarity</li>
+              <li>“Break the loop” visual language</li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div class="section">
         <div class="labelRow">
-          <div class="label">Two proof apps</div>
-          <div class="hint">Not ten. Two. Then compounding.</div>
+          <div class="label">Backend logic</div>
+          <div class="hint">simple, scalable, user-first</div>
         </div>
 
         <div class="grid two">
           <div class="card">
-            <h2>App 1 — Lifemanagement Stack (v1)</h2>
-            <p>Minimal workflows to restore structure and reduce mental load. Foundation for everything else.</p>
-          </div>
-          <div class="card soft">
-            <h2>App 2 — IdeaFabric (v1)</h2>
-            <p>Portable blueprint machine (Expo): capture → structure → search → iterate. Central vault that compounds.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="labelRow">
-          <div class="label">Call for Support app</div>
-          <div class="hint">Funnel that selects the two partners</div>
-        </div>
-
-        <div class="grid two">
-          <div class="card">
-            <h2>Purpose</h2>
-            <p>Mobile-first funnel: story → role select → NDA → apply → shortlist → ship.</p>
+            <h2>Core entities</h2>
             <ul>
-              <li>Filter noise, qualify fast</li>
-              <li>NDA-first always</li>
-              <li>High-signal applications</li>
+              <li><b>User</b> (profile, preferences, timezone)</li>
+              <li><b>Project</b> (goal, status, scope-lock)</li>
+              <li><b>VaultItem</b> (idea/link/note/chat/snippet/repo)</li>
+              <li><b>Blueprint</b> (5 screens, flow, data model)</li>
+              <li><b>BuildTask</b> (agent task, checklist, review)</li>
+              <li><b>Workflow</b> (n8n references, triggers)</li>
+              <li><b>Decision</b> (ship/iterate/drop + evidence)</li>
             </ul>
           </div>
+
           <div class="card soft">
-            <h2>Stack</h2>
+            <h2>How it helps “people like you”</h2>
             <ul>
-              <li><b>Frontend:</b> Next.js / Vite + Tailwind</li>
-              <li><b>Backend:</b> Supabase</li>
-              <li><b>Automation:</b> n8n</li>
-              <li><b>Payments:</b> Wise now, Stripe later</li>
+              <li><b>Capture-first:</b> reduce overwhelm</li>
+              <li><b>Guided next step:</b> stop looping</li>
+              <li><b>Scope-lock:</b> MVP stays shippable</li>
+              <li><b>Compounding:</b> templates + prompt packs</li>
+              <li><b>Evidence:</b> decisions based on reality</li>
             </ul>
           </div>
         </div>
 
         <div class="card">
-          <h2>Routes</h2>
-          <div class="code">/
- /roles
- /nda
- /apply?role=dev|finance
- /donate (optional)
- /done
- /admin (optional)</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="labelRow">
-          <div class="label">Plan to the Snow Moon</div>
-          <div class="hint">Finish under full light</div>
-        </div>
-
-        <div class="grid two">
-          <div class="card">
-            <h2>Definition of Done</h2>
-            <p>Not perfect. <b>Complete. Showable. Closed.</b></p>
-            <ul>
-              <li>Support app live + NDA + applications</li>
-              <li>IdeaFabric v1 demo-ready</li>
-              <li>Lifemanagement v1 operational</li>
-            </ul>
-          </div>
-          <div class="card soft">
-            <h2>Phases</h2>
-            <ul>
-              <li><b>Stabilize</b> — lock scope</li>
-              <li><b>Define MVP</b> — strict done</li>
-              <li><b>Build</b> — daily visible output</li>
-              <li><b>Close</b> — freeze, test, demo, publish</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="footer">
-          <b>Snow Moon deadline:</b> <b>Sunday, 1 February 2026 • 23:09 (MEZ)</b><br />
-          This is where potential becomes proof — and the loop breaks for good.
+          <h2>Suggested stack</h2>
+          <div class="code">Frontend: Expo / React Native + Tailwind (NativeWind)
+Backend: Supabase (Postgres + Auth)
+Automation: n8n (webhooks, queues, notifications)
+AI: prompt packs + tool registry per project
+Storage: vault items + embeddings (optional later)</div>
         </div>
       </div>
 
