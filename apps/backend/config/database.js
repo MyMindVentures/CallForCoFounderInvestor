@@ -28,6 +28,8 @@ export const getDB = async () => {
     if (fs.existsSync(dbPath)) {
       const buffer = fs.readFileSync(dbPath);
       db = new SQL.Database(buffer);
+      // Run migrations on existing database
+      runMigrations();
     } else {
       db = new SQL.Database();
       initializeTables();
@@ -36,6 +38,43 @@ export const getDB = async () => {
   }
   
   return db;
+};
+
+// Run migrations to add new tables to existing database
+const runMigrations = () => {
+  // Media table (for videos, profile picture, mindmap)
+  db.run(`
+    CREATE TABLE IF NOT EXISTS media (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      type TEXT UNIQUE NOT NULL,
+      cloudinaryId TEXT,
+      url TEXT NOT NULL,
+      publicId TEXT,
+      format TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // App Projects table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS app_projects (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      url TEXT NOT NULL,
+      description TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // Create index for media table
+  try {
+    db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
+  } catch (e) {
+    // Index might already exist
+  }
+
+  saveDatabase();
 };
 
 const initializeTables = () => {
@@ -89,11 +128,37 @@ const initializeTables = () => {
     )
   `);
 
+  // Media table (for videos, profile picture, mindmap)
+  db.run(`
+    CREATE TABLE IF NOT EXISTS media (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      type TEXT UNIQUE NOT NULL,
+      cloudinaryId TEXT,
+      url TEXT NOT NULL,
+      publicId TEXT,
+      format TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // App Projects table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS app_projects (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      url TEXT NOT NULL,
+      description TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Create indexes
   try {
     db.run(`CREATE INDEX IF NOT EXISTS idx_messages_published ON messages(isPublished, isPositive)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_donations_created ON donations(createdAt)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_content_pageId ON content(pageId)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
   } catch (e) {
     // Indexes might already exist
   }

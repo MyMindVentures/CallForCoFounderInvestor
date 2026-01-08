@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import MessageForm from '../components/MessageForm';
+import { motion } from 'framer-motion';
+import { Loader2, MessageSquare, Send, Heart } from 'lucide-react';
+import { PageTransition, StaggerContainer, StaggerItem } from '@/components/ui/page-transition';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import MessageForm from '@/components/MessageForm';
 
 function Support() {
   const [content, setContent] = useState('');
@@ -39,79 +44,137 @@ function Support() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-blue-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <Loader2 className="w-12 h-12 text-cyan-500 animate-spin mx-auto mb-4" />
+          <p className="text-gray-400">Loading...</p>
+        </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-blue dark:bg-gradient-dark py-8 px-4 sm:px-6 lg:px-8 bg-cover bg-center">
+    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-display font-extrabold mb-4 text-gradient-accent">
+        <motion.div 
+          className="text-center mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex justify-center mb-4">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 300, delay: 0.2 }}
+            >
+              <MessageSquare className="w-12 h-12 sm:w-16 sm:h-16 text-cyan-400" />
+            </motion.div>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-3 sm:mb-4 text-gradient-accent px-2">
             Support & Messages
           </h1>
-          <p className="text-xl md:text-2xl text-gray-800 dark:text-dark-700 font-medium">Your words of encouragement mean the world</p>
-        </div>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-medium px-2">
+            Your words of encouragement mean the world
+          </p>
+        </motion.div>
 
-        <div className="glass-effect rounded-2xl shadow-xl dark:shadow-dark-900/50 p-8 mb-8">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-          </div>
-        </div>
-
-        <div className="glass-effect rounded-2xl shadow-xl dark:shadow-dark-900/50 p-8 mb-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-800 dark:text-dark-700">Support Messages</h2>
-          {messages.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">💬</div>
-              <p className="text-gray-600 text-lg">
-                No messages yet. Be the first to show your support!
-              </p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mb-6 sm:mb-8"
+        >
+          <Card variant="glass" size="lg">
+            <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
-          ) : (
-            <div className="space-y-4">
-              {messages.map((msg) => (
-                <div
-                  key={msg.id || msg._id}
-                  className="bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/30 dark:to-blue-900/30 rounded-xl p-6 border-l-4 border-cyan-500 dark:border-cyan-400 shadow-md hover:shadow-lg dark:shadow-dark-900/50 transition-all"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                    <strong className="text-lg md:text-xl text-gray-800 dark:text-dark-700 mb-2 sm:mb-0 font-display font-bold">
-                      {msg.name}
-                    </strong>
-                    {msg.donationAmount && (
-                      <span className="inline-flex items-center px-4 py-1 bg-gradient-orange text-white rounded-full text-sm font-semibold shadow-lg shadow-orange-500/50">
-                        💰 Donated €{msg.donationAmount.toFixed(2)}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-gray-700 dark:text-dark-600 mb-3 leading-relaxed text-base md:text-lg">{msg.message}</p>
-                  <small className="text-gray-500 dark:text-dark-400 text-sm font-medium">
-                    {new Date(msg.createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </small>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mb-6 sm:mb-8"
+        >
+          <Card variant="glass" size="lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Heart className="w-6 h-6 text-cyan-400" />
+                Support Messages
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {messages.length === 0 ? (
+                <div className="text-center py-12">
+                  <MessageSquare className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                  <p className="text-gray-400 text-lg">
+                    No messages yet. Be the first to show your support!
+                  </p>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+              ) : (
+                <StaggerContainer className="space-y-4">
+                  {messages.map((msg) => (
+                    <StaggerItem key={msg.id || msg._id}>
+                      <motion.div
+                        className="backdrop-blur-md bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl p-5 border-l-4 border-cyan-500 hover:bg-cyan-500/20 transition-colors duration-300"
+                        whileHover={{ x: 4 }}
+                      >
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                          <strong className="text-lg md:text-xl text-gray-100 mb-2 sm:mb-0 font-display font-bold">
+                            {msg.name}
+                          </strong>
+                          {msg.donationAmount && (
+                            <Badge variant="warning" size="default" className="flex items-center gap-1">
+                              💰 Donated €{msg.donationAmount.toFixed(2)}
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-gray-300 mb-3 leading-relaxed text-base md:text-lg">
+                          {msg.message}
+                        </p>
+                        <small className="text-gray-500 text-sm font-medium">
+                          {new Date(msg.createdAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </small>
+                      </motion.div>
+                    </StaggerItem>
+                  ))}
+                </StaggerContainer>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
 
-        <div className="glass-effect rounded-2xl shadow-xl dark:shadow-dark-900/50 p-8">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-800 dark:text-dark-700">Send a Message</h2>
-          <div className="bg-gradient-to-br from-gray-50 to-cyan-50/50 dark:from-dark-200 dark:to-dark-300 rounded-xl p-6 border-2 border-cyan-200 dark:border-cyan-700/50 shadow-md">
-            <MessageForm onSubmit={handleMessageSubmit} />
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <Card variant="glass" size="lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Send className="w-6 h-6 text-cyan-400" />
+                Send a Message
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="backdrop-blur-md bg-dark-300/50 rounded-xl p-4 sm:p-5 md:p-6 border border-cyan-500/20">
+                <MessageForm onSubmit={handleMessageSubmit} />
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
-    </div>
+    </PageTransition>
   );
 }
 

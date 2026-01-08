@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { motion } from 'framer-motion';
+import { LogIn, Loader2, AlertCircle, Lock, User } from 'lucide-react';
+import { PageTransition } from '@/components/ui/page-transition';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 function AdminLogin() {
   const [credentials, setCredentials] = useState({
@@ -36,85 +43,117 @@ function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <PageTransition className="min-h-screen flex items-center justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Admin Login
-            </h1>
-            <p className="text-gray-600 mt-2">Access the admin dashboard</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {error && (
-              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-red-700 font-medium">{error}</p>
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          <Card variant="glass" size="lg">
+            <CardHeader className="text-center">
+              <motion.div 
+                className="flex justify-center mb-4"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 300, delay: 0.2 }}
+              >
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+                  <Lock className="w-8 h-8 text-white" />
                 </div>
-              </div>
-            )}
+              </motion.div>
+              <CardTitle className="text-gradient-secondary">Admin Login</CardTitle>
+              <p className="text-gray-400 mt-2">Access the admin dashboard</p>
+            </CardHeader>
 
-            <div>
-              <label htmlFor="username" className="block text-sm font-semibold text-gray-700 mb-2">
-                Username
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={credentials.username}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-colors"
-                placeholder="Enter username"
-              />
-            </div>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {error && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="backdrop-blur-md bg-red-500/20 border border-red-500/30 p-4 rounded-xl"
+                  >
+                    <div className="flex items-center">
+                      <AlertCircle className="w-5 h-5 text-red-400 mr-3 flex-shrink-0" />
+                      <p className="text-red-300 font-medium text-sm sm:text-base">{error}</p>
+                    </div>
+                  </motion.div>
+                )}
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={credentials.password}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-colors"
-                placeholder="Enter password"
-              />
-            </div>
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <Label htmlFor="username" className="flex items-center gap-2 mb-2">
+                    <User className="w-4 h-4" />
+                    Username
+                  </Label>
+                  <Input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={credentials.username}
+                    onChange={handleChange}
+                    required
+                    variant="glow"
+                    placeholder="Enter username"
+                  />
+                </motion.div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300 ${
-                loading
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl'
-              }`}
-            >
-              {loading ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Logging in...
-                </span>
-              ) : (
-                'Login'
-              )}
-            </button>
-          </form>
-        </div>
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15 }}
+                >
+                  <Label htmlFor="password" className="flex items-center gap-2 mb-2">
+                    <Lock className="w-4 h-4" />
+                    Password
+                  </Label>
+                  <Input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleChange}
+                    required
+                    variant="glow"
+                    placeholder="Enter password"
+                  />
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    variant="purple"
+                    size="lg"
+                    className="w-full"
+                  >
+                    {loading ? (
+                      <span className="flex items-center justify-center">
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Logging in...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center">
+                        <LogIn className="w-5 h-5 mr-2" />
+                        Login
+                      </span>
+                    )}
+                  </Button>
+                </motion.div>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
-    </div>
+    </PageTransition>
   );
 }
 

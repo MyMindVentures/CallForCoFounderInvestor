@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle, XCircle, Send, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input, Textarea } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 function MessageForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -40,101 +46,132 @@ function MessageForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {success && (
-        <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg">
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <p className="text-green-700 font-medium">
-              Thank you! Your message has been sent successfully.
-            </p>
-          </div>
-        </div>
-      )}
-      
-      {error && (
-        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
-          <div className="flex items-center">
-            <svg className="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-            </svg>
-            <p className="text-red-700 font-medium">{error}</p>
-          </div>
-        </div>
-      )}
+    <motion.form 
+      onSubmit={handleSubmit} 
+      className="space-y-5 sm:space-y-6"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
+      <AnimatePresence mode="wait">
+        {success && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="backdrop-blur-md bg-emerald-500/20 border border-emerald-500/30 p-4 rounded-xl"
+          >
+            <div className="flex items-center">
+              <CheckCircle className="w-5 h-5 text-emerald-400 mr-3 flex-shrink-0" />
+              <p className="text-emerald-300 font-medium text-sm sm:text-base">
+                Thank you! Your message has been sent successfully.
+              </p>
+            </div>
+          </motion.div>
+        )}
+        
+        {error && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="backdrop-blur-md bg-red-500/20 border border-red-500/30 p-4 rounded-xl"
+          >
+            <div className="flex items-center">
+              <XCircle className="w-5 h-5 text-red-400 mr-3 flex-shrink-0" />
+              <p className="text-red-300 font-medium text-sm sm:text-base">{error}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-          Name <span className="text-red-500">*</span>
-        </label>
-        <input
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        <Label htmlFor="name" className="block text-sm sm:text-base font-semibold mb-2">
+          Name <span className="text-red-400">*</span>
+        </Label>
+        <Input
           type="text"
           id="name"
           name="name"
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-colors text-gray-800"
+          variant="glow"
           placeholder="Your name"
         />
-      </div>
+      </motion.div>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-          Email <span className="text-red-500">*</span>
-        </label>
-        <input
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.15 }}
+      >
+        <Label htmlFor="email" className="block text-sm sm:text-base font-semibold mb-2">
+          Email <span className="text-red-400">*</span>
+        </Label>
+        <Input
           type="email"
           id="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-colors text-gray-800"
+          variant="glow"
           placeholder="your.email@example.com"
         />
-      </div>
+      </motion.div>
 
-      <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-          Message <span className="text-red-500">*</span>
-        </label>
-        <textarea
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <Label htmlFor="message" className="block text-sm sm:text-base font-semibold mb-2">
+          Message <span className="text-red-400">*</span>
+        </Label>
+        <Textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleChange}
           required
-          rows="5"
-          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none transition-colors text-gray-800 resize-none"
+          variant="glow"
           placeholder="Your message..."
         />
-      </div>
+      </motion.div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300 ${
-          loading
-            ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg hover:shadow-xl'
-        }`}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
       >
-        {loading ? (
-          <span className="flex items-center justify-center">
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Sending...
-          </span>
-        ) : (
-          'Send Message'
-        )}
-      </button>
-    </form>
+        <Button
+          type="submit"
+          disabled={loading}
+          variant="purple"
+          size="lg"
+          className="w-full"
+        >
+          {loading ? (
+            <span className="flex items-center justify-center">
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Sending...
+            </span>
+          ) : (
+            <span className="flex items-center justify-center">
+              <Send className="w-5 h-5 mr-2" />
+              Send Message
+            </span>
+          )}
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 }
 

@@ -1,23 +1,27 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 
 function DarkModeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
+    setMounted(true);
+    // Default to dark mode for modern dark theme styling
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    } else {
+    if (savedTheme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
     }
   }, []);
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = (e) => {
+    e.preventDefault();
     const newIsDark = !isDark;
     setIsDark(newIsDark);
     
@@ -30,22 +34,49 @@ function DarkModeToggle() {
     }
   };
 
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="w-11 h-11 rounded-xl bg-dark-300/50 animate-pulse" />
+    );
+  }
+
   return (
-    <button
+    <motion.button
       onClick={toggleDarkMode}
-      className="p-2.5 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-dark-200 dark:to-dark-300 text-gray-700 dark:text-dark-600 hover:from-indigo-100 hover:to-purple-100 dark:hover:from-indigo-900 dark:hover:to-purple-900 transition-all duration-300 shadow-md hover:shadow-lg"
-      aria-label="Toggle dark mode"
+      className="relative w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl backdrop-blur-md bg-dark-300/50 border border-teal-500/20 text-teal-400 hover:text-teal-300 hover:bg-dark-300/70 hover:border-teal-400/30 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-dark-200"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-pressed={isDark}
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {isDark ? (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-        </svg>
-      ) : (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-        </svg>
-      )}
-    </button>
+      <AnimatePresence mode="wait">
+        {isDark ? (
+          <motion.div
+            key="sun"
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Sun className="w-5 h-5" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0, rotate: 90, scale: 0.5 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Moon className="w-5 h-5" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 }
 

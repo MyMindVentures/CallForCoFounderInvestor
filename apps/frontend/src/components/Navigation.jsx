@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Home, BookOpen, Users, Code, DollarSign, MessageSquare, Sparkles } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
+import { cn } from '@/lib/utils';
+import { mobileMenuVariants, staggerItem } from '@/lib/animations';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,136 +23,191 @@ function Navigation() {
   };
 
   const navItems = [
-    { path: '/', label: 'Home', icon: '🏠' },
-    { path: '/storytelling', label: 'Story', icon: '📖' },
-    { path: '/what-i-look-for', label: 'What I Look For', icon: '🤝' },
-    { path: '/developer-help', label: 'Developer Help', icon: '💻' },
-    { path: '/financial-help', label: 'Financial Help', icon: '💰' },
-    { path: '/support', label: 'Support', icon: '💬' },
-    { path: '/adhd-aries', label: 'ADHD + Aries', icon: '✨' }
+    { path: '/', label: 'Home', icon: Home },
+    { path: '/storytelling', label: 'Story', icon: BookOpen },
+    { path: '/what-i-look-for', label: 'What I Look For', icon: Users },
+    { path: '/developer-help', label: 'Developer Help', icon: Code },
+    { path: '/financial-help', label: 'Financial Help', icon: DollarSign },
+    { path: '/support', label: 'Support', icon: MessageSquare },
+    { path: '/adhd-aries', label: 'ADHD + Aries', icon: Sparkles }
   ];
 
   return (
-    <nav className="glass-effect shadow-lg dark:shadow-dark-900/50 sticky top-0 z-50 border-b border-gray-200/50 dark:border-dark-300/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="backdrop-blur-xl bg-dark-200/70 shadow-lg shadow-teal-500/10 sticky top-0 z-50 border-b border-teal-500/20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Main Navigation Bar */}
-        <div className="flex justify-between items-center h-16 lg:h-20">
+        <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
           {/* Logo/Brand */}
           <Link
             to="/"
             onClick={closeMenu}
-            className="flex items-center flex-shrink-0 group"
+            className="flex items-center flex-shrink-0 group min-h-[44px]"
+            aria-label="Home"
           >
-            <h1 className="text-lg sm:text-xl lg:text-2xl font-display font-extrabold gradient-text-animated group-hover:scale-105 transition-all duration-300 tracking-tight whitespace-nowrap">
+            <motion.h1 
+              className="text-sm sm:text-base md:text-lg lg:text-xl font-display font-extrabold gradient-text-animated tracking-tight whitespace-nowrap"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
               Call for Investor/CoFounder
-            </h1>
+            </motion.h1>
           </Link>
 
           {/* Desktop Navigation Menu */}
           <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 flex-shrink-0">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  closeMenu();
-                }}
-                className={`relative inline-flex items-center justify-center px-3 xl:px-4 py-2 xl:py-2.5 rounded-xl font-semibold text-xs xl:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer ${
-                  isActive(item.path)
-                    ? 'btn-gradient shadow-glow scale-105'
-                    : 'text-gray-700 dark:text-dark-600 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-dark-200 dark:hover:to-dark-300'
-                }`}
-                aria-label={item.label}
-              >
-                <span className="mr-1.5 text-sm xl:text-base" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <span>{item.label}</span>
-                {isActive(item.path) && (
-                  <span 
-                    className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full pointer-events-none"
-                    aria-hidden="true"
-                  />
-                )}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeMenu();
+                  }}
+                  aria-label={item.label}
+                >
+                  <motion.div
+                    className={cn(
+                      'relative inline-flex items-center justify-center min-h-[40px] px-2 xl:px-3 py-1.5 xl:py-2 rounded-lg font-semibold text-[11px] xl:text-xs whitespace-nowrap cursor-pointer',
+                      isActive(item.path)
+                        ? 'bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 text-white shadow-md shadow-teal-500/40'
+                        : 'text-gray-300 hover:text-teal-400'
+                    )}
+                    whileHover={{ 
+                      scale: isActive(item.path) ? 1 : 1.05,
+                      backgroundColor: isActive(item.path) ? undefined : 'rgba(20, 184, 166, 0.1)',
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Icon className="w-3.5 h-3.5 mr-1" aria-hidden="true" />
+                    <span>{item.label}</span>
+                    {isActive(item.path) && (
+                      <motion.span 
+                        className="absolute -bottom-1 left-1/2 w-1 h-1 bg-white rounded-full pointer-events-none"
+                        layoutId="activeIndicator"
+                        style={{ x: '-50%' }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </motion.div>
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <DarkModeToggle />
             {/* Mobile Menu Toggle Button */}
-            <button
+            <motion.button
               type="button"
               onClick={toggleMenu}
-              className="lg:hidden p-2.5 rounded-xl text-gray-700 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
+              className="lg:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-xl text-gray-300 hover:bg-dark-300/50 active:bg-dark-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-dark-200 border border-teal-500/10 hover:border-teal-500/20"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
+              whileTap={{ scale: 0.95 }}
             >
-            <div className="relative w-6 h-6">
-              <span
-                className={`absolute top-0 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
-                  isOpen ? 'rotate-45 top-2.5' : ''
-                }`}
-                aria-hidden="true"
-              />
-              <span
-                className={`absolute top-2.5 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
-                  isOpen ? 'opacity-0' : 'opacity-100'
-                }`}
-                aria-hidden="true"
-              />
-              <span
-                className={`absolute top-5 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
-                  isOpen ? '-rotate-45 top-2.5' : ''
-                }`}
-                aria-hidden="true"
-              />
-            </div>
-            </button>
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6 text-teal-400" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6 text-teal-400" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
-        <div
-          id="mobile-menu"
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-[600px] opacity-100 pb-4' : 'max-h-0 opacity-0'
-          }`}
-          aria-hidden={!isOpen}
-        >
-          <div className="pt-2 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  closeMenu();
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="mobile-menu"
+              className="lg:hidden overflow-hidden"
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={mobileMenuVariants}
+              aria-hidden={!isOpen}
+            >
+              <motion.div 
+                className="pt-2 pb-4 space-y-1.5 sm:space-y-2"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={{
+                  initial: {},
+                  animate: {
+                    transition: {
+                      staggerChildren: 0.05,
+                      delayChildren: 0.1,
+                    },
+                  },
+                  exit: {
+                    transition: {
+                      staggerChildren: 0.03,
+                      staggerDirection: -1,
+                    },
+                  },
                 }}
-                className={`flex items-center space-x-3 px-4 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 cursor-pointer ${
-                  isActive(item.path)
-                    ? 'btn-gradient shadow-glow'
-                    : 'text-gray-700 dark:text-dark-600 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-dark-200 dark:hover:to-dark-300 active:bg-gray-100 dark:active:bg-dark-200'
-                }`}
-                aria-label={item.label}
               >
-                <span className="text-xl" aria-hidden="true">
-                  {item.icon}
-                </span>
-                <span>{item.label}</span>
-                {isActive(item.path) && (
-                  <span 
-                    className="ml-auto w-2 h-2 bg-white rounded-full pointer-events-none"
-                    aria-hidden="true"
-                  />
-                )}
-              </Link>
-            ))}
-          </div>
-        </div>
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div key={item.path} variants={staggerItem}>
+                      <Link
+                        to={item.path}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          closeMenu();
+                        }}
+                        className={cn(
+                          'flex items-center space-x-3 min-h-[44px] px-4 py-3 sm:py-3.5 rounded-xl font-semibold text-sm sm:text-base cursor-pointer transition-colors duration-200',
+                          isActive(item.path)
+                            ? 'bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 text-white shadow-lg shadow-teal-500/50'
+                            : 'text-gray-300 hover:text-teal-400 hover:bg-teal-500/10 active:bg-dark-300/50'
+                        )}
+                        aria-label={item.label}
+                      >
+                        <Icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+                        <span className="flex-1">{item.label}</span>
+                        {isActive(item.path) && (
+                          <motion.span 
+                            className="w-2 h-2 bg-white rounded-full pointer-events-none flex-shrink-0"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                            aria-hidden="true"
+                          />
+                        )}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
