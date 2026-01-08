@@ -26,7 +26,7 @@
     <a href="mailto:hello@mymindventures.io">
       <img alt="Email" src="https://img.shields.io/badge/Email-hello%40mymindventures.io-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
     </a>
-    <a href="https://wa.me/34643373346">
+    <a href="https://wa.me/34643037346">
       <img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-NL%20%2B%20EN-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
     </a>
   </p>
