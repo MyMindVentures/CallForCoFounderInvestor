@@ -1,4 +1,10 @@
-<style>
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Call for Support — README</title>
+  <style>
     /* Ultra-compatible CSS (no :where, no clamp, no backdrop-filter) */
     :root{
       --bg:#0b1220;
@@ -14,8 +20,8 @@
       --max: 1040px;
     }
     *{ box-sizing:border-box; }
-    .page{
-      min-height: 100%;
+    html, body{ height:100%; }
+    body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background: #070b14;
@@ -192,8 +198,9 @@
       font-size: 13px;
     }
   </style>
+</head>
 
-<div class="page">
+<body>
 <div class="bg">
   <div class="topbar">
     <div class="topbar-inner">
@@ -477,4 +484,5 @@
 
   </div>
 </div>
-</div>
+</body>
+</html>
