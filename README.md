@@ -216,6 +216,106 @@ If you'd like to help make this vision a reality:
 
 <br />
 
+## 🚀 Production Deployment
+
+### Prerequisites
+
+- Node.js 20.19.0+ (specified in `.nvmrc`)
+- Railway account ([sign up](https://railway.app))
+- GitHub repository connected to Railway
+
+### Railway Deployment Steps
+
+1. **Connect Repository**
+   - Log in to [Railway](https://railway.app)
+   - Click **"New Project"** → **"Deploy from GitHub repo"**
+   - Select your repository: `MyMindVentures/CallForCoFounderInvestor`
+   - Railway automatically detects the monorepo structure
+
+2. **Configure Build Settings**
+   - Railway reads `.nvmrc` for Node version (20.19.0)
+   - **Build Command:** `npm run build`
+     - This builds the frontend to `apps/frontend/dist`
+   - **Start Command:** `npm start --workspace=backend`
+     - This starts the Express server that serves both API and static files
+
+3. **Set Environment Variables**
+   
+   In Railway dashboard → **Variables** tab, add all required variables:
+
+   | Variable | Description | Required | Example |
+   |---------|-------------|----------|---------|
+   | `NODE_ENV` | Environment mode | Yes | `production` |
+   | `PORT` | Server port | No | `3000` (Railway sets this automatically) |
+   | `JWT_SECRET` | Secret for JWT tokens | Yes | Generate: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
+   | `ADMIN_USERNAME` | Admin login username | Yes | `admin` |
+   | `ADMIN_PASSWORD` | Admin login password | Yes | Use a strong password |
+   | `EMAIL_HOST` | SMTP server host | Yes | `smtp.gmail.com` |
+   | `EMAIL_PORT` | SMTP server port | Yes | `587` |
+   | `EMAIL_USER` | SMTP username | Yes | `your-email@gmail.com` |
+   | `EMAIL_PASS` | SMTP password (Gmail App Password) | Yes | Generate from Google Account |
+   | `EMAIL_FROM` | Email sender address | Yes | `your-email@gmail.com` |
+   | `WISE_PAYMENT_URL` | Wise payment link | Yes | `https://wise.com/pay/your-link` |
+   | `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name | Yes | From Cloudinary dashboard |
+   | `CLOUDINARY_API_KEY` | Cloudinary API key | Yes | From Cloudinary dashboard |
+   | `CLOUDINARY_API_SECRET` | Cloudinary API secret | Yes | From Cloudinary dashboard |
+
+   **Important Security Notes:**
+   - Generate a strong `JWT_SECRET` (minimum 32 characters)
+   - For Gmail: Enable 2-Step Verification and generate an App Password
+   - Never commit sensitive values to git
+
+4. **Deploy**
+   - Railway automatically runs the build and starts the server
+   - The backend serves:
+     - API routes at `/api/*`
+     - Static frontend files from `apps/frontend/dist`
+     - React Router routes via `index.html` for non-API routes
+
+### How It Works
+
+- **Build Process:** `npm run build` compiles the React frontend to `apps/frontend/dist`
+- **Production Mode:** When `NODE_ENV=production`, the backend (`apps/backend/server.js`) serves static files from `apps/frontend/dist`
+- **Database:** SQLite database is created automatically in the `data/` directory (persistent on Railway)
+- **Single Service:** One Railway service runs both frontend (static) and backend (API)
+
+### Troubleshooting
+
+**Build Fails:**
+- Verify Node.js version matches `.nvmrc` (20.19.0)
+- Check that all dependencies are in `package.json` (see `DEPENDENCY_REVIEW.md`)
+- Review build logs in Railway dashboard
+
+**Frontend Not Loading:**
+- Ensure `npm run build` completed successfully
+- Verify `apps/frontend/dist` directory exists after build
+- Check that `NODE_ENV=production` is set
+
+**API Routes Not Working:**
+- Verify CORS is configured (already set in `apps/backend/server.js`)
+- Check environment variables are set correctly
+- Review Railway logs for API errors
+
+**Database Issues:**
+- Ensure `data/` directory is writable (Railway provides persistent storage)
+- Check Railway logs for database connection errors
+- Verify SQLite file permissions
+
+**Environment Variables Not Loading:**
+- Ensure all required variables are set in Railway dashboard
+- Check variable names match exactly (case-sensitive)
+- Restart the service after adding new variables
+
+### Additional Resources
+
+- [Railway Documentation](https://docs.railway.app)
+- [Railway Discord](https://discord.gg/railway)
+- See `apps/backend/env.example` for complete environment variable reference
+
+---
+
+<br />
+
 <sub>
 
 **Tech Stack:** React + Vite · Node.js + Express · SQLite · Tailwind CSS · Framer Motion · JWT Auth
