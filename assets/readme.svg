@@ -1,0 +1,405 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="3200" viewBox="0 0 1200 3200">
+  <defs>
+    <!-- Background -->
+    <radialGradient id="bgA" cx="18%" cy="8%" r="75%">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#8b5cf6" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgB" cx="88%" cy="12%" r="80%">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.42"/>
+      <stop offset="0.60" stop-color="#22d3ee" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgC" cx="50%" cy="96%" r="78%">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.18"/>
+      <stop offset="0.65" stop-color="#f59e0b" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a3e635"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+
+    <!-- Stars pattern -->
+    <pattern id="stars" width="180" height="180" patternUnits="userSpaceOnUse">
+      <circle cx="18" cy="22" r="1.2" fill="#ffffff" opacity="0.75"/>
+      <circle cx="78" cy="44" r="1.0" fill="#ffffff" opacity="0.55"/>
+      <circle cx="142" cy="36" r="1.4" fill="#ffffff" opacity="0.80"/>
+      <circle cx="120" cy="98" r="1.1" fill="#ffffff" opacity="0.60"/>
+      <circle cx="40" cy="122" r="1.3" fill="#ffffff" opacity="0.70"/>
+      <circle cx="160" cy="150" r="1.0" fill="#ffffff" opacity="0.55"/>
+      <circle cx="92" cy="156" r="1.6" fill="#ffffff" opacity="0.85"/>
+      <circle cx="24" cy="168" r="1.0" fill="#ffffff" opacity="0.50"/>
+      <circle cx="150" cy="18" r="1.0" fill="#ffffff" opacity="0.45"/>
+    </pattern>
+
+    <!-- Moon gradient -->
+    <radialGradient id="moon" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.18"/>
+    </radialGradient>
+
+    <!-- Constellation line -->
+    <linearGradient id="constLine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.40"/>
+      <stop offset="0.5" stop-color="#8b5cf6" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#a3e635" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="3200" fill="#050611"/>
+  <rect width="1200" height="3200" fill="url(#bgA)"/>
+  <rect width="1200" height="3200" fill="url(#bgB)"/>
+  <rect width="1200" height="3200" fill="url(#bgC)"/>
+  <rect width="1200" height="3200" fill="url(#stars)" opacity="0.33"/>
+
+  <!-- Constellation (pure SVG, stable) -->
+  <g opacity="0.95">
+    <path d="M920 140 L1035 210 L1100 130 L1140 240 L1040 290 L960 250 Z"
+          fill="none" stroke="url(#constLine)" stroke-width="2"/>
+    <circle cx="920" cy="140" r="4" fill="#ffffff" opacity="0.9"/>
+    <circle cx="1035" cy="210" r="4" fill="#ffffff" opacity="0.85"/>
+    <circle cx="1100" cy="130" r="4" fill="#ffffff" opacity="0.85"/>
+    <circle cx="1140" cy="240" r="4" fill="#ffffff" opacity="0.8"/>
+    <circle cx="1040" cy="290" r="4" fill="#ffffff" opacity="0.85"/>
+    <circle cx="960" cy="250" r="4" fill="#ffffff" opacity="0.75"/>
+  </g>
+
+  <!-- Break-the-loop ring (pure SVG) -->
+  <g transform="translate(130,165)">
+    <circle cx="0" cy="0" r="64" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+    <path d="M-52,0 A52,52 0 1,1 52,0" fill="none" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M30,-34 L56,-60" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+    <path d="M52,0 L36,-10 L36,10 Z" fill="#22d3ee" opacity="0.7"/>
+  </g>
+
+  <!-- Snow Moon (pure SVG) -->
+  <g transform="translate(600,150)">
+    <circle cx="0" cy="0" r="70" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="52" fill="url(#moon)" opacity="0.90"/>
+    <circle cx="-18" cy="-8" r="7" fill="rgba(0,0,0,0.18)"/>
+    <circle cx="14" cy="16" r="9" fill="rgba(0,0,0,0.16)"/>
+    <circle cx="20" cy="-18" r="5" fill="rgba(0,0,0,0.14)"/>
+  </g>
+
+  <!-- Outer glass frame -->
+  <rect x="40" y="40" width="1120" height="3120" rx="30"
+        fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.10)" filter="url(#shadow)"/>
+  <rect x="60" y="60" width="1080" height="3080" rx="26"
+        fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)"/>
+
+  <!-- HTML layout inside foreignObject (simplified CSS) -->
+  <foreignObject x="80" y="80" width="1040" height="3040">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        :root{
+          --text:#f4f7ff;
+          --muted:rgba(244,247,255,0.72);
+          --muted2:rgba(244,247,255,0.60);
+          --border:rgba(255,255,255,0.14);
+          --glass:rgba(255,255,255,0.055);
+          --glass2:rgba(255,255,255,0.075);
+          --b1:#8b5cf6;
+          --b2:#22d3ee;
+          --b3:#a3e635;
+        }
+        *{box-sizing:border-box}
+        body{margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text)}
+        .top{display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; padding:10px 0 14px}
+        .brand{display:flex; align-items:center; gap:10px; font-weight:950; letter-spacing:-.02em}
+        .dot{width:11px;height:11px;border-radius:999px;background:linear-gradient(135deg,var(--b1),var(--b2)); box-shadow:0 0 0 8px rgba(139,92,246,.16)}
+        .pills{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+        .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,0.04); font-size:13px; font-weight:900; line-height:1}
+
+        .hero{
+          border:1px solid var(--border);
+          border-radius:26px;
+          padding:18px;
+          background: linear-gradient(135deg, rgba(139,92,246,.20), rgba(34,211,238,.12));
+        }
+        h1{margin:0; font-size:40px; line-height:1.04; letter-spacing:-.045em}
+        .lead{margin:10px 0 0; color:var(--muted); line-height:1.65; font-size:15.5px; max-width:90ch}
+        .accentLine{height:2px; width:100%; background: linear-gradient(90deg, var(--b1), var(--b2), var(--b3)); border-radius:999px; margin:14px 0 12px; opacity:.95}
+
+        .tagRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+        .tag{font-size:12px; font-weight:950; border:1px solid var(--border); padding:7px 10px; border-radius:999px; background:rgba(255,255,255,0.04)}
+        .tag.ok{border-color:rgba(94,234,212,.26); background:rgba(94,234,212,.10)}
+        .tag.warn{border-color:rgba(245,158,11,.28); background:rgba(245,158,11,.10)}
+        .tag.bad{border-color:rgba(251,113,133,.28); background:rgba(251,113,133,.10)}
+
+        .section{margin-top:16px}
+        .labelRow{display:flex; justify-content:space-between; align-items:flex-end; gap:10px; flex-wrap:wrap; margin:14px 0 10px}
+        .label{font-size:13px; letter-spacing:.13em; text-transform:uppercase; color:rgba(244,247,255,.86); font-weight:950}
+        .hint{font-size:13px; color:var(--muted2); font-weight:850}
+
+        .grid{display:grid; gap:12px}
+        .two{grid-template-columns:1fr 1fr}
+        .three{grid-template-columns:1fr 1fr 1fr}
+
+        .card{border:1px solid var(--border); border-radius:22px; background: var(--glass); padding:14px}
+        .card.soft{background:var(--glass2)}
+        .card h2{margin:0 0 8px; font-size:18px; letter-spacing:-.01em}
+        .card p{margin:0; color:var(--muted2); line-height:1.65; font-size:14px}
+        ul{margin:10px 0 0; padding-left:18px; color:var(--muted2)}
+        li{margin:7px 0; line-height:1.55}
+        b{color:var(--text)}
+        .hr{height:1px; background:rgba(255,255,255,0.12); margin:12px 0}
+
+        .deadline{
+          border:1px solid rgba(255,255,255,0.18);
+          border-radius:22px;
+          padding:14px;
+          background: linear-gradient(135deg, rgba(139,92,246,.22), rgba(34,211,238,.12));
+        }
+        .deadlineTitle{font-weight:980; letter-spacing:-.02em; font-size:18px}
+        .deadlineDate{margin-top:10px; font-size:28px; font-weight:1000; letter-spacing:-.03em; line-height:1.1}
+        .deadlineMeta{margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55}
+
+        .code{
+          margin-top:10px;
+          border:1px solid rgba(255,255,255,0.14);
+          border-radius:18px;
+          padding:12px;
+          background: rgba(0,0,0,0.30);
+          color: rgba(244,247,255,0.92);
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+          font-size:12.5px;
+          line-height:1.55;
+          white-space:pre;
+          overflow:auto;
+        }
+
+        .callout{
+          border:1px solid rgba(255,255,255,0.16);
+          border-radius:20px;
+          padding:12px;
+          background: rgba(255,255,255,0.05);
+          color: var(--muted2);
+          font-size:13px;
+          line-height:1.6;
+        }
+
+        .footer{
+          margin-top:14px;
+          border:1px solid rgba(255,255,255,0.16);
+          border-radius:20px;
+          padding:12px;
+          background: rgba(255,255,255,0.05);
+          color: var(--muted2);
+          font-size:13px;
+          line-height:1.65;
+        }
+
+        /* Basic responsive */
+        @media (max-width: 980px){
+          .two,.three{grid-template-columns:1fr}
+          h1{font-size:34px}
+          .deadlineDate{font-size:26px}
+        }
+      </style>
+
+      <div class="top">
+        <div class="brand">
+          <span class="dot"></span>
+          <span>Call for Support • README</span>
+        </div>
+        <div class="pills">
+          <span class="pill">NDA-first</span>
+          <span class="pill">Solo developer only</span>
+          <span class="pill">English</span>
+          <span class="pill">Astronomical anchor</span>
+        </div>
+      </div>
+
+      <div class="hero">
+        <h1>Break the loop.<br />Ship proof.<br />Flip the trajectory.</h1>
+        <p class="lead">
+          I’m the product architect: ideas, flows, features, systems thinking. What broke me wasn’t effort—
+          it was the lack of a reliable execution bridge under financial pressure and mental overload.
+          Now the strategy is simple: <b>structure + collaboration + daily output</b>.
+        </p>
+        <div class="accentLine"></div>
+        <div class="tagRow">
+          <span class="tag ok">Calm urgency</span>
+          <span class="tag ok">Transparency dashboard</span>
+          <span class="tag ok">Mentorship → independence</span>
+          <span class="tag warn">Two proof apps first</span>
+          <span class="tag warn">MVP before features</span>
+          <span class="tag bad">No teams / no agencies</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">Hard deadline</div>
+          <div class="hint">Snow Moon • culmination • visibility</div>
+        </div>
+
+        <div class="deadline">
+          <div class="deadlineTitle">Snow Moon (Full Moon) — non-negotiable anchor</div>
+          <div class="deadlineDate">Sunday, 1 February 2026 • 23:09 (MEZ)</div>
+          <div class="deadlineMeta">
+            A fixed astronomical peak that forces closure. Definition: <b>complete, showable, closed</b> (not perfect).
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">Executive summary</div>
+          <div class="hint">Two people. Two apps. One turnaround.</div>
+        </div>
+
+        <div class="grid three">
+          <div class="card">
+            <h2>Goal</h2>
+            <p>Break the loop and ship <b>two proof apps</b> before the Snow Moon deadline.</p>
+          </div>
+          <div class="card soft">
+            <h2>Need</h2>
+            <p><b>1 Financial Support Partner</b> + <b>1 Solo Developer/Mentor</b> (AI-native).</p>
+          </div>
+          <div class="card">
+            <h2>Principle</h2>
+            <p><b>MVP first.</b> No feature creep. Proof beats perception. Daily visible output.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">The deal</div>
+          <div class="hint">Clear roles • NDA-first</div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h2>Role 1 — Financial Support Partner</h2>
+            <p>Short-term breathing room now → long-term upside later, with transparency.</p>
+            <ul>
+              <li><b>Lifetime 20%</b> on every app (net revenue defined in writing)</li>
+              <li><b>Transparent dashboard</b> for subscriptions &amp; revenue</li>
+              <li><b>NDA</b> + written agreement (optional JV)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Role 2 — Solo Developer / Mentor</h2>
+            <p>One trusted solo dev who ships and mentors “vibe coding” (knowledge transfer).</p>
+            <ul>
+              <li><b>Revenue split</b> per project we build together (in writing)</li>
+              <li><b>Daily short checkpoints</b> + pairing/reviews</li>
+              <li><b>AI-native:</b> agentic mindset • MCP awareness • n8n workflows</li>
+              <li><b>Solo only:</b> no teams, no agencies</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <b>Legal baseline:</b> Collaboration request, not investment advice. No guaranteed returns.
+          Revenue share and “net revenue” definitions are subject to a written agreement. NDA required before sensitive details.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">Two proof apps</div>
+          <div class="hint">Not ten. Two. Then compounding.</div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h2>App 1 — Lifemanagement Stack (v1)</h2>
+            <p>Minimal workflows to restore structure and reduce mental load. Foundation for everything else.</p>
+          </div>
+          <div class="card soft">
+            <h2>App 2 — IdeaFabric (v1)</h2>
+            <p>Portable blueprint machine (Expo): capture → structure → search → iterate. Central vault that compounds.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">Call for Support app</div>
+          <div class="hint">Funnel that selects the two partners</div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h2>Purpose</h2>
+            <p>Mobile-first funnel: story → role select → NDA → apply → shortlist → ship.</p>
+            <ul>
+              <li>Filter noise, qualify fast</li>
+              <li>NDA-first always</li>
+              <li>High-signal applications</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h2>Stack</h2>
+            <ul>
+              <li><b>Frontend:</b> Next.js / Vite + Tailwind</li>
+              <li><b>Backend:</b> Supabase</li>
+              <li><b>Automation:</b> n8n</li>
+              <li><b>Payments:</b> Wise now, Stripe later</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Routes</h2>
+          <div class="code">/
+ /roles
+ /nda
+ /apply?role=dev|finance
+ /donate (optional)
+ /done
+ /admin (optional)</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="labelRow">
+          <div class="label">Plan to the Snow Moon</div>
+          <div class="hint">Finish under full light</div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h2>Definition of Done</h2>
+            <p>Not perfect. <b>Complete. Showable. Closed.</b></p>
+            <ul>
+              <li>Support app live + NDA + applications</li>
+              <li>IdeaFabric v1 demo-ready</li>
+              <li>Lifemanagement v1 operational</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <h2>Phases</h2>
+            <ul>
+              <li><b>Stabilize</b> — lock scope</li>
+              <li><b>Define MVP</b> — strict done</li>
+              <li><b>Build</b> — daily visible output</li>
+              <li><b>Close</b> — freeze, test, demo, publish</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer">
+          <b>Snow Moon deadline:</b> <b>Sunday, 1 February 2026 • 23:09 (MEZ)</b><br />
+          This is where potential becomes proof — and the loop breaks for good.
+        </div>
+      </div>
+
+    </div>
+  </foreignObject>
+</svg>

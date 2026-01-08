@@ -1,227 +1,271 @@
-<div align="center">
-
-# Call for Co-Founder & Investor
-
-### Two partners. One turnaround. Let's flip the snowball.
-
-<br />
-
-[![Made with Passion](https://img.shields.io/badge/Made%20with-Passion%20%E2%9D%A4%EF%B8%8F-ff6b6b?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
-[![Looking for Partners](https://img.shields.io/badge/Looking%20for-Partners-00b894?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Open%20Hearts-9b59b6?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
-
-<br />
-
-**React** · **Node.js** · **SQLite** · **Tailwind CSS** · **Framer Motion**
-
-<br />
+<p align="center">
+  <img src="assets/readme.svg" alt="Call for Support — Full README" width="100%">
+</p>
 
 ---
 
-<br />
+# Call for Support  
+**Two partners. One turnaround. Proof, not promises.**
 
-</div>
-
-## The Story Behind This
-
-> *"For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products."*
-
-I'm **Kevin De Vlieger**, a 41-year-old Belgian now living in sunny **Alicante, Spain**. This project exists because I refuse to let another year pass without proof that my mind can create something real.
-
-<br />
-
-<div align="center">
-
-### The Negative Snowball
-
-~~stress → fear → delays → debt~~
-
-### ⬇️ Flips To ⬇️
-
-### The Positive Snowball
-
-**structure → shipping → proof → compounding**
-
-</div>
-
-<br />
+🌕 **Deadline:** **Sunday, 1 February 2026 — 23:09 (MEZ)**  
+🔒 **NDA-first**  
+👤 **Solo developer only**  
+🌍 **NL / EN**
 
 ---
 
-<br />
+## Executive summary
 
-## What I'm Looking For
+This repository documents a **real, time-bound turnaround effort**.
 
-<table>
-<tr>
-<td width="50%" valign="top">
+I am looking for **exactly two people**:
+1. **One Financial Support Partner**
+2. **One Solo Developer / Mentor (AI-native)**
 
-### 💰 Financial Support Partner
+Together, we ship **two proof apps** before the deadline — not perfect, but **complete, showable, and real**.
 
-**Temporary support now. Long-term upside later.**
+This README contains:
+- the full story  
+- the deal structure  
+- the app architecture  
+- userflows  
+- and the plan to the deadline  
 
-- Lifetime 20% revenue share (net)
-- Transparent revenue dashboard
-- NDA + written agreement
-- You're funding proof, not charity
-
-</td>
-<td width="50%" valign="top">
-
-### 👨‍💻 Solo Developer / Mentor
-
-**Be the bridge from architect to shipped product.**
-
-- Revenue split per project
-- Daily short check-ins
-- AI-native builder (Cursor, n8n, MCP)
-- Goal: Make me independent
-
-</td>
-</tr>
-</table>
-
-<br />
+No hype. No shortcuts. Only execution.
 
 ---
 
-<br />
+## The story (context)
 
-## The Quartet
+For months, I pushed myself to the limit trying to make my ideas tangible.
 
-<div align="center">
+I did not underestimate app building.
+I respected it — and paid the price.
 
-The magic happens when four forces align:
+What accumulated:
+- Chats full of app ideas and feature concepts  
+- Raindrops full of tutorials and research  
+- 90+ repositories with broken or unfinished code  
+- Scattered data, notes, and experiments  
 
-<br />
+What was missing was **not motivation**, but:
+- structure  
+- guidance  
+- breathing room  
 
-| 🧠 **Architect** | 🛠️ **Builder** | 💰 **Investor** | 🤖 **AI** |
-|:---:|:---:|:---:|:---:|
-| Me — Ideas, vision, features | You — Ship, mentor, teach | Breathing room | Leverage & speed |
+Financial pressure + lack of an execution bridge led to mental exhaustion.
 
-<br />
-
-**Structure turns it into results.**
-
-</div>
-
-<br />
-
----
-
-<br />
-
-## Two Apps Change Everything
-
-I don't need ten apps. I need **two shipped apps** to show proof:
-
-<table>
-<tr>
-<td width="50%" align="center">
-<br />
-
-**🧬 Lifemanagement Stack**
-
-*My life back on rails*
-
-<br />
-</td>
-<td width="50%" align="center">
-<br />
-
-**💡 IdeaFabric**
-
-*Portable idea blueprint machine*
-
-<br />
-</td>
-</tr>
-</table>
-
-<br />
+What can save this situation now is **visible result**.
 
 ---
 
-<br />
+## My real talent
 
-## My Give Away
+My strength is **architectural thinking**:
+- app concepts  
+- feature systems  
+- flows and extensions  
+- fast, deep ideation  
 
-I was always scared of idea stealing. But months of struggling alone taught me: **ideas without execution are just dreams.**
+Brainstorming with AI makes this **exponential**.
 
-So this is my gift:
-- This project and its source code
-- A mindmap for an app that helps shape ideas (frontend + n8n backend)
-- 90+ repos full of attempts and learnings
-- Everything I've documented along the way
+I am the **architect**.
 
-**If you believe, these are yours to build with me.**
-
-<br />
+What I need is the **bridge**:
+> from blueprint → shipped product
 
 ---
 
-<br />
+## Positioning (what this is NOT)
 
-<div align="center">
+This is **not**:
+- a “get rich quick” idea  
+- an “AI will build everything” fantasy  
+- a beginner underestimating complexity  
 
-## 💚 Support This Journey
+I’ve already paid the cost — financially and mentally.
 
-If you'd like to help make this vision a reality:
+This is a **serious collaboration request**, with:
+- written agreements  
+- transparency  
+- trust as a baseline  
 
-<br />
+---
 
-[![Donate via Wise](https://img.shields.io/badge/💳_Donate_via_Wise-00B9FF?style=for-the-badge&logoColor=white)](https://wise.com/pay/me/kevind469)
+## The symbolic quartet
 
-<br />
+The leverage happens when four forces align:
 
-**Or simply reach out:**
+- **Me** — vision, ideation, architecture  
+- **Solo developer** — execution + mentorship  
+- **Financial partner** — focus and stability  
+- **AI** — acceleration and leverage  
 
-<br />
+Together, this turns chaos into compounding output.
+
+---
+
+## The deal
+
+### Role 1 — Financial Support Partner
+
+Purpose: **temporary financial breathing room** → long-term upside.
+
+What you receive:
+- **20% lifetime share** on every app I bring to market  
+  (net revenue defined in writing)
+- **Transparent revenue dashboard**
+- Optional repayment-first structure
+- NDA + written agreement (optionally JV)
+
+This is **not investment advice** and comes with **no guaranteed returns**.
+
+---
+
+### Role 2 — Solo Developer / Mentor
+
+I am explicitly **not** looking for a team or agency.
+
+I’m looking for **one trusted solo developer** who:
+- is AI-native  
+- understands agentic workflows  
+- works with MCP concepts  
+- builds with n8n workflows  
+- enjoys vibe coding  
+
+The goal is **mentorship → independence**.
+
+What you receive:
+- **Revenue split per app** we actively build together  
+- Clear scope, written agreement  
+- Long-term collaboration if alignment is strong  
+
+---
+
+## Two apps = proof
+
+I do not need ten apps.
+
+I need **two**.
+
+### 1) Lifemanagement stack
+Minimal workflows to:
+- regain structure  
+- reduce mental load  
+- stabilize daily execution  
+
+Without this, everything becomes monnikenwerk.
+
+---
+
+### 2) IdeaFabric
+A portable ideas system (Expo-based):
+- capture ideas anywhere  
+- structure and iterate  
+- centralize docs, chats, tutorials  
+- turn chaos into a **data vault**
+
+This is the compounding engine.
+
+---
+
+## Call for Support app (this repo)
+
+### Purpose
+A mobile-first funnel that:
+- communicates the story clearly  
+- filters noise  
+- enforces NDA-first  
+- selects exactly two partners  
+
+---
+
+### Structure & routes
+
+---
+
+### Recommended stack
+
+- **Frontend:** Next.js or Vite + Tailwind  
+- **Backend:** Supabase  
+- **Automation:** n8n workflows  
+- **Payments:** Wise (now), Stripe (later)  
+
+---
+
+## Userflows
+
+### Developer flow
+- Landing → Roles → Developer  
+- NDA → Apply  
+- Shortlist → Call  
+- Written agreement → Ship  
+
+---
+
+### Finance flow
+- Landing → Roles → Finance  
+- NDA → Apply  
+- Optional Wise support  
+- Agreement → Dashboard access  
 
 [![Email](https://img.shields.io/badge/📧_hello@mymindventures.io-EA4335?style=for-the-badge)](mailto:hello@mymindventures.io)
 [![WhatsApp](https://img.shields.io/badge/💬_WhatsApp_(NL_+_EN)-25D366?style=for-the-badge)](https://wa.me/34643037346)
 
-<br />
+### Non-negotiables
+- Solo developer only  
+- NDA before details  
+- Respect, empathy, trust  
+- MVP first, features later  
 
 ---
 
-<br />
+## Deadline plan
 
-## How You Can Help
+🌕 **Sunday, 1 February 2026 — 23:09 (MEZ)**  
+(Full Moon / Snow Moon — culmination, not beginning)
 
-| Action | Impact |
-|:---:|:---|
-| ⭐ **Star** | Help others discover this project |
-| 🍴 **Fork** | Take the code, improve it, make it your own |
-| 💬 **Reach out** | Sometimes a conversation sparks great things |
-| 🤝 **Partner** | Become the co-founder or investor I'm looking for |
+### Definition of Done
+Not perfect. **Complete. Showable. Closed.**
 
-<br />
-
----
-
-<br />
-
-## A Promise
-
-> *"If you believe in me, I will work tirelessly to prove you right. Together, we can flip the snowball from negative to positive."*
-
-<br />
-
-**— Kevin**
-
-<br />
+- Support app live  
+- IdeaFabric v1 demo-ready  
+- Lifemanagement v1 operational  
 
 ---
 
-<br />
+### Phases
+1. **Stabilize** — lock scope, stop tool-hopping  
+2. **Define MVP** — clear “done”  
+3. **Build** — daily visible output  
+4. **Close** — freeze, test, demo  
 
-<sub>
+---
 
-**Tech Stack:** React + Vite · Node.js + Express · SQLite · Tailwind CSS · Framer Motion · JWT Auth
+## Legal & transparency
 
-**Quick Start:** `npm install` → `npm run dev` → Visit `localhost:5173`
+- This is **not investment advice**
+- No guaranteed returns
+- All revenue shares defined in writing
+- NDA required before sensitive details
 
-</sub>
+---
 
-</div>
+## Final note
+
+I’m not asking to be saved.  
+I’m asking to **collaborate**.
+
+My brain is not a liability — it’s a lever,  
+**if structured correctly**.
+
+If you are a:
+- Financial Support Partner  
+- or a Solo Developer / Mentor  
+
+and you value clarity, trust, and building something real:
+
+**This is the moment.**
+
+🌕 **Deadline: 1 February 2026 — 23:09 (MEZ)**  
+Complete. Showable. Closed.
