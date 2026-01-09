@@ -311,8 +311,65 @@ Not perfect. **Complete. Showable. Closed.**
 
 - **Build Process:** `npm run build` compiles the React frontend to `apps/frontend/dist`
 - **Production Mode:** When `NODE_ENV=production`, the backend (`apps/backend/server.js`) serves static files from `apps/frontend/dist`
-- **Database:** SQLite database is created automatically in the `data/` directory (persistent on Railway)
+- **Database:** SQLite database is created automatically in the `data/` directory at the project root
 - **Single Service:** One Railway service runs both frontend (static) and backend (API)
+
+### Database Persistence on Railway
+
+**⚠️ Important:** The SQLite database file (`data/database.db`) is **NOT automatically persistent** on Railway. By default, Railway containers are ephemeral, meaning the database will be **lost on service restarts or redeployments** unless you configure persistence.
+
+The database path is configured in `apps/backend/config/database.js` (defaults to `data/database.db` at the project root). You have two options to make your database durable in production:
+
+#### Option 1: Railway Persistent Volume (Recommended for SQLite)
+
+Configure a Railway persistent volume mounted to your `data/` directory:
+
+1. **Add a Volume in Railway:**
+   - In your Railway project dashboard, go to your service
+   - Click **"New"** → **"Volume"**
+   - Name it (e.g., `database-storage`)
+   - Set the mount path to `/data` (or the full path where your `data/` directory will be accessible)
+
+2. **Update Database Path (if needed):**
+   - The backend automatically creates the database at `data/database.db` (configured in `apps/backend/config/database.js`)
+   - If your volume mount path differs, set the `DB_PATH` environment variable in Railway to match your volume mount path
+   - Example: If volume is mounted at `/data`, ensure `DB_PATH=/data/database.db` (or keep default if volume is at project root)
+
+3. **Verify Persistence:**
+   - After deployment, the SQLite file will persist across restarts
+   - Check Railway logs to confirm the database path is correct
+
+**Note:** The database file (`database.db`) lives under the `data/` directory and must be mapped to a persistent volume for durability.
+
+#### Option 2: Migrate to PostgreSQL (Recommended for Production)
+
+For production workloads, consider migrating to Railway's managed PostgreSQL service:
+
+1. **Add PostgreSQL Service:**
+   - In Railway dashboard, click **"New"** → **"Database"** → **"Add PostgreSQL"**
+   - Railway automatically provides a `DATABASE_URL` environment variable
+
+2. **Update Backend Configuration:**
+   - Modify `apps/backend/config/database.js` to use PostgreSQL instead of SQLite
+   - Install PostgreSQL client: `npm install pg` (or `pg-promise`)
+   - Replace SQLite connection logic with PostgreSQL connection using `process.env.DATABASE_URL`
+   - Update all database queries to use PostgreSQL syntax (SQLite and PostgreSQL have some differences)
+
+3. **Run Migrations:**
+   - Create migration scripts to set up your PostgreSQL schema
+   - Convert existing SQLite schema to PostgreSQL (e.g., `INTEGER PRIMARY KEY AUTOINCREMENT` → `SERIAL PRIMARY KEY`)
+   - Run migrations on first deploy or manually via Railway CLI/console
+
+4. **Update Environment Variables:**
+   - Remove or ignore `DB_PATH` (no longer needed)
+   - Railway automatically sets `DATABASE_URL` for the PostgreSQL service
+   - Ensure your backend reads `DATABASE_URL` for connection
+
+**Benefits of PostgreSQL:**
+- Automatic backups and high availability
+- Better performance for concurrent operations
+- No volume management required
+- Built-in connection pooling
 
 ### Troubleshooting
 
@@ -332,9 +389,11 @@ Not perfect. **Complete. Showable. Closed.**
 - Review Railway logs for API errors
 
 **Database Issues:**
-- Ensure `data/` directory is writable (Railway provides persistent storage)
+- **Data Loss on Restart:** If you haven't configured a persistent volume, your SQLite database will be lost on restarts. See "Database Persistence on Railway" section above for solutions.
+- **Volume Mount Issues:** Verify the persistent volume is correctly mounted to your `data/` directory path
 - Check Railway logs for database connection errors
-- Verify SQLite file permissions
+- Verify SQLite file permissions (if using persistent volume)
+- If using PostgreSQL, verify `DATABASE_URL` environment variable is set correctly
 
 **Environment Variables Not Loading:**
 - Ensure all required variables are set in Railway dashboard

@@ -1,12 +1,12 @@
 # Railway configuration for Backend Service
-# This file is used when deploying backend as a separate service
+# This service builds the frontend and serves it along with the API
 
 [build]
 builder = "nixpacks"
-buildCommand = "npm install"
+buildCommand = "npm install && npm run build"
 
 [deploy]
-startCommand = "npm start --workspace=backend"
+startCommand = "npm run start:prod"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 100
 healthcheckInterval = 30

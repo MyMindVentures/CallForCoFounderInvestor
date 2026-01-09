@@ -139,9 +139,12 @@ if (isProduction) {
   });
 }
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`✓ Server running on port ${PORT}`);
-  console.log(`✓ API available at http://localhost:${PORT}/api`);
+  console.log(`✓ API available at http://0.0.0.0:${PORT}/api`);
+  if (process.env.RAILWAY_ENVIRONMENT) {
+    console.log(`✓ Railway environment: ${process.env.RAILWAY_ENVIRONMENT}`);
+  }
 });
 
 server.on('error', (error) => {
