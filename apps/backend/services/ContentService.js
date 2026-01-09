@@ -7,7 +7,8 @@ const defaultContent = {
   developerHelp: '<h1>Developer Help</h1><p>Need help with IDEs, n8n, and Vibe Coding.</p>',
   financialHelp: '<h1>Financial Support</h1><p>Support our mission.</p>',
   support: '<h1>Support</h1><p>Thank you for your support!</p>',
-  adhDAries: '<h1>ADHD + Aries</h1><p>The importance of ADHD combined with Aries strengths.</p>'
+  adhDAries: '<h1>ADHD + Aries</h1><p>The importance of ADHD combined with Aries strengths.</p>',
+  qrRedirectUrl: process.env.APP_URL || 'https://example.com'
 };
 
 class ContentService {

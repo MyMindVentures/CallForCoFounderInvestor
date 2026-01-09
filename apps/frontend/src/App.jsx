@@ -7,6 +7,7 @@ import DeveloperHelp from './pages/DeveloperHelp';
 import FinancialHelp from './pages/FinancialHelp';
 import Support from './pages/Support';
 import ADHDAries from './pages/ADHDAries';
+import QrPoster from './pages/QrPoster';
 import AdminLogin from './pages/Admin/Login';
 import AdminDashboard from './pages/Admin/Dashboard';
 import Navigation from './components/Navigation';
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
         <Route path="/financial-help" element={<FinancialHelp />} />
         <Route path="/support" element={<Support />} />
         <Route path="/adhd-aries" element={<ADHDAries />} />
+        <Route path="/qr-poster" element={<QrPoster />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
