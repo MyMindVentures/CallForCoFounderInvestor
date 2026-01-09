@@ -5,11 +5,13 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { Download, ExternalLink, QrCode } from 'lucide-react';
 import logger from '@/utils/logger';
+import { normalizeUrl } from '@/utils/url';
 import { PageTransition } from '@/components/ui/page-transition';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-const DEFAULT_APP_URL = import.meta.env.VITE_APP_URL || 'https://example.com';
+const FALLBACK_APP_URL = 'https://example.com';
+const DEFAULT_APP_URL = normalizeUrl(import.meta.env.VITE_APP_URL, FALLBACK_APP_URL);
 
 function QrPoster() {
   const posterRef = useRef(null);
@@ -17,15 +19,30 @@ function QrPoster() {
   const [qrDataUrl, setQrDataUrl] = useState('');
   const [loading, setLoading] = useState(true);
   const [downloading, setDownloading] = useState(false);
+  const [qrGenerating, setQrGenerating] = useState(true);
+  const [qrError, setQrError] = useState('');
+  const [usingFallbackUrl, setUsingFallbackUrl] = useState(false);
+
+  const resolveAppUrl = (value) => {
+    const normalized = normalizeUrl(value, '');
+    if (!normalized) {
+      return { url: DEFAULT_APP_URL, usedFallback: true };
+    }
+
+    return { url: normalized, usedFallback: false };
+  };
 
   useEffect(() => {
     const fetchQrRedirectUrl = async () => {
       try {
         const response = await axios.get('/api/content/qrRedirectUrl');
-        setAppUrl(response.data.content || DEFAULT_APP_URL);
+        const resolved = resolveAppUrl(response.data.content);
+        setAppUrl(resolved.url);
+        setUsingFallbackUrl(resolved.usedFallback);
       } catch (error) {
         logger.error('Error fetching QR redirect URL:', error);
         setAppUrl(DEFAULT_APP_URL);
+        setUsingFallbackUrl(true);
       } finally {
         setLoading(false);
       }
@@ -37,6 +54,9 @@ function QrPoster() {
   useEffect(() => {
     const generateQr = async () => {
       try {
+        setQrGenerating(true);
+        setQrError('');
+        setQrDataUrl('');
         const dataUrl = await QRCode.toDataURL(appUrl, {
           width: 640,
           margin: 2,
@@ -48,6 +68,9 @@ function QrPoster() {
         setQrDataUrl(dataUrl);
       } catch (error) {
         logger.error('Error generating QR code:', error);
+        setQrError('Unable to generate QR code right now.');
+      } finally {
+        setQrGenerating(false);
       }
     };
 
@@ -166,6 +189,11 @@ function QrPoster() {
                     <span className="font-semibold">Destination:</span>
                     <span className="truncate max-w-[220px] sm:max-w-[280px]">{appUrl}</span>
                   </div>
+                  {usingFallbackUrl && (
+                    <p className="mt-3 text-xs text-amber-200">
+                      Set a custom destination in Admin → Media → QR Poster Redirect to replace the default link.
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col items-center">
@@ -174,7 +202,7 @@ function QrPoster() {
                       <img src={qrDataUrl} alt="QR code linking to the app" className="w-60 h-60 sm:w-72 sm:h-72" />
                     ) : (
                       <div className="w-60 h-60 sm:w-72 sm:h-72 flex items-center justify-center text-slate-500">
-                        {loading ? 'Generating QR...' : 'QR unavailable'}
+                        {qrGenerating || loading ? 'Generating QR...' : qrError || 'QR unavailable'}
                       </div>
                     )}
                   </div>
