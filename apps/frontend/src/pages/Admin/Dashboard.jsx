@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LogOut, FileText, MessageSquare, DollarSign, Save, Loader2,
   TrendingUp, Users, Calendar, Check, X, Image, Video, User, 
-  Network, Link2, Plus, Trash2, ExternalLink
+  Network, Link2, Plus, Trash2, ExternalLink, QrCode
 } from 'lucide-react';
 import { PageTransition } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -27,6 +27,8 @@ function AdminDashboard() {
   const [media, setMedia] = useState({});
   const [appProjects, setAppProjects] = useState([]);
   const [newProject, setNewProject] = useState({ name: '', url: '', description: '' });
+  const [qrRedirectUrl, setQrRedirectUrl] = useState('');
+  const [qrSaving, setQrSaving] = useState(false);
   const navigate = useNavigate();
 
   const pages = [
@@ -61,6 +63,7 @@ function AdminDashboard() {
     } else if (activeTab === 'media') {
       fetchMedia();
       fetchAppProjects();
+      fetchQrRedirectUrl();
     }
   }, [activeTab, selectedPage, navigate]);
 
@@ -114,6 +117,15 @@ function AdminDashboard() {
       setAppProjects(response.data);
     } catch (error) {
       logger.error('Error fetching app projects:', error);
+    }
+  };
+
+  const fetchQrRedirectUrl = async () => {
+    try {
+      const response = await axios.get('/api/content/qrRedirectUrl');
+      setQrRedirectUrl(response.data.content || '');
+    } catch (error) {
+      logger.error('Error fetching QR redirect URL:', error);
     }
   };
 
@@ -180,6 +192,25 @@ function AdminDashboard() {
     } catch (error) {
       logger.error('Error deleting project:', error);
       alert('Error deleting project');
+    }
+  };
+
+  const saveQrRedirectUrl = async () => {
+    setQrSaving(true);
+    try {
+      const token = localStorage.getItem('adminToken');
+      await axios.put(
+        '/api/content/qrRedirectUrl',
+        { content: qrRedirectUrl },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert('QR redirect URL saved!');
+    } catch (error) {
+      logger.error('Error saving QR redirect URL:', error);
+      alert('Error saving QR redirect URL. Please try again.');
+      if (error.response?.status === 401) navigate('/admin/login');
+    } finally {
+      setQrSaving(false);
     }
   };
 
@@ -423,6 +454,47 @@ function AdminDashboard() {
                         title="Mindmap"
                         description="Your project mindmap or vision board"
                       />
+                    </div>
+                  </div>
+
+                  {/* QR Redirect URL */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                      <QrCode className="w-6 h-6 text-emerald-400" />
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-200">QR Poster Redirect</h3>
+                        <p className="text-sm text-gray-400">Set the app URL encoded in the QR poster.</p>
+                      </div>
+                    </div>
+                    <div className="backdrop-blur-md bg-dark-300/50 rounded-xl p-5 border border-dark-400/50">
+                      <label className="block text-sm font-semibold text-gray-300 mb-2">
+                        App URL
+                      </label>
+                      <Input
+                        placeholder="https://your-app-url.com"
+                        value={qrRedirectUrl}
+                        onChange={(e) => setQrRedirectUrl(e.target.value)}
+                      />
+                      <div className="mt-4">
+                        <Button
+                          onClick={saveQrRedirectUrl}
+                          disabled={!qrRedirectUrl || qrSaving}
+                          variant="default"
+                          size="sm"
+                        >
+                          {qrSaving ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              Saving...
+                            </>
+                          ) : (
+                            <>
+                              <Save className="w-4 h-4 mr-2" />
+                              Save QR URL
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
                   </div>
 

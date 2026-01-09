@@ -33,7 +33,8 @@ function Navigation() {
     { path: '/developer-help', label: 'Developer Help', iconSrc: assets.icons.code },
     { path: '/financial-help', label: 'Financial Help', iconSrc: assets.icons.dollar },
     { path: '/support', label: 'Support', iconSrc: assets.icons.message },
-    { path: '/adhd-aries', label: 'ADHD + Aries', iconSrc: assets.icons.sparkles }
+    { path: '/adhd-aries', label: 'ADHD + Aries', iconSrc: assets.icons.sparkles },
+    { path: '/qr-poster', label: 'QR Poster', iconSrc: assets.icons.rocket }
   ];
 
   return (
