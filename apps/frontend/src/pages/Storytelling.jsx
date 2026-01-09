@@ -12,6 +12,7 @@ import { assets } from '@/utils/assets';
 function Storytelling() {
   const [content, setContent] = useState('');
   const [media, setMedia] = useState({});
+  const [appProjects, setAppProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,15 +21,18 @@ function Storytelling() {
 
   const fetchData = async () => {
     try {
-      const [contentRes, mediaRes] = await Promise.all([
+      const [contentRes, mediaRes, projectsRes] = await Promise.all([
         axios.get('/api/content/storytelling'),
-        axios.get('/api/media/all')
+        axios.get('/api/media/all'),
+        axios.get('/api/media/projects')
       ]);
       setContent(contentRes.data.content);
       setMedia(mediaRes.data);
+      setAppProjects(projectsRes.data || []);
     } catch (error) {
       logger.error('Error fetching data:', error);
       setContent('<h1>My Story</h1><p>Content coming soon...</p>');
+      setAppProjects([]);
     } finally {
       setLoading(false);
     }
@@ -77,6 +81,9 @@ function Storytelling() {
       gradient: 'from-orange-500 via-amber-500 to-yellow-500',
     },
   ];
+  const mindmapUrl = media?.mindmap?.url || assets.ideafabricMindmap;
+  const profileUrl = media?.profile?.url;
+  const webviewSlots = Array.from({ length: 3 }, (_, index) => appProjects[index] || null);
 
   return (
     <PageTransition className="relative min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
@@ -141,6 +148,108 @@ function Storytelling() {
             );
           })}
         </div>
+
+        {/* Profile & Mindmap */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-center mb-8 text-gray-200">
+            The Inventor & the Mindmap
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card variant="glass" size="lg" className="flex flex-col items-center text-center gap-5">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-purple-500/40 via-pink-500/40 to-orange-500/40 flex items-center justify-center overflow-hidden border border-white/10">
+                {profileUrl ? (
+                  <img
+                    src={profileUrl}
+                    alt="Founder profile"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-3xl font-bold text-white/70">CF</span>
+                )}
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-100 mb-2">Profile Picture</h3>
+                <p className="text-gray-400">
+                  A public face for the story behind this mission.
+                </p>
+              </div>
+            </Card>
+
+            <Card variant="glass" size="lg" className="space-y-4">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-100 mb-2">Agentic IdeaFabric Mindmap</h3>
+                <p className="text-gray-400">
+                  The give away visualized: the blueprint for shaping ideas into working systems.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 overflow-hidden bg-black/20">
+                <img
+                  src={mindmapUrl}
+                  alt="Agentic IdeaFabric mindmap"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </Card>
+          </div>
+        </motion.div>
+
+        {/* Proof of Mind Webviews */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-center mb-8 text-gray-200">
+            Proof of Mind Webviews
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {webviewSlots.map((project, index) => (
+              <Card key={`webview-${index}`} variant="glass" size="lg" className="flex flex-col gap-4">
+                {project ? (
+                  <>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-100">{project.name}</h3>
+                      {project.description && (
+                        <p className="text-sm text-gray-400 mt-1">{project.description}</p>
+                      )}
+                    </div>
+                    <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/30">
+                      <iframe
+                        title={`Proof of Mind webview ${index + 1}`}
+                        src={project.url}
+                        loading="lazy"
+                        className="w-full h-64"
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                        allow="fullscreen; clipboard-read; clipboard-write"
+                      />
+                    </div>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-teal-300 hover:text-teal-200 transition"
+                    >
+                      Open in new tab →
+                    </a>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-center gap-3 py-10 px-4 border border-dashed border-white/20 rounded-2xl">
+                    <p className="text-gray-300 font-semibold">Webview slot {index + 1}</p>
+                    <p className="text-sm text-gray-500">
+                      Add a URL in the admin dashboard to showcase another proof-of-mind app.
+                    </p>
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Personal Story Sections */}
         <motion.div
