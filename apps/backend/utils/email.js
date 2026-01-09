@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { logError } from './errorHandler.js';
 
 dotenv.config();
 
@@ -31,10 +32,12 @@ export const sendThankYouEmail = async (to, name) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Thank you email sent:', info.messageId);
+    if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'production') {
+      console.log('Thank you email sent:', info.messageId);
+    }
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error('Error sending email:', error);
+    logError('EmailService.sendThankYouEmail', error);
     return { success: false, error: error.message };
   }
 };

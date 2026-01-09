@@ -1,5 +1,6 @@
 import { mediaRepository, appProjectsRepository } from '../repositories/MediaRepository.js';
 import { uploadToCloudinary, deleteFromCloudinary, validateFile, isCloudinaryConfigured } from '../utils/cloudinary.js';
+import { logError } from '../utils/errorHandler.js';
 
 // Valid media types
 const VALID_MEDIA_TYPES = {
@@ -47,7 +48,7 @@ class MediaService {
       try {
         await deleteFromCloudinary(existing.publicId, resourceType);
       } catch (error) {
-        console.error('Error deleting old file from Cloudinary:', error);
+        logError('MediaService.uploadMedia - Delete Old File', error);
         // Continue even if delete fails
       }
     }
@@ -113,7 +114,7 @@ class MediaService {
       try {
         await deleteFromCloudinary(existing.publicId, resourceType);
       } catch (error) {
-        console.error('Error deleting from Cloudinary:', error);
+        logError('MediaService.deleteMedia - Cloudinary', error);
       }
     }
 

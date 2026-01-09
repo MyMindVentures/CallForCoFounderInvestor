@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Code, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
-import { PageTransition } from '@/components/ui/page-transition';
-import { Card } from '@/components/ui/card';
+import { Loader2, Code, HelpCircle, ChevronDown, ChevronUp, Users, DollarSign, Calendar, Bot, Target, ArrowRight } from 'lucide-react';
+import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/ui/page-transition';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import MessageForm from '@/components/MessageForm';
 
 function DeveloperHelp() {
@@ -21,7 +23,7 @@ function DeveloperHelp() {
       const response = await axios.get('/api/content/developerHelp');
       setContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
       setContent('<h1>Developer Help</h1><p>Need help with IDEs, n8n, and Vibe Coding learning.</p>');
     } finally {
       setLoading(false);
@@ -82,6 +84,93 @@ function DeveloperHelp() {
           </Card>
         </motion.div>
 
+        {/* Solo Developer / Mentor Partnership Section */}
+        <ScrollReveal className="mb-6 sm:mb-8">
+          <Card variant="gradient" size="xl" className="bg-gradient-to-br from-emerald-500/80 via-teal-500/80 to-cyan-500/80 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-display font-bold flex items-center gap-3">
+                  <Users className="w-8 h-8 sm:w-10 sm:h-10" />
+                  Solo Developer / Mentor
+                </CardTitle>
+                <p className="text-lg sm:text-xl opacity-95 mt-2">
+                  Be the bridge from architect to shipped product.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-base sm:text-lg mb-6 opacity-90">
+                  I&apos;m looking for a developer/mentor who can help me bridge the gap between vision and execution. Here&apos;s what the partnership looks like:
+                </p>
+                
+                <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  {[
+                    {
+                      icon: DollarSign,
+                      title: 'Revenue Split Per Project',
+                      description: 'Fair revenue sharing based on each project we ship together. Your contribution directly impacts your return.',
+                      color: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
+                    },
+                    {
+                      icon: Calendar,
+                      title: 'Daily Short Check-ins',
+                      description: 'Quick daily syncs to keep momentum, solve blockers, and maintain progress. Efficient and focused.',
+                      color: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30'
+                    },
+                    {
+                      icon: Bot,
+                      title: 'AI-Native Builder',
+                      description: 'We work with modern AI tools: Cursor, n8n, MCP. You help me leverage these tools effectively.',
+                      color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30'
+                    },
+                    {
+                      icon: Target,
+                      title: 'Goal: Make Me Independent',
+                      description: 'Your ultimate goal is to teach and mentor me until I can ship products independently. Empowerment, not dependency.',
+                      color: 'from-orange-500/20 to-yellow-500/20 border-orange-500/30'
+                    }
+                  ].map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <StaggerItem key={index}>
+                        <motion.div
+                          className={`backdrop-blur-md bg-gradient-to-br ${item.color} p-5 rounded-xl border`}
+                          whileHover={{ scale: 1.03, y: -4 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+                              <Icon className="w-6 h-6" />
+                            </div>
+                            <div>
+                              <h3 className="font-display font-bold text-lg sm:text-xl mb-2">
+                                {item.title}
+                              </h3>
+                              <p className="text-sm sm:text-base opacity-90 leading-relaxed">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </StaggerItem>
+                    );
+                  })}
+                </StaggerContainer>
+                
+                <div className="mt-8 backdrop-blur-md bg-white/10 p-6 rounded-xl border border-white/20">
+                  <p className="text-lg sm:text-xl font-bold mb-2">
+                    The Bridge
+                  </p>
+                  <p className="text-base sm:text-lg opacity-90 leading-relaxed">
+                    My strength is ideation and architecture. Your strength is execution and shipping. Together, we turn ideas into reality. 
+                    You&apos;re not just coding—you&apos;re teaching me to become independent while we build something meaningful.
+                  </p>
+                </div>
+              </CardContent>
+            </div>
+          </Card>
+        </ScrollReveal>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,7 +185,7 @@ function DeveloperHelp() {
                 Need Instant Help?
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 px-2">
-                Whether you're helping with IDEs, n8n workflows, or Vibe Coding tutorials, 
+                Whether you&apos;re helping with IDEs, n8n workflows, or Vibe Coding tutorials, 
                 your support makes a huge difference.
               </p>
               

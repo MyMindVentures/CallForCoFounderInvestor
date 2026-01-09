@@ -22,6 +22,16 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'esbuild'
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        // Remove console statements in production
+        plugins: []
+      }
+    }
+  },
+  esbuild: {
+    // Drop console and debugger in production
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : []
   }
 })

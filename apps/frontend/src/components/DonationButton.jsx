@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logger from '@/utils/logger';
 import { CreditCard, Loader2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,7 +37,7 @@ function DonationButton({ amount, onDonation }) {
       const paymentUrl = `${wisePaymentUrl}?amount=${amount}&currency=EUR`;
       window.open(paymentUrl, '_blank');
     } catch (error) {
-      console.error('Error processing donation:', error);
+      logger.error('Error processing donation:', error);
       alert('Error processing donation. Please try again.');
     } finally {
       setLoading(false);

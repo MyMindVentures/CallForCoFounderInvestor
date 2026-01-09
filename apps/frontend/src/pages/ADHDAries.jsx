@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
 import { Loader2, Sparkles, Zap, Lightbulb, Rocket, RefreshCw, Crown, Sword, Battery, Star, Flame } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
@@ -18,7 +19,7 @@ function ADHDAries() {
       const response = await axios.get('/api/content/adhDAries');
       setContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
       setContent(`
         <div class="prose prose-lg max-w-none">
           <h1 class="text-3xl md:text-4xl font-bold mb-6 text-red-600">ADHD + Aries: A Powerful Combination</h1>

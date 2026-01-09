@@ -1,4 +1,5 @@
 import donationService from '../services/DonationService.js';
+import { sanitizeError, logError } from '../utils/errorHandler.js';
 
 class DonationController {
   async createDonation(req, res) {
@@ -9,10 +10,11 @@ class DonationController {
         donation 
       });
     } catch (error) {
+      logError('DonationController.createDonation', error);
       if (error.message.includes('required')) {
         return res.status(400).json({ error: error.message });
       }
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -29,7 +31,8 @@ class DonationController {
         }
       });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      logError('DonationController.getAllDonations', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 }

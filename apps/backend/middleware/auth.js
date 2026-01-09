@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { logError } from '../utils/errorHandler.js';
 
 export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -11,13 +12,14 @@ export const authenticateToken = (req, res, next) => {
   try {
     const jwtSecret = process.env.JWT_SECRET;
     if (!jwtSecret) {
-      console.error('JWT_SECRET is not configured');
+      logError('Auth Middleware', new Error('JWT_SECRET is not configured'));
       return res.status(500).json({ error: 'Server configuration error' });
     }
     const decoded = jwt.verify(token, jwtSecret);
     req.user = decoded;
     next();
   } catch (error) {
+    logError('Auth Middleware', error);
     res.status(403).json({ error: 'Invalid token.' });
   }
 };

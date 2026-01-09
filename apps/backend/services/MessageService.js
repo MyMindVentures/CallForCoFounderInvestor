@@ -1,6 +1,7 @@
 import messageRepository from '../repositories/MessageRepository.js';
 import donationRepository from '../repositories/DonationRepository.js';
 import { sendThankYouEmail } from '../utils/email.js';
+import { logError } from '../utils/errorHandler.js';
 
 class MessageService {
   async createMessage(data) {
@@ -21,7 +22,7 @@ class MessageService {
     try {
       await sendThankYouEmail(data.email, data.name);
     } catch (error) {
-      console.error('Failed to send thank you email:', error);
+      logError('MessageService.createMessage - Email', error);
       // Don't fail the request if email fails
     }
 

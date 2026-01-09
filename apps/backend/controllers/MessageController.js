@@ -1,4 +1,5 @@
 import messageService from '../services/MessageService.js';
+import { sanitizeError, logError } from '../utils/errorHandler.js';
 
 class MessageController {
   async createMessage(req, res) {
@@ -9,10 +10,11 @@ class MessageController {
         id: message.id 
       });
     } catch (error) {
+      logError('MessageController.createMessage', error);
       if (error.message.includes('required')) {
         return res.status(400).json({ error: error.message });
       }
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -21,7 +23,8 @@ class MessageController {
       const messages = await messageService.getAllMessages();
       res.json(messages);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      logError('MessageController.getAllMessages', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -30,7 +33,8 @@ class MessageController {
       const messages = await messageService.getPublicMessages();
       res.json(messages);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      logError('MessageController.getPublicMessages', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -42,10 +46,11 @@ class MessageController {
       }
       res.json(message);
     } catch (error) {
+      logError('MessageController.curateMessage', error);
       if (error.message === 'Message not found') {
         return res.status(404).json({ error: error.message });
       }
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 }

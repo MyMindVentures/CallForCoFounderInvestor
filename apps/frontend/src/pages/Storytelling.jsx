@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
 import { Loader2, PlayCircle, Lightbulb, FileCheck, Flame, Brain, Gift, Target, Heart, Quote } from 'lucide-react';
 import { PageTransition } from '@/components/ui/page-transition';
@@ -25,7 +26,7 @@ function Storytelling() {
       setContent(contentRes.data.content);
       setMedia(mediaRes.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      logger.error('Error fetching data:', error);
       setContent('<h1>My Story</h1><p>Content coming soon...</p>');
     } finally {
       setLoading(false);

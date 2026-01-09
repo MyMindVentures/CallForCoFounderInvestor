@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LogOut, FileText, MessageSquare, DollarSign, Save, Loader2,
@@ -70,7 +71,7 @@ function AdminDashboard() {
       });
       setMessages(response.data);
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      logger.error('Error fetching messages:', error);
       if (error.response?.status === 401) navigate('/admin/login');
     }
   };
@@ -83,7 +84,7 @@ function AdminDashboard() {
       });
       setDonations(response.data);
     } catch (error) {
-      console.error('Error fetching donations:', error);
+      logger.error('Error fetching donations:', error);
       if (error.response?.status === 401) navigate('/admin/login');
     }
   };
@@ -93,7 +94,7 @@ function AdminDashboard() {
       const response = await axios.get(`/api/content/${pageId}`);
       setPageContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
     }
   };
 
@@ -102,7 +103,7 @@ function AdminDashboard() {
       const response = await axios.get('/api/media/all');
       setMedia(response.data);
     } catch (error) {
-      console.error('Error fetching media:', error);
+      logger.error('Error fetching media:', error);
     }
   };
 
@@ -111,7 +112,7 @@ function AdminDashboard() {
       const response = await axios.get('/api/media/projects');
       setAppProjects(response.data);
     } catch (error) {
-      console.error('Error fetching app projects:', error);
+      logger.error('Error fetching app projects:', error);
     }
   };
 
@@ -160,7 +161,7 @@ function AdminDashboard() {
       setAppProjects(prev => [...prev, response.data.project]);
       setNewProject({ name: '', url: '', description: '' });
     } catch (error) {
-      console.error('Error adding project:', error);
+      logger.error('Error adding project:', error);
       alert('Error adding project');
     }
   };
@@ -173,7 +174,7 @@ function AdminDashboard() {
       });
       setAppProjects(prev => prev.filter(p => p.id !== projectId));
     } catch (error) {
-      console.error('Error deleting project:', error);
+      logger.error('Error deleting project:', error);
       alert('Error deleting project');
     }
   };
@@ -189,7 +190,7 @@ function AdminDashboard() {
       );
       alert('Content saved successfully!');
     } catch (error) {
-      console.error('Error saving content:', error);
+      logger.error('Error saving content:', error);
       alert('Error saving content. Please try again.');
       if (error.response?.status === 401) navigate('/admin/login');
     } finally {
@@ -207,7 +208,7 @@ function AdminDashboard() {
       );
       fetchMessages();
     } catch (error) {
-      console.error('Error curating message:', error);
+      logger.error('Error curating message:', error);
     }
   };
 
