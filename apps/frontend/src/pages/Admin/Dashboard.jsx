@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea, Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { normalizeUrl, isValidUrl } from '@/utils/url';
 import FileUpload from '@/components/FileUpload';
 import { assets } from '@/utils/assets';
 
@@ -123,7 +124,8 @@ function AdminDashboard() {
   const fetchQrRedirectUrl = async () => {
     try {
       const response = await axios.get('/api/content/qrRedirectUrl');
-      setQrRedirectUrl(response.data.content || '');
+      const normalized = normalizeUrl(response.data.content, '');
+      setQrRedirectUrl(normalized || '');
     } catch (error) {
       logger.error('Error fetching QR redirect URL:', error);
     }
@@ -198,12 +200,19 @@ function AdminDashboard() {
   const saveQrRedirectUrl = async () => {
     setQrSaving(true);
     try {
+      const normalizedUrl = normalizeUrl(qrRedirectUrl, '');
+      if (!normalizedUrl || !isValidUrl(normalizedUrl)) {
+        alert('Please enter a valid URL for the QR poster redirect.');
+        return;
+      }
+
       const token = localStorage.getItem('adminToken');
       await axios.put(
         '/api/content/qrRedirectUrl',
-        { content: qrRedirectUrl },
+        { content: normalizedUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      setQrRedirectUrl(normalizedUrl);
       alert('QR redirect URL saved!');
     } catch (error) {
       logger.error('Error saving QR redirect URL:', error);
