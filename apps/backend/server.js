@@ -14,15 +14,17 @@ import mediaRoutes from './routes/media.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env from project root (two levels up from this file)
+// Load .env from project root (two levels up from this file) if it exists
 const rootEnvPath = path.join(__dirname, '../../../.env');
-console.log('📄 Loading .env from:', rootEnvPath);
-const envResult = dotenv.config({ path: rootEnvPath });
-if (envResult.error) {
-  console.warn('⚠️  Could not load .env file:', envResult.error.message);
-} else {
-  console.log('✅ .env file loaded successfully');
-  console.log('📋 NODE_ENV from .env:', process.env.NODE_ENV);
+if (fs.existsSync(rootEnvPath)) {
+  console.log('📄 Loading .env from:', rootEnvPath);
+  const envResult = dotenv.config({ path: rootEnvPath });
+  if (envResult.error) {
+    console.warn('⚠️  Could not load .env file:', envResult.error.message);
+  } else {
+    console.log('✅ .env file loaded successfully');
+    console.log('📋 NODE_ENV from .env:', process.env.NODE_ENV);
+  }
 }
 
 const app = express();
