@@ -1,4 +1,5 @@
 import contentService from '../services/ContentService.js';
+import { sanitizeError, logError } from '../utils/errorHandler.js';
 
 class ContentController {
   async getContent(req, res) {
@@ -6,6 +7,7 @@ class ContentController {
       const content = await contentService.getContent(req.params.pageId);
       res.json(content);
     } catch (error) {
+      logError('ContentController.getContent', error);
       // On error, return default content instead of failing
       res.json({
         pageId: req.params.pageId,
@@ -26,7 +28,8 @@ class ContentController {
       );
       res.json(updatedContent);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      logError('ContentController.updateContent', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 }

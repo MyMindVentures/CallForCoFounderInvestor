@@ -1,4 +1,5 @@
 import mediaService from '../services/MediaService.js';
+import { sanitizeError, logError } from '../utils/errorHandler.js';
 
 class MediaController {
   /**
@@ -21,8 +22,8 @@ class MediaController {
         media: result
       });
     } catch (error) {
-      console.error('Error uploading media:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.uploadMedia', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -41,8 +42,8 @@ class MediaController {
       
       res.json(media);
     } catch (error) {
-      console.error('Error getting media:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.getMedia', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -55,8 +56,8 @@ class MediaController {
       const media = await mediaService.getAllMedia();
       res.json(media);
     } catch (error) {
-      console.error('Error getting all media:', error);
-      res.status(500).json({ error: error.message });
+      logError('MediaController.getAllMedia', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -79,8 +80,8 @@ class MediaController {
         deleted
       });
     } catch (error) {
-      console.error('Error deleting media:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.deleteMedia', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -93,8 +94,8 @@ class MediaController {
       const projects = await mediaService.getAppProjects();
       res.json(projects);
     } catch (error) {
-      console.error('Error getting app projects:', error);
-      res.status(500).json({ error: error.message });
+      logError('MediaController.getAppProjects', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 
@@ -112,8 +113,8 @@ class MediaController {
         projects: updated
       });
     } catch (error) {
-      console.error('Error updating app projects:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.updateAppProjects', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -130,8 +131,8 @@ class MediaController {
         project
       });
     } catch (error) {
-      console.error('Error adding app project:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.addAppProject', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -154,8 +155,8 @@ class MediaController {
         deleted
       });
     } catch (error) {
-      console.error('Error deleting app project:', error);
-      res.status(400).json({ error: error.message });
+      logError('MediaController.deleteAppProject', error);
+      res.status(400).json({ error: sanitizeError(error) });
     }
   }
 
@@ -168,7 +169,8 @@ class MediaController {
       const types = mediaService.getValidMediaTypes();
       res.json(types);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      logError('MediaController.getMediaTypes', error);
+      res.status(500).json({ error: sanitizeError(error) });
     }
   }
 }

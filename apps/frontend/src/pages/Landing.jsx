@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Users, Code, DollarSign, MessageSquare, Sparkles, ArrowRight, Lightbulb, Rocket, Handshake, GitFork, Heart, Github, Zap, Shield, Brain, Puzzle, Package, Database, TrendingUp, Flame } from 'lucide-react';
+import { BookOpen, Users, Code, DollarSign, MessageSquare, Sparkles, ArrowRight, Lightbulb, Rocket, Handshake, GitFork, Heart, Github, Zap, Shield, Brain, Puzzle, Package, Database, TrendingUp, Flame, User, MapPin, Gift, Star, Quote, Mail, Phone, Bot, Wallet } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, MotionCard } from '@/components/ui/page-transition';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -116,6 +116,53 @@ function Landing() {
               <Handshake className="w-4 h-4" />
               Partnership-Focused
             </Badge>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Personal Introduction Section */}
+      <section className="py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card variant="glass" size="xl" className="relative overflow-hidden border-l-4 border-l-teal-500">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-teal-500/10 to-transparent rounded-bl-full" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <User className="w-8 h-8 text-teal-400" />
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-gray-100">
+                    The Story Behind This
+                  </h2>
+                </div>
+                
+                <blockquote className="text-lg sm:text-xl md:text-2xl text-gray-200 italic mb-6 leading-relaxed border-l-4 border-teal-400 pl-6">
+                  "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products."
+                </blockquote>
+                
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-lg sm:text-xl font-bold text-gray-100">
+                      Kevin De Vlieger
+                    </p>
+                    <div className="flex items-center gap-2 text-gray-400 text-sm sm:text-base">
+                      <MapPin className="w-4 h-4" />
+                      <span>41-year-old Belgian, now living in sunny Alicante, Spain</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                  This project exists because I refuse to let another year pass without proof that my mind can create something real.
+                </p>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
@@ -248,56 +295,65 @@ function Landing() {
 
             {/* Card 1.4 - The Quartet */}
             <motion.div
+              className="md:col-span-2 lg:col-span-3"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Card variant="glass" size="lg" className="h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <Puzzle className="w-7 h-7 text-cyan-400" />
-                  <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                    The symbolic quartet
-                  </h3>
+              <Card variant="gradient" size="lg" className="bg-gradient-to-br from-indigo-500/80 via-purple-500/80 to-pink-500/80 text-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Puzzle className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold">
+                      The Quartet
+                    </h3>
+                  </div>
+                  <p className="text-base sm:text-lg opacity-95 leading-relaxed mb-6 text-center">
+                    The magic happens when four forces align:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    <motion.div 
+                      className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
+                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+                    >
+                      <Brain className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
+                      <h4 className="font-bold text-sm sm:text-base mb-2">🧠 Architect</h4>
+                      <p className="text-xs sm:text-sm opacity-90">Me — Ideas, vision, features</p>
+                    </motion.div>
+                    <motion.div 
+                      className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
+                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+                    >
+                      <Code className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
+                      <h4 className="font-bold text-sm sm:text-base mb-2">🛠️ Builder</h4>
+                      <p className="text-xs sm:text-sm opacity-90">You — Ship, mentor, teach</p>
+                    </motion.div>
+                    <motion.div 
+                      className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
+                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+                    >
+                      <Wallet className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
+                      <h4 className="font-bold text-sm sm:text-base mb-2">💰 Investor</h4>
+                      <p className="text-xs sm:text-sm opacity-90">Breathing room</p>
+                    </motion.div>
+                    <motion.div 
+                      className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
+                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+                    >
+                      <Bot className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
+                      <h4 className="font-bold text-sm sm:text-base mb-2">🤖 AI</h4>
+                      <p className="text-xs sm:text-sm opacity-90">Leverage & speed</p>
+                    </motion.div>
+                  </div>
+                  <p className="text-center mt-6 text-lg sm:text-xl font-bold">
+                    Structure turns it into results.
+                  </p>
                 </div>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  The magic happens when four forces align: <span className="text-teal-400">me (architect)</span>, 
-                  <span className="text-purple-400"> you (builder/backer)</span>, 
-                  <span className="text-yellow-400"> an investor (breathing room)</span>, and 
-                  <span className="text-cyan-400"> AI (leverage)</span>. Structure turns it into results.
-                </p>
               </Card>
             </motion.div>
 
-            {/* Card 1.5 - Two apps = proof */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <Card variant="glass" size="lg" className="h-full border-l-4 border-l-emerald-500">
-                <div className="flex items-center gap-3 mb-4">
-                  <Package className="w-7 h-7 text-emerald-400" />
-                  <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                    Two apps change everything
-                  </h3>
-                </div>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-                  I don't need ten apps. I need two shipped apps to show proof:
-                </p>
-                <ul className="space-y-2 text-sm sm:text-base">
-                  <li className="flex items-center gap-2 text-emerald-300">
-                    <span className="w-2 h-2 bg-emerald-400 rounded-full" />
-                    Lifemanagement Stack (my life back on rails)
-                  </li>
-                  <li className="flex items-center gap-2 text-emerald-300">
-                    <span className="w-2 h-2 bg-emerald-400 rounded-full" />
-                    IdeaFabric (portable idea blueprint machine)
-                  </li>
-                </ul>
-              </Card>
-            </motion.div>
 
             {/* Card 1.6 - Chaos to Vault */}
             <motion.div
@@ -352,6 +408,296 @@ function Landing() {
               </Card>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Two Apps Showcase Section */}
+      <section className="py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2 
+            className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-center mb-8 sm:mb-10 md:mb-12 text-gray-200 px-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Two Apps Change Everything
+          </motion.h2>
+          <p className="text-center text-base sm:text-lg text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
+            I don't need ten apps. I need <span className="font-bold text-teal-400">two shipped apps</span> to show proof:
+          </p>
+          
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card variant="gradient" size="xl" className="bg-gradient-to-br from-emerald-500/80 via-teal-500/80 to-cyan-500/80 text-white relative overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center">
+                      <Package className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold">
+                      🧬 Lifemanagement Stack
+                    </h3>
+                  </div>
+                  <p className="text-lg sm:text-xl opacity-95 leading-relaxed italic">
+                    My life back on rails
+                  </p>
+                  <p className="text-base sm:text-lg mt-4 opacity-90 leading-relaxed">
+                    A comprehensive system to organize, manage, and optimize all aspects of life—from tasks and goals to habits and long-term planning.
+                  </p>
+                </div>
+              </Card>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card variant="gradient" size="xl" className="bg-gradient-to-br from-purple-500/80 via-pink-500/80 to-orange-500/80 text-white relative overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center">
+                      <Lightbulb className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-display font-bold">
+                      💡 IdeaFabric
+                    </h3>
+                  </div>
+                  <p className="text-lg sm:text-xl opacity-95 leading-relaxed italic">
+                    Portable idea blueprint machine
+                  </p>
+                  <p className="text-base sm:text-lg mt-4 opacity-90 leading-relaxed">
+                    A powerful tool to shape, refine, and transform ideas into actionable blueprints—helping visionaries like me turn concepts into reality.
+                  </p>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* My Give Away Section */}
+      <section className="py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card variant="glass" size="xl" className="relative overflow-hidden border-l-4 border-l-pink-500">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-pink-500/10 to-transparent rounded-bl-full" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <Gift className="w-8 h-8 text-pink-400" />
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-gray-100">
+                    My Give Away
+                  </h2>
+                </div>
+                
+                <p className="text-lg sm:text-xl text-gray-200 mb-6 leading-relaxed">
+                  I was always scared of idea stealing. But months of struggling alone taught me: <span className="font-bold text-pink-400">ideas without execution are just dreams.</span>
+                </p>
+                
+                <p className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed">
+                  So this is my gift:
+                </p>
+                
+                <ul className="space-y-4 mb-6">
+                  <motion.li 
+                    className="flex items-start gap-3 text-gray-300"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
+                    <span>This project and its source code</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start gap-3 text-gray-300"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
+                    <span>A mindmap for an app that helps shape ideas (frontend + n8n backend)</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start gap-3 text-gray-300"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
+                    <span>90+ repos full of attempts and learnings</span>
+                  </motion.li>
+                  <motion.li 
+                    className="flex items-start gap-3 text-gray-300"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
+                    <span>Everything I've documented along the way</span>
+                  </motion.li>
+                </ul>
+                
+                <div className="backdrop-blur-md bg-pink-500/20 p-6 rounded-xl border border-pink-500/30">
+                  <p className="text-lg sm:text-xl font-bold text-gray-100 text-center">
+                    If you believe, these are yours to build with me.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How You Can Help Section */}
+      <section className="py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2 
+            className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-center mb-8 sm:mb-10 md:mb-12 text-gray-200 px-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            How You Can Help
+          </motion.h2>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { 
+                icon: Star, 
+                title: '⭐ Star', 
+                description: 'Help others discover this project', 
+                action: 'Star on GitHub',
+                link: githubRepoUrl,
+                gradient: 'from-yellow-500/80 to-orange-500/80',
+                external: true
+              },
+              { 
+                icon: GitFork, 
+                title: '🍴 Fork', 
+                description: 'Take the code, improve it, make it your own', 
+                action: 'Fork on GitHub',
+                link: githubRepoUrl,
+                gradient: 'from-purple-500/80 to-pink-500/80',
+                external: true
+              },
+              { 
+                icon: MessageSquare, 
+                title: '💬 Reach out', 
+                description: 'Sometimes a conversation sparks great things', 
+                action: 'Get in Touch',
+                link: '/support',
+                gradient: 'from-cyan-500/80 to-blue-500/80',
+                external: false
+              },
+              { 
+                icon: Handshake, 
+                title: '🤝 Partner', 
+                description: 'Become the co-founder or investor I\'m looking for', 
+                action: 'Learn More',
+                link: '/what-i-look-for',
+                gradient: 'from-teal-500/80 to-emerald-500/80',
+                external: false
+              }
+            ].map((item, index) => {
+              const Icon = item.icon;
+              const content = item.external ? (
+                <a 
+                  href={item.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
+                  <Card variant="gradient" size="lg" className={`bg-gradient-to-br ${item.gradient} text-white relative overflow-hidden h-full group cursor-pointer`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Icon className="w-8 h-8" />
+                        <h3 className="text-xl font-display font-bold">{item.title}</h3>
+                      </div>
+                      <p className="text-base opacity-95 leading-relaxed mb-4 flex-1">{item.description}</p>
+                      <Button variant="glassFrost" size="md" className="w-full">
+                        {item.action}
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </Card>
+                </a>
+              ) : (
+                <Link to={item.link} className="block h-full">
+                  <Card variant="gradient" size="lg" className={`bg-gradient-to-br ${item.gradient} text-white relative overflow-hidden h-full group cursor-pointer`}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Icon className="w-8 h-8" />
+                        <h3 className="text-xl font-display font-bold">{item.title}</h3>
+                      </div>
+                      <p className="text-base opacity-95 leading-relaxed mb-4 flex-1">{item.description}</p>
+                      <Button variant="glassFrost" size="md" className="w-full">
+                        {item.action}
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </Card>
+                </Link>
+              );
+              
+              return (
+                <StaggerItem key={index}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  >
+                    {content}
+                  </motion.div>
+                </StaggerItem>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* The Promise Section */}
+      <section className="py-10 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Card variant="gradient" size="xl" className="bg-gradient-to-br from-indigo-500/90 via-purple-500/90 to-pink-500/90 text-white relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <div className="relative z-10 text-center">
+                <Quote className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-6 opacity-80" />
+                <blockquote className="text-xl sm:text-2xl md:text-3xl font-display font-bold mb-6 leading-relaxed px-4">
+                  "If you believe in me, I will work tirelessly to prove you right. Together, we can flip the snowball from negative to positive."
+                </blockquote>
+                <div className="flex items-center justify-center gap-3">
+                  <div className="w-px h-8 bg-white/30" />
+                  <p className="text-lg sm:text-xl font-semibold">— Kevin</p>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
         </div>
       </section>
 

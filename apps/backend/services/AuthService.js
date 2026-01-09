@@ -14,15 +14,10 @@ class AuthService {
       }
     }
 
-    // Find or create admin user
-    let admin = await adminRepository.findOne({ username });
+    // Find admin user - must exist, no auto-creation in production
+    const admin = await adminRepository.findOne({ username });
     if (!admin) {
-      const adminUsername = process.env.ADMIN_USERNAME || 'admin';
-      const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-      admin = await adminRepository.create({
-        username: adminUsername,
-        password: adminPassword
-      });
+      throw new Error('Invalid credentials');
     }
 
     // Verify password
@@ -32,7 +27,7 @@ class AuthService {
     }
 
     // Generate JWT token
-    const jwtSecret = process.env.JWT_SECRET || (isProduction ? null : 'your-secret-key');
+    const jwtSecret = process.env.JWT_SECRET;
     if (!jwtSecret) {
       throw new Error('JWT_SECRET is not configured');
     }
@@ -50,11 +45,15 @@ class AuthService {
 
   async initializeAdmin() {
     const isProduction = process.env.NODE_ENV === 'production';
-    const adminUsername = process.env.ADMIN_USERNAME || (isProduction ? null : 'admin');
-    const adminPassword = process.env.ADMIN_PASSWORD || (isProduction ? null : 'admin123');
+    const adminUsername = process.env.ADMIN_USERNAME;
+    const adminPassword = process.env.ADMIN_PASSWORD;
     
-    if (isProduction && (!adminUsername || !adminPassword)) {
-      throw new Error('ADMIN_USERNAME and ADMIN_PASSWORD must be configured in production');
+    if (!adminUsername || !adminPassword) {
+      if (isProduction) {
+        throw new Error('ADMIN_USERNAME and ADMIN_PASSWORD must be configured in production');
+      }
+      // In development, allow defaults but warn
+      throw new Error('ADMIN_USERNAME and ADMIN_PASSWORD must be configured');
     }
 
     const existingAdmin = await adminRepository.findOne({ 

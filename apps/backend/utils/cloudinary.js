@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary';
 import dotenv from 'dotenv';
+import { logError } from './errorHandler.js';
 
 dotenv.config();
 
@@ -74,7 +75,7 @@ export const deleteFromCloudinary = async (publicId, resourceType = 'image') => 
     });
     return result;
   } catch (error) {
-    console.error('Error deleting from Cloudinary:', error);
+    logError('CloudinaryService.deleteFromCloudinary', error);
     throw error;
   }
 };

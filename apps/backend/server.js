@@ -18,6 +18,10 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+// Ensure NODE_ENV is set for production
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'development';
+}
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Validate required environment variables in production
@@ -62,6 +66,52 @@ app.use('/api/donations', donationRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/media', mediaRoutes);
 
+// Health check endpoints (must be before static file serving)
+// Backend health check endpoint for Railway
+app.get('/api/health', async (req, res) => {
+  const healthCheck = {
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    service: 'backend',
+    version: process.env.npm_package_version || '1.0.0',
+    uptime: process.uptime(),
+    checks: {
+      database: 'unknown',
+      memory: {
+        used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
+        total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024),
+        unit: 'MB'
+      }
+    }
+  };
+
+  // Check database connection
+  try {
+    const db = await getDB();
+    const stmt = db.prepare('SELECT 1');
+    stmt.step();
+    stmt.free();
+    healthCheck.checks.database = 'connected';
+  } catch (error) {
+    healthCheck.checks.database = 'disconnected';
+    healthCheck.status = 'DEGRADED';
+  }
+
+  // Return appropriate status code
+  const statusCode = healthCheck.status === 'OK' ? 200 : 503;
+  res.status(statusCode).json(healthCheck);
+});
+
+// Frontend health check endpoint (for separate frontend service if needed)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    service: 'frontend',
+    message: 'Frontend service is running'
+  });
+});
+
 // Serve static files from frontend build in production
 if (isProduction) {
   const frontendBuildPath = path.join(__dirname, '../frontend/dist');
@@ -88,27 +138,6 @@ if (isProduction) {
     res.sendFile(indexPath);
   });
 }
-
-// Health check
-app.get('/api/health', async (req, res) => {
-  try {
-    const db = await getDB();
-    const stmt = db.prepare('SELECT 1');
-    stmt.step();
-    stmt.free();
-    res.json({ 
-      status: 'OK', 
-      message: 'Server is running',
-      database: 'connected'
-    });
-  } catch (error) {
-    res.json({ 
-      status: 'OK', 
-      message: 'Server is running',
-      database: 'disconnected'
-    });
-  }
-});
 
 const server = app.listen(PORT, () => {
   console.log(`✓ Server running on port ${PORT}`);

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, MessageSquare, Send, Heart } from 'lucide-react';
-import { PageTransition, StaggerContainer, StaggerItem } from '@/components/ui/page-transition';
+import { Loader2, MessageSquare, Send, Heart, Mail, Phone } from 'lucide-react';
+import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import MessageForm from '@/components/MessageForm';
 
 function Support() {
@@ -22,7 +24,7 @@ function Support() {
       const response = await axios.get('/api/content/support');
       setContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
       setContent('<h1>Support</h1><p>Thank you for your support!</p>');
     } finally {
       setLoading(false);
@@ -34,7 +36,7 @@ function Support() {
       const response = await axios.get('/api/messages/public');
       setMessages(response.data);
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      logger.error('Error fetching messages:', error);
     }
   };
 
@@ -95,6 +97,69 @@ function Support() {
             </div>
           </Card>
         </motion.div>
+
+        {/* Contact Information Section */}
+        <ScrollReveal className="mb-6 sm:mb-8">
+          <Card variant="gradient" size="lg" className="bg-gradient-to-br from-cyan-500/80 via-blue-500/80 to-indigo-500/80 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
+                  <MessageSquare className="w-8 h-8" />
+                  Get in Touch
+                </CardTitle>
+                <p className="text-lg opacity-95 mt-2">
+                  Or simply reach out directly
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  <motion.a
+                    href="mailto:hello@mymindventures.io"
+                    className="backdrop-blur-md bg-white/10 p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors duration-300"
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center">
+                        <Mail className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-bold text-lg mb-1">Email</h3>
+                        <p className="text-sm opacity-90">hello@mymindventures.io</p>
+                      </div>
+                    </div>
+                    <Button variant="glassFrost" size="sm" className="w-full mt-4">
+                      Send Email
+                    </Button>
+                  </motion.a>
+                  
+                  <motion.a
+                    href="https://wa.me/34643037346"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="backdrop-blur-md bg-white/10 p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors duration-300"
+                    whileHover={{ scale: 1.03, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center">
+                        <Phone className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-bold text-lg mb-1">WhatsApp</h3>
+                        <p className="text-sm opacity-90">+34 643 037 346 (NL + EN)</p>
+                      </div>
+                    </div>
+                    <Button variant="glassFrost" size="sm" className="w-full mt-4">
+                      Open WhatsApp
+                    </Button>
+                  </motion.a>
+                </div>
+              </CardContent>
+            </div>
+          </Card>
+        </ScrollReveal>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

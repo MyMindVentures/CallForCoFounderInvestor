@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Target, Flame, Eye, Heart, Briefcase, GraduationCap } from 'lucide-react';
+import { Loader2, Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Target, Flame, Eye, Heart, Briefcase, GraduationCap, Code } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
@@ -18,7 +19,7 @@ function WhatILookFor() {
       const response = await axios.get('/api/content/whatILookFor');
       setContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
       setContent('<h1>What I Look For</h1><p>Content coming soon...</p>');
     } finally {
       setLoading(false);
@@ -207,6 +208,97 @@ function WhatILookFor() {
               </div>
             </div>
           </Card>
+        </ScrollReveal>
+
+        {/* Partnership Structure Section */}
+        <ScrollReveal className="mb-6 sm:mb-8">
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Financial Support Partner */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card variant="gradient" size="lg" className="bg-gradient-to-br from-yellow-500/80 via-orange-500/80 to-red-500/80 text-white relative overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="relative z-10">
+                  <CardHeader>
+                    <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
+                      <DollarSign className="w-8 h-8" />
+                      Financial Support Partner
+                    </CardTitle>
+                    <p className="text-lg opacity-95 mt-2">
+                      Temporary support now. Long-term upside later.
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3 text-base sm:text-lg">
+                      <li className="flex items-start gap-2">
+                        <span className="text-yellow-300 mt-1">•</span>
+                        <span>Lifetime 20% revenue share (net)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-yellow-300 mt-1">•</span>
+                        <span>Transparent revenue dashboard</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-yellow-300 mt-1">•</span>
+                        <span>NDA + written agreement</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-yellow-300 mt-1">•</span>
+                        <span>You&apos;re funding proof, not charity</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Solo Developer / Mentor */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card variant="gradient" size="lg" className="bg-gradient-to-br from-emerald-500/80 via-teal-500/80 to-cyan-500/80 text-white relative overflow-hidden h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                <div className="relative z-10">
+                  <CardHeader>
+                    <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
+                      <Code className="w-8 h-8" />
+                      Solo Developer / Mentor
+                    </CardTitle>
+                    <p className="text-lg opacity-95 mt-2">
+                      Be the bridge from architect to shipped product.
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3 text-base sm:text-lg">
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-300 mt-1">•</span>
+                        <span>Revenue split per project</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-300 mt-1">•</span>
+                        <span>Daily short check-ins</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-300 mt-1">•</span>
+                        <span>AI-native builder (Cursor, n8n, MCP)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-emerald-300 mt-1">•</span>
+                        <span>Goal: Make me independent</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
         </ScrollReveal>
 
         {/* What I'm Looking For Section */}

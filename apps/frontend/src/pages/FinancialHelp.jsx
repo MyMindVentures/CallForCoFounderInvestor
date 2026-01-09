@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, DollarSign, Heart } from 'lucide-react';
-import { PageTransition } from '@/components/ui/page-transition';
-import { Card } from '@/components/ui/card';
+import { Loader2, DollarSign, Heart, FileText, BarChart3, Shield, Sparkles } from 'lucide-react';
+import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/ui/page-transition';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
 import DonationButton from '@/components/DonationButton';
 
 function FinancialHelp() {
@@ -22,7 +24,7 @@ function FinancialHelp() {
       const response = await axios.get('/api/content/financialHelp');
       setContent(response.data.content);
     } catch (error) {
-      console.error('Error fetching content:', error);
+      logger.error('Error fetching content:', error);
       setContent('<h1>Financial Support</h1><p>Your support helps me continue this journey.</p>');
     } finally {
       setLoading(false);
@@ -38,7 +40,7 @@ function FinancialHelp() {
         donorEmail
       });
     } catch (error) {
-      console.error('Error recording donation:', error);
+      logger.error('Error recording donation:', error);
     }
   };
 
@@ -95,6 +97,83 @@ function FinancialHelp() {
             </div>
           </Card>
         </motion.div>
+
+        {/* Financial Support Partner Section */}
+        <ScrollReveal className="mb-6 sm:mb-8">
+          <Card variant="gradient" size="xl" className="bg-gradient-to-br from-yellow-500/80 via-orange-500/80 to-red-500/80 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+            <div className="relative z-10">
+              <CardHeader>
+                <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-display font-bold flex items-center gap-3">
+                  <DollarSign className="w-8 h-8 sm:w-10 sm:h-10" />
+                  Financial Support Partner
+                </CardTitle>
+                <p className="text-lg sm:text-xl opacity-95 mt-2">
+                  Temporary support now. Long-term upside later.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-base sm:text-lg mb-6 opacity-90">
+                  You&apos;re funding proof, not charity. Here&apos;s what I offer in return:
+                </p>
+                
+                <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  {[
+                    {
+                      icon: DollarSign,
+                      title: 'Lifetime 20% Revenue Share',
+                      description: 'Net revenue share for life. Transparent, fair, and long-term.',
+                      color: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
+                    },
+                    {
+                      icon: BarChart3,
+                      title: 'Transparent Revenue Dashboard',
+                      description: 'Full visibility into revenue streams and financial performance.',
+                      color: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30'
+                    },
+                    {
+                      icon: FileText,
+                      title: 'NDA + Written Agreement',
+                      description: 'Professional legal framework protecting both parties.',
+                      color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30'
+                    },
+                      {
+                        icon: Sparkles,
+                        title: 'Funding Proof, Not Charity',
+                        description: "You're investing in potential and execution, not giving handouts.",
+                        color: 'from-orange-500/20 to-yellow-500/20 border-orange-500/30'
+                      }
+                  ].map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <StaggerItem key={index}>
+                        <motion.div
+                          className={`backdrop-blur-md bg-gradient-to-br ${item.color} p-5 rounded-xl border`}
+                          whileHover={{ scale: 1.03, y: -4 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0">
+                              <Icon className="w-6 h-6" />
+                            </div>
+                            <div>
+                              <h3 className="font-display font-bold text-lg sm:text-xl mb-2">
+                                {item.title}
+                              </h3>
+                              <p className="text-sm sm:text-base opacity-90 leading-relaxed">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </StaggerItem>
+                    );
+                  })}
+                </StaggerContainer>
+              </CardContent>
+            </div>
+          </Card>
+        </ScrollReveal>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
