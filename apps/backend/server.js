@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -10,27 +9,14 @@ import messageRoutes from './routes/messages.js';
 import donationRoutes from './routes/donations.js';
 import contentRoutes from './routes/content.js';
 import mediaRoutes from './routes/media.js';
+import authService from './services/AuthService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env from project root (two levels up from this file) if it exists
-const rootEnvPath = path.join(__dirname, '../../../.env');
-if (fs.existsSync(rootEnvPath)) {
-  console.log('📄 Loading .env from:', rootEnvPath);
-  const envResult = dotenv.config({ path: rootEnvPath });
-  if (envResult.error) {
-    console.warn('⚠️  Could not load .env file:', envResult.error.message);
-  } else {
-    console.log('✅ .env file loaded successfully');
-    console.log('📋 NODE_ENV from .env:', process.env.NODE_ENV);
-  }
-}
-
 const app = express();
 const PORT = process.env.PORT || 3000;
-// Ensure NODE_ENV is set - check .env file first, then environment variable
-// NODE_ENV from .env file should already be loaded by dotenv.config()
+// Ensure NODE_ENV is set - default to development if unset
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
   console.log('⚠️  NODE_ENV not set, defaulting to development');
@@ -62,6 +48,15 @@ if (isProduction) {
   try {
     await getDB();
     console.log('✓ Database connected');
+    if (isProduction) {
+      try {
+        const result = await authService.initializeAdmin();
+        console.log(`✓ ${result.message}`);
+      } catch (error) {
+        console.error('✗ Admin initialization failed:', error.message);
+        process.exit(1);
+      }
+    }
   } catch (error) {
     console.error('✗ Database connection error:', error.message);
     console.error('⚠️  Server will start but database operations may fail.\n');
@@ -176,7 +171,7 @@ server.on('error', (error) => {
     console.error(`     Windows: netstat -ano | findstr :${PORT}`);
     console.error(`             taskkill /PID <PID> /F`);
     console.error(`     macOS/Linux: lsof -ti:${PORT} | xargs kill -9`);
-    console.error(`  2. Or change the PORT in your .env file\n`);
+    console.error('  2. Or change the PORT environment variable\n');
     process.exit(1);
   } else {
     console.error('Server error:', error);
