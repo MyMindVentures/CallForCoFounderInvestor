@@ -9,6 +9,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Explicitly set public directory to ensure all assets are copied
+  publicDir: 'public',
   server: {
     port: 5173,
     proxy: {
@@ -23,6 +25,8 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'esbuild',
+    // Ensure public directory contents are copied to dist root
+    copyPublicDir: true,
     rollupOptions: {
       output: {
         // Remove console statements in production

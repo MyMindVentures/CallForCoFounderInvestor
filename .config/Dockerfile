@@ -51,6 +51,7 @@ RUN groupadd -r -g 1001 nodejs && \
 # Copy root package files (needed for workspaces)
 COPY package*.json ./
 COPY apps/backend/package*.json ./apps/backend/
+COPY apps/frontend/package*.json ./apps/frontend/
 
 # Copy npmrc
 COPY .npmrc ./

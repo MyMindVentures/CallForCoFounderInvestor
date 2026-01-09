@@ -93,8 +93,17 @@ function DeveloperHelp() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="mb-6 sm:mb-8"
         >
-          <Card variant="glass" size="lg">
-            <div className="prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none">
+          <Card variant="glass" size="lg" className="relative overflow-hidden">
+            {/* IdeaFabric Mindmap decorative element */}
+            <div className="absolute top-4 right-4 opacity-20 hidden md:block">
+              <img 
+                src={assets.ideafabricMindmap} 
+                alt="IdeaFabric Mindmap" 
+                className="w-32 h-auto"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="relative z-10 prose prose-sm sm:prose-base md:prose-lg prose-invert max-w-none">
               <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
           </Card>

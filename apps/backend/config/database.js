@@ -10,7 +10,7 @@ const railwayVolumePath = process.env.RAILWAY_VOLUME_MOUNT_PATH;
 const envDbPath = process.env.DB_PATH;
 const defaultDbPath = railwayVolumePath
   ? path.join(railwayVolumePath, 'database.db')
-  : path.join(__dirname, '../data/database.db');
+  : path.join(__dirname, '../../../../storage/data/database.db');
 
 const ensureWritableDir = dirPath => {
   if (!fs.existsSync(dirPath)) {
