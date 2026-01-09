@@ -34,8 +34,10 @@ function DonationButton({ amount, onDonation }) {
       }
 
       // Redirect to Wise payment
-      const paymentUrl = `${wisePaymentUrl}?amount=${amount}&currency=EUR`;
-      window.open(paymentUrl, '_blank');
+      const paymentUrl = new URL(wisePaymentUrl);
+      paymentUrl.searchParams.set('amount', amount);
+      paymentUrl.searchParams.set('currency', 'EUR');
+      window.open(paymentUrl.toString(), '_blank');
     } catch (error) {
       logger.error('Error processing donation:', error);
       alert('Error processing donation. Please try again.');
