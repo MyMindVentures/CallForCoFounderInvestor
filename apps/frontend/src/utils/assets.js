@@ -15,12 +15,10 @@ export const assets = {
   gradientOrb: '/assets/gradient-orb.svg',
   glassCard: '/assets/glass-card.svg',
   
-  // Icons (existing)
-  iconCofounder: '/assets/icon-cofounder.svg',
-  iconInvestor: '/assets/icon-investor.svg',
-  
-  // Icons (new custom icons)
+  // Icons
   icons: {
+    cofounder: '/assets/icons/icon-cofounder.svg',
+    investor: '/assets/icons/icon-investor.svg',
     clock: '/assets/icons/icon-clock.svg',
     code: '/assets/icons/icon-code.svg',
     dollar: '/assets/icons/icon-dollar.svg',

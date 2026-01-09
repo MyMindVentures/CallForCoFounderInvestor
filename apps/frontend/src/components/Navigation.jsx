@@ -5,6 +5,7 @@ import { Menu, X, Home, BookOpen, Users, Code, DollarSign, MessageSquare, Sparkl
 import DarkModeToggle from './DarkModeToggle';
 import { cn } from '@/lib/utils';
 import { mobileMenuVariants, staggerItem } from '@/lib/animations';
+import { assets } from '@/utils/assets';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ function Navigation() {
             aria-label="Home"
           >
             <motion.img
-              src="/assets/logo-mark.svg"
+              src={assets.logoMark}
               alt="CallForCoFounder"
               className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
               whileHover={{ scale: 1.1, rotate: 5 }}

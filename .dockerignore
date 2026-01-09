@@ -60,12 +60,16 @@ Dockerfile*
 .dockerignore
 
 # Other
+# Exclude image files globally, but allow frontend public assets (needed for build)
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.svg
-!assets/**/*.svg
+# Allow frontend public assets (needed for Vite build process)
+!apps/frontend/public/
+!apps/frontend/public/**
+# Exclude specific root-level image files
 Profile.JPG
 Full stack app building flow.png
 

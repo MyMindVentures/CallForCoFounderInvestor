@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Loader2, Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Target, Flame, Eye, Heart, Briefcase, GraduationCap, Code } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { assets } from '@/utils/assets';
 
 function WhatILookFor() {
   const [content, setContent] = useState('');
@@ -225,7 +226,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <img src="/assets/icon-investor.svg" alt="Investor" className="w-8 h-8" />
+                      <img src={assets.icons.investor} alt="Investor" className="w-8 h-8" />
                       Financial Support Partner
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
@@ -268,7 +269,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <img src="/assets/icon-cofounder.svg" alt="CoFounder" className="w-8 h-8" />
+                      <img src={assets.icons.cofounder} alt="CoFounder" className="w-8 h-8" />
                       Solo Developer / Mentor
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">

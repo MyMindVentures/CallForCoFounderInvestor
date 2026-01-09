@@ -7,6 +7,7 @@ import { PageTransition } from '@/components/ui/page-transition';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import VideoPlayer from '@/components/VideoPlayer';
+import { assets } from '@/utils/assets';
 
 function Storytelling() {
   const [content, setContent] = useState('');
@@ -73,8 +74,24 @@ function Storytelling() {
   ];
 
   return (
-    <PageTransition className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <PageTransition className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8 relative">
+      {/* Decorative glass-card background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        <img 
+          src={assets.glassCard} 
+          alt="" 
+          className="absolute top-20 right-10 w-96 h-auto hidden lg:block"
+          aria-hidden="true"
+        />
+        <img 
+          src={assets.glassCard} 
+          alt="" 
+          className="absolute bottom-20 left-10 w-64 h-auto hidden md:block opacity-60"
+          aria-hidden="true"
+        />
+      </div>
+      
+      <div className="max-w-5xl mx-auto relative z-10">
         {/* Page Header */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"

@@ -27,7 +27,7 @@ Thumbs.db
 *.swo
 
 # SQLite Database
-data/
+storage/data/
 *.db
 *.db-shm
 *.db-wal
