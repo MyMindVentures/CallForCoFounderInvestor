@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import { normalizeUrl, isValidUrl } from '@/utils/url';
 import FileUpload from '@/components/FileUpload';
 import { assets } from '@/utils/assets';
+import { useLanguage, languageOptions } from '@/i18n/LanguageContext';
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('content');
@@ -24,6 +25,7 @@ function AdminDashboard() {
   const [donations, setDonations] = useState(null);
   const [selectedPage, setSelectedPage] = useState('storytelling');
   const [pageContent, setPageContent] = useState('');
+  const [contentLanguage, setContentLanguage] = useState('EN');
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState({});
   const [appProjects, setAppProjects] = useState([]);
@@ -31,6 +33,7 @@ function AdminDashboard() {
   const [qrRedirectUrl, setQrRedirectUrl] = useState('');
   const [qrSaving, setQrSaving] = useState(false);
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
   const pages = [
     { id: 'storytelling', name: 'Storytelling' },
@@ -47,6 +50,10 @@ function AdminDashboard() {
     { id: 'messages', label: 'Messages', icon: MessageSquare, count: messages.length },
     { id: 'donations', label: 'Donations', icon: DollarSign }
   ];
+
+  useEffect(() => {
+    setContentLanguage(language);
+  }, [language]);
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
@@ -66,7 +73,7 @@ function AdminDashboard() {
       fetchAppProjects();
       fetchQrRedirectUrl();
     }
-  }, [activeTab, selectedPage, navigate]);
+  }, [activeTab, selectedPage, contentLanguage, navigate]);
 
   const fetchMessages = async () => {
     try {
@@ -96,7 +103,9 @@ function AdminDashboard() {
 
   const fetchContent = async (pageId) => {
     try {
-      const response = await axios.get(`/api/content/${pageId}`);
+      const response = await axios.get(`/api/content/${pageId}`, {
+        params: { lang: contentLanguage.toLowerCase() }
+      });
       setPageContent(response.data.content);
     } catch (error) {
       logger.error('Error fetching content:', error);
@@ -229,7 +238,7 @@ function AdminDashboard() {
       const token = localStorage.getItem('adminToken');
       await axios.put(
         `/api/content/${selectedPage}`,
-        { content: pageContent },
+        { content: pageContent, language: contentLanguage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('Content saved successfully!');
@@ -350,6 +359,23 @@ function AdminDashboard() {
                     >
                       {pages.map(page => (
                         <option key={page.id} value={page.id}>{page.name}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-300 mb-2">
+                      Content Language:
+                    </label>
+                    <select
+                      value={contentLanguage}
+                      onChange={(e) => setContentLanguage(e.target.value)}
+                      className="w-full px-4 py-3 min-h-[44px] backdrop-blur-md bg-dark-200/60 border border-teal-500/20 rounded-xl text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 focus:outline-none"
+                    >
+                      {languageOptions.map(option => (
+                        <option key={option.code} value={option.code}>
+                          {option.label}
+                        </option>
                       ))}
                     </select>
                   </div>

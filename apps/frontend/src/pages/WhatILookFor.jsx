@@ -6,18 +6,22 @@ import { Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Targe
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { assets } from '@/utils/assets';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function WhatILookFor() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
 
   const fetchContent = async () => {
     try {
-      const response = await axios.get('/api/content/whatILookFor');
+      const response = await axios.get('/api/content/whatILookFor', {
+        params: { lang: language.toLowerCase() }
+      });
       setContent(response.data.content);
     } catch (error) {
       logger.error('Error fetching content:', error);

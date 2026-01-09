@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, ChevronDown } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { useLanguage, languageOptions } from '@/i18n/LanguageContext';
 
 function LanguageSelector() {
-  const [language, setLanguage] = useState('EN');
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     setMounted(true);
-    // Load language preference from localStorage
-    const savedLanguage = localStorage.getItem('language') || 'EN';
-    setLanguage(savedLanguage);
-    // Apply language to document
-    document.documentElement.setAttribute('lang', savedLanguage.toLowerCase());
   }, []);
 
   // Handle Escape key to close dropdown
@@ -31,21 +26,14 @@ function LanguageSelector() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen]);
 
-  const languages = [
-    { code: 'EN', label: 'English', flag: '🇬🇧' },
-    { code: 'NL', label: 'Nederlands', flag: '🇳🇱' }
-  ];
-
   const handleLanguageChange = (langCode) => {
     setLanguage(langCode);
     setIsOpen(false);
-    localStorage.setItem('language', langCode);
-    document.documentElement.setAttribute('lang', langCode.toLowerCase());
     // Dispatch custom event for language change
     window.dispatchEvent(new CustomEvent('languagechange', { detail: { language: langCode } }));
   };
 
-  const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
+  const currentLanguage = languageOptions.find(lang => lang.code === language) || languageOptions[0];
 
   // Prevent hydration mismatch
   if (!mounted) {
@@ -77,7 +65,7 @@ function LanguageSelector() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-[55]"
+              className="fixed inset-0 z-[75]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -86,7 +74,7 @@ function LanguageSelector() {
             
             {/* Dropdown */}
             <motion.div
-              className="absolute right-0 mt-2 z-[60] min-w-[140px] rounded-lg backdrop-blur-md bg-dark-200/95 border border-teal-500/20 shadow-lg shadow-dark-50/50 overflow-hidden"
+              className="absolute right-0 mt-2 z-[80] min-w-[160px] rounded-lg backdrop-blur-md bg-dark-200/95 border border-teal-500/20 shadow-lg shadow-dark-50/50 overflow-hidden"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -94,7 +82,7 @@ function LanguageSelector() {
               role="menu"
               aria-orientation="vertical"
             >
-              {languages.map((lang) => (
+              {languageOptions.map((lang) => (
                 <motion.button
                   key={lang.code}
                   onClick={() => handleLanguageChange(lang.code)}
