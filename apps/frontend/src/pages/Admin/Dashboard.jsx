@@ -125,7 +125,6 @@ function AdminDashboard() {
     const response = await axios.post(`/api/media/upload/${mediaType}`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
       },
     });
 
