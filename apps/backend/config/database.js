@@ -6,14 +6,32 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Database file path
-const dbPath = process.env.DB_PATH || path.join(__dirname, '../../../../data/database.db');
+const defaultDbPath = path.join(__dirname, '../data/database.db');
+const envDbPath = process.env.DB_PATH;
 
-// Ensure data directory exists
-const dataDir = path.dirname(dbPath);
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
+const ensureWritableDir = dirPath => {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+  fs.accessSync(dirPath, fs.constants.W_OK);
+};
+
+const resolveDbPath = () => {
+  if (envDbPath) {
+    try {
+      ensureWritableDir(path.dirname(envDbPath));
+      return envDbPath;
+    } catch (error) {
+      console.warn(`⚠️  DB_PATH not writable (${envDbPath}). Falling back to local data directory.`);
+    }
+  }
+
+  ensureWritableDir(path.dirname(defaultDbPath));
+  return defaultDbPath;
+};
+
+// Database file path
+const dbPath = resolveDbPath();
 
 let db = null;
 let SQL = null;
