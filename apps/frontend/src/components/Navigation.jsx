@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, Shield, X } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 import { cn } from '@/lib/utils';
 import { mobileMenuVariants, staggerItem } from '@/lib/animations';
 import { assets } from '@/utils/assets';
+import { Button } from '@/components/ui/button';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,8 @@ function Navigation() {
   const isActive = (path) => {
     return location.pathname === path;
   };
+
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   const navItems = [
     { path: '/', label: 'Home', iconSrc: assets.icons.home },
@@ -113,6 +116,24 @@ function Navigation() {
           {/* Right Side Actions */}
           <div className="flex items-center space-x-2 sm:space-x-3">
             <DarkModeToggle />
+            <Button
+              asChild
+              size="sm"
+              variant={isAdminRoute ? 'purple' : 'outline'}
+              className="hidden md:inline-flex"
+            >
+              <Link
+                to="/admin/login"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeMenu();
+                }}
+                aria-label="Admin login"
+              >
+                <Shield className="w-4 h-4 mr-2" />
+                Admin Login
+              </Link>
+            </Button>
             {/* Mobile Menu Toggle Button */}
             <motion.button
               type="button"
@@ -220,6 +241,26 @@ function Navigation() {
                     </motion.div>
                   );
                 })}
+                <motion.div variants={staggerItem} className="pt-2">
+                  <Button
+                    asChild
+                    size="lg"
+                    variant={isAdminRoute ? 'purple' : 'outline'}
+                    className="w-full justify-center"
+                  >
+                    <Link
+                      to="/admin/login"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeMenu();
+                      }}
+                      aria-label="Admin login"
+                    >
+                      <Shield className="w-5 h-5 mr-2" />
+                      Admin Login
+                    </Link>
+                  </Button>
+                </motion.div>
               </motion.div>
             </motion.div>
           )}
