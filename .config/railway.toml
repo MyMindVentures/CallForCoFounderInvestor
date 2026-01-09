@@ -1,4 +1,10 @@
 # $schema = "https://railway.com/railway.schema.json"
+#
+# DEPLOYMENT OPTIONS:
+# 1. Git-based (current): Railway builds from Dockerfile on each push
+# 2. Container Image: Use pre-built images from registry (ghcr.io, Docker Hub, etc.)
+#    To switch: Railway Dashboard → Service → Settings → Source → "Container Image"
+#    See docs/CONTAINER_DEPLOYMENT.md for details
 
 [build]
 builder = "DOCKERFILE"
