@@ -11,18 +11,30 @@ import donationRoutes from './routes/donations.js';
 import contentRoutes from './routes/content.js';
 import mediaRoutes from './routes/media.js';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load .env from project root (two levels up from this file)
+const rootEnvPath = path.join(__dirname, '../../../.env');
+console.log('📄 Loading .env from:', rootEnvPath);
+const envResult = dotenv.config({ path: rootEnvPath });
+if (envResult.error) {
+  console.warn('⚠️  Could not load .env file:', envResult.error.message);
+} else {
+  console.log('✅ .env file loaded successfully');
+  console.log('📋 NODE_ENV from .env:', process.env.NODE_ENV);
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-// Ensure NODE_ENV is set for production
+// Ensure NODE_ENV is set - check .env file first, then environment variable
+// NODE_ENV from .env file should already be loaded by dotenv.config()
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
+  console.log('⚠️  NODE_ENV not set, defaulting to development');
 }
 const isProduction = process.env.NODE_ENV === 'production';
+console.log(`🔧 Final NODE_ENV: ${process.env.NODE_ENV}, isProduction: ${isProduction}`);
 
 // Validate required environment variables in production
 if (isProduction) {
@@ -117,6 +129,9 @@ if (isProduction) {
   const frontendBuildPath = path.join(__dirname, '../frontend/dist');
   const indexPath = path.join(frontendBuildPath, 'index.html');
   
+  console.log('📁 Checking frontend build at:', frontendBuildPath);
+  console.log('📄 Looking for index.html at:', indexPath);
+  
   // Validate frontend build exists
   if (!fs.existsSync(indexPath)) {
     console.error('❌ Frontend build not found at:', frontendBuildPath);
@@ -135,8 +150,12 @@ if (isProduction) {
     if (req.path.startsWith('/api')) {
       return res.status(404).json({ error: 'API route not found' });
     }
+    console.log('📤 Serving index.html for path:', req.path);
     res.sendFile(indexPath);
   });
+} else {
+  console.log('⚠️  Running in development mode - static files not served');
+  console.log('   Frontend should be running separately on port 5173');
 }
 
 const server = app.listen(PORT, '0.0.0.0', () => {

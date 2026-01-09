@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="spinnerAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(64, 64)">
+    <!-- Outer ring (spinning) -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#spinnerAccent)" stroke-width="4" stroke-linecap="round" 
+            stroke-dasharray="60 20" opacity="0.6"/>
+    <!-- Inner ring (counter-spinning) -->
+    <circle cx="0" cy="0" r="35" fill="none" stroke="url(#spinnerAccent)" stroke-width="3" stroke-linecap="round" 
+            stroke-dasharray="40 15" opacity="0.4" transform="rotate(180)"/>
+    <!-- Central dot -->
+    <circle cx="0" cy="0" r="4" fill="#22d3ee"/>
+    <!-- Orbiting dots -->
+    <circle cx="0" cy="-50" r="3" fill="#8b5cf6" opacity="0.8"/>
+    <circle cx="35" cy="35" r="2.5" fill="#22d3ee" opacity="0.7"/>
+    <circle cx="-35" cy="35" r="2.5" fill="#a3e635" opacity="0.7"/>
+  </g>
+</svg>

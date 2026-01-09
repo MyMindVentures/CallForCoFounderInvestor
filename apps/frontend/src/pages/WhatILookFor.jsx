@@ -225,7 +225,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <DollarSign className="w-8 h-8" />
+                      <img src="/assets/icon-investor.svg" alt="Investor" className="w-8 h-8" />
                       Financial Support Partner
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
@@ -268,7 +268,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <Code className="w-8 h-8" />
+                      <img src="/assets/icon-cofounder.svg" alt="CoFounder" className="w-8 h-8" />
                       Solo Developer / Mentor
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">

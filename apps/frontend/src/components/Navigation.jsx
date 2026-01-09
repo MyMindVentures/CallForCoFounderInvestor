@@ -41,9 +41,16 @@ function Navigation() {
           <Link
             to="/"
             onClick={closeMenu}
-            className="flex items-center flex-shrink-0 group min-h-[44px]"
+            className="flex items-center gap-2 flex-shrink-0 group min-h-[44px]"
             aria-label="Home"
           >
+            <motion.img
+              src="/assets/logo-mark.svg"
+              alt="CallForCoFounder"
+              className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.2 }}
+            />
             <motion.h1 
               className="text-sm sm:text-base md:text-lg lg:text-xl font-display font-extrabold gradient-text-animated tracking-tight whitespace-nowrap"
               whileHover={{ scale: 1.02 }}

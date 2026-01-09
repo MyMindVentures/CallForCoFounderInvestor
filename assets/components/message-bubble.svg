@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="350" viewBox="0 0 500 350">
+  <defs>
+    <linearGradient id="bubbleAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="bubbleBorder" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(250, 175)">
+    <!-- Message bubble -->
+    <rect x="-200" y="-120" width="400" height="240" rx="24" fill="rgba(255,255,255,0.06)" stroke="url(#bubbleBorder)" stroke-width="2"/>
+    <rect x="-195" y="-115" width="390" height="230" rx="20" fill="url(#bubbleAccent)"/>
+    <!-- Tail -->
+    <path d="M-80 120 L-120 160 L-80 160 Z" fill="rgba(255,255,255,0.06)" stroke="url(#bubbleBorder)" stroke-width="2"/>
+    <!-- Text lines (placeholder) -->
+    <line x1="-180" y1="-60" x2="180" y2="-60" stroke="url(#bubbleBorder)" stroke-width="2" opacity="0.4"/>
+    <line x1="-180" y1="-20" x2="120" y2="-20" stroke="url(#bubbleBorder)" stroke-width="2" opacity="0.35"/>
+    <line x1="-180" y1="20" x2="180" y2="20" stroke="url(#bubbleBorder)" stroke-width="2" opacity="0.4"/>
+    <line x1="-180" y1="60" x2="100" y2="60" stroke="url(#bubbleBorder)" stroke-width="2" opacity="0.35"/>
+    <!-- Constellation dots (message indicators) -->
+    <circle cx="-190" cy="-90" r="3" fill="#22d3ee" opacity="0.6"/>
+    <circle cx="190" cy="-90" r="3" fill="#06b6d4" opacity="0.6"/>
+    <circle cx="-190" cy="90" r="3" fill="#06b6d4" opacity="0.6"/>
+    <circle cx="190" cy="90" r="3" fill="#8b5cf6" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="arrowAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+    <filter id="arrowTrail" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feOffset in="blur" dx="0" dy="0" result="offsetBlur"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <g transform="translate(128, 128)">
+    <!-- Arrow body (gradient trail) -->
+    <line x1="-60" y1="0" x2="40" y2="0" stroke="url(#arrowAccent)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+    <!-- Arrow head -->
+    <path d="M40 0 L20 -15 L20 15 Z" fill="url(#arrowAccent)"/>
+    <!-- Trail effect (subtle) -->
+    <line x1="-60" y1="0" x2="20" y2="0" stroke="url(#arrowAccent)" stroke-width="4" stroke-linecap="round" opacity="0.3" filter="url(#arrowTrail)"/>
+  </g>
+</svg>

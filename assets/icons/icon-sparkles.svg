@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="sparkleAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb7185"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+    <radialGradient id="sparkleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fb7185" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="sparkleBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <circle cx="128" cy="128" r="80" fill="url(#sparkleGlow)" opacity="0.4"/>
+  <g transform="translate(128, 128)">
+    <!-- Central sparkle -->
+    <g>
+      <line x1="0" y1="-40" x2="0" y2="40" stroke="url(#sparkleAccent)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-40" y1="0" x2="40" y2="0" stroke="url(#sparkleAccent)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-28" y1="-28" x2="28" y2="28" stroke="url(#sparkleAccent)" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="28" y1="-28" x2="-28" y2="28" stroke="url(#sparkleAccent)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="6" fill="#ffffff" opacity="0.9"/>
+    </g>
+    <!-- Orbiting sparkles -->
+    <g transform="rotate(0)">
+      <circle cx="0" cy="-60" r="3" fill="#fb7185" opacity="0.8"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <g transform="rotate(45)">
+      <circle cx="0" cy="-60" r="2.5" fill="#f59e0b" opacity="0.7"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    </g>
+    <g transform="rotate(90)">
+      <circle cx="0" cy="-60" r="3" fill="#a3e635" opacity="0.8"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <g transform="rotate(135)">
+      <circle cx="0" cy="-60" r="2.5" fill="#fb7185" opacity="0.7"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    </g>
+    <g transform="rotate(180)">
+      <circle cx="0" cy="-60" r="3" fill="#f59e0b" opacity="0.8"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <g transform="rotate(225)">
+      <circle cx="0" cy="-60" r="2.5" fill="#a3e635" opacity="0.7"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    </g>
+    <g transform="rotate(270)">
+      <circle cx="0" cy="-60" r="3" fill="#fb7185" opacity="0.8"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <g transform="rotate(315)">
+      <circle cx="0" cy="-60" r="2.5" fill="#f59e0b" opacity="0.7"/>
+      <line x1="0" y1="-60" x2="0" y2="-50" stroke="url(#sparkleAccent)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

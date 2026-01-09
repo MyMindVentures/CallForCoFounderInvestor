@@ -5,6 +5,7 @@ import { PageTransition, StaggerContainer, StaggerItem, MotionCard } from '@/com
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import CountdownTimer from '@/components/CountdownTimer';
 
 function Landing() {
   // GitHub repository URL from environment variable
@@ -59,6 +60,31 @@ function Landing() {
     <PageTransition className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+        {/* Hero Background SVG */}
+        <div className="absolute inset-0 opacity-40">
+          <img 
+            src="/assets/hero-background.svg" 
+            alt="" 
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
+        </div>
+        
+        {/* Constellation Illustration */}
+        <motion.div 
+          className="absolute top-20 right-10 opacity-20 hidden lg:block"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.2, scale: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          <img 
+            src="/assets/constellation-illustration.svg" 
+            alt="" 
+            className="w-64 h-auto"
+            aria-hidden="true"
+          />
+        </motion.div>
+        
         {/* Animated Background Gradient */}
         <motion.div 
           className="absolute inset-0 opacity-30"
@@ -116,6 +142,16 @@ function Landing() {
               <Handshake className="w-4 h-4" />
               Partnership-Focused
             </Badge>
+          </motion.div>
+
+          {/* Countdown Timer */}
+          <motion.div
+            className="mt-8 sm:mt-10 md:mt-12 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <CountdownTimer />
           </motion.div>
         </div>
       </section>
@@ -192,6 +228,26 @@ function Landing() {
             >
               <Card variant="gradient" size="lg" className="h-full bg-gradient-to-br from-teal-500/80 via-cyan-500/80 to-blue-500/80 text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                {/* Decorative gradient orb */}
+                <motion.div 
+                  className="absolute top-4 right-4 opacity-20"
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity,
+                    ease: 'easeInOut'
+                  }}
+                >
+                  <img 
+                    src="/assets/gradient-orb.svg" 
+                    alt="" 
+                    className="w-24 h-24"
+                    aria-hidden="true"
+                  />
+                </motion.div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-4">
                     <Zap className="w-8 h-8 sm:w-10 sm:h-10" />

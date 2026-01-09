@@ -31,3 +31,10 @@ data/
 *.db
 *.db-shm
 *.db-wal
+apps/*/data/
+
+# Test artifacts
+playwright-report/
+test-results/
+coverage/
+.nyc_output/

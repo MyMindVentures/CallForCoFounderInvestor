@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="usersAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <g transform="translate(128, 128)">
+    <!-- Left user -->
+    <circle cx="-40" cy="-20" r="20" fill="rgba(255,255,255,0.08)" stroke="url(#usersAccent)" stroke-width="2"/>
+    <path d="M-60 20 Q-60 10 -40 10 Q-20 10 -20 20 L-20 40 Q-20 50 -40 50 Q-60 50 -60 40 Z" 
+          fill="rgba(255,255,255,0.06)" stroke="url(#usersAccent)" stroke-width="2"/>
+    <!-- Right user -->
+    <circle cx="40" cy="-20" r="20" fill="rgba(255,255,255,0.08)" stroke="url(#usersAccent)" stroke-width="2"/>
+    <path d="M20 20 Q20 10 40 10 Q60 10 60 20 L60 40 Q60 50 40 50 Q20 50 20 40 Z" 
+          fill="rgba(255,255,255,0.06)" stroke="url(#usersAccent)" stroke-width="2"/>
+    <!-- Connection line -->
+    <path d="M-20 -20 Q0 -30 20 -20" fill="none" stroke="url(#usersAccent)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    <!-- Constellation dots (network) -->
+    <circle cx="-50" cy="-50" r="2" fill="#06b6d4" opacity="0.6"/>
+    <circle cx="50" cy="-50" r="2" fill="#06b6d4" opacity="0.6"/>
+    <circle cx="0" cy="-60" r="2.5" fill="#22d3ee" opacity="0.7"/>
+  </g>
+</svg>

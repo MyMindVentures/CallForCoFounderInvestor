@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="dollarAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#fcd34d"/>
+    </linearGradient>
+    <radialGradient id="dollarGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="dollarShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#f59e0b" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <circle cx="128" cy="128" r="70" fill="url(#dollarGlow)" opacity="0.3"/>
+  <g transform="translate(128, 128)">
+    <!-- Dollar sign -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+    <path d="M0 -45 L0 45" stroke="url(#dollarAccent)" stroke-width="8" stroke-linecap="round" filter="url(#dollarShadow)"/>
+    <path d="M-20 -20 Q-20 -35 0 -35 Q20 -35 20 -20 Q20 -10 0 -10 Q-20 -10 -20 5 Q-20 20 0 20 Q20 20 20 5" 
+          fill="none" stroke="url(#dollarAccent)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#dollarShadow)"/>
+    <!-- Growth arrows -->
+    <path d="M-60 -60 L-50 -70 L-40 -60" fill="none" stroke="url(#dollarAccent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    <path d="M60 60 L50 70 L40 60" fill="none" stroke="url(#dollarAccent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  </g>
+</svg>

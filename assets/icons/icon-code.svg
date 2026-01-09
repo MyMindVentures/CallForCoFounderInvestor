@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="codeAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="codeGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#06b6d4" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <g transform="translate(128, 128)">
+    <!-- Code brackets -->
+    <path d="M-60 -30 L-80 -10 L-60 10" fill="none" stroke="url(#codeAccent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#codeGlow)"/>
+    <path d="M60 -30 L80 -10 L60 10" fill="none" stroke="url(#codeAccent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#codeGlow)"/>
+    <!-- Code lines -->
+    <line x1="-40" y1="-20" x2="40" y2="-20" stroke="url(#codeAccent)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <line x1="-40" y1="0" x2="20" y2="0" stroke="url(#codeAccent)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-40" y1="20" x2="40" y2="20" stroke="url(#codeAccent)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <!-- Constellation dots -->
+    <circle cx="-50" cy="-40" r="2" fill="#ffffff" opacity="0.5"/>
+    <circle cx="50" cy="-40" r="2" fill="#ffffff" opacity="0.5"/>
+    <circle cx="-50" cy="40" r="2" fill="#ffffff" opacity="0.5"/>
+    <circle cx="50" cy="40" r="2" fill="#ffffff" opacity="0.5"/>
+  </g>
+</svg>

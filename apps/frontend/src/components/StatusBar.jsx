@@ -6,21 +6,34 @@ import LanguageSelector from './LanguageSelector';
 
 function StatusBar() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [daysRemaining, setDaysRemaining] = useState(7);
+  const [deadlineDate, setDeadlineDate] = useState(null);
 
   useEffect(() => {
-    // Calculate days remaining from deadline
-    const deadlineStr = import.meta.env.VITE_DEADLINE_DATE;
-    if (deadlineStr) {
-      const deadline = new Date(deadlineStr);
-      const now = new Date();
-      const diffTime = deadline - now;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setDaysRemaining(Math.max(0, Math.min(7, diffDays)));
+    // Format deadline for display
+    // Snow Moon: Sunday, 1 February 2026 • 23:09 (MEZ)
+    const deadlineStr = import.meta.env.VITE_DEADLINE_DATE || '2026-02-01T23:09:00+01:00';
+    const deadline = new Date(deadlineStr);
+    
+    try {
+      const formatted = deadline.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'Europe/Berlin'
+      });
+      const time = deadline.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Europe/Berlin',
+        hour12: false
+      });
+      setDeadlineDate(`${formatted} • ${time} (MEZ)`);
+    } catch (e) {
+      // Fallback to hardcoded format
+      setDeadlineDate('Sunday, 1 February 2026 • 23:09 (MEZ)');
     }
   }, []);
-
-  const currentDay = Math.min(7, 7 - daysRemaining + 1);
 
   return (
     <div className="sticky top-0 z-40">
@@ -36,23 +49,18 @@ function StatusBar() {
             {/* Desktop Layout */}
             <div className="hidden sm:flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-teal-400" />
-                  <span className="text-sm font-semibold text-gray-200">7-day window</span>
-                </div>
-                <span className="text-sm text-gray-400">
-                  I'm selecting 2 partners before the deadline. Calm urgency. Clear terms.
+                <span className="text-xs sm:text-sm text-gray-400 hidden md:inline">
+                  {deadlineDate ? `Snow Moon: ${deadlineDate}` : 'Snow Moon: Sunday, 1 February 2026 • 23:09 (MEZ)'}
+                </span>
+                <span className="text-xs text-gray-400 md:hidden">
+                  Snow Moon: Feb 1, 2026
                 </span>
               </div>
               
               <div className="flex items-center gap-3">
-                <Badge variant="teal" size="sm" className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  Day {currentDay}/7
-                </Badge>
                 <Badge variant="purple" size="sm" className="flex items-center gap-1">
                   <FileText className="w-3 h-3" />
-                  NDA required
+                  NDA + Agreement
                 </Badge>
                 <LanguageSelector />
                 <button
@@ -76,11 +84,9 @@ function StatusBar() {
                 className="w-full flex items-center justify-between"
               >
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-teal-400" />
-                  <span className="text-sm font-semibold text-gray-200">7-day window</span>
-                  <Badge variant="teal" size="sm">
-                    Day {currentDay}/7
-                  </Badge>
+                  <span className="text-xs text-gray-400">
+                    {deadlineDate ? `Snow Moon: ${deadlineDate.split('•')[0].trim()}` : 'Snow Moon: Feb 1, 2026'}
+                  </span>
                 </div>
                 {isExpanded ? (
                   <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -100,12 +106,15 @@ function StatusBar() {
                   >
                     <div className="pt-3 space-y-2">
                       <p className="text-sm text-gray-400">
+                        Snow Moon deadline: {deadlineDate || 'Sunday, 1 February 2026 • 23:09 (MEZ)'}
+                      </p>
+                      <p className="text-xs text-gray-500">
                         I'm selecting 2 partners before the deadline. Calm urgency. Clear terms.
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="purple" size="sm" className="flex items-center gap-1">
                           <FileText className="w-3 h-3" />
-                          NDA required
+                          NDA + Agreement
                         </Badge>
                         <LanguageSelector />
                       </div>

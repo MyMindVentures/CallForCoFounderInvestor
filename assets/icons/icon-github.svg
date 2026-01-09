@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="githubAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <g transform="translate(128, 128)">
+    <!-- GitHub cat head -->
+    <circle cx="0" cy="-10" r="35" fill="rgba(255,255,255,0.06)" stroke="url(#githubAccent)" stroke-width="2.5"/>
+    <!-- Ears -->
+    <path d="M-25 -35 L-15 -50 L-5 -40 Z" fill="rgba(255,255,255,0.06)" stroke="url(#githubAccent)" stroke-width="2"/>
+    <path d="M5 -40 L15 -50 L25 -35 Z" fill="rgba(255,255,255,0.06)" stroke="url(#githubAccent)" stroke-width="2"/>
+    <!-- Eyes -->
+    <circle cx="-12" cy="-15" r="4" fill="url(#githubAccent)"/>
+    <circle cx="12" cy="-15" r="4" fill="url(#githubAccent)"/>
+    <!-- Nose -->
+    <path d="M-3 0 L0 5 L3 0" fill="url(#githubAccent)" opacity="0.8"/>
+    <!-- Whiskers -->
+    <line x1="-30" y1="-5" x2="-40" y2="-5" stroke="url(#githubAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-30" y1="5" x2="-40" y2="5" stroke="url(#githubAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="30" y1="-5" x2="40" y2="-5" stroke="url(#githubAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="30" y1="5" x2="40" y2="5" stroke="url(#githubAccent)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <!-- Code brackets (GitHub theme) -->
+    <path d="M-50 20 L-60 30 L-50 40" fill="none" stroke="url(#githubAccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    <path d="M50 20 L60 30 L50 40" fill="none" stroke="url(#githubAccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  </g>
+</svg>

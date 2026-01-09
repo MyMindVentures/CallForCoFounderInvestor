@@ -77,7 +77,7 @@ function LanguageSelector() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-10"
+              className="fixed inset-0 z-[55]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -86,7 +86,7 @@ function LanguageSelector() {
             
             {/* Dropdown */}
             <motion.div
-              className="absolute right-0 mt-2 z-20 min-w-[140px] rounded-lg backdrop-blur-md bg-dark-200/95 border border-teal-500/20 shadow-lg shadow-dark-50/50 overflow-hidden"
+              className="absolute right-0 mt-2 z-[60] min-w-[140px] rounded-lg backdrop-blur-md bg-dark-200/95 border border-teal-500/20 shadow-lg shadow-dark-50/50 overflow-hidden"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}

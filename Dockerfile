@@ -1,6 +1,8 @@
 # Multi-stage Dockerfile for production deployment
+# Using Debian slim instead of Alpine for better npm optional dependency support
+# This avoids the Rollup optional dependency installation issues
 # Stage 1: Build frontend
-FROM node:20.19.0-alpine AS builder
+FROM node:20.19.0-slim AS builder
 
 # Set working directory
 WORKDIR /app
@@ -14,22 +16,12 @@ COPY apps/backend/package*.json ./apps/backend/
 COPY .npmrc ./
 
 # Install all dependencies (including dev dependencies for build)
-# Use npm install instead of npm ci to properly handle optional dependencies
+# Debian-based images handle optional dependencies better than Alpine
 RUN npm install --include=optional --legacy-peer-deps
 
-# Fix for Rollup optional dependencies on Alpine Linux (musl)
-# npm sometimes skips optional dependencies, so we explicitly install the platform-specific binary
-# Check both root and workspace locations for rollup
-RUN if [ -d "node_modules/rollup" ]; then \
-      cd node_modules/rollup && \
-      npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps --no-save || true && \
-      cd /app; \
-    fi && \
-    if [ -d "apps/frontend/node_modules/rollup" ]; then \
-      cd apps/frontend/node_modules/rollup && \
-      npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps --no-save || true && \
-      cd /app; \
-    fi
+# Fix Rollup optional dependency issue
+# Install the platform-specific Rollup binary explicitly
+RUN npm install @rollup/rollup-linux-x64-gnu --no-save --legacy-peer-deps || true
 
 # Copy source files
 COPY apps/frontend ./apps/frontend
@@ -39,17 +31,19 @@ COPY apps/backend ./apps/backend
 RUN npm run build --workspace=frontend
 
 # Stage 2: Production runtime
-FROM node:20.19.0-alpine AS production
+FROM node:20.19.0-slim AS production
 
 # Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends dumb-init && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 WORKDIR /app
 
 # Create non-root user for security
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
+RUN groupadd -r -g 1001 nodejs && \
+    useradd -r -u 1001 -g nodejs nodejs
 
 # Copy root package files (needed for workspaces)
 COPY package*.json ./

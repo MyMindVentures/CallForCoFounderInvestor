@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="brainAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <radialGradient id="brainGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <circle cx="128" cy="128" r="70" fill="url(#brainGlow)" opacity="0.3"/>
+  <g transform="translate(128, 128)">
+    <!-- Brain shape (simplified) -->
+    <path d="M-40 -30 Q-50 -40 -40 -50 Q-30 -55 -20 -50 Q-10 -45 0 -40 Q10 -45 20 -50 Q30 -55 40 -50 Q50 -40 40 -30 Q45 -20 40 -10 Q40 0 35 10 Q30 20 20 25 Q10 30 0 30 Q-10 30 -20 25 Q-30 20 -35 10 Q-40 0 -40 -10 Q-45 -20 -40 -30 Z" 
+          fill="rgba(255,255,255,0.06)" stroke="url(#brainAccent)" stroke-width="2.5"/>
+    <!-- Neural pathways (lines) -->
+    <path d="M-20 -30 Q-10 -20 0 -15 Q10 -20 20 -30" fill="none" stroke="url(#brainAccent)" stroke-width="2" opacity="0.5"/>
+    <path d="M-15 0 Q0 5 15 0" fill="none" stroke="url(#brainAccent)" stroke-width="2" opacity="0.5"/>
+    <path d="M-20 15 Q0 20 20 15" fill="none" stroke="url(#brainAccent)" stroke-width="2" opacity="0.5"/>
+    <!-- Neural nodes (dots) -->
+    <circle cx="-20" cy="-30" r="3" fill="#8b5cf6" opacity="0.7"/>
+    <circle cx="0" cy="-15" r="3" fill="#a855f7" opacity="0.7"/>
+    <circle cx="20" cy="-30" r="3" fill="#8b5cf6" opacity="0.7"/>
+    <circle cx="-15" cy="0" r="2.5" fill="#a855f7" opacity="0.6"/>
+    <circle cx="15" cy="0" r="2.5" fill="#a855f7" opacity="0.6"/>
+    <circle cx="-20" cy="15" r="3" fill="#c084fc" opacity="0.7"/>
+    <circle cx="20" cy="15" r="3" fill="#c084fc" opacity="0.7"/>
+    <!-- Sparkle (ideas) -->
+    <circle cx="-50" cy="-50" r="2" fill="#8b5cf6" opacity="0.6"/>
+    <circle cx="50" cy="-50" r="2" fill="#8b5cf6" opacity="0.6"/>
+  </g>
+</svg>

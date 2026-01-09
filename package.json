@@ -22,7 +22,9 @@
     "kill-port:5173": "node scripts/kill-port.js 5173",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "audit:check": "npm audit",
+    "audit:fix": "npm audit fix"
   },
   "devDependencies": {
     "@lhci/cli": "^0.15.1",

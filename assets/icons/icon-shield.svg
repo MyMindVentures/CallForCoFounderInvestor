@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="shieldAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="shieldGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#0a0a0f"/>
+  <circle cx="128" cy="128" r="70" fill="url(#shieldGlow)" opacity="0.3"/>
+  <g transform="translate(128, 128)">
+    <!-- Shield shape -->
+    <path d="M0 -50 L-30 -30 L-30 20 Q-30 40 0 50 Q30 40 30 20 L30 -30 Z" 
+          fill="rgba(255,255,255,0.06)" stroke="url(#shieldAccent)" stroke-width="3"/>
+    <!-- Inner pattern -->
+    <path d="M0 -40 L-20 -25 L-20 15 Q-20 30 0 38 Q20 30 20 15 L20 -25 Z" 
+          fill="url(#shieldGlow)" opacity="0.4"/>
+    <!-- Check mark (security) -->
+    <path d="M-12 0 L-4 8 L12 -4" fill="none" stroke="url(#shieldAccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Constellation dots -->
+    <circle cx="-35" cy="-40" r="2" fill="#14b8a6" opacity="0.6"/>
+    <circle cx="35" cy="-40" r="2" fill="#14b8a6" opacity="0.6"/>
+    <circle cx="0" cy="-60" r="2.5" fill="#06b6d4" opacity="0.7"/>
+  </g>
+</svg>
