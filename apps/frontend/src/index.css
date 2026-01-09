@@ -40,6 +40,10 @@
 
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  html.dark {
     color-scheme: dark;
   }
 
@@ -56,13 +60,19 @@
   }
 
   body {
-    @apply font-sans antialiased text-gray-100 leading-relaxed;
-    background: linear-gradient(135deg, #0a0a0f 0%, #111118 50%, #1a1a24 100%);
+    @apply font-sans antialiased leading-relaxed;
+    color: #0f172a;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5f5 100%);
     background-attachment: fixed;
     font-family: 'Poppins', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  html.dark body {
+    @apply text-gray-100;
+    background: linear-gradient(135deg, #0a0a0f 0%, #111118 50%, #1a1a24 100%);
   }
 
   #root {
@@ -236,6 +246,38 @@
   /* Background Gradients */
   .bg-gradient-modern-dark {
     background: linear-gradient(135deg, #0a0a0f 0%, #111118 50%, #1a1a24 100%);
+  }
+
+  html:not(.dark) .bg-gradient-modern-dark {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5f5 100%);
+  }
+
+  html:not(.dark) .bg-dark-100 {
+    @apply bg-slate-50;
+  }
+
+  html:not(.dark) .bg-dark-200 {
+    @apply bg-slate-100;
+  }
+
+  html:not(.dark) .bg-dark-300 {
+    @apply bg-slate-200;
+  }
+
+  html:not(.dark) .text-gray-100 {
+    @apply text-slate-900;
+  }
+
+  html:not(.dark) .text-gray-300 {
+    @apply text-slate-600;
+  }
+
+  html:not(.dark) .text-gray-400 {
+    @apply text-slate-500;
+  }
+
+  html:not(.dark) .text-gray-500 {
+    @apply text-slate-500;
   }
 
   .bg-gradient-teal {

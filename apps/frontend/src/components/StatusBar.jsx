@@ -36,7 +36,7 @@ function StatusBar() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40">
+    <div className="sticky top-0 z-[70]">
       {/* Main Status Bar */}
       <motion.div
         className="backdrop-blur-xl bg-dark-100/90 border-b border-teal-500/20 shadow-lg shadow-dark-50/50"

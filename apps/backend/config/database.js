@@ -6,8 +6,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const defaultDbPath = path.join(__dirname, '../data/database.db');
+const railwayVolumePath = process.env.RAILWAY_VOLUME_MOUNT_PATH;
 const envDbPath = process.env.DB_PATH;
+const defaultDbPath = railwayVolumePath
+  ? path.join(railwayVolumePath, 'database.db')
+  : path.join(__dirname, '../data/database.db');
 
 const ensureWritableDir = dirPath => {
   if (!fs.existsSync(dirPath)) {

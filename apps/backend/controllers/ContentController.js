@@ -4,14 +4,14 @@ import { sanitizeError, logError } from '../utils/errorHandler.js';
 class ContentController {
   async getContent(req, res) {
     try {
-      const content = await contentService.getContent(req.params.pageId);
+      const content = await contentService.getContent(req.params.pageId, req.query.lang);
       res.json(content);
     } catch (error) {
       logError('ContentController.getContent', error);
       // On error, return default content instead of failing
       res.json({
         pageId: req.params.pageId,
-        content: contentService.getDefaultContent(req.params.pageId),
+        content: contentService.getDefaultContent(req.params.pageId, req.query.lang),
         lastUpdated: new Date().toISOString(),
         updatedBy: 'system',
         error: 'Database unavailable, showing default content'
@@ -24,7 +24,7 @@ class ContentController {
       const updatedContent = await contentService.updateContent(
         req.params.pageId,
         req.body,
-        req.user.username
+        req.user?.username || 'admin'
       );
       res.json(updatedContent);
     } catch (error) {

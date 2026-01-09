@@ -10,19 +10,23 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import DonationButton from '@/components/DonationButton';
 import { assets } from '@/utils/assets';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function FinancialHelp() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [donationAmount, setDonationAmount] = useState('');
+  const { language } = useLanguage();
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
 
   const fetchContent = async () => {
     try {
-      const response = await axios.get('/api/content/financialHelp');
+      const response = await axios.get('/api/content/financialHelp', {
+        params: { lang: language.toLowerCase() }
+      });
       setContent(response.data.content);
     } catch (error) {
       logger.error('Error fetching content:', error);

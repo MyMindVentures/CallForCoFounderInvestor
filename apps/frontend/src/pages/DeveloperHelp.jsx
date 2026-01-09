@@ -9,19 +9,23 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import MessageForm from '@/components/MessageForm';
 import { assets } from '@/utils/assets';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function DeveloperHelp() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     fetchContent();
-  }, []);
+  }, [language]);
 
   const fetchContent = async () => {
     try {
-      const response = await axios.get('/api/content/developerHelp');
+      const response = await axios.get('/api/content/developerHelp', {
+        params: { lang: language.toLowerCase() }
+      });
       setContent(response.data.content);
     } catch (error) {
       logger.error('Error fetching content:', error);

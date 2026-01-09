@@ -8,21 +8,23 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import VideoPlayer from '@/components/VideoPlayer';
 import { assets } from '@/utils/assets';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 function Storytelling() {
   const [content, setContent] = useState('');
   const [media, setMedia] = useState({});
   const [appProjects, setAppProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [language]);
 
   const fetchData = async () => {
     try {
       const [contentRes, mediaRes, projectsRes] = await Promise.all([
-        axios.get('/api/content/storytelling'),
+        axios.get('/api/content/storytelling', { params: { lang: language.toLowerCase() } }),
         axios.get('/api/media/all'),
         axios.get('/api/media/projects')
       ]);

@@ -169,12 +169,12 @@ function QrPoster() {
           <CardContent className="p-0">
             <div
               ref={posterRef}
-              className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white px-8 sm:px-12 py-12 sm:py-14"
+              className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white px-6 sm:px-10 lg:px-12 py-10 sm:py-12 lg:py-14"
             >
               <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.3),_transparent_55%)]" />
               <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_bottom,_rgba(16,185,129,0.3),_transparent_55%)]" />
-              <div className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-                <div>
+              <div className="relative z-10 grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+                <div className="text-center lg:text-left">
                   <p className="uppercase tracking-[0.3em] text-xs text-emerald-300 font-semibold mb-4">
                     Instant access
                   </p>
@@ -185,7 +185,7 @@ function QrPoster() {
                     Scan the code to jump into the app experience — no typing, no friction. Perfect for events,
                     meetings, or a quick scan on your phone.
                   </p>
-                  <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200">
+                  <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-200 max-w-full">
                     <span className="font-semibold">Destination:</span>
                     <span className="truncate max-w-[220px] sm:max-w-[280px]">{appUrl}</span>
                   </div>
@@ -196,17 +196,23 @@ function QrPoster() {
                   )}
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="rounded-3xl bg-white p-6 shadow-2xl shadow-emerald-500/20">
+                <div className="flex flex-col items-center lg:items-end">
+                  <div className="rounded-3xl bg-white p-5 sm:p-6 shadow-2xl shadow-emerald-500/20">
                     {qrDataUrl ? (
-                      <img src={qrDataUrl} alt="QR code linking to the app" className="w-60 h-60 sm:w-72 sm:h-72" />
+                      <img
+                        src={qrDataUrl}
+                        alt="QR code linking to the app"
+                        className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
+                      />
                     ) : (
-                      <div className="w-60 h-60 sm:w-72 sm:h-72 flex items-center justify-center text-slate-500">
+                      <div className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 flex items-center justify-center text-slate-500">
                         {qrGenerating || loading ? 'Generating QR...' : qrError || 'QR unavailable'}
                       </div>
                     )}
                   </div>
-                  <p className="mt-4 text-sm text-slate-300">Point your camera here and launch the app instantly.</p>
+                  <p className="mt-4 text-sm text-slate-300 text-center lg:text-right">
+                    Point your camera here and launch the app instantly.
+                  </p>
                 </div>
               </div>
 
