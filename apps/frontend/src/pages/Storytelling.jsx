@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, PlayCircle, Lightbulb, FileCheck, Flame, Brain, Gift, Target, Heart, Quote } from 'lucide-react';
+import { PlayCircle, Lightbulb, FileCheck, Flame, Brain, Gift, Target, Heart, Quote } from 'lucide-react';
 import { PageTransition } from '@/components/ui/page-transition';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import VideoPlayer from '@/components/VideoPlayer';
+import { assets } from '@/utils/assets';
 
 function Storytelling() {
   const [content, setContent] = useState('');
@@ -41,7 +42,12 @@ function Storytelling() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <Loader2 className="w-12 h-12 text-purple-500 animate-spin mx-auto mb-4" />
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
           <p className="text-gray-400">Loading...</p>
         </motion.div>
       </div>
@@ -73,8 +79,14 @@ function Storytelling() {
   ];
 
   return (
-    <PageTransition className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+    <PageTransition className="relative min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.storytelling}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Page Header */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"

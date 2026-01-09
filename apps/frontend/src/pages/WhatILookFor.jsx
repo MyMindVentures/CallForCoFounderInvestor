@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Target, Flame, Eye, Heart, Briefcase, GraduationCap, Code } from 'lucide-react';
+import { Users, Lightbulb, MessageSquare, BarChart3, Sparkles, DollarSign, Target, Flame, Eye, Heart, Briefcase, GraduationCap, Code } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { assets } from '@/utils/assets';
 
 function WhatILookFor() {
   const [content, setContent] = useState('');
@@ -45,7 +46,12 @@ function WhatILookFor() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Loader2 className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
           <p className="text-gray-400">Loading...</p>
         </motion.div>
       </div>
@@ -53,8 +59,14 @@ function WhatILookFor() {
   }
 
   return (
-    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <PageTransition className="relative min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.dividerGradient}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-4xl mx-auto">
         {/* Hero Section */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"
@@ -225,7 +237,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <img src="/assets/icon-investor.svg" alt="Investor" className="w-8 h-8" />
+                      <img src={assets.iconInvestor} alt="Investor" className="w-8 h-8" />
                       Financial Support Partner
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
@@ -268,7 +280,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-                      <img src="/assets/icon-cofounder.svg" alt="CoFounder" className="w-8 h-8" />
+                      <img src={assets.iconCofounder} alt="CoFounder" className="w-8 h-8" />
                       Solo Developer / Mentor
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">

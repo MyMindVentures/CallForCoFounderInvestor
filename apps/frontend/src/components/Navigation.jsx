@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, BookOpen, Users, Code, DollarSign, MessageSquare, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 import { cn } from '@/lib/utils';
 import { mobileMenuVariants, staggerItem } from '@/lib/animations';
+import { assets } from '@/utils/assets';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +24,13 @@ function Navigation() {
   };
 
   const navItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/storytelling', label: 'Story', icon: BookOpen },
-    { path: '/what-i-look-for', label: 'What I Look For', icon: Users },
-    { path: '/developer-help', label: 'Developer Help', icon: Code },
-    { path: '/financial-help', label: 'Financial Help', icon: DollarSign },
-    { path: '/support', label: 'Support', icon: MessageSquare },
-    { path: '/adhd-aries', label: 'ADHD + Aries', icon: Sparkles }
+    { path: '/', label: 'Home', iconSrc: assets.icons.home },
+    { path: '/storytelling', label: 'Story', iconSrc: assets.icons.book },
+    { path: '/what-i-look-for', label: 'What I Look For', iconSrc: assets.icons.users },
+    { path: '/developer-help', label: 'Developer Help', iconSrc: assets.icons.code },
+    { path: '/financial-help', label: 'Financial Help', iconSrc: assets.icons.dollar },
+    { path: '/support', label: 'Support', iconSrc: assets.icons.message },
+    { path: '/adhd-aries', label: 'ADHD + Aries', iconSrc: assets.icons.sparkles }
   ];
 
   return (
@@ -45,7 +46,7 @@ function Navigation() {
             aria-label="Home"
           >
             <motion.img
-              src="/assets/logo-mark.svg"
+              src={assets.logoMark}
               alt="CallForCoFounder"
               className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
               whileHover={{ scale: 1.1, rotate: 5 }}
@@ -63,7 +64,6 @@ function Navigation() {
           {/* Desktop Navigation Menu */}
           <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 flex-shrink-0">
             {navItems.map((item) => {
-              const Icon = item.icon;
               return (
                 <Link
                   key={item.path}
@@ -88,7 +88,12 @@ function Navigation() {
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Icon className="w-3.5 h-3.5 mr-1" aria-hidden="true" />
+                    <img
+                      src={item.iconSrc}
+                      alt=""
+                      className="w-3.5 h-3.5 mr-1"
+                      aria-hidden="true"
+                    />
                     <span>{item.label}</span>
                     {isActive(item.path) && (
                       <motion.span 
@@ -179,7 +184,6 @@ function Navigation() {
                 }}
               >
                 {navItems.map((item) => {
-                  const Icon = item.icon;
                   return (
                     <motion.div key={item.path} variants={staggerItem}>
                       <Link
@@ -196,7 +200,12 @@ function Navigation() {
                         )}
                         aria-label={item.label}
                       >
-                        <Icon className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+                        <img
+                          src={item.iconSrc}
+                          alt=""
+                          className="w-5 h-5 flex-shrink-0"
+                          aria-hidden="true"
+                        />
                         <span className="flex-1">{item.label}</span>
                         {isActive(item.path) && (
                           <motion.span 

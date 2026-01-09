@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import CountdownTimer from '@/components/CountdownTimer';
+import { assets } from '@/utils/assets';
 
 function Landing() {
   // GitHub repository URL from environment variable
@@ -63,7 +64,7 @@ function Landing() {
         {/* Hero Background SVG */}
         <div className="absolute inset-0 opacity-40">
           <img 
-            src="/assets/hero-background.svg" 
+            src={assets.heroBackground} 
             alt="" 
             className="w-full h-full object-cover"
             aria-hidden="true"
@@ -78,7 +79,7 @@ function Landing() {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <img 
-            src="/assets/constellation-illustration.svg" 
+            src={assets.constellation} 
             alt="" 
             className="w-64 h-auto"
             aria-hidden="true"
@@ -242,7 +243,7 @@ function Landing() {
                   }}
                 >
                   <img 
-                    src="/assets/gradient-orb.svg" 
+                    src={assets.gradientOrb} 
                     alt="" 
                     className="w-24 h-24"
                     aria-hidden="true"

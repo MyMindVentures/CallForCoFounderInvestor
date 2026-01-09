@@ -15,6 +15,7 @@ import { Textarea, Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import FileUpload from '@/components/FileUpload';
+import { assets } from '@/utils/assets';
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('content');
@@ -219,8 +220,14 @@ function AdminDashboard() {
   };
 
   return (
-    <PageTransition className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <PageTransition className="relative min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.starsSubtle}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-15"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
