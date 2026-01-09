@@ -141,6 +141,10 @@ class MediaService {
       throw new Error('Projects must be an array');
     }
 
+    if (projects.length > 3) {
+      throw new Error('A maximum of 3 projects are allowed');
+    }
+
     for (const project of projects) {
       if (!project.name || !project.url) {
         throw new Error('Each project must have a name and url');
@@ -158,6 +162,10 @@ class MediaService {
   async addAppProject(project) {
     if (!project.name || !project.url) {
       throw new Error('Project must have a name and url');
+    }
+    const existing = await appProjectsRepository.findAll();
+    if (existing.length >= 3) {
+      throw new Error('A maximum of 3 projects are allowed');
     }
     return await appProjectsRepository.create(project);
   }

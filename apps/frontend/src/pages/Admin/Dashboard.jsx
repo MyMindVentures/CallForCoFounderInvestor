@@ -152,6 +152,10 @@ function AdminDashboard() {
 
   const handleAddProject = async () => {
     if (!newProject.name || !newProject.url) return;
+    if (appProjects.length >= 3) {
+      alert('Maximum of 3 webviews reached. Remove one to add another.');
+      return;
+    }
 
     try {
       const token = localStorage.getItem('adminToken');
@@ -426,7 +430,10 @@ function AdminDashboard() {
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <Link2 className="w-6 h-6 text-cyan-400" />
-                      <h3 className="text-lg font-semibold text-gray-200">App Project URLs</h3>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-200">Proof of Mind Webviews</h3>
+                        <p className="text-sm text-gray-400">Add up to 3 live app URLs to embed on the public page.</p>
+                      </div>
                     </div>
                     
                     {/* Add new project */}
@@ -451,13 +458,18 @@ function AdminDashboard() {
                       </div>
                       <Button
                         onClick={handleAddProject}
-                        disabled={!newProject.name || !newProject.url}
+                        disabled={!newProject.name || !newProject.url || appProjects.length >= 3}
                         variant="default"
                         size="sm"
                       >
                         <Plus className="w-4 h-4 mr-2" />
                         Add Project
                       </Button>
+                      {appProjects.length >= 3 && (
+                        <p className="text-xs text-amber-300 mt-2">
+                          You have reached the maximum of 3 webviews. Remove one to add another.
+                        </p>
+                      )}
                     </div>
 
                     {/* Project list */}
