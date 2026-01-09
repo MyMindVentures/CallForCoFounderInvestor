@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, Sparkles, Zap, Lightbulb, Rocket, RefreshCw, Crown, Sword, Battery, Star, Flame } from 'lucide-react';
+import { Sparkles, Zap, Lightbulb, Rocket, RefreshCw, Crown, Sword, Battery, Star, Flame } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { assets } from '@/utils/assets';
 
 function ADHDAries() {
   const [content, setContent] = useState('');
@@ -49,7 +50,12 @@ function ADHDAries() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <motion.div className="text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Loader2 className="w-12 h-12 text-red-500 animate-spin mx-auto mb-4" />
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
           <p className="text-gray-400">Loading...</p>
         </motion.div>
       </div>
@@ -57,8 +63,14 @@ function ADHDAries() {
   }
 
   return (
-    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <PageTransition className="relative min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.adhd}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-4xl mx-auto">
         {/* Hero Section */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"

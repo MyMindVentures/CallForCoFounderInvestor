@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Code, HelpCircle, ChevronDown, ChevronUp, Users, DollarSign, Calendar, Bot, Target, ArrowRight } from 'lucide-react';
+import { Code, HelpCircle, ChevronDown, ChevronUp, Users, DollarSign, Calendar, Bot, Target, ArrowRight } from 'lucide-react';
 import { PageTransition, ScrollReveal, StaggerContainer, StaggerItem } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import MessageForm from '@/components/MessageForm';
+import { assets } from '@/utils/assets';
 
 function DeveloperHelp() {
   const [content, setContent] = useState('');
@@ -38,7 +39,12 @@ function DeveloperHelp() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <Loader2 className="w-12 h-12 text-emerald-500 animate-spin mx-auto mb-4" />
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
           <p className="text-gray-400">Loading...</p>
         </motion.div>
       </div>
@@ -46,8 +52,14 @@ function DeveloperHelp() {
   }
 
   return (
-    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <PageTransition className="relative min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.developer}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}

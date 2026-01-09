@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, X, Loader2, CheckCircle, AlertCircle, Image, Video } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { assets } from '@/utils/assets';
 
 const FILE_SIZE_LIMITS = {
   video: 200 * 1024 * 1024, // 200MB
@@ -225,12 +226,18 @@ function FileUpload({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="p-8 text-center cursor-pointer"
+              className="relative p-8 text-center cursor-pointer overflow-hidden"
               onClick={() => fileInputRef.current?.click()}
             >
+              <img
+                src={assets.components.fileUploadZone}
+                alt=""
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-10"
+                aria-hidden="true"
+              />
               <motion.div
                 animate={isDragging ? { scale: 1.1 } : { scale: 1 }}
-                className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dark-300/50 mb-4"
+                className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-dark-300/50 mb-4"
               >
                 {isUploading ? (
                   <Loader2 className="w-8 h-8 text-teal-400 animate-spin" />

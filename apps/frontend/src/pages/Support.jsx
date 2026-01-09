@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
-import { Loader2, MessageSquare, Send, Heart, Mail, Phone } from 'lucide-react';
+import { MessageSquare, Send, Heart, Mail, Phone } from 'lucide-react';
 import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import MessageForm from '@/components/MessageForm';
+import { assets } from '@/utils/assets';
 
 function Support() {
   const [content, setContent] = useState('');
@@ -52,7 +53,12 @@ function Support() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <Loader2 className="w-12 h-12 text-cyan-500 animate-spin mx-auto mb-4" />
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
           <p className="text-gray-400">Loading...</p>
         </motion.div>
       </div>
@@ -60,8 +66,14 @@ function Support() {
   }
 
   return (
-    <PageTransition className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <PageTransition className="relative min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <img
+        src={assets.backgrounds.starsSubtle}
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -177,7 +189,12 @@ function Support() {
             <CardContent>
               {messages.length === 0 ? (
                 <div className="text-center py-12">
-                  <MessageSquare className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                  <img
+                    src={assets.ui.emptyState}
+                    alt=""
+                    className="w-20 h-20 mx-auto mb-4 opacity-70"
+                    aria-hidden="true"
+                  />
                   <p className="text-gray-400 text-lg">
                     No messages yet. Be the first to show your support!
                   </p>

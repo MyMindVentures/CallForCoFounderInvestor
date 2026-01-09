@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Clock } from 'lucide-react';
+import { assets } from '@/utils/assets';
 
 function CountdownTimer() {
   const [days, setDays] = useState(0);
@@ -88,7 +89,12 @@ function CountdownTimer() {
         animate={{ opacity: 1, scale: 1 }}
         className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl backdrop-blur-xl bg-gradient-to-r from-teal-500/20 via-cyan-500/20 to-purple-500/20 border-2 border-teal-500/40 shadow-lg"
       >
-        <Clock className="w-6 h-6 sm:w-7 sm:h-7 text-teal-400 flex-shrink-0 animate-pulse" />
+        <img
+          src={assets.ui.loadingSpinner}
+          alt=""
+          className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0 animate-spin"
+          aria-hidden="true"
+        />
         <div className="text-center">
           <div className="text-sm sm:text-base text-gray-400 font-medium">Loading countdown...</div>
         </div>
@@ -118,7 +124,12 @@ function CountdownTimer() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="inline-flex items-center gap-4 sm:gap-6 px-6 sm:px-8 py-4 sm:py-5 rounded-2xl backdrop-blur-xl bg-gradient-to-r from-teal-500/20 via-cyan-500/20 to-purple-500/20 border-2 border-teal-500/40 shadow-lg shadow-teal-500/20"
     >
-      <Clock className="w-6 h-6 sm:w-7 sm:h-7 text-teal-400 flex-shrink-0" />
+      <img
+        src={assets.components.countdownMoon}
+        alt=""
+        className="w-8 h-8 sm:w-9 sm:h-9 flex-shrink-0 opacity-90"
+        aria-hidden="true"
+      />
       <div className="text-center">
         <div className="text-xs sm:text-sm text-gray-400 font-medium mb-1">
           Snow Moon Deadline
