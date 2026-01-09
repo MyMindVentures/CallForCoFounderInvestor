@@ -1,0 +1,78 @@
+# Dependencies
+node_modules/
+apps/*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs (will be built in Docker)
+apps/*/dist/
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+apps/*/.env
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Database files (will be in volume)
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Test files
+test-results/
+playwright-report/
+coverage/
+.nyc_output/
+
+# Documentation
+*.md
+!README.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Docker files (don't need in image)
+docker-compose.yml
+Dockerfile*
+.dockerignore
+
+# Other
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+!assets/**/*.svg
+Profile.JPG
+Full stack app building flow.png
+
+# Lighthouse
+lighthouserc.js
+.lighthouseci/
+
+# E2E tests
+e2e/
+playwright.config.js
