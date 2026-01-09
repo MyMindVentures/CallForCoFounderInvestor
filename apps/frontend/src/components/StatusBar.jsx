@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, FileText, Globe, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react';
+import { Clock, FileText, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import LanguageSelector from './LanguageSelector';
 
 function StatusBar() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,10 +54,7 @@ function StatusBar() {
                   <FileText className="w-3 h-3" />
                   NDA required
                 </Badge>
-                <Badge variant="default" size="sm" className="flex items-center gap-1">
-                  <Globe className="w-3 h-3" />
-                  NL/EN
-                </Badge>
+                <LanguageSelector />
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="ml-2 p-1 rounded-full hover:bg-dark-300/50 transition-colors"
@@ -109,10 +107,7 @@ function StatusBar() {
                           <FileText className="w-3 h-3" />
                           NDA required
                         </Badge>
-                        <Badge variant="default" size="sm" className="flex items-center gap-1">
-                          <Globe className="w-3 h-3" />
-                          NL/EN
-                        </Badge>
+                        <LanguageSelector />
                       </div>
                     </div>
                   </motion.div>
