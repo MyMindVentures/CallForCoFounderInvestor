@@ -24,3 +24,6 @@
 ## Release Hygiene
 - Run targeted lint/test checks where possible and report skipped checks in status output.
 - Confirm that Railway configuration is updated before release when new env vars are required.
+
+## How to test
+- `curl -i http://localhost:3000/api/health` and confirm it returns HTTP 200 with `status` set to `OK` or `DEGRADED` depending on database connectivity.

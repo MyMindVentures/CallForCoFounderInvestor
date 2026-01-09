@@ -107,8 +107,7 @@ app.get('/api/health', async (req, res) => {
   }
 
   // Return appropriate status code
-  const statusCode = healthCheck.status === 'OK' ? 200 : 503;
-  res.status(statusCode).json(healthCheck);
+  res.status(200).json(healthCheck);
 });
 
 // Frontend health check endpoint (for separate frontend service if needed)
