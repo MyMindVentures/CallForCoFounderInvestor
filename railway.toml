@@ -13,3 +13,6 @@ restartPolicyMaxRetries = 10
 # Health check configuration for backend service
 # Railway will ping /api/health every 30 seconds
 # Service will be marked unhealthy if health check fails
+# 
+# Note: This is a single service deployment where the backend
+# serves both the API and the built frontend static files.
