@@ -31,50 +31,96 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        run: |
+          git clone https://github.com/${{ github.repository }}.git .
+          git checkout ${{ github.sha }}
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ github.event.inputs.tag }},enable=${{ github.event_name == 'workflow_dispatch' }}
+      - name: Generate Docker tags
+        id: tags
+        run: |
+          IMAGE_BASE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
+          TAGS=""
+          
+          # Add branch name tag
+          if [ "${{ github.event_name }}" = "push" ]; then
+            BRANCH=${GITHUB_REF#refs/heads/}
+            TAGS="$TAGS $IMAGE_BASE:$BRANCH"
+          fi
+          
+          # Add PR tag
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            TAGS="$TAGS $IMAGE_BASE:pr-${{ github.event.pull_request.number }}"
+          fi
+          
+          # Add latest tag for main/master branch
+          if [ "${{ github.ref }}" = "refs/heads/main" ] || [ "${{ github.ref }}" = "refs/heads/master" ]; then
+            TAGS="$TAGS $IMAGE_BASE:latest"
+          fi
+          
+          # Add version tags if it's a version tag
+          if [[ "${{ github.ref }}" =~ ^refs/tags/v ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+            TAGS="$TAGS $IMAGE_BASE:v$VERSION"
+            TAGS="$TAGS $IMAGE_BASE:${VERSION%%.*}"
+            if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+ ]]; then
+              TAGS="$TAGS $IMAGE_BASE:${VERSION%.*}"
+            fi
+          fi
+          
+          # Add manual tag if provided
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.tag }}" ]; then
+            TAGS="$TAGS $IMAGE_BASE:${{ github.event.inputs.tag }}"
+          fi
+          
+          # Remove leading space and set output
+          TAGS=$(echo $TAGS | sed 's/^ //')
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
+          echo "Generated tags: $TAGS"
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: .config/Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
+        if: github.event_name != 'pull_request'
+        run: |
+          TAGS="${{ steps.tags.outputs.tags }}"
+          FIRST_TAG=$(echo $TAGS | cut -d' ' -f1)
+          
+          # Build the image for linux/amd64 (Railway's platform)
+          docker build \
+            --file .config/Dockerfile \
+            --tag $FIRST_TAG \
+            .
+          
+          # Push first tag
+          docker push $FIRST_TAG
+          
+          # Tag and push additional tags
+          for TAG in $TAGS; do
+            if [ "$TAG" != "$FIRST_TAG" ]; then
+              docker tag $FIRST_TAG $TAG
+              docker push $TAG
+            fi
+          done
+          
+          echo "✅ Built and pushed: $TAGS"
+
+      - name: Build Docker image (PR - no push)
+        if: github.event_name == 'pull_request'
+        run: |
+          docker build \
+            --file .config/Dockerfile \
+            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pr-test \
+            .
+          echo "✅ Built image (not pushed for PR)"
 
       - name: Output image reference
         if: github.event_name != 'pull_request'
         run: |
           echo "✅ Container image built and pushed successfully!"
           echo "📦 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}"
-          echo "🏷️  Tags: ${{ steps.meta.outputs.tags }}"
+          echo "🏷️  Tags: ${{ steps.tags.outputs.tags }}"
           echo ""
           echo "📝 To use this image in Railway:"
           echo "   1. Go to Railway dashboard → Your Service → Settings"
