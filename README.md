@@ -6,6 +6,10 @@
 
 <br />
 
+![Call for Co-Founder & Investor](docs/readme.svg)
+
+<br />
+
 [![Made with Passion](https://img.shields.io/badge/Made%20with-Passion%20%E2%9D%A4%EF%B8%8F-ff6b6b?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
 [![Looking for Partners](https://img.shields.io/badge/Looking%20for-Partners-00b894?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
 [![Open Source](https://img.shields.io/badge/Open%20Source-Open%20Hearts-9b59b6?style=for-the-badge)](https://github.com/MyMindVentures/CallForCoFounderInvestor)
