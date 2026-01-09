@@ -33,6 +33,9 @@ RUN npm run build --workspace=frontend
 # Stage 2: Production runtime
 FROM node:20.19.0-slim AS production
 
+# Ensure production defaults for Railway/runtime
+ENV NODE_ENV=production
+
 # Install dumb-init for proper signal handling
 RUN apt-get update && \
     apt-get install -y --no-install-recommends dumb-init && \
