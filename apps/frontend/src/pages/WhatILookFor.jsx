@@ -241,11 +241,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-<<<<<<< HEAD
-                      <img src={assets.iconInvestor} alt="Investor" className="w-8 h-8" />
-=======
                       <img src={assets.icons.investor} alt="Investor" className="w-8 h-8" />
->>>>>>> reorganize-project-structure-fix-assets
                       Financial Support Partner
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
@@ -288,11 +284,7 @@ function WhatILookFor() {
                 <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
-<<<<<<< HEAD
-                      <img src={assets.iconCofounder} alt="CoFounder" className="w-8 h-8" />
-=======
                       <img src={assets.icons.cofounder} alt="CoFounder" className="w-8 h-8" />
->>>>>>> reorganize-project-structure-fix-assets
                       Solo Developer / Mentor
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">

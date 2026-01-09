@@ -88,16 +88,6 @@ function Storytelling() {
   const webviewSlots = Array.from({ length: 3 }, (_, index) => appProjects[index] || null);
 
   return (
-<<<<<<< HEAD
-    <PageTransition className="relative min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
-      <img
-        src={assets.backgrounds.storytelling}
-        alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20"
-        aria-hidden="true"
-      />
-      <div className="relative z-10 max-w-5xl mx-auto">
-=======
     <PageTransition className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8 relative">
       {/* Decorative glass-card background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
@@ -116,7 +106,6 @@ function Storytelling() {
       </div>
       
       <div className="max-w-5xl mx-auto relative z-10">
->>>>>>> reorganize-project-structure-fix-assets
         {/* Page Header */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"
