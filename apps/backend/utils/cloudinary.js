@@ -1,8 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import dotenv from 'dotenv';
 import { logError } from './errorHandler.js';
-
-dotenv.config();
 
 // Configure Cloudinary
 cloudinary.config({
