@@ -20,6 +20,8 @@
     "kill-port": "node scripts/kill-port.js",
     "kill-port:3000": "node scripts/kill-port.js 3000",
     "kill-port:5173": "node scripts/kill-port.js 5173",
+    "test:smoke": "npm run build --workspace=frontend",
+    "test:unit": "node -e \"console.log('No unit tests configured yet.')\"",
     "test:e2e": "playwright test --config .config/playwright.config.js",
     "test:e2e:ui": "playwright test --ui --config .config/playwright.config.js",
     "lighthouse": "lhci autorun",

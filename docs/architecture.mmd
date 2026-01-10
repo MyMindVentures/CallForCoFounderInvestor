@@ -1,0 +1,15 @@
+graph TD
+  A[Frontend (Vite + React)] -->|REST API| B[Backend (Express)]
+  B --> C[(SQLite Database)]
+  B --> D[Cloudinary Media]
+  A --> E[Mermaid Renderers]
+  A --> F[Storytelling Videos]
+
+  subgraph CI[GitHub Actions]
+    G[Smoke + Unit]
+    H[Playwright]
+    I[Lighthouse]
+    J[Mermaid Renderer]
+  end
+
+  CI --> A

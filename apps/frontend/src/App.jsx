@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import Landing from './pages/Landing';
 import Storytelling from './pages/Storytelling';
 import MindmapViewer from './pages/MindmapViewer';
+import ArchitectureViewer from './pages/ArchitectureViewer';
 import WhatILookFor from './pages/WhatILookFor';
 import DeveloperHelp from './pages/DeveloperHelp';
 import FinancialHelp from './pages/FinancialHelp';
@@ -23,6 +24,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Landing />} />
         <Route path="/storytelling" element={<Storytelling />} />
         <Route path="/mindmap" element={<MindmapViewer />} />
+        <Route path="/architecture" element={<ArchitectureViewer />} />
         <Route path="/what-i-look-for" element={<WhatILookFor />} />
         <Route path="/developer-help" element={<DeveloperHelp />} />
         <Route path="/financial-help" element={<FinancialHelp />} />

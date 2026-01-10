@@ -71,6 +71,7 @@ export const assets = {
   
   // Images
   ideafabricMindmap: '/assets/ideafabric-mindmap.png',
+  architectureDiagram: '/assets/architecture.svg',
   
   // Social
   socialPreview: '/assets/social-preview.svg',

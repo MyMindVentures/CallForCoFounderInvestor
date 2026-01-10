@@ -166,6 +166,18 @@ So this is my gift:
 
 <br />
 
+## Architecture & Showcase
+
+The system architecture below is rendered from Mermaid and refreshed by GitHub Actions after each successful merge to `main`.
+
+![Architecture diagram](docs/architecture.svg)
+
+<br />
+
+---
+
+<br />
+
 <div align="center">
 
 ## 💚 Support This Journey

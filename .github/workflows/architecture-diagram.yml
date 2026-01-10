@@ -1,0 +1,37 @@
+name: Update Architecture Diagram
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  render-diagram:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Render Mermaid diagram
+        run: |
+          npx -y @mermaid-js/mermaid-cli@11.6.0 -i docs/architecture.mmd -o docs/architecture.svg -b transparent
+          npx -y @mermaid-js/mermaid-cli@11.6.0 -i docs/architecture.mmd -o apps/frontend/public/assets/architecture.svg -b transparent
+
+      - name: Commit updated diagram
+        run: |
+          if git status --porcelain | grep -qE 'docs/architecture.svg|apps/frontend/public/assets/architecture.svg'; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/architecture.svg apps/frontend/public/assets/architecture.svg
+            git commit -m "chore: update architecture diagram"
+            git push
+          else
+            echo "No diagram updates to commit."
+          fi

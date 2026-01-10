@@ -13,6 +13,7 @@ import MermaidDiagram from '@/components/MermaidDiagram';
 import { DEFAULT_MINDMAP } from '@/utils/mindmap';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
+import ArchitectureShowcase from '@/components/ArchitectureShowcase';
 
 function Storytelling() {
   const [content, setContent] = useState('');
@@ -422,6 +423,9 @@ function Storytelling() {
           <h2 className="text-2xl sm:text-3xl font-display font-bold text-center mb-8 text-gray-200">
             Proof of Mind Webviews
           </h2>
+          <div className="mb-6">
+            <ArchitectureShowcase />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {webviewSlots.map((project, index) => (
               <Card key={`webview-${index}`} variant="glass" size="lg" className="flex flex-col gap-4">
