@@ -36,9 +36,11 @@ jobs:
           git checkout ${{ github.sha }}
 
       - name: Normalize image name
+        id: normalize
         run: |
           IMAGE_NAME_LOWER=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
           echo "IMAGE_NAME_LOWER=$IMAGE_NAME_LOWER" >> $GITHUB_ENV
+          echo "image_name_lower=$IMAGE_NAME_LOWER" >> $GITHUB_OUTPUT
 
       - name: Log in to GitHub Container Registry
         run: |
@@ -47,7 +49,7 @@ jobs:
       - name: Generate Docker tags
         id: tags
         run: |
-          IMAGE_BASE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}"
+          IMAGE_BASE="${{ env.REGISTRY }}/${{ steps.normalize.outputs.image_name_lower }}"
           TAGS=""
           
           # Add branch name tag
@@ -116,7 +118,7 @@ jobs:
         run: |
           docker build \
             --file .config/Dockerfile \
-            --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:pr-test \
+            --tag ${{ env.REGISTRY }}/${{ steps.normalize.outputs.image_name_lower }}:pr-test \
             .
           echo "✅ Built image (not pushed for PR)"
 
@@ -124,11 +126,11 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo "✅ Container image built and pushed successfully!"
-          echo "📦 Image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}"
+          echo "📦 Image: ${{ env.REGISTRY }}/${{ steps.normalize.outputs.image_name_lower }}"
           echo "🏷️  Tags: ${{ steps.tags.outputs.tags }}"
           echo ""
           echo "📝 To use this image in Railway:"
           echo "   1. Go to Railway dashboard → Your Service → Settings"
           echo "   2. Change source from 'GitHub Repo' to 'Container Image'"
-          echo "   3. Enter image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_LOWER }}:latest"
+          echo "   3. Enter image: ${{ env.REGISTRY }}/${{ steps.normalize.outputs.image_name_lower }}:latest"
           echo "   4. Set credentials if needed (GitHub token for ghcr.io)"
