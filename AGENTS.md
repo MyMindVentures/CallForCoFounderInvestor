@@ -26,10 +26,17 @@
 - Confirm that Railway configuration is updated before release when new env vars are required.
 
 ## Mindmap Mermaid Viewer
-- Admin uploads a Mermaid diagram file (`.mmd`, `.mermaid`, `.md`, `.txt`) in Admin → Media → Mindmap.
+- Admin pastes Mermaid diagram source in Admin → Media → Mindmap (copy/paste text input).
 - Mermaid source is stored in the `content` table under pageId `mindmap` (single shared version, not language-specific).
 - Public viewer lives at `/mindmap`; the Storytelling page links to it for full-screen zoom/pan.
 
+## Admin Video Scripts & Recording
+- Video scripts are stored in the `content` table under pageId `video-script-story`, `video-script-proposal`, and `video-script-proof` (single shared version, not language-specific).
+- Admin → Media → Videos includes a teleprompter view, scroll speed selector, and a Record & Upload workflow that sends recorded clips to Cloudinary using the existing media upload endpoint.
+- Video script content endpoints are admin-protected and require a valid admin token.
+
 ## How to test
 - `curl -i http://localhost:3000/api/health` and confirm it returns HTTP 200 with `status` set to `OK` or `DEGRADED` depending on database connectivity.
-- Upload a Mermaid file in Admin → Media → Mindmap, then visit `/storytelling` and click the mindmap to confirm the full-screen viewer renders and supports zoom/pan.
+- Paste Mermaid source in Admin → Media → Mindmap, save, then visit `/storytelling` and click the mindmap to confirm the full-screen viewer renders and supports zoom/pan.
+- In Admin → Media → Videos, paste scripts, verify teleprompter scrolling speed changes, record a clip, and confirm the video replaces the existing Cloudinary-hosted media.
+- Verify `/api/content/video-script-story` returns HTTP 401 without an admin token and succeeds when authenticated.

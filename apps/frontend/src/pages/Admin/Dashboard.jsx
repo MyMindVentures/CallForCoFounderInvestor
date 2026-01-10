@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { normalizeUrl, isValidUrl } from '@/utils/url';
 import FileUpload from '@/components/FileUpload';
+import VideoScriptRecorder from '@/components/admin/VideoScriptRecorder';
 import { assets } from '@/utils/assets';
 import { useLanguage, languageOptions } from '@/i18n/LanguageContext';
 
@@ -29,12 +30,36 @@ function AdminDashboard() {
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState({});
   const [mindmapContent, setMindmapContent] = useState('');
+  const [mindmapDraft, setMindmapDraft] = useState('');
+  const [mindmapSaving, setMindmapSaving] = useState(false);
+  const [videoScripts, setVideoScripts] = useState({});
   const [appProjects, setAppProjects] = useState([]);
   const [newProject, setNewProject] = useState({ name: '', url: '', description: '' });
   const [qrRedirectUrl, setQrRedirectUrl] = useState('');
   const [qrSaving, setQrSaving] = useState(false);
   const navigate = useNavigate();
   const { language } = useLanguage();
+
+  const videoScriptConfig = [
+    {
+      mediaType: 'video-story',
+      pageId: 'video-script-story',
+      title: 'My Story',
+      description: 'Script for your story video'
+    },
+    {
+      mediaType: 'video-proposal',
+      pageId: 'video-script-proposal',
+      title: 'My Proposal',
+      description: 'Script for your proposal video'
+    },
+    {
+      mediaType: 'video-proof',
+      pageId: 'video-script-proof',
+      title: 'Proof of Mind',
+      description: 'Script for your proof-of-mind video'
+    }
+  ];
 
   const pages = [
     { id: 'storytelling', name: 'Storytelling' },
@@ -57,6 +82,10 @@ function AdminDashboard() {
   }, [language]);
 
   useEffect(() => {
+    setMindmapDraft(mindmapContent);
+  }, [mindmapContent]);
+
+  useEffect(() => {
     const token = localStorage.getItem('adminToken');
     if (!token) {
       navigate('/admin/login');
@@ -72,6 +101,7 @@ function AdminDashboard() {
     } else if (activeTab === 'media') {
       fetchMedia();
       fetchMindmap();
+      fetchVideoScripts();
       fetchAppProjects();
       fetchQrRedirectUrl();
     }
@@ -133,6 +163,28 @@ function AdminDashboard() {
     }
   };
 
+  const fetchVideoScripts = async () => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      const results = await Promise.allSettled(
+        videoScriptConfig.map((config) => axios.get(`/api/content/${config.pageId}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        }))
+      );
+      const nextScripts = {};
+      results.forEach((result, index) => {
+        const { mediaType } = videoScriptConfig[index];
+        nextScripts[mediaType] = result.status === 'fulfilled'
+          ? result.value.data?.content || ''
+          : '';
+      });
+      setVideoScripts(nextScripts);
+    } catch (error) {
+      logger.error('Error fetching video scripts:', error);
+      if (error.response?.status === 401) navigate('/admin/login');
+    }
+  };
+
   const fetchAppProjects = async () => {
     try {
       const response = await axios.get('/api/media/projects');
@@ -172,22 +224,24 @@ function AdminDashboard() {
     return response.data;
   };
 
-  const handleMindmapUpload = async (file) => {
-    const token = localStorage.getItem('adminToken');
-    const content = await file.text();
-    const trimmed = content.trim();
-    if (!trimmed) {
-      throw new Error('Mindmap file is empty.');
+  const handleMindmapSave = async () => {
+    setMindmapSaving(true);
+    try {
+      const token = localStorage.getItem('adminToken');
+      const trimmed = mindmapDraft.trim();
+      await axios.put(
+        '/api/content/mindmap',
+        { content: trimmed },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setMindmapContent(trimmed);
+      alert('Mindmap saved!');
+    } catch (error) {
+      logger.error('Error saving mindmap:', error);
+      alert('Error saving mindmap. Please try again.');
+    } finally {
+      setMindmapSaving(false);
     }
-
-    await axios.put(
-      '/api/content/mindmap',
-      { content: trimmed },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-
-    setMindmapContent(trimmed);
-    return { success: true };
   };
 
   const handleMediaDelete = async (mediaType) => {
@@ -204,13 +258,34 @@ function AdminDashboard() {
   };
 
   const handleMindmapDelete = async () => {
+    setMindmapSaving(true);
+    const token = localStorage.getItem('adminToken');
+    try {
+      await axios.put(
+        '/api/content/mindmap',
+        { content: '' },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setMindmapContent('');
+      setMindmapDraft('');
+    } catch (error) {
+      logger.error('Error clearing mindmap:', error);
+      alert('Error clearing mindmap. Please try again.');
+    } finally {
+      setMindmapSaving(false);
+    }
+  };
+
+  const handleVideoScriptSave = async (mediaType, content) => {
+    const config = videoScriptConfig.find((item) => item.mediaType === mediaType);
+    if (!config) return;
     const token = localStorage.getItem('adminToken');
     await axios.put(
-      '/api/content/mindmap',
-      { content: '' },
+      `/api/content/${config.pageId}`,
+      { content },
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    setMindmapContent('');
+    setVideoScripts((prev) => ({ ...prev, [mediaType]: content }));
   };
 
   const handleAddProject = async () => {
@@ -472,34 +547,33 @@ function AdminDashboard() {
                       <h3 className="text-lg font-semibold text-gray-200">Videos</h3>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <FileUpload
-                        type="video"
-                        mediaType="video-story"
-                        currentUrl={media['video-story']?.url}
-                        onUpload={handleMediaUpload}
-                        onDelete={handleMediaDelete}
-                        title="My Story"
-                        description="Video introducing your story"
-                      />
-                      <FileUpload
-                        type="video"
-                        mediaType="video-proposal"
-                        currentUrl={media['video-proposal']?.url}
-                        onUpload={handleMediaUpload}
-                        onDelete={handleMediaDelete}
-                        title="My Proposal"
-                        description="Video presenting your proposal"
-                      />
-                      <FileUpload
-                        type="video"
-                        mediaType="video-proof"
-                        currentUrl={media['video-proof']?.url}
-                        onUpload={handleMediaUpload}
-                        onDelete={handleMediaDelete}
-                        title="Proof of Mind"
-                        description="Video demonstrating your expertise"
-                      />
+                    <div className="space-y-6">
+                      {videoScriptConfig.map((config) => (
+                        <div
+                          key={config.mediaType}
+                          className="backdrop-blur-md bg-dark-300/50 rounded-xl p-5 border border-dark-400/50 space-y-5"
+                        >
+                          <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] gap-6">
+                            <FileUpload
+                              type="video"
+                              mediaType={config.mediaType}
+                              currentUrl={media[config.mediaType]?.url}
+                              onUpload={handleMediaUpload}
+                              onDelete={handleMediaDelete}
+                              title={config.title}
+                              description={`Upload or replace the ${config.title.toLowerCase()} video`}
+                            />
+                            <VideoScriptRecorder
+                              mediaType={config.mediaType}
+                              script={videoScripts[config.mediaType] || ''}
+                              onScriptSave={(content) => handleVideoScriptSave(config.mediaType, content)}
+                              onUploadRecorded={handleMediaUpload}
+                              title={`${config.title} Script`}
+                              description={config.description}
+                            />
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
@@ -520,15 +594,52 @@ function AdminDashboard() {
                         title="Profile Picture"
                         description="Your profile photo"
                       />
-                      <FileUpload
-                        type="text"
-                        mediaType="mindmap"
-                        currentText={mindmapContent}
-                        onUpload={handleMindmapUpload}
-                        onDelete={handleMindmapDelete}
-                        title="Mindmap"
-                        description="Upload a Mermaid mindmap file"
-                      />
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold text-gray-200">Mindmap</h4>
+                          <p className="text-sm text-gray-400">Paste Mermaid source text (copy/paste)</p>
+                        </div>
+                        <div className="backdrop-blur-md bg-dark-300/60 rounded-xl border border-white/10 p-4 space-y-3">
+                          <label className="block text-sm font-semibold text-gray-300">
+                            Mermaid source
+                          </label>
+                          <Textarea
+                            value={mindmapDraft}
+                            onChange={(event) => setMindmapDraft(event.target.value)}
+                            className="min-h-[200px] font-mono"
+                            placeholder="Paste Mermaid mindmap text here..."
+                          />
+                          <div className="flex flex-wrap gap-2">
+                            <Button onClick={handleMindmapSave} disabled={mindmapSaving} size="sm">
+                              {mindmapSaving ? (
+                                <>
+                                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                  Saving...
+                                </>
+                              ) : (
+                                <>
+                                  <Save className="w-4 h-4 mr-2" />
+                                  Save Mindmap
+                                </>
+                              )}
+                            </Button>
+                            <Button
+                              onClick={handleMindmapDelete}
+                              disabled={mindmapSaving}
+                              size="sm"
+                              variant="ghost"
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              Clear
+                            </Button>
+                          </div>
+                          {mindmapContent && (
+                            <p className="text-xs text-gray-500">
+                              Current mindmap length: {mindmapContent.length} characters.
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
