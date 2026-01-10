@@ -7,10 +7,12 @@ import { cn } from '@/lib/utils';
 import { mobileMenuVariants, staggerItem } from '@/lib/animations';
 import { assets } from '@/utils/assets';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,14 +29,14 @@ function Navigation() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   const navItems = [
-    { path: '/', label: 'Home', iconSrc: assets.icons.home },
-    { path: '/storytelling', label: 'Story', iconSrc: assets.icons.book },
-    { path: '/what-i-look-for', label: 'What I Look For', iconSrc: assets.icons.users },
-    { path: '/developer-help', label: 'Developer Help', iconSrc: assets.icons.code },
-    { path: '/financial-help', label: 'Financial Help', iconSrc: assets.icons.dollar },
-    { path: '/support', label: 'Support', iconSrc: assets.icons.message },
-    { path: '/adhd-aries', label: 'ADHD + Aries', iconSrc: assets.icons.sparkles },
-    { path: '/qr-poster', label: 'QR Poster', iconSrc: assets.icons.rocket }
+    { path: '/', label: t('nav.home'), iconSrc: assets.icons.home },
+    { path: '/storytelling', label: t('nav.story'), iconSrc: assets.icons.book },
+    { path: '/what-i-look-for', label: t('nav.whatILookFor'), iconSrc: assets.icons.users },
+    { path: '/developer-help', label: t('nav.developerHelp'), iconSrc: assets.icons.code },
+    { path: '/financial-help', label: t('nav.financialHelp'), iconSrc: assets.icons.dollar },
+    { path: '/support', label: t('nav.support'), iconSrc: assets.icons.message },
+    { path: '/adhd-aries', label: t('nav.adhdAries'), iconSrc: assets.icons.sparkles },
+    { path: '/qr-poster', label: t('nav.qrPoster'), iconSrc: assets.icons.rocket }
   ];
 
   return (
@@ -61,7 +63,7 @@ function Navigation() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
-              Call for Investor/CoFounder
+              {t('nav.brand')}
             </motion.h1>
           </Link>
 
@@ -129,10 +131,10 @@ function Navigation() {
                   e.stopPropagation();
                   closeMenu();
                 }}
-                aria-label="Admin login"
+                aria-label={t('nav.adminLogin')}
               >
                 <Shield className="w-4 h-4 mr-2" />
-                Admin Login
+                {t('nav.adminLogin')}
               </Link>
             </Button>
             {/* Mobile Menu Toggle Button */}
@@ -255,10 +257,10 @@ function Navigation() {
                         e.stopPropagation();
                         closeMenu();
                       }}
-                      aria-label="Admin login"
+                      aria-label={t('nav.adminLogin')}
                     >
                       <Shield className="w-5 h-5 mr-2" />
-                      Admin Login
+                      {t('nav.adminLogin')}
                     </Link>
                   </Button>
                 </motion.div>

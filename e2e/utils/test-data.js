@@ -58,6 +58,9 @@ const testContent = {
   adhDAries: '<h1>ADHD + Aries</h1><p>My personality traits.</p>',
 };
 
+// Test credentials - defaults are for local testing only
+// In CI/production, use environment variables for secure credentials
+// WARNING: Default password 'admin123' is WEAK and for testing only
 const adminCredentials = {
   username: process.env.ADMIN_USERNAME || 'admin',
   password: process.env.ADMIN_PASSWORD || 'admin123',

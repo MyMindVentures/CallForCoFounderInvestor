@@ -7,11 +7,13 @@ import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/c
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { assets } from '@/utils/assets';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function ADHDAries() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchContent();
@@ -37,17 +39,17 @@ function ADHDAries() {
   };
 
   const adhdTraits = [
-    { icon: Zap, title: 'Hyperfocus', description: 'When an ADHD person finds something that truly interests them, they can achieve an intense level of concentration that allows for breakthrough thinking and rapid problem-solving.', color: 'from-red-500/20 to-red-600/20 border-red-500/30' },
-    { icon: Lightbulb, title: 'Creative Thinking', description: 'ADHD minds are naturally creative, constantly generating new ideas and seeing patterns that others don\'t. This divergent thinking is essential for innovation.', color: 'from-orange-500/20 to-orange-600/20 border-orange-500/30' },
-    { icon: Rocket, title: 'High Energy', description: 'The high energy levels associated with ADHD can fuel long work sessions and maintain momentum through challenging projects.', color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30' },
-    { icon: RefreshCw, title: 'Adaptability', description: 'ADHD individuals excel at pivoting quickly, adapting to new situations, and thinking on their feet—all crucial skills in the fast-paced startup world.', color: 'from-pink-500/20 to-pink-600/20 border-pink-500/30' },
+    { icon: Zap, title: t('pages.adhdAries.adhdTraits.hyperfocus.title'), description: t('pages.adhdAries.adhdTraits.hyperfocus.description'), color: 'from-red-500/20 to-red-600/20 border-red-500/30' },
+    { icon: Lightbulb, title: t('pages.adhdAries.adhdTraits.creativeThinking.title'), description: t('pages.adhdAries.adhdTraits.creativeThinking.description'), color: 'from-orange-500/20 to-orange-600/20 border-orange-500/30' },
+    { icon: Rocket, title: t('pages.adhdAries.adhdTraits.highEnergy.title'), description: t('pages.adhdAries.adhdTraits.highEnergy.description'), color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30' },
+    { icon: RefreshCw, title: t('pages.adhdAries.adhdTraits.adaptability.title'), description: t('pages.adhdAries.adhdTraits.adaptability.description'), color: 'from-pink-500/20 to-pink-600/20 border-pink-500/30' },
   ];
 
   const ariesTraits = [
-    { icon: Crown, title: 'Natural Leadership', description: 'Aries are born leaders, confident in their decisions and unafraid to take charge. They inspire others with their passion and determination.', color: 'from-orange-500/20 to-orange-600/20 border-orange-500/30' },
-    { icon: Sword, title: 'Fearless Initiative', description: 'Aries don\'t wait for permission—they act. This boldness is essential for entrepreneurs who need to move quickly and seize opportunities.', color: 'from-red-500/20 to-red-600/20 border-red-500/30' },
-    { icon: Battery, title: 'Unstoppable Drive', description: 'The Aries drive is relentless. Once they set their sights on a goal, nothing can stop them from achieving it.', color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30' },
-    { icon: Star, title: 'Competitive Spirit', description: 'Aries thrive on competition and challenges. They\'re motivated by the desire to be first, to win, and to prove themselves.', color: 'from-pink-500/20 to-pink-600/20 border-pink-500/30' },
+    { icon: Crown, title: t('pages.adhdAries.ariesTraits.naturalLeadership.title'), description: t('pages.adhdAries.ariesTraits.naturalLeadership.description'), color: 'from-orange-500/20 to-orange-600/20 border-orange-500/30' },
+    { icon: Sword, title: t('pages.adhdAries.ariesTraits.fearlessInitiative.title'), description: t('pages.adhdAries.ariesTraits.fearlessInitiative.description'), color: 'from-red-500/20 to-red-600/20 border-red-500/30' },
+    { icon: Battery, title: t('pages.adhdAries.ariesTraits.unstoppableDrive.title'), description: t('pages.adhdAries.ariesTraits.unstoppableDrive.description'), color: 'from-yellow-500/20 to-yellow-600/20 border-yellow-500/30' },
+    { icon: Star, title: t('pages.adhdAries.ariesTraits.competitiveSpirit.title'), description: t('pages.adhdAries.ariesTraits.competitiveSpirit.description'), color: 'from-pink-500/20 to-pink-600/20 border-pink-500/30' },
   ];
 
   if (loading) {
@@ -60,7 +62,7 @@ function ADHDAries() {
             className="w-12 h-12 mx-auto mb-4 animate-spin"
             aria-hidden="true"
           />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('common.loading')}</p>
         </motion.div>
       </div>
     );
@@ -92,10 +94,10 @@ function ADHDAries() {
             </motion.div>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-extrabold mb-3 sm:mb-4 bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent px-2">
-            ADHD + Aries: A Powerful Combination
+            {t('pages.adhdAries.title')}
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-2xl mx-auto font-medium px-2">
-            Understanding the unique strengths that come from combining ADHD traits with Aries zodiac characteristics
+            {t('pages.adhdAries.subtitle')}
           </p>
         </motion.div>
 
@@ -119,14 +121,12 @@ function ADHDAries() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-gradient-secondary">
                 <Zap className="w-8 h-8 text-yellow-400" />
-                ADHD: The Superpower of Hyperfocus
+                {t('pages.adhdAries.adhdSection.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg md:text-xl leading-relaxed font-medium text-gray-300">
-                ADHD is often misunderstood as a limitation, but for entrepreneurs and innovators, it can be a powerful asset. 
-                The ADHD brain operates differently—with heightened creativity, rapid idea generation, and the ability to see 
-                connections others miss.
+                {t('pages.adhdAries.adhdSection.description')}
               </p>
               
               <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mt-6">
@@ -158,13 +158,12 @@ function ADHDAries() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-gradient-accent">
                 <Flame className="w-8 h-8 text-red-400" />
-                Aries: The Fire Sign Leadership
+                {t('pages.adhdAries.ariesSection.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg md:text-xl leading-relaxed font-medium text-gray-300">
-                As the first sign of the zodiac, Aries represents new beginnings, leadership, and fearless initiative. 
-                Aries individuals are natural pioneers, unafraid to take risks and blaze new trails.
+                {t('pages.adhdAries.ariesSection.description')}
               </p>
               
               <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mt-6">
@@ -201,12 +200,11 @@ function ADHDAries() {
             <div className="relative z-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold mb-4 sm:mb-6 flex items-center gap-3">
                 <Sparkles className="w-8 h-8" />
-                The Combined Power
+                {t('pages.adhdAries.combinedPower.title')}
               </h2>
               <div className="space-y-4 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-medium">
                 <p>
-                  When ADHD's hyperfocus and creative thinking combine with Aries' leadership and fearless initiative, 
-                  you get an unstoppable force for innovation. This combination creates:
+                  {t('pages.adhdAries.combinedPower.description')}
                 </p>
                 <motion.ul 
                   className="space-y-3 ml-4"
@@ -219,11 +217,11 @@ function ADHDAries() {
                   }}
                 >
                   {[
-                    { title: 'Rapid Innovation', desc: 'The ability to generate ideas quickly and execute them fearlessly' },
-                    { title: 'Natural Entrepreneurship', desc: 'A perfect blend of vision, energy, and action' },
-                    { title: 'Resilience', desc: 'The determination to push through challenges and setbacks' },
-                    { title: 'Inspiring Leadership', desc: 'The charisma to rally others around a vision' },
-                    { title: 'Breakthrough Thinking', desc: 'Seeing solutions where others see problems' },
+                    { title: t('pages.adhdAries.combinedPower.items.rapidInnovation.title'), desc: t('pages.adhdAries.combinedPower.items.rapidInnovation.description') },
+                    { title: t('pages.adhdAries.combinedPower.items.naturalEntrepreneurship.title'), desc: t('pages.adhdAries.combinedPower.items.naturalEntrepreneurship.description') },
+                    { title: t('pages.adhdAries.combinedPower.items.resilience.title'), desc: t('pages.adhdAries.combinedPower.items.resilience.description') },
+                    { title: t('pages.adhdAries.combinedPower.items.inspiringLeadership.title'), desc: t('pages.adhdAries.combinedPower.items.inspiringLeadership.description') },
+                    { title: t('pages.adhdAries.combinedPower.items.breakthroughThinking.title'), desc: t('pages.adhdAries.combinedPower.items.breakthroughThinking.description') },
                   ].map((item, index) => (
                     <motion.li 
                       key={index}
@@ -245,8 +243,7 @@ function ADHDAries() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.5 }}
                 >
-                  This unique combination is why I'm seeking partners who understand that different thinking isn't a weakness—it's 
-                  a superpower that can change the world.
+                  {t('pages.adhdAries.combinedPower.footer')}
                 </motion.p>
               </div>
             </div>

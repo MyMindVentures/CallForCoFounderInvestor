@@ -1,0 +1,433 @@
+{
+  "nav": {
+    "home": "Home",
+    "story": "Verhaal",
+    "whatILookFor": "Waar ik naar op zoek ben",
+    "developerHelp": "Developer Help",
+    "financialHelp": "Financiële steun",
+    "support": "Support",
+    "adhdAries": "ADHD + Ram",
+    "qrPoster": "QR Poster",
+    "adminLogin": "Admin Login",
+    "brand": "Call for Investor/CoFounder"
+  },
+  "statusBar": {
+    "snowMoon": "Sneeuwmaan",
+    "ndaAgreement": "NDA + Overeenkomst",
+    "legalNotice": "Duidelijke voorwaarden: Dit is een samenwerkingsverzoek, geen beleggingsadvies. Elke winstdeling is onderworpen aan een schriftelijke overeenkomst en hangt af van de productprestaties. Geen gegarandeerde rendementen.",
+    "deadlineText": "Ik selecteer 2 partners voor de deadline. Rustige urgentie. Duidelijke voorwaarden.",
+    "showLegalNotice": "Toon juridische kennisgeving",
+    "hideLegalNotice": "Verberg juridische kennisgeving"
+  },
+  "common": {
+    "loading": "Laden...",
+    "learnMore": "Meer informatie",
+    "getInTouch": "Neem contact op",
+    "applyNow": "Nu aanmelden",
+    "chooseYourRole": "Kies je rol",
+    "readFullStory": "Lees mijn volledige verhaal"
+  },
+  "landing": {
+    "hero": {
+      "title": "Call for Investor/CoFounder",
+      "subtitle": "Sluit je aan bij een buitengewone reis van visie naar realiteit.",
+      "subtitleBold": "Geweldige ideeën verdienen geweldige uitvoering."
+    },
+    "badges": {
+      "visionDriven": "Visie-Gedreven",
+      "actionOriented": "Actie-Gericht",
+      "partnershipFocused": "Partnerschap-Gefocust"
+    },
+    "personalStory": {
+      "title": "Het verhaal hierachter",
+      "quote": "Maandenlang zat ik vast in een tooling-lus — vechtend door tutorials, kapotte builds en eindeloze leercurves. Ik ben een uitvinder in hart en nieren, niet gebrek aan capaciteit of visie, maar gebrek aan de brug om ideeën om te zetten in geleverde producten.",
+      "name": "Kevin De Vlieger",
+      "location": "41-jarige Belg, nu wonend in zonnig Alicante, Spanje",
+      "description": "Dit project bestaat omdat ik weiger nog een jaar voorbij te laten gaan zonder bewijs dat mijn geest iets echts kan creëren."
+    },
+    "theCall": {
+      "title": "De Oproep"
+    },
+    "cards": {
+      "twoPartners": {
+        "title": "Twee partners. Eén ommekeer.",
+        "description": "Ik heb twee mensen nodig om me te helpen de lus te doorbreken: één financiële steunpartner en één solo ontwikkelaar/mentor. Samen leveren we de eerste twee apps die bewijzen wat ik kan doen."
+      },
+      "notAShortcut": {
+        "title": "Dit is GEEN korte route",
+        "description": "Ik ben niet een van de miljoenen die denkt dat apps makkelijk zijn of dat AI alles bouwt. Ik heb maandenlang gevochten door tools, tutorials en kapotte builds. Dit is serieuze uitvoering."
+      },
+      "ideasAreMyTalent": {
+        "title": "Ideeën zijn mijn talent",
+        "description": "Mijn kracht is app-ideatie en feature-denken—snel, diep en constant. Wat ik nodig heb is de brug van architect naar geleverd product."
+      },
+      "theFightBehindThis": {
+        "title": "Het gevecht hierachter",
+        "description": "Maandenlang zat ik vast in een tooling-lus — vechtend door tutorials, kapotte builds en eindeloze leercurves. Ik ben een uitvinder in hart en nieren, niet gebrek aan capaciteit of visie, maar gebrek aan de brug om ideeën om te zetten in geleverde producten. Dit project bestaat omdat ik weiger nog een jaar voorbij te laten gaan zonder bewijs dat mijn geest iets echts kan creëren.",
+        "description2": "Ik onderschat het harde werk van ontwikkelaars niet. Maar ik heb talloze uren besteed aan zoeken, leren en diep gefrustreerd raken dat mijn gedachten niet tot leven konden komen. Dit is mijn laatste push — om potentieel te tonen, gelovigen te vinden en eindelijk het verhaal om te draaien."
+      },
+      "theQuartet": {
+        "title": "Het Kwartet",
+        "subtitle": "De magie gebeurt wanneer vier krachten zich verenigen:",
+        "architect": "🧠 Architect",
+        "architectDesc": "Ik — Ideeën, visie, features",
+        "builder": "🛠️ Bouwer",
+        "builderDesc": "Jij — Lever, mentor, leer",
+        "investor": "💰 Investeerder",
+        "investorDesc": "Ademruimte",
+        "ai": "🤖 AI",
+        "aiDesc": "Leverage & snelheid",
+        "footer": "Structuur verandert het in resultaten."
+      },
+      "chaosToVault": {
+        "title": "Chaos → datakluis",
+        "description": "Chats, Raindrops tutorials, 90+ kapotte repos en verspreide notities worden een goudmijn zodra gecentraliseerd: documentatie, workflows, inzichten en een herbruikbare ideekluis."
+      },
+      "theSnowballFlips": {
+        "title": "De sneeuwbal draait om",
+        "description": "Tot nu toe was de sneeuwbal negatief: stress → angst → vertragingen → schuld. Met ademruimte + mentorschap draait het om: structuur → leveren → bewijs → samengesteld."
+      }
+    },
+    "twoApps": {
+      "title": "Twee apps veranderen alles",
+      "subtitle": "Ik heb geen tien apps nodig. Ik heb twee geleverde apps nodig om bewijs te tonen:",
+      "lifemanagement": {
+        "title": "🧬 Levensmanagement Stack",
+        "tagline": "Mijn leven terug op de rails",
+        "description": "Een uitgebreid systeem om alle aspecten van het leven te organiseren, beheren en optimaliseren—van taken en doelen tot gewoonten en langetermijnplanning."
+      },
+      "ideafabric": {
+        "title": "💡 IdeaFabric",
+        "tagline": "Draagbare ideeën blauwdruk machine",
+        "description": "Een krachtige tool om ideeën te vormen, te verfijnen en om te zetten in actiegerichte blauwdrukken—helpt visionairs zoals ik om concepten om te zetten in realiteit."
+      }
+    },
+    "myGiveAway": {
+      "title": "Mijn weggeefactie",
+      "intro": "Ik was altijd bang voor ideeën stelen. Maar maandenlang alleen worstelen leerde me: ideeën zonder uitvoering zijn gewoon dromen.",
+      "giftIntro": "Dus dit is mijn geschenk:",
+      "items": {
+        "project": "Dit project en zijn broncode",
+        "mindmap": "Een mindmap voor een app die helpt ideeën te vormen (frontend + n8n backend)",
+        "repos": "90+ repos vol met pogingen en leerervaringen",
+        "documentation": "Alles wat ik onderweg heb gedocumenteerd"
+      },
+      "footer": "Als je gelooft, zijn deze van jou om met mij te bouwen."
+    },
+    "howYouCanHelp": {
+      "title": "Hoe je kunt helpen",
+      "star": {
+        "title": "⭐ Star",
+        "description": "Help anderen dit project te ontdekken",
+        "action": "Star op GitHub"
+      },
+      "fork": {
+        "title": "🍴 Fork",
+        "description": "Neem de code, verbeter het, maak het van jou",
+        "action": "Fork op GitHub"
+      },
+      "reachOut": {
+        "title": "💬 Neem contact op",
+        "description": "Soms ontsteekt een gesprek geweldige dingen",
+        "action": "Neem contact op"
+      },
+      "partner": {
+        "title": "🤝 Partner",
+        "description": "Word de medeoprichter of investeerder waar ik naar op zoek ben",
+        "action": "Meer informatie"
+      }
+    },
+    "openSource": {
+      "title": "Open Source, Open Harten",
+      "description": "Dit project is een werk in uitvoering, gebouwd met passie maar nog steeds groeiend. Na maandenlang vechten door stress en angst, reik ik uit naar ontwikkelaars, GitHub-fans en empathische zielen die misschien willen helpen deze visie werkelijkheid te maken.",
+      "badges": {
+        "workInProgress": "Werk in uitvoering",
+        "contributorsWelcome": "Bijdragers welkom",
+        "forkAndImprove": "Fork & Verbeter"
+      },
+      "footer": "Of je nu de repo wilt forken en code wilt bijdragen, of gewoon verbinding wilt maken en begeleiding op afstand wilt bieden — je steun betekent alles.",
+      "forkOnGitHub": "Fork op GitHub"
+    },
+    "cta": {
+      "title": "Klaar om impact te maken?",
+      "description": "Of je nu een investeerder, technische medeoprichter of supporter bent, je partnerschap kan helpen visie om te zetten in realiteit.",
+      "learnMore": "Meer informatie"
+    },
+    "exploreJourney": {
+      "title": "Verken mijn reis"
+    },
+    "navCards": {
+      "myStory": {
+        "title": "Mijn verhaal",
+        "description": "Leer over mijn reis"
+      },
+      "whatILookFor": {
+        "title": "Waar ik naar op zoek ben",
+        "description": "Investeerders & Medeoprichters"
+      },
+      "developerHelp": {
+        "title": "Developer Help",
+        "description": "IDE's, n8n, Vibe Coding"
+      },
+      "financialSupport": {
+        "title": "Financiële steun",
+        "description": "Directe donatie via Wise"
+      },
+      "supportMessages": {
+        "title": "Support & Berichten",
+        "description": "Deel je gedachten"
+      },
+      "adhdAries": {
+        "title": "ADHD + Ram",
+        "description": "Begrijpen van mijn sterke punten"
+      }
+    }
+  },
+  "pages": {
+    "adhdAries": {
+      "title": "ADHD + Ram: Een Krachtige Combinatie",
+      "subtitle": "Begrijpen van de unieke sterke punten die voortkomen uit het combineren van ADHD-kenmerken met Ram-zodiakkenmerken",
+      "adhdSection": {
+        "title": "ADHD: De Superkracht van Hyperfocus",
+        "description": "ADHD wordt vaak verkeerd begrepen als een beperking, maar voor ondernemers en innovators kan het een krachtige troef zijn. Het ADHD-brein werkt anders—met verhoogde creativiteit, snelle ideeëngeneratie en het vermogen om verbanden te zien die anderen missen."
+      },
+      "adhdTraits": {
+        "hyperfocus": {
+          "title": "Hyperfocus",
+          "description": "Wanneer een ADHD-persoon iets vindt dat hen echt interesseert, kunnen ze een intense concentratieniveau bereiken dat doorbraakdenken en snelle probleemoplossing mogelijk maakt."
+        },
+        "creativeThinking": {
+          "title": "Creatief Denken",
+          "description": "ADHD-geesten zijn van nature creatief, genereren constant nieuwe ideeën en zien patronen die anderen niet zien. Dit divergente denken is essentieel voor innovatie."
+        },
+        "highEnergy": {
+          "title": "Hoge Energie",
+          "description": "De hoge energieniveaus geassocieerd met ADHD kunnen lange werksessies voeden en momentum behouden door uitdagende projecten."
+        },
+        "adaptability": {
+          "title": "Aanpassingsvermogen",
+          "description": "ADHD-individuen blinken uit in snel draaien, aanpassen aan nieuwe situaties en op de voet denken—alle cruciale vaardigheden in de snelle startup-wereld."
+        }
+      },
+      "ariesSection": {
+        "title": "Ram: Het Vuurteken Leiderschap",
+        "description": "Als het eerste teken van de dierenriem vertegenwoordigt Ram nieuwe begin, leiderschap en onbevreesd initiatief. Ram-individuen zijn natuurlijke pioniers, niet bang om risico's te nemen en nieuwe paden te banen."
+      },
+      "ariesTraits": {
+        "naturalLeadership": {
+          "title": "Natuurlijk Leiderschap",
+          "description": "Ram zijn geboren leiders, zelfverzekerd in hun beslissingen en niet bang om de leiding te nemen. Ze inspireren anderen met hun passie en vastberadenheid."
+        },
+        "fearlessInitiative": {
+          "title": "Onbevreesd Initiatief",
+          "description": "Ram wachten niet op toestemming—ze handelen. Deze moed is essentieel voor ondernemers die snel moeten bewegen en kansen moeten grijpen."
+        },
+        "unstoppableDrive": {
+          "title": "Onstuitbare Drive",
+          "description": "De Ram-drive is meedogenloos. Zodra ze hun zinnen op een doel hebben gezet, kan niets hen stoppen om het te bereiken."
+        },
+        "competitiveSpirit": {
+          "title": "Competitieve Geest",
+          "description": "Ram gedijen op competitie en uitdagingen. Ze worden gemotiveerd door de wens om eerste te zijn, te winnen en zichzelf te bewijzen."
+        }
+      },
+      "combinedPower": {
+        "title": "De Gecombineerde Kracht",
+        "description": "Wanneer ADHD's hyperfocus en creatief denken combineren met Ram's leiderschap en onbevreesd initiatief, krijg je een onstuitbare kracht voor innovatie. Deze combinatie creëert:",
+        "items": {
+          "rapidInnovation": {
+            "title": "Snelle Innovatie",
+            "description": "Het vermogen om snel ideeën te genereren en ze onbevreesd uit te voeren"
+          },
+          "naturalEntrepreneurship": {
+            "title": "Natuurlijk Ondernemerschap",
+            "description": "Een perfecte mix van visie, energie en actie"
+          },
+          "resilience": {
+            "title": "Veerkracht",
+            "description": "De vastberadenheid om door uitdagingen en tegenslagen te gaan"
+          },
+          "inspiringLeadership": {
+            "title": "Inspirerend Leiderschap",
+            "description": "Het charisma om anderen rond een visie te verzamelen"
+          },
+          "breakthroughThinking": {
+            "title": "Doorbraakdenken",
+            "description": "Oplossingen zien waar anderen problemen zien"
+          }
+        },
+        "footer": "Deze unieke combinatie is waarom ik partners zoek die begrijpen dat anders denken geen zwakte is—het is een superkracht die de wereld kan veranderen."
+      }
+    },
+    "developerHelp": {
+      "title": "Developer Help",
+      "subtitle": "IDE's, n8n, Vibe Coding & Dagelijkse Leerondersteuning",
+      "soloDeveloper": {
+        "title": "Solo Ontwikkelaar / Mentor",
+        "subtitle": "Wees de brug van architect naar geleverd product.",
+        "description": "Ik zoek een ontwikkelaar/mentor die me kan helpen de kloof tussen visie en uitvoering te overbruggen. Dit is hoe de samenwerking eruit ziet:",
+        "items": {
+          "revenueSplit": {
+            "title": "Winstverdeling Per Project",
+            "description": "Eerlijke winstdeling gebaseerd op elk project dat we samen leveren. Je bijdrage heeft direct invloed op je rendement."
+          },
+          "dailyCheckins": {
+            "title": "Dagelijkse Korte Check-ins",
+            "description": "Snelle dagelijkse synchronisaties om momentum te behouden, blokkades op te lossen en voortgang te behouden. Efficiënt en gefocust."
+          },
+          "aiNative": {
+            "title": "AI-Native Bouwer",
+            "description": "We werken met moderne AI-tools: Cursor, n8n, MCP. Je helpt me deze tools effectief te benutten."
+          },
+          "goal": {
+            "title": "Doel: Maak Me Onafhankelijk",
+            "description": "Je ultieme doel is om me te leren en te begeleiden totdat ik producten onafhankelijk kan leveren. Empowerment, geen afhankelijkheid."
+          }
+        },
+        "theBridge": {
+          "title": "De Brug",
+          "description": "Mijn kracht is ideatie en architectuur. Je kracht is uitvoering en levering. Samen zetten we ideeën om in realiteit. Je codeert niet alleen—je leert me onafhankelijk te worden terwijl we iets betekenisvols bouwen."
+        }
+      },
+      "instantHelp": {
+        "title": "Directe hulp nodig?",
+        "description": "Of je nu helpt met IDE's, n8n-workflows of Vibe Coding-tutorials, je steun maakt een enorm verschil.",
+        "showForm": "Krijg directe hulp",
+        "hideForm": "Verberg contactformulier"
+      }
+    },
+    "financialHelp": {
+      "title": "Financiële steun",
+      "subtitle": "Je steun helpt visie om te zetten in realiteit",
+      "financialPartner": {
+        "title": "Financiële Steunpartner",
+        "subtitle": "Tijdelijke steun nu. Langetermijnvoordeel later.",
+        "description": "Je financiert bewijs, geen liefdadigheid. Dit is wat ik aanbied in ruil:",
+        "items": {
+          "revenueShare": {
+            "title": "Levenslange 20% Winstverdeling",
+            "description": "Netto winstdeling voor het leven. Transparant, eerlijk en langetermijn."
+          },
+          "dashboard": {
+            "title": "Transparant Winstdashboard",
+            "description": "Volledige zichtbaarheid in winststromen en financiële prestaties."
+          },
+          "nda": {
+            "title": "NDA + Schriftelijke Overeenkomst",
+            "description": "Professioneel juridisch kader dat beide partijen beschermt."
+          },
+          "fundingProof": {
+            "title": "Financiering Bewijs, Geen Liefdadigheid",
+            "description": "Je investeert in potentieel en uitvoering, niet in handouts."
+          }
+        }
+      },
+      "donation": {
+        "title": "Doe een donatie",
+        "amountLabel": "Bedrag (EUR)",
+        "amountPlaceholder": "Voer bedrag in",
+        "footer": "Donaties worden veilig verwerkt via Wise. Bedankt voor je steun! 🙏"
+      }
+    },
+    "whatILookFor": {
+      "title": "Waar ik naar op zoek ben",
+      "subtitle": "Zoeken naar investeerders en medeoprichters die de reis van idee naar markt begrijpen",
+      "challenge": {
+        "title": "De Idee-naar-Markt Uitdaging",
+        "description": "Veel ondernemers staan voor een kritieke uitdaging: een geweldig idee hebben maar worstelen met de technische vaardigheden die nodig zijn om het op de markt te brengen. Dit is een van de meest voorkomende redenen waarom geweldige innovaties nooit het licht zien.",
+        "reality": {
+          "title": "De Realiteit:",
+          "text": "Studies tonen aan dat 42% van de startups falen door gebrek aan marktvraag, maar even belangrijk is het feit dat veel briljante ideeën nooit de markt bereiken omdat de oprichter de technische expertise mist om het product te bouwen of de middelen om een team in te huren."
+        },
+        "vision": {
+          "title": "De Visie",
+          "description": "Ik heb een duidelijke, overtuigende visie voor een product dat echt een verschil kan maken. Het idee is gevalideerd, de marktkans is duidelijk en het potentieel is enorm."
+        },
+        "gap": {
+          "title": "De Kloof",
+          "description": "Terwijl ik uitblink in ideatie, strategie en visie, heb ik partners nodig die de technische kloof kunnen overbruggen—ontwikkelaars, ingenieurs en technische medeoprichters die ideeën om kunnen zetten in realiteit."
+        }
+      },
+      "obstacles": {
+        "title": "Veelvoorkomende Obstakels op het Pad",
+        "lackOfVision": {
+          "title": "Gebrek aan Duidelijke Visie",
+          "description": "Zonder een goed gedefinieerde visie worstelen teams om doelen af te stemmen. Ik breng duidelijkheid en richting naar elk project."
+        },
+        "poorCommunication": {
+          "title": "Slechte Communicatie",
+          "description": "Ineffectieve communicatie leidt tot misverstanden en gedupliceerde inspanningen. Ik geef prioriteit aan transparante, open dialoog."
+        },
+        "insufficientResearch": {
+          "title": "Onvoldoende Marktonderzoek",
+          "description": "Grondig marktonderzoek is fundamenteel. Ik heb het onderzoek gedaan en begrijp onze doelgroep diepgaand."
+        },
+        "fearOfFailure": {
+          "title": "Angst voor Falen",
+          "description": "Angst kan creativiteit verstikken. Ik omarm risico's nemen en zie mislukkingen als leermogelijkheden."
+        },
+        "limitedResources": {
+          "title": "Beperkte Middelen",
+          "description": "Beperkingen in tijd en financiering kunnen het ideatieproces beïnvloeden. Daarom zoek ik de juiste partners en investeerders."
+        }
+      },
+      "whatIBring": {
+        "title": "Wat ik op tafel breng",
+        "vision": {
+          "title": "Visie & Strategie",
+          "description": "Duidelijke, overtuigende visie met een strategische routekaart naar de markt"
+        },
+        "passion": {
+          "title": "Passie & Drive",
+          "description": "Onstuitbare vastberadenheid om dit door te zetten naar succes"
+        },
+        "marketUnderstanding": {
+          "title": "Marktbegrip",
+          "description": "Diepe kennis van de markt, doelgroep en kans"
+        },
+        "leadership": {
+          "title": "Leiderschap",
+          "description": "Natuurlijk vermogen om te inspireren, motiveren en teams te leiden"
+        }
+      },
+      "partnershipStructure": {
+        "financialPartner": {
+          "title": "Financiële Steunpartner",
+          "subtitle": "Tijdelijke steun nu. Langetermijnvoordeel later.",
+          "items": {
+            "revenueShare": "Levenslange 20% winstdeling (netto)",
+            "dashboard": "Transparant winstdashboard",
+            "nda": "NDA + schriftelijke overeenkomst",
+            "fundingProof": "Je financiert bewijs, geen liefdadigheid"
+          }
+        },
+        "soloDeveloper": {
+          "title": "Solo Ontwikkelaar / Mentor",
+          "subtitle": "Wees de brug van architect naar geleverd product.",
+          "items": {
+            "revenueSplit": "Winstverdeling per project",
+            "dailyCheckins": "Dagelijkse korte check-ins",
+            "aiNative": "AI-native bouwer (Cursor, n8n, MCP)",
+            "goal": "Doel: Maak me onafhankelijk"
+          }
+        }
+      },
+      "lookingFor": {
+        "title": "Waar ik naar op zoek ben",
+        "technicalCoFounders": {
+          "title": "Technische Medeoprichters",
+          "description": "Ontwikkelaars, ingenieurs en technische experts die het product kunnen bouwen en mijn visie kunnen aanvullen met technische excellentie."
+        },
+        "investors": {
+          "title": "Investeerders",
+          "description": "Investeerders die begrijpen dat geweldige ideeën het juiste team en middelen nodig hebben om te slagen. Degenen die potentieel zien in visionairs die technische ondersteuning nodig hebben."
+        },
+        "mentors": {
+          "title": "Mentoren & Adviseurs",
+          "description": "Ervaren ondernemers en adviseurs die de reis van idee naar markt kunnen begeleiden en helpen navigeren door de uitdagingen."
+        },
+        "footer": "Als je gelooft in de kracht van geweldige ideeën en deel wilt uitmaken van het op de markt brengen ervan, laten we contact opnemen. Samen kunnen we de kloof tussen visie en realiteit overbruggen."
+      }
+    }
+  }
+}

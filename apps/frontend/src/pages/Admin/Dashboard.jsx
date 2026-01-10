@@ -28,6 +28,7 @@ function AdminDashboard() {
   const [contentLanguage, setContentLanguage] = useState('EN');
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState({});
+  const [mindmapContent, setMindmapContent] = useState('');
   const [appProjects, setAppProjects] = useState([]);
   const [newProject, setNewProject] = useState({ name: '', url: '', description: '' });
   const [qrRedirectUrl, setQrRedirectUrl] = useState('');
@@ -70,6 +71,7 @@ function AdminDashboard() {
       fetchContent(selectedPage);
     } else if (activeTab === 'media') {
       fetchMedia();
+      fetchMindmap();
       fetchAppProjects();
       fetchQrRedirectUrl();
     }
@@ -121,6 +123,16 @@ function AdminDashboard() {
     }
   };
 
+  const fetchMindmap = async () => {
+    try {
+      const response = await axios.get('/api/content/mindmap');
+      setMindmapContent(response.data.content || '');
+    } catch (error) {
+      logger.error('Error fetching mindmap:', error);
+      setMindmapContent('');
+    }
+  };
+
   const fetchAppProjects = async () => {
     try {
       const response = await axios.get('/api/media/projects');
@@ -160,6 +172,24 @@ function AdminDashboard() {
     return response.data;
   };
 
+  const handleMindmapUpload = async (file) => {
+    const token = localStorage.getItem('adminToken');
+    const content = await file.text();
+    const trimmed = content.trim();
+    if (!trimmed) {
+      throw new Error('Mindmap file is empty.');
+    }
+
+    await axios.put(
+      '/api/content/mindmap',
+      { content: trimmed },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    setMindmapContent(trimmed);
+    return { success: true };
+  };
+
   const handleMediaDelete = async (mediaType) => {
     const token = localStorage.getItem('adminToken');
     await axios.delete(`/api/media/${mediaType}`, {
@@ -171,6 +201,16 @@ function AdminDashboard() {
       ...prev,
       [mediaType]: null
     }));
+  };
+
+  const handleMindmapDelete = async () => {
+    const token = localStorage.getItem('adminToken');
+    await axios.put(
+      '/api/content/mindmap',
+      { content: '' },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setMindmapContent('');
   };
 
   const handleAddProject = async () => {
@@ -481,13 +521,13 @@ function AdminDashboard() {
                         description="Your profile photo"
                       />
                       <FileUpload
-                        type="image"
+                        type="text"
                         mediaType="mindmap"
-                        currentUrl={media['mindmap']?.url}
-                        onUpload={handleMediaUpload}
-                        onDelete={handleMediaDelete}
+                        currentText={mindmapContent}
+                        onUpload={handleMindmapUpload}
+                        onDelete={handleMindmapDelete}
                         title="Mindmap"
-                        description="Your project mindmap or vision board"
+                        description="Upload a Mermaid mindmap file"
                       />
                     </div>
                   </div>

@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, FileText, ChevronDown, ChevronUp, AlertCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import LanguageSelector from './LanguageSelector';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function StatusBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [deadlineDate, setDeadlineDate] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Format deadline for display
@@ -50,23 +52,23 @@ function StatusBar() {
             <div className="hidden sm:flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="text-xs sm:text-sm text-gray-400 hidden md:inline">
-                  {deadlineDate ? `Snow Moon: ${deadlineDate}` : 'Snow Moon: Sunday, 1 February 2026 • 23:09 (MEZ)'}
+                  {deadlineDate ? `${t('statusBar.snowMoon')}: ${deadlineDate}` : `${t('statusBar.snowMoon')}: Sunday, 1 February 2026 • 23:09 (MEZ)`}
                 </span>
                 <span className="text-xs text-gray-400 md:hidden">
-                  Snow Moon: Feb 1, 2026
+                  {t('statusBar.snowMoon')}: Feb 1, 2026
                 </span>
               </div>
               
               <div className="flex items-center gap-3">
                 <Badge variant="purple" size="sm" className="flex items-center gap-1">
                   <FileText className="w-3 h-3" />
-                  NDA + Agreement
+                  {t('statusBar.ndaAgreement')}
                 </Badge>
                 <LanguageSelector />
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="ml-2 p-1 rounded-full hover:bg-dark-300/50 transition-colors"
-                  aria-label={isExpanded ? 'Hide legal notice' : 'Show legal notice'}
+                  aria-label={isExpanded ? t('statusBar.hideLegalNotice') : t('statusBar.showLegalNotice')}
                 >
                   {isExpanded ? (
                     <ChevronUp className="w-4 h-4 text-gray-400" />
@@ -85,7 +87,7 @@ function StatusBar() {
               >
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-gray-400">
-                    {deadlineDate ? `Snow Moon: ${deadlineDate.split('•')[0].trim()}` : 'Snow Moon: Feb 1, 2026'}
+                    {deadlineDate ? `${t('statusBar.snowMoon')}: ${deadlineDate.split('•')[0].trim()}` : `${t('statusBar.snowMoon')}: Feb 1, 2026`}
                   </span>
                 </div>
                 {isExpanded ? (
@@ -106,15 +108,15 @@ function StatusBar() {
                   >
                     <div className="pt-3 space-y-2">
                       <p className="text-sm text-gray-400">
-                        Snow Moon deadline: {deadlineDate || 'Sunday, 1 February 2026 • 23:09 (MEZ)'}
+                        {t('statusBar.snowMoon')} deadline: {deadlineDate || 'Sunday, 1 February 2026 • 23:09 (MEZ)'}
                       </p>
                       <p className="text-xs text-gray-500">
-                        I'm selecting 2 partners before the deadline. Calm urgency. Clear terms.
+                        {t('statusBar.deadlineText')}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <Badge variant="purple" size="sm" className="flex items-center gap-1">
                           <FileText className="w-3 h-3" />
-                          NDA + Agreement
+                          {t('statusBar.ndaAgreement')}
                         </Badge>
                         <LanguageSelector />
                       </div>
@@ -141,9 +143,7 @@ function StatusBar() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                 <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                  <span className="text-yellow-400 font-semibold">Clear terms:</span>{' '}
-                  This is a collaboration request, not investment advice. Any revenue share is subject 
-                  to written agreement and depends on product performance. No guaranteed returns.
+                  {t('statusBar.legalNotice')}
                 </p>
               </div>
             </div>

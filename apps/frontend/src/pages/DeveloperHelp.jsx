@@ -10,12 +10,14 @@ import { Badge } from '@/components/ui/badge';
 import MessageForm from '@/components/MessageForm';
 import { assets } from '@/utils/assets';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function DeveloperHelp() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchContent();
@@ -49,7 +51,7 @@ function DeveloperHelp() {
             className="w-12 h-12 mx-auto mb-4 animate-spin"
             aria-hidden="true"
           />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('common.loading')}</p>
         </motion.div>
       </div>
     );
@@ -80,10 +82,10 @@ function DeveloperHelp() {
             </motion.div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-3 sm:mb-4 bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent px-2">
-            Developer Help
+            {t('pages.developerHelp.title')}
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-medium px-2">
-            IDEs, n8n, Vibe Coding & Daily Learning Support
+            {t('pages.developerHelp.subtitle')}
           </p>
         </motion.div>
 
@@ -117,41 +119,41 @@ function DeveloperHelp() {
               <CardHeader>
                 <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-display font-bold flex items-center gap-3">
                   <Users className="w-8 h-8 sm:w-10 sm:h-10" />
-                  Solo Developer / Mentor
+                  {t('pages.developerHelp.soloDeveloper.title')}
                 </CardTitle>
                 <p className="text-lg sm:text-xl opacity-95 mt-2">
-                  Be the bridge from architect to shipped product.
+                  {t('pages.developerHelp.soloDeveloper.subtitle')}
                 </p>
               </CardHeader>
               <CardContent>
                 <p className="text-base sm:text-lg mb-6 opacity-90">
-                  I&apos;m looking for a developer/mentor who can help me bridge the gap between vision and execution. Here&apos;s what the partnership looks like:
+                  {t('pages.developerHelp.soloDeveloper.description')}
                 </p>
                 
                 <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   {[
                     {
                       icon: DollarSign,
-                      title: 'Revenue Split Per Project',
-                      description: 'Fair revenue sharing based on each project we ship together. Your contribution directly impacts your return.',
+                      title: t('pages.developerHelp.soloDeveloper.items.revenueSplit.title'),
+                      description: t('pages.developerHelp.soloDeveloper.items.revenueSplit.description'),
                       color: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
                     },
                     {
                       icon: Calendar,
-                      title: 'Daily Short Check-ins',
-                      description: 'Quick daily syncs to keep momentum, solve blockers, and maintain progress. Efficient and focused.',
+                      title: t('pages.developerHelp.soloDeveloper.items.dailyCheckins.title'),
+                      description: t('pages.developerHelp.soloDeveloper.items.dailyCheckins.description'),
                       color: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30'
                     },
                     {
                       icon: Bot,
-                      title: 'AI-Native Builder',
-                      description: 'We work with modern AI tools: Cursor, n8n, MCP. You help me leverage these tools effectively.',
+                      title: t('pages.developerHelp.soloDeveloper.items.aiNative.title'),
+                      description: t('pages.developerHelp.soloDeveloper.items.aiNative.description'),
                       color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30'
                     },
                     {
                       icon: Target,
-                      title: 'Goal: Make Me Independent',
-                      description: 'Your ultimate goal is to teach and mentor me until I can ship products independently. Empowerment, not dependency.',
+                      title: t('pages.developerHelp.soloDeveloper.items.goal.title'),
+                      description: t('pages.developerHelp.soloDeveloper.items.goal.description'),
                       color: 'from-orange-500/20 to-yellow-500/20 border-orange-500/30'
                     }
                   ].map((item, index) => {
@@ -184,11 +186,10 @@ function DeveloperHelp() {
                 
                 <div className="mt-8 backdrop-blur-md bg-white/10 p-6 rounded-xl border border-white/20">
                   <p className="text-lg sm:text-xl font-bold mb-2">
-                    The Bridge
+                    {t('pages.developerHelp.soloDeveloper.theBridge.title')}
                   </p>
                   <p className="text-base sm:text-lg opacity-90 leading-relaxed">
-                    My strength is ideation and architecture. Your strength is execution and shipping. Together, we turn ideas into reality. 
-                    You&apos;re not just coding—you&apos;re teaching me to become independent while we build something meaningful.
+                    {t('pages.developerHelp.soloDeveloper.theBridge.description')}
                   </p>
                 </div>
               </CardContent>
@@ -207,11 +208,10 @@ function DeveloperHelp() {
                 <HelpCircle className="w-8 h-8 text-emerald-400" />
               </div>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-gray-100 mb-3 sm:mb-4">
-                Need Instant Help?
+                {t('pages.developerHelp.instantHelp.title')}
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-6 px-2">
-                Whether you&apos;re helping with IDEs, n8n workflows, or Vibe Coding tutorials, 
-                your support makes a huge difference.
+                {t('pages.developerHelp.instantHelp.description')}
               </p>
               
               <Button
@@ -221,12 +221,12 @@ function DeveloperHelp() {
               >
                 {showForm ? (
                   <>
-                    Hide Contact Form
+                    {t('pages.developerHelp.instantHelp.hideForm')}
                     <ChevronUp className="w-5 h-5 ml-2" />
                   </>
                 ) : (
                   <>
-                    Get Instant Help
+                    {t('pages.developerHelp.instantHelp.showForm')}
                     <ChevronDown className="w-5 h-5 ml-2" />
                   </>
                 )}

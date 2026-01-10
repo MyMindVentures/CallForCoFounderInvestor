@@ -1,0 +1,433 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "story": "Historia",
+    "whatILookFor": "Lo que busco",
+    "developerHelp": "Ayuda para desarrolladores",
+    "financialHelp": "Apoyo financiero",
+    "support": "Soporte",
+    "adhdAries": "TDAH + Aries",
+    "qrPoster": "QR Poster",
+    "adminLogin": "Inicio de sesión Admin",
+    "brand": "Call for Investor/CoFounder"
+  },
+  "statusBar": {
+    "snowMoon": "Luna de Nieve",
+    "ndaAgreement": "NDA + Acuerdo",
+    "legalNotice": "Términos claros: Esta es una solicitud de colaboración, no un consejo de inversión. Cualquier participación en los ingresos está sujeta a un acuerdo escrito y depende del rendimiento del producto. No hay rendimientos garantizados.",
+    "deadlineText": "Estoy seleccionando 2 socios antes de la fecha límite. Urgencia tranquila. Términos claros.",
+    "showLegalNotice": "Mostrar aviso legal",
+    "hideLegalNotice": "Ocultar aviso legal"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "learnMore": "Saber más",
+    "getInTouch": "Ponerse en contacto",
+    "applyNow": "Aplicar ahora",
+    "chooseYourRole": "Elige tu rol",
+    "readFullStory": "Leer mi historia completa"
+  },
+  "landing": {
+    "hero": {
+      "title": "Call for Investor/CoFounder",
+      "subtitle": "Join me on an extraordinary journey from vision to reality.",
+      "subtitleBold": "Great ideas deserve great execution."
+    },
+    "badges": {
+      "visionDriven": "Vision-Driven",
+      "actionOriented": "Action-Oriented",
+      "partnershipFocused": "Partnership-Focused"
+    },
+    "personalStory": {
+      "title": "The Story Behind This",
+      "quote": "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products.",
+      "name": "Kevin De Vlieger",
+      "location": "41-year-old Belgian, now living in sunny Alicante, Spain",
+      "description": "This project exists because I refuse to let another year pass without proof that my mind can create something real."
+    },
+    "theCall": {
+      "title": "The Call"
+    },
+    "cards": {
+      "twoPartners": {
+        "title": "Two partners. One turnaround.",
+        "description": "I need two people to help me break the loop: one financial support partner and one solo developer/mentor. Together we ship the first two apps that prove what I can do."
+      },
+      "notAShortcut": {
+        "title": "This is NOT a shortcut",
+        "description": "I'm not one of the millions who thinks apps are easy or AI builds everything. I've fought for months across tools, tutorials, and broken builds. This is serious execution."
+      },
+      "ideasAreMyTalent": {
+        "title": "Ideas are my talent",
+        "description": "My strength is app ideation and feature thinking—fast, deep, and constant. What I need is the bridge from architect to shipped product."
+      },
+      "theFightBehindThis": {
+        "title": "The Fight Behind This",
+        "description": "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products. This project exists because I refuse to let another year pass without proof that my mind can create something real.",
+        "description2": "I don't underestimate developers' hard work. But I've spent countless hours searching, learning, and becoming deeply frustrated that my thoughts couldn't come alive. This is my last push — to showcase potential, find believers, and finally flip the narrative."
+      },
+      "theQuartet": {
+        "title": "The Quartet",
+        "subtitle": "The magic happens when four forces align:",
+        "architect": "🧠 Architect",
+        "architectDesc": "Me — Ideas, vision, features",
+        "builder": "🛠️ Builder",
+        "builderDesc": "You — Ship, mentor, teach",
+        "investor": "💰 Investor",
+        "investorDesc": "Breathing room",
+        "ai": "🤖 AI",
+        "aiDesc": "Leverage & speed",
+        "footer": "Structure turns it into results."
+      },
+      "chaosToVault": {
+        "title": "Chaos → data vault",
+        "description": "Chats, Raindrops tutorials, 90+ broken repos, and scattered notes become a goldmine once centralized: documentation, workflows, insights, and a reusable idea vault."
+      },
+      "theSnowballFlips": {
+        "title": "The snowball flips",
+        "description": "Until now the snowball was negative: stress → fear → delays → debt. With breathing room + mentorship, it flips: structure → shipping → proof → compounding."
+      }
+    },
+    "twoApps": {
+      "title": "Two Apps Change Everything",
+      "subtitle": "I don't need ten apps. I need two shipped apps to show proof:",
+      "lifemanagement": {
+        "title": "🧬 Lifemanagement Stack",
+        "tagline": "My life back on rails",
+        "description": "A comprehensive system to organize, manage, and optimize all aspects of life—from tasks and goals to habits and long-term planning."
+      },
+      "ideafabric": {
+        "title": "💡 IdeaFabric",
+        "tagline": "Portable idea blueprint machine",
+        "description": "A powerful tool to shape, refine, and transform ideas into actionable blueprints—helping visionaries like me turn concepts into reality."
+      }
+    },
+    "myGiveAway": {
+      "title": "My Give Away",
+      "intro": "I was always scared of idea stealing. But months of struggling alone taught me: ideas without execution are just dreams.",
+      "giftIntro": "So this is my gift:",
+      "items": {
+        "project": "This project and its source code",
+        "mindmap": "A mindmap for an app that helps shape ideas (frontend + n8n backend)",
+        "repos": "90+ repos full of attempts and learnings",
+        "documentation": "Everything I've documented along the way"
+      },
+      "footer": "If you believe, these are yours to build with me."
+    },
+    "howYouCanHelp": {
+      "title": "How You Can Help",
+      "star": {
+        "title": "⭐ Star",
+        "description": "Help others discover this project",
+        "action": "Star on GitHub"
+      },
+      "fork": {
+        "title": "🍴 Fork",
+        "description": "Take the code, improve it, make it your own",
+        "action": "Fork on GitHub"
+      },
+      "reachOut": {
+        "title": "💬 Reach out",
+        "description": "Sometimes a conversation sparks great things",
+        "action": "Get in Touch"
+      },
+      "partner": {
+        "title": "🤝 Partner",
+        "description": "Become the co-founder or investor I'm looking for",
+        "action": "Learn More"
+      }
+    },
+    "openSource": {
+      "title": "Open Source, Open Hearts",
+      "description": "This project is a work in progress, built with passion but still growing. After months of fighting through stress and anxiety, I'm reaching out to developers, GitHub fans, and empathic souls who might want to help make this vision a reality.",
+      "badges": {
+        "workInProgress": "Work in Progress",
+        "contributorsWelcome": "Contributors Welcome",
+        "forkAndImprove": "Fork & Improve"
+      },
+      "footer": "Whether you want to fork the repo and contribute code, or simply connect and offer guidance from a distance — your support means everything.",
+      "forkOnGitHub": "Fork on GitHub"
+    },
+    "cta": {
+      "title": "Ready to Make an Impact?",
+      "description": "Whether you're an investor, technical co-founder, or supporter, your partnership can help turn vision into reality.",
+      "learnMore": "Learn More"
+    },
+    "exploreJourney": {
+      "title": "Explore My Journey"
+    },
+    "navCards": {
+      "myStory": {
+        "title": "My Story",
+        "description": "Learn about my journey"
+      },
+      "whatILookFor": {
+        "title": "What I Look For",
+        "description": "Investors & CoFounders"
+      },
+      "developerHelp": {
+        "title": "Developer Help",
+        "description": "IDEs, n8n, Vibe Coding"
+      },
+      "financialSupport": {
+        "title": "Financial Support",
+        "description": "Instant donation via Wise"
+      },
+      "supportMessages": {
+        "title": "Support & Messages",
+        "description": "Share your thoughts"
+      },
+      "adhdAries": {
+        "title": "ADHD + Aries",
+        "description": "Understanding my strengths"
+      }
+    }
+  },
+  "pages": {
+    "adhdAries": {
+      "title": "ADHD + Aries: A Powerful Combination",
+      "subtitle": "Understanding the unique strengths that come from combining ADHD traits with Aries zodiac characteristics",
+      "adhdSection": {
+        "title": "ADHD: The Superpower of Hyperfocus",
+        "description": "ADHD is often misunderstood as a limitation, but for entrepreneurs and innovators, it can be a powerful asset. The ADHD brain operates differently—with heightened creativity, rapid idea generation, and the ability to see connections others miss."
+      },
+      "adhdTraits": {
+        "hyperfocus": {
+          "title": "Hyperfocus",
+          "description": "When an ADHD person finds something that truly interests them, they can achieve an intense level of concentration that allows for breakthrough thinking and rapid problem-solving."
+        },
+        "creativeThinking": {
+          "title": "Creative Thinking",
+          "description": "ADHD minds are naturally creative, constantly generating new ideas and seeing patterns that others don't. This divergent thinking is essential for innovation."
+        },
+        "highEnergy": {
+          "title": "High Energy",
+          "description": "The high energy levels associated with ADHD can fuel long work sessions and maintain momentum through challenging projects."
+        },
+        "adaptability": {
+          "title": "Adaptability",
+          "description": "ADHD individuals excel at pivoting quickly, adapting to new situations, and thinking on their feet—all crucial skills in the fast-paced startup world."
+        }
+      },
+      "ariesSection": {
+        "title": "Aries: The Fire Sign Leadership",
+        "description": "As the first sign of the zodiac, Aries represents new beginnings, leadership, and fearless initiative. Aries individuals are natural pioneers, unafraid to take risks and blaze new trails."
+      },
+      "ariesTraits": {
+        "naturalLeadership": {
+          "title": "Natural Leadership",
+          "description": "Aries are born leaders, confident in their decisions and unafraid to take charge. They inspire others with their passion and determination."
+        },
+        "fearlessInitiative": {
+          "title": "Fearless Initiative",
+          "description": "Aries don't wait for permission—they act. This boldness is essential for entrepreneurs who need to move quickly and seize opportunities."
+        },
+        "unstoppableDrive": {
+          "title": "Unstoppable Drive",
+          "description": "The Aries drive is relentless. Once they set their sights on a goal, nothing can stop them from achieving it."
+        },
+        "competitiveSpirit": {
+          "title": "Competitive Spirit",
+          "description": "Aries thrive on competition and challenges. They're motivated by the desire to be first, to win, and to prove themselves."
+        }
+      },
+      "combinedPower": {
+        "title": "The Combined Power",
+        "description": "When ADHD's hyperfocus and creative thinking combine with Aries' leadership and fearless initiative, you get an unstoppable force for innovation. This combination creates:",
+        "items": {
+          "rapidInnovation": {
+            "title": "Rapid Innovation",
+            "description": "The ability to generate ideas quickly and execute them fearlessly"
+          },
+          "naturalEntrepreneurship": {
+            "title": "Natural Entrepreneurship",
+            "description": "A perfect blend of vision, energy, and action"
+          },
+          "resilience": {
+            "title": "Resilience",
+            "description": "The determination to push through challenges and setbacks"
+          },
+          "inspiringLeadership": {
+            "title": "Inspiring Leadership",
+            "description": "The charisma to rally others around a vision"
+          },
+          "breakthroughThinking": {
+            "title": "Breakthrough Thinking",
+            "description": "Seeing solutions where others see problems"
+          }
+        },
+        "footer": "This unique combination is why I'm seeking partners who understand that different thinking isn't a weakness—it's a superpower that can change the world."
+      }
+    },
+    "developerHelp": {
+      "title": "Developer Help",
+      "subtitle": "IDEs, n8n, Vibe Coding & Daily Learning Support",
+      "soloDeveloper": {
+        "title": "Solo Developer / Mentor",
+        "subtitle": "Be the bridge from architect to shipped product.",
+        "description": "I'm looking for a developer/mentor who can help me bridge the gap between vision and execution. Here's what the partnership looks like:",
+        "items": {
+          "revenueSplit": {
+            "title": "Revenue Split Per Project",
+            "description": "Fair revenue sharing based on each project we ship together. Your contribution directly impacts your return."
+          },
+          "dailyCheckins": {
+            "title": "Daily Short Check-ins",
+            "description": "Quick daily syncs to keep momentum, solve blockers, and maintain progress. Efficient and focused."
+          },
+          "aiNative": {
+            "title": "AI-Native Builder",
+            "description": "We work with modern AI tools: Cursor, n8n, MCP. You help me leverage these tools effectively."
+          },
+          "goal": {
+            "title": "Goal: Make Me Independent",
+            "description": "Your ultimate goal is to teach and mentor me until I can ship products independently. Empowerment, not dependency."
+          }
+        },
+        "theBridge": {
+          "title": "The Bridge",
+          "description": "My strength is ideation and architecture. Your strength is execution and shipping. Together, we turn ideas into reality. You're not just coding—you're teaching me to become independent while we build something meaningful."
+        }
+      },
+      "instantHelp": {
+        "title": "Need Instant Help?",
+        "description": "Whether you're helping with IDEs, n8n workflows, or Vibe Coding tutorials, your support makes a huge difference.",
+        "showForm": "Get Instant Help",
+        "hideForm": "Hide Contact Form"
+      }
+    },
+    "financialHelp": {
+      "title": "Financial Support",
+      "subtitle": "Your support helps turn vision into reality",
+      "financialPartner": {
+        "title": "Financial Support Partner",
+        "subtitle": "Temporary support now. Long-term upside later.",
+        "description": "You're funding proof, not charity. Here's what I offer in return:",
+        "items": {
+          "revenueShare": {
+            "title": "Lifetime 20% Revenue Share",
+            "description": "Net revenue share for life. Transparent, fair, and long-term."
+          },
+          "dashboard": {
+            "title": "Transparent Revenue Dashboard",
+            "description": "Full visibility into revenue streams and financial performance."
+          },
+          "nda": {
+            "title": "NDA + Written Agreement",
+            "description": "Professional legal framework protecting both parties."
+          },
+          "fundingProof": {
+            "title": "Funding Proof, Not Charity",
+            "description": "You're investing in potential and execution, not giving handouts."
+          }
+        }
+      },
+      "donation": {
+        "title": "Make a Donation",
+        "amountLabel": "Amount (EUR)",
+        "amountPlaceholder": "Enter amount",
+        "footer": "Donations are processed securely via Wise. Thank you for your support! 🙏"
+      }
+    },
+    "whatILookFor": {
+      "title": "What I Look For",
+      "subtitle": "Seeking investors and co-founders who understand the journey from idea to market",
+      "challenge": {
+        "title": "The Idea-to-Market Challenge",
+        "description": "Many entrepreneurs face a critical challenge: having an amazing idea but struggling with the technical skills needed to bring it to market. This is one of the most common reasons great innovations never see the light of day.",
+        "reality": {
+          "title": "The Reality:",
+          "text": "Studies show that 42% of startups fail due to a lack of market demand, but equally important is the fact that many brilliant ideas never reach the market because the founder lacks the technical expertise to build the product or the resources to hire a team."
+        },
+        "vision": {
+          "title": "The Vision",
+          "description": "I have a clear, compelling vision for a product that can make a real difference. The idea is validated, the market opportunity is clear, and the potential is enormous."
+        },
+        "gap": {
+          "title": "The Gap",
+          "description": "While I excel at ideation, strategy, and vision, I need partners who can bridge the technical gap—developers, engineers, and technical co-founders who can turn ideas into reality."
+        }
+      },
+      "obstacles": {
+        "title": "Common Obstacles on the Path",
+        "lackOfVision": {
+          "title": "Lack of Clear Vision",
+          "description": "Without a well-defined vision, teams struggle to align objectives. I bring clarity and direction to every project."
+        },
+        "poorCommunication": {
+          "title": "Poor Communication",
+          "description": "Ineffective communication leads to misunderstandings and duplicated efforts. I prioritize transparent, open dialogue."
+        },
+        "insufficientResearch": {
+          "title": "Insufficient Market Research",
+          "description": "Thorough market research is fundamental. I've done the research and understand our target audience deeply."
+        },
+        "fearOfFailure": {
+          "title": "Fear of Failure",
+          "description": "Fear can stifle creativity. I embrace risk-taking and see failures as learning opportunities."
+        },
+        "limitedResources": {
+          "title": "Limited Resources",
+          "description": "Constraints in time and funding can influence the ideation process. That's why I'm seeking the right partners and investors."
+        }
+      },
+      "whatIBring": {
+        "title": "What I Bring to the Table",
+        "vision": {
+          "title": "Vision & Strategy",
+          "description": "Clear, compelling vision with a strategic roadmap to market"
+        },
+        "passion": {
+          "title": "Passion & Drive",
+          "description": "Unstoppable determination to see this through to success"
+        },
+        "marketUnderstanding": {
+          "title": "Market Understanding",
+          "description": "Deep knowledge of the market, audience, and opportunity"
+        },
+        "leadership": {
+          "title": "Leadership",
+          "description": "Natural ability to inspire, motivate, and lead teams"
+        }
+      },
+      "partnershipStructure": {
+        "financialPartner": {
+          "title": "Financial Support Partner",
+          "subtitle": "Temporary support now. Long-term upside later.",
+          "items": {
+            "revenueShare": "Lifetime 20% revenue share (net)",
+            "dashboard": "Transparent revenue dashboard",
+            "nda": "NDA + written agreement",
+            "fundingProof": "You're funding proof, not charity"
+          }
+        },
+        "soloDeveloper": {
+          "title": "Solo Developer / Mentor",
+          "subtitle": "Be the bridge from architect to shipped product.",
+          "items": {
+            "revenueSplit": "Revenue split per project",
+            "dailyCheckins": "Daily short check-ins",
+            "aiNative": "AI-native builder (Cursor, n8n, MCP)",
+            "goal": "Goal: Make me independent"
+          }
+        }
+      },
+      "lookingFor": {
+        "title": "What I'm Looking For",
+        "technicalCoFounders": {
+          "title": "Technical Co-Founders",
+          "description": "Developers, engineers, and technical experts who can build the product and complement my vision with technical excellence."
+        },
+        "investors": {
+          "title": "Investors",
+          "description": "Investors who understand that great ideas need the right team and resources to succeed. Those who see potential in visionaries who need technical support."
+        },
+        "mentors": {
+          "title": "Mentors & Advisors",
+          "description": "Experienced entrepreneurs and advisors who can guide the journey from idea to market and help navigate the challenges."
+        },
+        "footer": "If you believe in the power of great ideas and want to be part of bringing one to market, let's connect. Together, we can bridge the gap between vision and reality."
+      }
+    }
+  }
+}

@@ -1,0 +1,433 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "story": "Geschichte",
+    "whatILookFor": "Wonach ich suche",
+    "developerHelp": "Entwicklerhilfe",
+    "financialHelp": "Finanzielle Unterstützung",
+    "support": "Support",
+    "adhdAries": "ADHS + Widder",
+    "qrPoster": "QR Poster",
+    "adminLogin": "Admin Login",
+    "brand": "Call for Investor/CoFounder"
+  },
+  "statusBar": {
+    "snowMoon": "Schneemond",
+    "ndaAgreement": "NDA + Vereinbarung",
+    "legalNotice": "Klare Bedingungen: Dies ist eine Zusammenarbeitsanfrage, keine Anlageberatung. Jede Gewinnbeteiligung unterliegt einer schriftlichen Vereinbarung und hängt von der Produktleistung ab. Keine garantierten Renditen.",
+    "deadlineText": "Ich wähle 2 Partner vor der Frist aus. Ruhige Dringlichkeit. Klare Bedingungen.",
+    "showLegalNotice": "Rechtliche Hinweise anzeigen",
+    "hideLegalNotice": "Rechtliche Hinweise ausblenden"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "learnMore": "Mehr erfahren",
+    "getInTouch": "Kontakt aufnehmen",
+    "applyNow": "Jetzt bewerben",
+    "chooseYourRole": "Wähle deine Rolle",
+    "readFullStory": "Meine vollständige Geschichte lesen"
+  },
+  "landing": {
+    "hero": {
+      "title": "Call for Investor/CoFounder",
+      "subtitle": "Begleite mich auf einer außergewöhnlichen Reise von der Vision zur Realität.",
+      "subtitleBold": "Große Ideen verdienen große Umsetzung."
+    },
+    "badges": {
+      "visionDriven": "Visionär",
+      "actionOriented": "Handlungsorientiert",
+      "partnershipFocused": "Partnerschaftsorientiert"
+    },
+    "personalStory": {
+      "title": "Die Geschichte dahinter",
+      "quote": "Monatelang war ich in einer Tooling-Schleife gefangen — kämpfte mich durch Tutorials, kaputte Builds und endlose Lernkurven. Ich bin ein Erfinder im Herzen, nicht mangelnd an Fähigkeit oder Vision, sondern mangelnd an der Brücke, um Ideen in gelieferte Produkte zu verwandeln.",
+      "name": "Kevin De Vlieger",
+      "location": "41-jähriger Belgier, lebt jetzt im sonnigen Alicante, Spanien",
+      "description": "Dieses Projekt existiert, weil ich mich weigere, ein weiteres Jahr vergehen zu lassen, ohne Beweis, dass mein Geist etwas Reales schaffen kann."
+    },
+    "theCall": {
+      "title": "Der Aufruf"
+    },
+    "cards": {
+      "twoPartners": {
+        "title": "Zwei Partner. Eine Wende.",
+        "description": "Ich brauche zwei Menschen, die mir helfen, die Schleife zu durchbrechen: einen finanziellen Unterstützungspartner und einen Solo-Entwickler/Mentor. Zusammen liefern wir die ersten beiden Apps, die beweisen, was ich kann."
+      },
+      "notAShortcut": {
+        "title": "Dies ist KEIN Abkürzung",
+        "description": "Ich bin nicht einer der Millionen, die denken, dass Apps einfach sind oder KI alles baut. Ich habe monatelang durch Tools, Tutorials und kaputte Builds gekämpft. Dies ist ernsthafte Umsetzung."
+      },
+      "ideasAreMyTalent": {
+        "title": "Ideeen sind mein Talent",
+        "description": "Meine Stärke ist App-Ideation und Feature-Denken—schnell, tief und konstant. Was ich brauche, ist die Brücke vom Architekten zum gelieferten Produkt."
+      },
+      "theFightBehindThis": {
+        "title": "Der Kampf dahinter",
+        "description": "Monatelang war ich in einer Tooling-Schleife gefangen — kämpfte mich durch Tutorials, kaputte Builds und endlose Lernkurven. Ich bin ein Erfinder im Herzen, nicht mangelnd an Fähigkeit oder Vision, sondern mangelnd an der Brücke, um Ideen in gelieferte Produkte zu verwandeln. Dieses Projekt existiert, weil ich mich weigere, ein weiteres Jahr vergehen zu lassen, ohne Beweis, dass mein Geist etwas Reales schaffen kann.",
+        "description2": "Ich unterschätze die harte Arbeit von Entwicklern nicht. Aber ich habe unzählige Stunden damit verbracht, zu suchen, zu lernen und tief frustriert zu werden, dass meine Gedanken nicht zum Leben erweckt werden konnten. Dies ist mein letzter Schub — um Potenzial zu zeigen, Gläubige zu finden und endlich die Erzählung umzudrehen."
+      },
+      "theQuartet": {
+        "title": "Das Quartett",
+        "subtitle": "Die Magie passiert, wenn sich vier Kräfte vereinen:",
+        "architect": "🧠 Architekt",
+        "architectDesc": "Ich — Ideen, Vision, Features",
+        "builder": "🛠️ Baumeister",
+        "builderDesc": "Du — Liefern, Mentoring, Lehren",
+        "investor": "💰 Investor",
+        "investorDesc": "Atemraum",
+        "ai": "🤖 KI",
+        "aiDesc": "Hebel & Geschwindigkeit",
+        "footer": "Struktur verwandelt es in Ergebnisse."
+      },
+      "chaosToVault": {
+        "title": "Chaos → Datentresor",
+        "description": "Chats, Raindrops-Tutorials, 90+ kaputte Repos und verstreute Notizen werden zu einer Goldmine, sobald zentralisiert: Dokumentation, Workflows, Erkenntnisse und ein wiederverwendbarer Ideentresor."
+      },
+      "theSnowballFlips": {
+        "title": "Die Schneeball wendet sich",
+        "description": "Bis jetzt war der Schneeball negativ: Stress → Angst → Verzögerungen → Schulden. Mit Atemraum + Mentoring wendet es sich: Struktur → Liefern → Beweis → Verzinsung."
+      }
+    },
+    "twoApps": {
+      "title": "Zwei Apps ändern alles",
+      "subtitle": "Ich brauche nicht zehn Apps. Ich brauche zwei gelieferte Apps, um Beweis zu zeigen:",
+      "lifemanagement": {
+        "title": "🧬 Lebensmanagement-Stack",
+        "tagline": "Mein Leben zurück auf Kurs",
+        "description": "Ein umfassendes System zur Organisation, Verwaltung und Optimierung aller Lebensaspekte—von Aufgaben und Zielen bis zu Gewohnheiten und langfristiger Planung."
+      },
+      "ideafabric": {
+        "title": "💡 IdeaFabric",
+        "tagline": "Tragbare Ideen-Blaupausen-Maschine",
+        "description": "Ein leistungsstarkes Tool zur Gestaltung, Verfeinerung und Transformation von Ideen in umsetzbare Blaupausen—hilft Visionären wie mir, Konzepte in Realität zu verwandeln."
+      }
+    },
+    "myGiveAway": {
+      "title": "Mein Geschenk",
+      "intro": "Ich hatte immer Angst vor Ideenklau. Aber monatelanges alleiniges Kämpfen lehrte mich: Ideen ohne Umsetzung sind nur Träume.",
+      "giftIntro": "Das ist also mein Geschenk:",
+      "items": {
+        "project": "Dieses Projekt und sein Quellcode",
+        "mindmap": "Eine Mindmap für eine App, die hilft, Ideen zu formen (Frontend + n8n Backend)",
+        "repos": "90+ Repos voller Versuche und Lernerfahrungen",
+        "documentation": "Alles, was ich unterwegs dokumentiert habe"
+      },
+      "footer": "Wenn du glaubst, sind diese deine, um mit mir zu bauen."
+    },
+    "howYouCanHelp": {
+      "title": "Wie du helfen kannst",
+      "star": {
+        "title": "⭐ Star",
+        "description": "Hilf anderen, dieses Projekt zu entdecken",
+        "action": "Auf GitHub starren"
+      },
+      "fork": {
+        "title": "🍴 Fork",
+        "description": "Nimm den Code, verbessere ihn, mach ihn zu deinem",
+        "action": "Auf GitHub forken"
+      },
+      "reachOut": {
+        "title": "💬 Kontakt aufnehmen",
+        "description": "Manchmal entfacht ein Gespräch großartige Dinge",
+        "action": "Kontakt aufnehmen"
+      },
+      "partner": {
+        "title": "🤝 Partner",
+        "description": "Werde der Mitgründer oder Investor, den ich suche",
+        "action": "Mehr erfahren"
+      }
+    },
+    "openSource": {
+      "title": "Open Source, Offene Herzen",
+      "description": "Dieses Projekt ist ein Work in Progress, mit Leidenschaft gebaut, aber noch wachsend. Nach monatelangem Kampf durch Stress und Angst, erreiche ich Entwickler, GitHub-Fans und empathische Seelen, die vielleicht helfen wollen, diese Vision Wirklichkeit werden zu lassen.",
+      "badges": {
+        "workInProgress": "Work in Progress",
+        "contributorsWelcome": "Beitragende willkommen",
+        "forkAndImprove": "Fork & Verbessern"
+      },
+      "footer": "Ob du das Repo forken und Code beitragen möchtest oder einfach Kontakt aufnehmen und Anleitung aus der Ferne anbieten möchtest — deine Unterstützung bedeutet alles.",
+      "forkOnGitHub": "Auf GitHub forken"
+    },
+    "cta": {
+      "title": "Bereit, etwas zu bewirken?",
+      "description": "Ob du ein Investor, technischer Mitgründer oder Unterstützer bist, deine Partnerschaft kann helfen, Vision in Realität zu verwandeln.",
+      "learnMore": "Mehr erfahren"
+    },
+    "exploreJourney": {
+      "title": "Erkunde meine Reise"
+    },
+    "navCards": {
+      "myStory": {
+        "title": "Meine Geschichte",
+        "description": "Lerne über meine Reise"
+      },
+      "whatILookFor": {
+        "title": "Wonach ich suche",
+        "description": "Investoren & Mitgründer"
+      },
+      "developerHelp": {
+        "title": "Entwicklerhilfe",
+        "description": "IDEs, n8n, Vibe Coding"
+      },
+      "financialSupport": {
+        "title": "Finanzielle Unterstützung",
+        "description": "Sofortige Spende über Wise"
+      },
+      "supportMessages": {
+        "title": "Support & Nachrichten",
+        "description": "Teile deine Gedanken"
+      },
+      "adhdAries": {
+        "title": "ADHS + Widder",
+        "description": "Meine Stärken verstehen"
+      }
+    }
+  },
+  "pages": {
+    "adhdAries": {
+      "title": "ADHS + Widder: Eine Mächtige Kombination",
+      "subtitle": "Die einzigartigen Stärken verstehen, die aus der Kombination von ADHS-Merkmalen mit Widder-Sternzeichen entstehen",
+      "adhdSection": {
+        "title": "ADHS: Die Superkraft des Hyperfokus",
+        "description": "ADHS wird oft als Einschränkung missverstanden, aber für Unternehmer und Innovatoren kann es ein mächtiger Vorteil sein. Das ADHS-Gehirn arbeitet anders—mit erhöhter Kreativität, schneller Ideengenerierung und der Fähigkeit, Verbindungen zu sehen, die andere übersehen."
+      },
+      "adhdTraits": {
+        "hyperfocus": {
+          "title": "Hyperfokus",
+          "description": "Wenn eine ADHS-Person etwas findet, das sie wirklich interessiert, können sie ein intensives Konzentrationsniveau erreichen, das Durchbruchsdenken und schnelle Problemlösung ermöglicht."
+        },
+        "creativeThinking": {
+          "title": "Kreatives Denken",
+          "description": "ADHS-Geister sind von Natur aus kreativ, generieren ständig neue Ideen und sehen Muster, die andere nicht sehen. Dieses divergente Denken ist wesentlich für Innovation."
+        },
+        "highEnergy": {
+          "title": "Hohe Energie",
+          "description": "Die hohen Energieniveaus, die mit ADHS verbunden sind, können lange Arbeitssitzungen antreiben und Schwung durch herausfordernde Projekte aufrechterhalten."
+        },
+        "adaptability": {
+          "title": "Anpassungsfähigkeit",
+          "description": "ADHS-Personen sind hervorragend darin, schnell zu pivotieren, sich an neue Situationen anzupassen und spontan zu denken—alles entscheidende Fähigkeiten in der schnelllebigen Startup-Welt."
+        }
+      },
+      "ariesSection": {
+        "title": "Widder: Das Feuerzeichen-Führung",
+        "description": "Als erstes Zeichen des Tierkreises repräsentiert Widder neue Anfänge, Führung und furchtlose Initiative. Widder-Personen sind natürliche Pioniere, unerschrocken, Risiken einzugehen und neue Wege zu beschreiten."
+      },
+      "ariesTraits": {
+        "naturalLeadership": {
+          "title": "Natürliche Führung",
+          "description": "Widder sind geborene Führer, selbstbewusst in ihren Entscheidungen und unerschrocken, die Verantwortung zu übernehmen. Sie inspirieren andere mit ihrer Leidenschaft und Entschlossenheit."
+        },
+        "fearlessInitiative": {
+          "title": "Furchtlose Initiative",
+          "description": "Widder warten nicht auf Erlaubnis—sie handeln. Diese Kühnheit ist wesentlich für Unternehmer, die sich schnell bewegen und Chancen ergreifen müssen."
+        },
+        "unstoppableDrive": {
+          "title": "Unaufhaltsamer Antrieb",
+          "description": "Der Widder-Antrieb ist unerbittlich. Sobald sie ihr Ziel im Visier haben, kann sie nichts davon abhalten, es zu erreichen."
+        },
+        "competitiveSpirit": {
+          "title": "Wettbewerbsgeist",
+          "description": "Widder gedeihen bei Wettbewerb und Herausforderungen. Sie werden motiviert durch den Wunsch, Erste zu sein, zu gewinnen und sich zu beweisen."
+        }
+      },
+      "combinedPower": {
+        "title": "Die Kombinierte Kraft",
+        "description": "Wenn ADHS' Hyperfokus und kreatives Denken sich mit Widder's Führung und furchtloser Initiative verbinden, erhält man eine unaufhaltsame Kraft für Innovation. Diese Kombination schafft:",
+        "items": {
+          "rapidInnovation": {
+            "title": "Schnelle Innovation",
+            "description": "Die Fähigkeit, schnell Ideen zu generieren und sie furchtlos umzusetzen"
+          },
+          "naturalEntrepreneurship": {
+            "title": "Natürliches Unternehmertum",
+            "description": "Eine perfekte Mischung aus Vision, Energie und Aktion"
+          },
+          "resilience": {
+            "title": "Widerstandsfähigkeit",
+            "description": "Die Entschlossenheit, durch Herausforderungen und Rückschläge zu gehen"
+          },
+          "inspiringLeadership": {
+            "title": "Inspirierende Führung",
+            "description": "Das Charisma, andere um eine Vision zu versammeln"
+          },
+          "breakthroughThinking": {
+            "title": "Durchbruchsdenken",
+            "description": "Lösungen sehen, wo andere Probleme sehen"
+          }
+        },
+        "footer": "Diese einzigartige Kombination ist der Grund, warum ich Partner suche, die verstehen, dass anderes Denken keine Schwäche ist—es ist eine Superkraft, die die Welt verändern kann."
+      }
+    },
+    "developerHelp": {
+      "title": "Entwicklerhilfe",
+      "subtitle": "IDEs, n8n, Vibe Coding & Tägliche Lernunterstützung",
+      "soloDeveloper": {
+        "title": "Solo-Entwickler / Mentor",
+        "subtitle": "Sei die Brücke vom Architekten zum gelieferten Produkt.",
+        "description": "Ich suche einen Entwickler/Mentor, der mir helfen kann, die Lücke zwischen Vision und Umsetzung zu überbrücken. So sieht die Partnerschaft aus:",
+        "items": {
+          "revenueSplit": {
+            "title": "Gewinnbeteiligung Pro Projekt",
+            "description": "Faire Gewinnbeteiligung basierend auf jedem Projekt, das wir zusammen liefern. Dein Beitrag wirkt sich direkt auf deine Rendite aus."
+          },
+          "dailyCheckins": {
+            "title": "Tägliche Kurze Check-ins",
+            "description": "Schnelle tägliche Synchronisationen, um Schwung zu halten, Blockaden zu lösen und Fortschritt aufrechtzuerhalten. Effizient und fokussiert."
+          },
+          "aiNative": {
+            "title": "KI-Nativer Baumeister",
+            "description": "Wir arbeiten mit modernen KI-Tools: Cursor, n8n, MCP. Du hilfst mir, diese Tools effektiv zu nutzen."
+          },
+          "goal": {
+            "title": "Ziel: Mache Mich Unabhängig",
+            "description": "Dein ultimatives Ziel ist es, mich zu lehren und zu betreuen, bis ich Produkte unabhängig liefern kann. Empowerment, nicht Abhängigkeit."
+          }
+        },
+        "theBridge": {
+          "title": "Die Brücke",
+          "description": "Meine Stärke ist Ideation und Architektur. Deine Stärke ist Umsetzung und Lieferung. Zusammen verwandeln wir Ideen in Realität. Du programmierst nicht nur—du lehrst mich, unabhängig zu werden, während wir etwas Bedeutsames bauen."
+        }
+      },
+      "instantHelp": {
+        "title": "Soforthilfe benötigt?",
+        "description": "Ob du mit IDEs, n8n-Workflows oder Vibe-Coding-Tutorials hilfst, deine Unterstützung macht einen enormen Unterschied.",
+        "showForm": "Soforthilfe erhalten",
+        "hideForm": "Kontaktformular ausblenden"
+      }
+    },
+    "financialHelp": {
+      "title": "Finanzielle Unterstützung",
+      "subtitle": "Deine Unterstützung hilft, Vision in Realität zu verwandeln",
+      "financialPartner": {
+        "title": "Finanzieller Unterstützungspartner",
+        "subtitle": "Vorübergehende Unterstützung jetzt. Langfristiger Vorteil später.",
+        "description": "Du finanzierst Beweis, keine Wohltätigkeit. Das biete ich im Gegenzug:",
+        "items": {
+          "revenueShare": {
+            "title": "Lebenslange 20% Gewinnbeteiligung",
+            "description": "Netto-Gewinnbeteiligung fürs Leben. Transparent, fair und langfristig."
+          },
+          "dashboard": {
+            "title": "Transparentes Gewinndashboard",
+            "description": "Volle Transparenz in Gewinnströme und finanzielle Leistung."
+          },
+          "nda": {
+            "title": "NDA + Schriftliche Vereinbarung",
+            "description": "Professioneller rechtlicher Rahmen, der beide Parteien schützt."
+          },
+          "fundingProof": {
+            "title": "Finanzierungsbeweis, Keine Wohltätigkeit",
+            "description": "Du investierst in Potenzial und Umsetzung, nicht in Almosen."
+          }
+        }
+      },
+      "donation": {
+        "title": "Eine Spende machen",
+        "amountLabel": "Betrag (EUR)",
+        "amountPlaceholder": "Betrag eingeben",
+        "footer": "Spenden werden sicher über Wise verarbeitet. Vielen Dank für deine Unterstützung! 🙏"
+      }
+    },
+    "whatILookFor": {
+      "title": "Wonach ich suche",
+      "subtitle": "Suche nach Investoren und Mitgründern, die die Reise von der Idee zum Markt verstehen",
+      "challenge": {
+        "title": "Die Idee-zum-Markt-Herausforderung",
+        "description": "Viele Unternehmer stehen vor einer kritischen Herausforderung: eine großartige Idee zu haben, aber mit den technischen Fähigkeiten zu kämpfen, die benötigt werden, um sie auf den Markt zu bringen. Dies ist einer der häufigsten Gründe, warum großartige Innovationen nie das Licht der Welt erblicken.",
+        "reality": {
+          "title": "Die Realität:",
+          "text": "Studien zeigen, dass 42% der Startups aufgrund mangelnder Marktnachfrage scheitern, aber ebenso wichtig ist die Tatsache, dass viele brillante Ideen nie den Markt erreichen, weil dem Gründer die technische Expertise fehlt, das Produkt zu bauen oder die Ressourcen, ein Team einzustellen."
+        },
+        "vision": {
+          "title": "Die Vision",
+          "description": "Ich habe eine klare, überzeugende Vision für ein Produkt, das wirklich einen Unterschied machen kann. Die Idee ist validiert, die Marktchance ist klar und das Potenzial ist enorm."
+        },
+        "gap": {
+          "title": "Die Lücke",
+          "description": "Während ich in Ideation, Strategie und Vision glänze, brauche ich Partner, die die technische Lücke überbrücken können—Entwickler, Ingenieure und technische Mitgründer, die Ideen in Realität verwandeln können."
+        }
+      },
+      "obstacles": {
+        "title": "Häufige Hindernisse auf dem Weg",
+        "lackOfVision": {
+          "title": "Mangel an Klarer Vision",
+          "description": "Ohne eine klar definierte Vision haben Teams Schwierigkeiten, Ziele auszurichten. Ich bringe Klarheit und Richtung in jedes Projekt."
+        },
+        "poorCommunication": {
+          "title": "Schlechte Kommunikation",
+          "description": "Ineffektive Kommunikation führt zu Missverständnissen und doppelten Anstrengungen. Ich priorisiere transparenten, offenen Dialog."
+        },
+        "insufficientResearch": {
+          "title": "Unzureichende Marktforschung",
+          "description": "Gründliche Marktforschung ist fundamental. Ich habe die Forschung durchgeführt und verstehe unsere Zielgruppe tief."
+        },
+        "fearOfFailure": {
+          "title": "Angst vor Versagen",
+          "description": "Angst kann Kreativität ersticken. Ich umarme Risikobereitschaft und sehe Misserfolge als Lernmöglichkeiten."
+        },
+        "limitedResources": {
+          "title": "Begrenzte Ressourcen",
+          "description": "Einschränkungen in Zeit und Finanzierung können den Ideationsprozess beeinflussen. Deshalb suche ich die richtigen Partner und Investoren."
+        }
+      },
+      "whatIBring": {
+        "title": "Was ich auf den Tisch bringe",
+        "vision": {
+          "title": "Vision & Strategie",
+          "description": "Klar, überzeugende Vision mit einer strategischen Roadmap zum Markt"
+        },
+        "passion": {
+          "title": "Leidenschaft & Antrieb",
+          "description": "Unaufhaltsame Entschlossenheit, dies bis zum Erfolg durchzuziehen"
+        },
+        "marketUnderstanding": {
+          "title": "Marktverständnis",
+          "description": "Tiefes Wissen über den Markt, die Zielgruppe und die Chance"
+        },
+        "leadership": {
+          "title": "Führung",
+          "description": "Natürliche Fähigkeit, zu inspirieren, zu motivieren und Teams zu führen"
+        }
+      },
+      "partnershipStructure": {
+        "financialPartner": {
+          "title": "Finanzieller Unterstützungspartner",
+          "subtitle": "Vorübergehende Unterstützung jetzt. Langfristiger Vorteil später.",
+          "items": {
+            "revenueShare": "Lebenslange 20% Gewinnbeteiligung (netto)",
+            "dashboard": "Transparentes Gewinndashboard",
+            "nda": "NDA + schriftliche Vereinbarung",
+            "fundingProof": "Du finanzierst Beweis, keine Wohltätigkeit"
+          }
+        },
+        "soloDeveloper": {
+          "title": "Solo-Entwickler / Mentor",
+          "subtitle": "Sei die Brücke vom Architekten zum gelieferten Produkt.",
+          "items": {
+            "revenueSplit": "Gewinnbeteiligung pro Projekt",
+            "dailyCheckins": "Tägliche kurze Check-ins",
+            "aiNative": "KI-nativer Baumeister (Cursor, n8n, MCP)",
+            "goal": "Ziel: Mache mich unabhängig"
+          }
+        }
+      },
+      "lookingFor": {
+        "title": "Wonach ich suche",
+        "technicalCoFounders": {
+          "title": "Technische Mitgründer",
+          "description": "Entwickler, Ingenieure und technische Experten, die das Produkt bauen und meine Vision mit technischer Exzellenz ergänzen können."
+        },
+        "investors": {
+          "title": "Investoren",
+          "description": "Investoren, die verstehen, dass großartige Ideen das richtige Team und die richtigen Ressourcen brauchen, um erfolgreich zu sein. Diejenigen, die Potenzial in Visionären sehen, die technische Unterstützung brauchen."
+        },
+        "mentors": {
+          "title": "Mentoren & Berater",
+          "description": "Erfahrene Unternehmer und Berater, die die Reise von der Idee zum Markt leiten und helfen können, die Herausforderungen zu navigieren."
+        },
+        "footer": "Wenn du an die Kraft großartiger Ideen glaubst und Teil davon sein möchtest, eine auf den Markt zu bringen, lass uns Kontakt aufnehmen. Zusammen können wir die Lücke zwischen Vision und Realität überbrücken."
+      }
+    }
+  }
+}

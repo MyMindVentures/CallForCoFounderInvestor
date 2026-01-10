@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion } from 'framer-motion';
@@ -8,11 +9,14 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import VideoPlayer from '@/components/VideoPlayer';
 import { assets } from '@/utils/assets';
+import MermaidDiagram from '@/components/MermaidDiagram';
+import { DEFAULT_MINDMAP } from '@/utils/mindmap';
 import { useLanguage } from '@/i18n/LanguageContext';
 
 function Storytelling() {
   const [content, setContent] = useState('');
   const [media, setMedia] = useState({});
+  const [mindmapContent, setMindmapContent] = useState(DEFAULT_MINDMAP);
   const [appProjects, setAppProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
@@ -23,18 +27,23 @@ function Storytelling() {
 
   const fetchData = async () => {
     try {
-      const [contentRes, mediaRes, projectsRes] = await Promise.all([
+      const [contentRes, mediaRes, projectsRes, mindmapRes] = await Promise.all([
         axios.get('/api/content/storytelling', { params: { lang: language.toLowerCase() } }),
         axios.get('/api/media/all'),
-        axios.get('/api/media/projects')
+        axios.get('/api/media/projects'),
+        axios.get('/api/content/mindmap')
       ]);
       setContent(contentRes.data.content);
       setMedia(mediaRes.data);
       setAppProjects(projectsRes.data || []);
+      const mindmapValue = (mindmapRes.data?.content || '').trim();
+      const sanitizedMindmap = mindmapValue.startsWith('<') ? '' : mindmapValue;
+      setMindmapContent(sanitizedMindmap || DEFAULT_MINDMAP);
     } catch (error) {
       logger.error('Error fetching data:', error);
       setContent('<h1>My Story</h1><p>Content coming soon...</p>');
       setAppProjects([]);
+      setMindmapContent(DEFAULT_MINDMAP);
     } finally {
       setLoading(false);
     }
@@ -83,7 +92,6 @@ function Storytelling() {
       gradient: 'from-orange-500 via-amber-500 to-yellow-500',
     },
   ];
-  const mindmapUrl = media?.mindmap?.url || assets.ideafabricMindmap;
   const profileUrl = media?.profile?.url;
   const webviewSlots = Array.from({ length: 3 }, (_, index) => appProjects[index] || null);
 
@@ -199,13 +207,23 @@ function Storytelling() {
                   The give away visualized: the blueprint for shaping ideas into working systems.
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/10 overflow-hidden bg-black/20">
-                <img
-                  src={mindmapUrl}
-                  alt="Agentic IdeaFabric mindmap"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
+              <Link
+                to="/mindmap"
+                className="group block rounded-2xl border border-white/10 overflow-hidden bg-black/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500"
+                aria-label="Open the full mindmap viewer"
+              >
+                <div className="relative h-56 sm:h-64 p-4 flex items-center justify-center">
+                  <MermaidDiagram
+                    chart={mindmapContent}
+                    className="pointer-events-none w-full"
+                    ariaLabel="Agentic IdeaFabric mindmap"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-semibold text-teal-200">Open full view</span>
+                  </div>
+                </div>
+              </Link>
+              <p className="text-xs text-gray-500">Click the mindmap to explore it full screen with zoom and pan.</p>
             </Card>
           </div>
         </motion.div>

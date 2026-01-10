@@ -10,12 +10,14 @@ import { Button } from '@/components/ui/button';
 import MessageForm from '@/components/MessageForm';
 import { assets } from '@/utils/assets';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function Support() {
   const [content, setContent] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchContent();
@@ -63,7 +65,7 @@ function Support() {
             className="w-12 h-12 mx-auto mb-4 animate-spin"
             aria-hidden="true"
           />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('common.loading')}</p>
         </motion.div>
       </div>
     );

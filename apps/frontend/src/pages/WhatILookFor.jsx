@@ -7,11 +7,13 @@ import { PageTransition, StaggerContainer, StaggerItem, ScrollReveal } from '@/c
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { assets } from '@/utils/assets';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function WhatILookFor() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchContent();
@@ -32,18 +34,18 @@ function WhatILookFor() {
   };
 
   const obstacles = [
-    { icon: Target, title: 'Lack of Clear Vision', description: 'Without a well-defined vision, teams struggle to align objectives. I bring clarity and direction to every project.', color: 'text-red-400' },
-    { icon: MessageSquare, title: 'Poor Communication', description: 'Ineffective communication leads to misunderstandings and duplicated efforts. I prioritize transparent, open dialogue.', color: 'text-orange-400' },
-    { icon: BarChart3, title: 'Insufficient Market Research', description: 'Thorough market research is fundamental. I\'ve done the research and understand our target audience deeply.', color: 'text-yellow-400' },
-    { icon: Sparkles, title: 'Fear of Failure', description: 'Fear can stifle creativity. I embrace risk-taking and see failures as learning opportunities.', color: 'text-green-400' },
-    { icon: DollarSign, title: 'Limited Resources', description: 'Constraints in time and funding can influence the ideation process. That\'s why I\'m seeking the right partners and investors.', color: 'text-blue-400' },
+    { icon: Target, title: t('pages.whatILookFor.obstacles.lackOfVision.title'), description: t('pages.whatILookFor.obstacles.lackOfVision.description'), color: 'text-red-400' },
+    { icon: MessageSquare, title: t('pages.whatILookFor.obstacles.poorCommunication.title'), description: t('pages.whatILookFor.obstacles.poorCommunication.description'), color: 'text-orange-400' },
+    { icon: BarChart3, title: t('pages.whatILookFor.obstacles.insufficientResearch.title'), description: t('pages.whatILookFor.obstacles.insufficientResearch.description'), color: 'text-yellow-400' },
+    { icon: Sparkles, title: t('pages.whatILookFor.obstacles.fearOfFailure.title'), description: t('pages.whatILookFor.obstacles.fearOfFailure.description'), color: 'text-green-400' },
+    { icon: DollarSign, title: t('pages.whatILookFor.obstacles.limitedResources.title'), description: t('pages.whatILookFor.obstacles.limitedResources.description'), color: 'text-blue-400' },
   ];
 
   const offerings = [
-    { icon: Lightbulb, title: 'Vision & Strategy', description: 'Clear, compelling vision with a strategic roadmap to market' },
-    { icon: Flame, title: 'Passion & Drive', description: 'Unstoppable determination to see this through to success' },
-    { icon: Eye, title: 'Market Understanding', description: 'Deep knowledge of the market, audience, and opportunity' },
-    { icon: Heart, title: 'Leadership', description: 'Natural ability to inspire, motivate, and lead teams' },
+    { icon: Lightbulb, title: t('pages.whatILookFor.whatIBring.vision.title'), description: t('pages.whatILookFor.whatIBring.vision.description') },
+    { icon: Flame, title: t('pages.whatILookFor.whatIBring.passion.title'), description: t('pages.whatILookFor.whatIBring.passion.description') },
+    { icon: Eye, title: t('pages.whatILookFor.whatIBring.marketUnderstanding.title'), description: t('pages.whatILookFor.whatIBring.marketUnderstanding.description') },
+    { icon: Heart, title: t('pages.whatILookFor.whatIBring.leadership.title'), description: t('pages.whatILookFor.whatIBring.leadership.description') },
   ];
 
   if (loading) {
@@ -56,7 +58,7 @@ function WhatILookFor() {
             className="w-12 h-12 mx-auto mb-4 animate-spin"
             aria-hidden="true"
           />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('common.loading')}</p>
         </motion.div>
       </div>
     );
@@ -88,10 +90,10 @@ function WhatILookFor() {
             </motion.div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-3 sm:mb-4 gradient-text-animated px-2">
-            What I Look For
+            {t('pages.whatILookFor.title')}
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-2xl mx-auto font-medium px-2">
-            Seeking investors and co-founders who understand the journey from idea to market
+            {t('pages.whatILookFor.subtitle')}
           </p>
         </motion.div>
 
@@ -115,22 +117,18 @@ function WhatILookFor() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-gradient-accent">
                 <Lightbulb className="w-8 h-8 text-yellow-400" />
-                The Idea-to-Market Challenge
+                {t('pages.whatILookFor.challenge.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-lg md:text-xl leading-relaxed font-medium text-gray-300">
-                Many entrepreneurs face a critical challenge: <strong className="text-white">having an amazing idea but struggling with the technical 
-                skills needed to bring it to market.</strong> This is one of the most common reasons great innovations never see 
-                the light of day.
+                {t('pages.whatILookFor.challenge.description')}
               </p>
               
               <div className="backdrop-blur-md bg-blue-500/20 border-l-4 border-blue-400 p-6 rounded-r-xl">
-                <p className="text-lg md:text-xl font-bold mb-2 text-blue-300">The Reality:</p>
+                <p className="text-lg md:text-xl font-bold mb-2 text-blue-300">{t('pages.whatILookFor.challenge.reality.title')}</p>
                 <p className="text-gray-200 font-medium">
-                  Studies show that <strong className="text-white">42% of startups fail due to a lack of market demand</strong>, but equally important 
-                  is the fact that many brilliant ideas never reach the market because the founder lacks the technical expertise 
-                  to build the product or the resources to hire a team.
+                  {t('pages.whatILookFor.challenge.reality.text')}
                 </p>
               </div>
 
@@ -140,11 +138,10 @@ function WhatILookFor() {
                   whileHover={{ scale: 1.02, borderColor: 'rgba(59, 130, 246, 0.5)' }}
                 >
                   <h3 className="font-display font-bold text-blue-400 mb-3 text-lg sm:text-xl flex items-center gap-2">
-                    <Target className="w-5 h-5" /> The Vision
+                    <Target className="w-5 h-5" /> {t('pages.whatILookFor.challenge.vision.title')}
                   </h3>
                   <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                    I have a clear, compelling vision for a product that can make a real difference. The idea is validated, 
-                    the market opportunity is clear, and the potential is enormous.
+                    {t('pages.whatILookFor.challenge.vision.description')}
                   </p>
                 </motion.div>
                 <motion.div 
@@ -152,11 +149,10 @@ function WhatILookFor() {
                   whileHover={{ scale: 1.02, borderColor: 'rgba(249, 115, 22, 0.5)' }}
                 >
                   <h3 className="font-display font-bold text-orange-400 mb-3 text-lg sm:text-xl flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" /> The Gap
+                    <Sparkles className="w-5 h-5" /> {t('pages.whatILookFor.challenge.gap.title')}
                   </h3>
                   <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                    While I excel at ideation, strategy, and vision, I need partners who can bridge the technical gap—developers, 
-                    engineers, and technical co-founders who can turn ideas into reality.
+                    {t('pages.whatILookFor.challenge.gap.description')}
                   </p>
                 </motion.div>
               </div>
@@ -168,7 +164,7 @@ function WhatILookFor() {
         <ScrollReveal className="mb-6 sm:mb-8">
           <Card variant="glass" size="lg">
             <CardHeader>
-              <CardTitle className="text-gradient-secondary">Common Obstacles on the Path</CardTitle>
+              <CardTitle className="text-gradient-secondary">{t('pages.whatILookFor.obstacles.title')}</CardTitle>
             </CardHeader>
             <CardContent>
               <StaggerContainer className="space-y-4">
@@ -202,7 +198,7 @@ function WhatILookFor() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
             <div className="relative z-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-6">What I Bring to the Table</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-6">{t('pages.whatILookFor.whatIBring.title')}</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {offerings.map((item, index) => (
                   <motion.div 
@@ -242,29 +238,29 @@ function WhatILookFor() {
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
                       <img src={assets.icons.investor} alt="Investor" className="w-8 h-8" />
-                      Financial Support Partner
+                      {t('pages.whatILookFor.partnershipStructure.financialPartner.title')}
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
-                      Temporary support now. Long-term upside later.
+                      {t('pages.whatILookFor.partnershipStructure.financialPartner.subtitle')}
                     </p>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3 text-base sm:text-lg">
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-300 mt-1">•</span>
-                        <span>Lifetime 20% revenue share (net)</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.financialPartner.items.revenueShare')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-300 mt-1">•</span>
-                        <span>Transparent revenue dashboard</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.financialPartner.items.dashboard')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-300 mt-1">•</span>
-                        <span>NDA + written agreement</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.financialPartner.items.nda')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-yellow-300 mt-1">•</span>
-                        <span>You&apos;re funding proof, not charity</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.financialPartner.items.fundingProof')}</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -285,29 +281,29 @@ function WhatILookFor() {
                   <CardHeader>
                     <CardTitle className="text-2xl sm:text-3xl font-display font-bold flex items-center gap-3">
                       <img src={assets.icons.cofounder} alt="CoFounder" className="w-8 h-8" />
-                      Solo Developer / Mentor
+                      {t('pages.whatILookFor.partnershipStructure.soloDeveloper.title')}
                     </CardTitle>
                     <p className="text-lg opacity-95 mt-2">
-                      Be the bridge from architect to shipped product.
+                      {t('pages.whatILookFor.partnershipStructure.soloDeveloper.subtitle')}
                     </p>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3 text-base sm:text-lg">
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-300 mt-1">•</span>
-                        <span>Revenue split per project</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.soloDeveloper.items.revenueSplit')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-300 mt-1">•</span>
-                        <span>Daily short check-ins</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.soloDeveloper.items.dailyCheckins')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-300 mt-1">•</span>
-                        <span>AI-native builder (Cursor, n8n, MCP)</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.soloDeveloper.items.aiNative')}</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-emerald-300 mt-1">•</span>
-                        <span>Goal: Make me independent</span>
+                        <span>{t('pages.whatILookFor.partnershipStructure.soloDeveloper.items.goal')}</span>
                       </li>
                     </ul>
                   </CardContent>
@@ -321,13 +317,13 @@ function WhatILookFor() {
         <ScrollReveal>
           <Card variant="glass" size="lg">
             <CardHeader>
-              <CardTitle className="text-gradient-primary">What I'm Looking For</CardTitle>
+              <CardTitle className="text-gradient-primary">{t('pages.whatILookFor.lookingFor.title')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {[
-                { icon: Briefcase, title: 'Technical Co-Founders', description: 'Developers, engineers, and technical experts who can build the product and complement my vision with technical excellence.', color: 'border-indigo-500 bg-indigo-500/10' },
-                { icon: DollarSign, title: 'Investors', description: 'Investors who understand that great ideas need the right team and resources to succeed. Those who see potential in visionaries who need technical support.', color: 'border-blue-500 bg-blue-500/10' },
-                { icon: GraduationCap, title: 'Mentors & Advisors', description: 'Experienced entrepreneurs and advisors who can guide the journey from idea to market and help navigate the challenges.', color: 'border-purple-500 bg-purple-500/10' },
+                { icon: Briefcase, title: t('pages.whatILookFor.lookingFor.technicalCoFounders.title'), description: t('pages.whatILookFor.lookingFor.technicalCoFounders.description'), color: 'border-indigo-500 bg-indigo-500/10' },
+                { icon: DollarSign, title: t('pages.whatILookFor.lookingFor.investors.title'), description: t('pages.whatILookFor.lookingFor.investors.description'), color: 'border-blue-500 bg-blue-500/10' },
+                { icon: GraduationCap, title: t('pages.whatILookFor.lookingFor.mentors.title'), description: t('pages.whatILookFor.lookingFor.mentors.description'), color: 'border-purple-500 bg-purple-500/10' },
               ].map((item, index) => (
                 <motion.div 
                   key={index}
@@ -351,8 +347,7 @@ function WhatILookFor() {
                 whileHover={{ scale: 1.01 }}
               >
                 <p className="text-lg md:text-xl text-gray-200 font-bold">
-                  If you believe in the power of great ideas and want to be part of bringing one to market, let's connect. 
-                  Together, we can bridge the gap between vision and reality.
+                  {t('pages.whatILookFor.lookingFor.footer')}
                 </p>
               </motion.div>
             </CardContent>

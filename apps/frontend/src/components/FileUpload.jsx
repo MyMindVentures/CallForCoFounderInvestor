@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Upload, X, Loader2, CheckCircle, AlertCircle, Image, Video } from 'lucide-react';
+import { Upload, X, Loader2, CheckCircle, AlertCircle, Image, Video, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { assets } from '@/utils/assets';
@@ -8,17 +8,27 @@ import { assets } from '@/utils/assets';
 const FILE_SIZE_LIMITS = {
   video: 200 * 1024 * 1024, // 200MB
   image: 10 * 1024 * 1024,  // 10MB
+  text: 512 * 1024, // 512KB
 };
 
 const ALLOWED_TYPES = {
   video: ['video/mp4', 'video/webm', 'video/quicktime'],
   image: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
+  text: ['text/plain', 'text/markdown', 'text/x-markdown', 'application/octet-stream'],
+};
+
+const TEXT_EXTENSIONS = ['.mmd', '.mermaid', '.md', '.txt'];
+
+const hasAllowedTextExtension = (filename = '') => {
+  const lower = filename.toLowerCase();
+  return TEXT_EXTENSIONS.some((ext) => lower.endsWith(ext));
 };
 
 function FileUpload({
-  type = 'image', // 'image' or 'video'
+  type = 'image', // 'image', 'video', or 'text'
   mediaType, // e.g., 'video-story', 'profile', 'mindmap'
   currentUrl = null,
+  currentText = '',
   onUpload,
   onDelete,
   title,
@@ -30,13 +40,31 @@ function FileUpload({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(currentUrl);
+  const [previewText, setPreviewText] = useState(currentText);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    setPreviewUrl(currentUrl);
+  }, [currentUrl]);
+
+  useEffect(() => {
+    setPreviewText(currentText);
+  }, [currentText]);
 
   const validateFile = useCallback((file) => {
     if (!file) return { valid: false, error: 'No file selected' };
 
     const allowedTypes = ALLOWED_TYPES[type];
-    if (!allowedTypes.includes(file.type)) {
+    if (type === 'text') {
+      const isAllowedType = allowedTypes.includes(file.type);
+      const isAllowedExtension = hasAllowedTextExtension(file.name);
+      if (!isAllowedType && !isAllowedExtension) {
+        return {
+          valid: false,
+          error: 'Invalid file type. Allowed: MMD, Mermaid, MD, TXT',
+        };
+      }
+    } else if (!allowedTypes.includes(file.type)) {
       return {
         valid: false,
         error: `Invalid file type. Allowed: ${type === 'video' ? 'MP4, WebM, MOV' : 'JPG, PNG, GIF, WebP'}`,
@@ -67,11 +95,19 @@ function FileUpload({
     setUploadProgress(0);
 
     // Create preview
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setPreviewUrl(e.target.result);
-    };
-    reader.readAsDataURL(file);
+    if (type === 'text') {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreviewText(e.target.result);
+      };
+      reader.readAsText(file);
+    } else {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPreviewUrl(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
 
     // Simulate progress for UX
     const progressInterval = setInterval(() => {
@@ -97,10 +133,11 @@ function FileUpload({
       setIsUploading(false);
       setUploadProgress(0);
       setPreviewUrl(currentUrl);
+      setPreviewText(currentText);
     } finally {
       clearInterval(progressInterval);
     }
-  }, [validateFile, onUpload, mediaType, currentUrl]);
+  }, [validateFile, onUpload, mediaType, currentUrl, currentText, type]);
 
   const handleDragOver = useCallback((e) => {
     e.preventDefault();
@@ -132,14 +169,18 @@ function FileUpload({
     try {
       await onDelete(mediaType);
       setPreviewUrl(null);
+      setPreviewText('');
       setError(null);
     } catch (err) {
       setError(err.message || 'Delete failed');
     }
   }, [onDelete, mediaType]);
 
-  const Icon = type === 'video' ? Video : Image;
-  const acceptTypes = ALLOWED_TYPES[type].join(',');
+  const Icon = type === 'video' ? Video : type === 'text' ? FileText : Image;
+  const acceptTypes = type === 'text'
+    ? `${TEXT_EXTENSIONS.join(',')},${ALLOWED_TYPES.text.join(',')}`
+    : ALLOWED_TYPES[type].join(',');
+  const hasPreview = type === 'text' ? !!previewText : !!previewUrl;
 
   return (
     <div className={cn('space-y-3', className)}>
@@ -174,7 +215,7 @@ function FileUpload({
         />
 
         <AnimatePresence mode="wait">
-          {previewUrl ? (
+          {hasPreview ? (
             <motion.div
               key="preview"
               initial={{ opacity: 0 }}
@@ -188,6 +229,12 @@ function FileUpload({
                   className="w-full h-48 object-cover rounded-xl"
                   controls
                 />
+              ) : type === 'text' ? (
+                <div className="w-full h-48 rounded-xl bg-dark-300/60 border border-white/10 p-4 overflow-auto">
+                  <pre className="text-xs text-gray-200 whitespace-pre-wrap font-mono">
+                    {previewText}
+                  </pre>
+                </div>
               ) : (
                 <img
                   src={previewUrl}
@@ -252,7 +299,9 @@ function FileUpload({
               <p className="text-sm text-gray-500">
                 {type === 'video' 
                   ? 'MP4, WebM, MOV (max 200MB)'
-                  : 'JPG, PNG, GIF, WebP (max 10MB)'}
+                  : type === 'text'
+                    ? 'MMD, Mermaid, MD, TXT (max 512KB)'
+                    : 'JPG, PNG, GIF, WebP (max 10MB)'}
               </p>
             </motion.div>
           )}

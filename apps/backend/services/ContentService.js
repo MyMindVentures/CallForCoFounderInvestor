@@ -50,7 +50,23 @@ const defaultContent = {
     fr: '<h1>TDAH + Bélier</h1><p>L’importance du TDAH combiné aux forces du Bélier.</p>',
     es: '<h1>TDAH + Aries</h1><p>La importancia del TDAH combinado con las fortalezas de Aries.</p>'
   },
-  qrRedirectUrl: process.env.APP_URL || 'https://example.com'
+  qrRedirectUrl: process.env.APP_URL || 'https://example.com',
+  mindmap: `mindmap
+  root((IdeaFabric))
+    Vision
+      Shape ideas
+      Build systems
+    Workflow
+      Capture
+      Map
+      Execute
+    Team
+      Co-founder
+      Investor
+    Stack
+      Frontend
+      n8n agents
+  `
 };
 
 const normalizeLanguage = (language) => (language || 'en').toLowerCase();

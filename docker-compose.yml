@@ -1,15 +1,18 @@
+# Docker Compose configuration for local development
+# WARNING: Default credentials are for LOCAL DEVELOPMENT ONLY
+# NEVER use default credentials in production environments
+# For production, set strong values via environment variables
+
 services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .config/Dockerfile
     container_name: callforcofounder_local
     ports:
       - "3000:3000"
     volumes:
-      - ./data:/data
-    env_file:
-      - .env
+      - ./storage/data:/data
     environment:
       # Application Environment
       - NODE_ENV=production
@@ -19,9 +22,12 @@ services:
       - DB_PATH=/data/database.db
       
       # Authentication (Required for production)
-      - JWT_SECRET=${JWT_SECRET:-your-secret-jwt-key-change-this-in-production}
+      # SECURITY WARNING: Default values are WEAK and for LOCAL DEVELOPMENT ONLY
+      # In production, MUST set strong JWT_SECRET (min 32 chars) and ADMIN_PASSWORD
+      # Generate JWT_SECRET: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+      - JWT_SECRET=${JWT_SECRET:-CHANGE-THIS-WEAK-DEFAULT-FOR-LOCAL-DEV-ONLY}
       - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-CHANGE-THIS-WEAK-DEFAULT-FOR-LOCAL-DEV-ONLY}
       
       # Cloudinary Configuration (Optional - for media uploads)
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME:-}
@@ -44,3 +50,13 @@ services:
       start_period: 40s
       retries: 3
     restart: unless-stopped
+    # Security: Run as non-root user (handled in Dockerfile)
+    # Resource limits recommended for production
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M

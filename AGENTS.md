@@ -25,5 +25,11 @@
 - Run targeted lint/test checks where possible and report skipped checks in status output.
 - Confirm that Railway configuration is updated before release when new env vars are required.
 
+## Mindmap Mermaid Viewer
+- Admin uploads a Mermaid diagram file (`.mmd`, `.mermaid`, `.md`, `.txt`) in Admin → Media → Mindmap.
+- Mermaid source is stored in the `content` table under pageId `mindmap` (single shared version, not language-specific).
+- Public viewer lives at `/mindmap`; the Storytelling page links to it for full-screen zoom/pan.
+
 ## How to test
 - `curl -i http://localhost:3000/api/health` and confirm it returns HTTP 200 with `status` set to `OK` or `DEGRADED` depending on database connectivity.
+- Upload a Mermaid file in Admin → Media → Mindmap, then visit `/storytelling` and click the mindmap to confirm the full-screen viewer renders and supports zoom/pan.

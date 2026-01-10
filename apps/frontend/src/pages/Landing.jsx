@@ -7,51 +7,53 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import CountdownTimer from '@/components/CountdownTimer';
 import { assets } from '@/utils/assets';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function Landing() {
   // GitHub repository URL from environment variable
   const githubRepoUrl = import.meta.env.VITE_GITHUB_REPO_URL || '#';
+  const { t } = useTranslation();
 
   const navCards = [
     {
       to: '/storytelling',
-      title: 'My Story',
-      description: 'Learn about my journey',
+      title: t('landing.navCards.myStory.title'),
+      description: t('landing.navCards.myStory.description'),
       icon: BookOpen,
       gradient: 'from-purple-500 to-pink-500',
     },
     {
       to: '/what-i-look-for',
-      title: 'What I Look For',
-      description: 'Investors & CoFounders',
+      title: t('landing.navCards.whatILookFor.title'),
+      description: t('landing.navCards.whatILookFor.description'),
       icon: Users,
       gradient: 'from-blue-500 to-indigo-500',
     },
     {
       to: '/developer-help',
-      title: 'Developer Help',
-      description: 'IDEs, n8n, Vibe Coding',
+      title: t('landing.navCards.developerHelp.title'),
+      description: t('landing.navCards.developerHelp.description'),
       icon: Code,
       gradient: 'from-green-500 to-emerald-500',
     },
     {
       to: '/financial-help',
-      title: 'Financial Support',
-      description: 'Instant donation via Wise',
+      title: t('landing.navCards.financialSupport.title'),
+      description: t('landing.navCards.financialSupport.description'),
       icon: DollarSign,
       gradient: 'from-yellow-500 to-orange-500',
     },
     {
       to: '/support',
-      title: 'Support & Messages',
-      description: 'Share your thoughts',
+      title: t('landing.navCards.supportMessages.title'),
+      description: t('landing.navCards.supportMessages.description'),
       icon: MessageSquare,
       gradient: 'from-cyan-500 to-blue-500',
     },
     {
       to: '/adhd-aries',
-      title: 'ADHD + Aries',
-      description: 'Understanding my strengths',
+      title: t('landing.navCards.adhdAries.title'),
+      description: t('landing.navCards.adhdAries.description'),
       icon: Sparkles,
       gradient: 'from-red-500 to-orange-500',
     }
@@ -110,7 +112,7 @@ function Landing() {
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-4 sm:mb-6 gradient-text-animated px-2">
-              Call for Investor/CoFounder
+              {t('landing.hero.title')}
             </h1>
             <motion.p 
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium px-2"
@@ -118,9 +120,9 @@ function Landing() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Join me on an extraordinary journey from vision to reality. 
+              {t('landing.hero.subtitle')}
               <span className="block mt-2 sm:mt-3 text-gradient-primary font-bold">
-                Great ideas deserve great execution.
+                {t('landing.hero.subtitleBold')}
               </span>
             </motion.p>
           </motion.div>
@@ -133,15 +135,15 @@ function Landing() {
           >
             <Badge variant="teal" size="lg" className="flex items-center gap-2">
               <Lightbulb className="w-4 h-4" />
-              Vision-Driven
+              {t('landing.badges.visionDriven')}
             </Badge>
             <Badge variant="mixed" size="lg" className="flex items-center gap-2">
               <Rocket className="w-4 h-4" />
-              Action-Oriented
+              {t('landing.badges.actionOriented')}
             </Badge>
             <Badge variant="purple" size="lg" className="flex items-center gap-2">
               <Handshake className="w-4 h-4" />
-              Partnership-Focused
+              {t('landing.badges.partnershipFocused')}
             </Badge>
           </motion.div>
 
@@ -172,12 +174,12 @@ function Landing() {
                 <div className="flex items-center gap-3 mb-6">
                   <User className="w-8 h-8 text-teal-400" />
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-gray-100">
-                    The Story Behind This
+                    {t('landing.personalStory.title')}
                   </h2>
                 </div>
                 
                 <blockquote className="text-lg sm:text-xl md:text-2xl text-gray-200 italic mb-6 leading-relaxed border-l-4 border-teal-400 pl-6">
-                  "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products."
+                  "{t('landing.personalStory.quote')}"
                 </blockquote>
                 
                 <div className="flex items-center gap-4 mb-4">
@@ -186,17 +188,17 @@ function Landing() {
                   </div>
                   <div>
                     <p className="text-lg sm:text-xl font-bold text-gray-100">
-                      Kevin De Vlieger
+                      {t('landing.personalStory.name')}
                     </p>
                     <div className="flex items-center gap-2 text-gray-400 text-sm sm:text-base">
                       <MapPin className="w-4 h-4" />
-                      <span>41-year-old Belgian, now living in sunny Alicante, Spain</span>
+                      <span>{t('landing.personalStory.location')}</span>
                     </div>
                   </div>
                 </div>
                 
                 <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                  This project exists because I refuse to let another year pass without proof that my mind can create something real.
+                  {t('landing.personalStory.description')}
                 </p>
               </div>
             </Card>
@@ -213,7 +215,7 @@ function Landing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            The Call
+            {t('landing.theCall.title')}
           </motion.h2>
 
           {/* Bento Grid Layout */}
@@ -253,16 +255,15 @@ function Landing() {
                   <div className="flex items-center gap-3 mb-4">
                     <Zap className="w-8 h-8 sm:w-10 sm:h-10" />
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold">
-                      Two partners. One turnaround.
+                      {t('landing.cards.twoPartners.title')}
                     </h3>
                   </div>
                   <p className="text-base sm:text-lg opacity-95 leading-relaxed mb-6">
-                    I need two people to help me break the loop: one <span className="font-bold">financial support partner</span> and 
-                    one <span className="font-bold">solo developer/mentor</span>. Together we ship the first two apps that prove what I can do.
+                    {t('landing.cards.twoPartners.description')}
                   </p>
                   <Link to="/what-i-look-for">
                     <Button variant="glassFrost" size="lg">
-                      Choose your role
+                      {t('common.chooseYourRole')}
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </Link>
@@ -281,13 +282,11 @@ function Landing() {
                 <div className="flex items-center gap-3 mb-4">
                   <Shield className="w-7 h-7 text-red-400" />
                   <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                    This is NOT a shortcut
+                    {t('landing.cards.notAShortcut.title')}
                   </h3>
                 </div>
                 <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  I'm not one of the millions who thinks apps are easy or AI builds everything. 
-                  I've fought for months across tools, tutorials, and broken builds. 
-                  <span className="text-teal-400 font-semibold"> This is serious execution.</span>
+                  {t('landing.cards.notAShortcut.description')}
                 </p>
               </Card>
             </motion.div>
@@ -303,12 +302,11 @@ function Landing() {
                 <div className="flex items-center gap-3 mb-4">
                   <Brain className="w-7 h-7 text-purple-400" />
                   <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                    Ideas are my talent
+                    {t('landing.cards.ideasAreMyTalent.title')}
                   </h3>
                 </div>
                 <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  My strength is app ideation and feature thinking—fast, deep, and constant. 
-                  What I need is <span className="text-purple-400 font-semibold">the bridge from architect to shipped product.</span>
+                  {t('landing.cards.ideasAreMyTalent.description')}
                 </p>
               </Card>
             </motion.div>
@@ -327,22 +325,18 @@ function Landing() {
                   <div className="flex items-center gap-3 mb-4">
                     <Flame className="w-7 h-7 text-orange-400" />
                     <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                      The Fight Behind This
+                      {t('landing.cards.theFightBehindThis.title')}
                     </h3>
                   </div>
                   <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-                    For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. 
-                    I'm an <span className="text-orange-400 font-semibold">inventor at heart</span>, not lacking in capability or vision, 
-                    but lacking the bridge to turn ideas into shipped products. This project exists because I refuse to let another year pass 
-                    without proof that my mind can create something real.
+                    {t('landing.cards.theFightBehindThis.description')}
                   </p>
                   <p className="text-sm text-gray-400 mb-4">
-                    I don't underestimate developers' hard work. But I've spent countless hours searching, learning, and becoming deeply frustrated 
-                    that my thoughts couldn't come alive. This is my last push — to showcase potential, find believers, and finally flip the narrative.
+                    {t('landing.cards.theFightBehindThis.description2')}
                   </p>
                   <Link to="/storytelling">
                     <span className="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors font-semibold text-sm">
-                      Read my full story
+                      {t('common.readFullStory')}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </span>
                   </Link>
@@ -364,11 +358,11 @@ function Landing() {
                   <div className="flex items-center gap-3 mb-6">
                     <Puzzle className="w-8 h-8 sm:w-10 sm:h-10" />
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold">
-                      The Quartet
+                      {t('landing.cards.theQuartet.title')}
                     </h3>
                   </div>
                   <p className="text-base sm:text-lg opacity-95 leading-relaxed mb-6 text-center">
-                    The magic happens when four forces align:
+                    {t('landing.cards.theQuartet.subtitle')}
                   </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                     <motion.div 
@@ -376,36 +370,36 @@ function Landing() {
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                     >
                       <Brain className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
-                      <h4 className="font-bold text-sm sm:text-base mb-2">🧠 Architect</h4>
-                      <p className="text-xs sm:text-sm opacity-90">Me — Ideas, vision, features</p>
+                      <h4 className="font-bold text-sm sm:text-base mb-2">{t('landing.cards.theQuartet.architect')}</h4>
+                      <p className="text-xs sm:text-sm opacity-90">{t('landing.cards.theQuartet.architectDesc')}</p>
                     </motion.div>
                     <motion.div 
                       className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                     >
                       <Code className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
-                      <h4 className="font-bold text-sm sm:text-base mb-2">🛠️ Builder</h4>
-                      <p className="text-xs sm:text-sm opacity-90">You — Ship, mentor, teach</p>
+                      <h4 className="font-bold text-sm sm:text-base mb-2">{t('landing.cards.theQuartet.builder')}</h4>
+                      <p className="text-xs sm:text-sm opacity-90">{t('landing.cards.theQuartet.builderDesc')}</p>
                     </motion.div>
                     <motion.div 
                       className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                     >
                       <Wallet className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
-                      <h4 className="font-bold text-sm sm:text-base mb-2">💰 Investor</h4>
-                      <p className="text-xs sm:text-sm opacity-90">Breathing room</p>
+                      <h4 className="font-bold text-sm sm:text-base mb-2">{t('landing.cards.theQuartet.investor')}</h4>
+                      <p className="text-xs sm:text-sm opacity-90">{t('landing.cards.theQuartet.investorDesc')}</p>
                     </motion.div>
                     <motion.div 
                       className="text-center backdrop-blur-md bg-white/10 p-4 rounded-xl border border-white/20"
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                     >
                       <Bot className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3" />
-                      <h4 className="font-bold text-sm sm:text-base mb-2">🤖 AI</h4>
-                      <p className="text-xs sm:text-sm opacity-90">Leverage & speed</p>
+                      <h4 className="font-bold text-sm sm:text-base mb-2">{t('landing.cards.theQuartet.ai')}</h4>
+                      <p className="text-xs sm:text-sm opacity-90">{t('landing.cards.theQuartet.aiDesc')}</p>
                     </motion.div>
                   </div>
                   <p className="text-center mt-6 text-lg sm:text-xl font-bold">
-                    Structure turns it into results.
+                    {t('landing.cards.theQuartet.footer')}
                   </p>
                 </div>
               </Card>
@@ -423,12 +417,11 @@ function Landing() {
                 <div className="flex items-center gap-3 mb-4">
                   <Database className="w-7 h-7 text-blue-400" />
                   <h3 className="text-lg sm:text-xl font-display font-bold text-gray-100">
-                    Chaos → data vault
+                    {t('landing.cards.chaosToVault.title')}
                   </h3>
                 </div>
                 <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  Chats, Raindrops tutorials, <span className="text-blue-400 font-semibold">90+ broken repos</span>, and scattered notes 
-                  become a goldmine once centralized: documentation, workflows, insights, and a reusable idea vault.
+                  {t('landing.cards.chaosToVault.description')}
                 </p>
               </Card>
             </motion.div>
@@ -448,16 +441,14 @@ function Landing() {
                     <TrendingUp className="w-10 h-10 sm:w-12 sm:h-12" />
                   </div>
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold mb-4">
-                    The snowball flips
+                    {t('landing.cards.theSnowballFlips.title')}
                   </h3>
                   <p className="text-base sm:text-lg opacity-95 leading-relaxed max-w-2xl mx-auto mb-6">
-                    Until now the snowball was negative: <span className="line-through opacity-70">stress → fear → delays → debt</span>. 
-                    <br className="hidden sm:block" />
-                    With breathing room + mentorship, it flips: <span className="font-bold">structure → shipping → proof → compounding.</span>
+                    {t('landing.cards.theSnowballFlips.description')}
                   </p>
                   <Link to="/support">
                     <Button variant="glassFrost" size="lg">
-                      Apply now
+                      {t('common.applyNow')}
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </Link>
@@ -477,10 +468,10 @@ function Landing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            Two Apps Change Everything
+            {t('landing.twoApps.title')}
           </motion.h2>
           <p className="text-center text-base sm:text-lg text-gray-300 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
-            I don't need ten apps. I need <span className="font-bold text-teal-400">two shipped apps</span> to show proof:
+            {t('landing.twoApps.subtitle')}
           </p>
           
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
@@ -498,14 +489,14 @@ function Landing() {
                       <Package className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-display font-bold">
-                      🧬 Lifemanagement Stack
+                      {t('landing.twoApps.lifemanagement.title')}
                     </h3>
                   </div>
                   <p className="text-lg sm:text-xl opacity-95 leading-relaxed italic">
-                    My life back on rails
+                    {t('landing.twoApps.lifemanagement.tagline')}
                   </p>
                   <p className="text-base sm:text-lg mt-4 opacity-90 leading-relaxed">
-                    A comprehensive system to organize, manage, and optimize all aspects of life—from tasks and goals to habits and long-term planning.
+                    {t('landing.twoApps.lifemanagement.description')}
                   </p>
                 </div>
               </Card>
@@ -525,14 +516,14 @@ function Landing() {
                       <Lightbulb className="w-8 h-8" />
                     </div>
                     <h3 className="text-2xl sm:text-3xl font-display font-bold">
-                      💡 IdeaFabric
+                      {t('landing.twoApps.ideafabric.title')}
                     </h3>
                   </div>
                   <p className="text-lg sm:text-xl opacity-95 leading-relaxed italic">
-                    Portable idea blueprint machine
+                    {t('landing.twoApps.ideafabric.tagline')}
                   </p>
                   <p className="text-base sm:text-lg mt-4 opacity-90 leading-relaxed">
-                    A powerful tool to shape, refine, and transform ideas into actionable blueprints—helping visionaries like me turn concepts into reality.
+                    {t('landing.twoApps.ideafabric.description')}
                   </p>
                 </div>
               </Card>
@@ -556,16 +547,16 @@ function Landing() {
                 <div className="flex items-center gap-3 mb-6">
                   <Gift className="w-8 h-8 text-pink-400" />
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-gray-100">
-                    My Give Away
+                    {t('landing.myGiveAway.title')}
                   </h2>
                 </div>
                 
                 <p className="text-lg sm:text-xl text-gray-200 mb-6 leading-relaxed">
-                  I was always scared of idea stealing. But months of struggling alone taught me: <span className="font-bold text-pink-400">ideas without execution are just dreams.</span>
+                  {t('landing.myGiveAway.intro')}
                 </p>
                 
                 <p className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed">
-                  So this is my gift:
+                  {t('landing.myGiveAway.giftIntro')}
                 </p>
                 
                 <ul className="space-y-4 mb-6">
@@ -577,7 +568,7 @@ function Landing() {
                     transition={{ delay: 0.1 }}
                   >
                     <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
-                    <span>This project and its source code</span>
+                    <span>{t('landing.myGiveAway.items.project')}</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start gap-3 text-gray-300"
@@ -587,7 +578,7 @@ function Landing() {
                     transition={{ delay: 0.2 }}
                   >
                     <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
-                    <span>A mindmap for an app that helps shape ideas (frontend + n8n backend)</span>
+                    <span>{t('landing.myGiveAway.items.mindmap')}</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start gap-3 text-gray-300"
@@ -597,7 +588,7 @@ function Landing() {
                     transition={{ delay: 0.3 }}
                   >
                     <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
-                    <span>90+ repos full of attempts and learnings</span>
+                    <span>{t('landing.myGiveAway.items.repos')}</span>
                   </motion.li>
                   <motion.li 
                     className="flex items-start gap-3 text-gray-300"
@@ -607,13 +598,13 @@ function Landing() {
                     transition={{ delay: 0.4 }}
                   >
                     <Gift className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
-                    <span>Everything I've documented along the way</span>
+                    <span>{t('landing.myGiveAway.items.documentation')}</span>
                   </motion.li>
                 </ul>
                 
                 <div className="backdrop-blur-md bg-pink-500/20 p-6 rounded-xl border border-pink-500/30">
                   <p className="text-lg sm:text-xl font-bold text-gray-100 text-center">
-                    If you believe, these are yours to build with me.
+                    {t('landing.myGiveAway.footer')}
                   </p>
                 </div>
               </div>
@@ -631,43 +622,43 @@ function Landing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            How You Can Help
+            {t('landing.howYouCanHelp.title')}
           </motion.h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { 
                 icon: Star, 
-                title: '⭐ Star', 
-                description: 'Help others discover this project', 
-                action: 'Star on GitHub',
+                title: t('landing.howYouCanHelp.star.title'), 
+                description: t('landing.howYouCanHelp.star.description'), 
+                action: t('landing.howYouCanHelp.star.action'),
                 link: githubRepoUrl,
                 gradient: 'from-yellow-500/80 to-orange-500/80',
                 external: true
               },
               { 
                 icon: GitFork, 
-                title: '🍴 Fork', 
-                description: 'Take the code, improve it, make it your own', 
-                action: 'Fork on GitHub',
+                title: t('landing.howYouCanHelp.fork.title'), 
+                description: t('landing.howYouCanHelp.fork.description'), 
+                action: t('landing.howYouCanHelp.fork.action'),
                 link: githubRepoUrl,
                 gradient: 'from-purple-500/80 to-pink-500/80',
                 external: true
               },
               { 
                 icon: MessageSquare, 
-                title: '💬 Reach out', 
-                description: 'Sometimes a conversation sparks great things', 
-                action: 'Get in Touch',
+                title: t('landing.howYouCanHelp.reachOut.title'), 
+                description: t('landing.howYouCanHelp.reachOut.description'), 
+                action: t('landing.howYouCanHelp.reachOut.action'),
                 link: '/support',
                 gradient: 'from-cyan-500/80 to-blue-500/80',
                 external: false
               },
               { 
                 icon: Handshake, 
-                title: '🤝 Partner', 
-                description: 'Become the co-founder or investor I\'m looking for', 
-                action: 'Learn More',
+                title: t('landing.howYouCanHelp.partner.title'), 
+                description: t('landing.howYouCanHelp.partner.description'), 
+                action: t('landing.howYouCanHelp.partner.action'),
                 link: '/what-i-look-for',
                 gradient: 'from-teal-500/80 to-emerald-500/80',
                 external: false
@@ -767,7 +758,7 @@ function Landing() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            Explore My Journey
+            {t('landing.exploreJourney.title')}
           </motion.h2>
           
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
@@ -807,7 +798,7 @@ function Landing() {
                           </p>
                           
                           <div className="mt-4 sm:mt-5 flex items-center text-teal-400 group-hover:text-white transition-colors duration-300">
-                            <span className="font-semibold text-sm sm:text-base">Learn more</span>
+                            <span className="font-semibold text-sm sm:text-base">{t('common.learnMore')}</span>
                             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
                           </div>
                         </div>
@@ -849,16 +840,11 @@ function Landing() {
                 </motion.div>
 
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-teal-400 bg-clip-text text-transparent">
-                  Open Source, Open Hearts
+                  {t('landing.openSource.title')}
                 </h2>
                 
                 <p className="text-base sm:text-lg text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed px-2">
-                  This project is a work in progress, built with passion but still growing. 
-                  After months of fighting through stress and anxiety, I'm reaching out to 
-                  <span className="text-teal-400 font-semibold"> developers</span>, 
-                  <span className="text-purple-400 font-semibold"> GitHub fans</span>, and 
-                  <span className="text-pink-400 font-semibold"> empathic souls</span> who 
-                  might want to help make this vision a reality.
+                  {t('landing.openSource.description')}
                 </p>
 
                 {/* Feature badges */}
@@ -871,21 +857,20 @@ function Landing() {
                 >
                   <Badge variant="purple" size="lg" className="flex items-center gap-2">
                     <Code className="w-4 h-4" />
-                    Work in Progress
+                    {t('landing.openSource.badges.workInProgress')}
                   </Badge>
                   <Badge variant="teal" size="lg" className="flex items-center gap-2">
                     <Users className="w-4 h-4" />
-                    Contributors Welcome
+                    {t('landing.openSource.badges.contributorsWelcome')}
                   </Badge>
                   <Badge variant="mixed" size="lg" className="flex items-center gap-2">
                     <GitFork className="w-4 h-4" />
-                    Fork & Improve
+                    {t('landing.openSource.badges.forkAndImprove')}
                   </Badge>
                 </motion.div>
 
                 <p className="text-sm sm:text-base text-gray-400 mb-8 px-2">
-                  Whether you want to fork the repo and contribute code, or simply connect 
-                  and offer guidance from a distance — your support means everything.
+                  {t('landing.openSource.footer')}
                 </p>
 
                 {/* CTA Buttons */}
@@ -901,7 +886,7 @@ function Landing() {
                       className="w-full sm:w-auto"
                     >
                       <Github className="w-5 h-5 mr-2" />
-                      Fork on GitHub
+                      {t('landing.openSource.forkOnGitHub')}
                     </Button>
                   </a>
                   <Link to="/support">
@@ -911,7 +896,7 @@ function Landing() {
                       className="w-full sm:w-auto"
                     >
                       <Heart className="w-5 h-5 mr-2" />
-                      Get in Touch
+                      {t('common.getInTouch')}
                     </Button>
                   </Link>
                 </div>

@@ -2,6 +2,7 @@
 const { test, expect } = require('@playwright/test');
 
 // Helper function to login
+// WARNING: Default password 'admin123' is for testing only - use environment variables in CI/production
 async function loginAsAdmin(page) {
   await page.goto('/admin/login');
   await page.waitForLoadState('networkidle');

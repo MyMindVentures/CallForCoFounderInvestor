@@ -68,6 +68,7 @@ test.describe('Admin Login Page', () => {
 
   test('should redirect to dashboard on successful login', async ({ page }) => {
     // Use environment variables or default test credentials
+    // WARNING: Default password 'admin123' is WEAK and for testing only
     const username = process.env.ADMIN_USERNAME || 'admin';
     const password = process.env.ADMIN_PASSWORD || 'admin123';
     

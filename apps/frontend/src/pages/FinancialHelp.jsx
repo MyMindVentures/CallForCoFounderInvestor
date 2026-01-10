@@ -11,12 +11,14 @@ import { Badge } from '@/components/ui/badge';
 import DonationButton from '@/components/DonationButton';
 import { assets } from '@/utils/assets';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { useTranslation } from '@/i18n/useTranslation';
 
 function FinancialHelp() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [donationAmount, setDonationAmount] = useState('');
   const { language } = useLanguage();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchContent();
@@ -63,7 +65,7 @@ function FinancialHelp() {
             className="w-12 h-12 mx-auto mb-4 animate-spin"
             aria-hidden="true"
           />
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t('common.loading')}</p>
         </motion.div>
       </div>
     );
@@ -94,10 +96,10 @@ function FinancialHelp() {
             </motion.div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold mb-3 sm:mb-4 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent px-2">
-            Financial Support
+            {t('pages.financialHelp.title')}
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 font-medium px-2">
-            Your support helps turn vision into reality
+            {t('pages.financialHelp.subtitle')}
           </p>
         </motion.div>
 
@@ -122,41 +124,41 @@ function FinancialHelp() {
               <CardHeader>
                 <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-display font-bold flex items-center gap-3">
                   <DollarSign className="w-8 h-8 sm:w-10 sm:h-10" />
-                  Financial Support Partner
+                  {t('pages.financialHelp.financialPartner.title')}
                 </CardTitle>
                 <p className="text-lg sm:text-xl opacity-95 mt-2">
-                  Temporary support now. Long-term upside later.
+                  {t('pages.financialHelp.financialPartner.subtitle')}
                 </p>
               </CardHeader>
               <CardContent>
                 <p className="text-base sm:text-lg mb-6 opacity-90">
-                  You&apos;re funding proof, not charity. Here&apos;s what I offer in return:
+                  {t('pages.financialHelp.financialPartner.description')}
                 </p>
                 
                 <StaggerContainer className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                   {[
                     {
                       icon: DollarSign,
-                      title: 'Lifetime 20% Revenue Share',
-                      description: 'Net revenue share for life. Transparent, fair, and long-term.',
+                      title: t('pages.financialHelp.financialPartner.items.revenueShare.title'),
+                      description: t('pages.financialHelp.financialPartner.items.revenueShare.description'),
                       color: 'from-green-500/20 to-emerald-500/20 border-green-500/30'
                     },
                     {
                       icon: BarChart3,
-                      title: 'Transparent Revenue Dashboard',
-                      description: 'Full visibility into revenue streams and financial performance.',
+                      title: t('pages.financialHelp.financialPartner.items.dashboard.title'),
+                      description: t('pages.financialHelp.financialPartner.items.dashboard.description'),
                       color: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30'
                     },
                     {
                       icon: FileText,
-                      title: 'NDA + Written Agreement',
-                      description: 'Professional legal framework protecting both parties.',
+                      title: t('pages.financialHelp.financialPartner.items.nda.title'),
+                      description: t('pages.financialHelp.financialPartner.items.nda.description'),
                       color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30'
                     },
                       {
                         icon: Sparkles,
-                        title: 'Funding Proof, Not Charity',
-                        description: "You're investing in potential and execution, not giving handouts.",
+                        title: t('pages.financialHelp.financialPartner.items.fundingProof.title'),
+                        description: t('pages.financialHelp.financialPartner.items.fundingProof.description'),
                         color: 'from-orange-500/20 to-yellow-500/20 border-orange-500/30'
                       }
                   ].map((item, index) => {
@@ -208,7 +210,7 @@ function FinancialHelp() {
                 <Heart className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold mb-4 sm:mb-6 text-center">
-                Make a Donation
+                {t('pages.financialHelp.donation.title')}
               </h2>
               
               <motion.div 
@@ -218,12 +220,12 @@ function FinancialHelp() {
               >
                 <div className="mb-4">
                   <Label htmlFor="amount" className="block text-sm font-semibold text-gray-200 mb-2">
-                    Amount (EUR)
+                    {t('pages.financialHelp.donation.amountLabel')}
                   </Label>
                   <Input
                     id="amount"
                     type="number"
-                    placeholder="Enter amount"
+                    placeholder={t('pages.financialHelp.donation.amountPlaceholder')}
                     value={donationAmount}
                     onChange={(e) => setDonationAmount(e.target.value)}
                     variant="glow"
@@ -239,7 +241,7 @@ function FinancialHelp() {
               </motion.div>
               
               <p className="text-center mt-4 sm:mt-6 text-white/90 text-xs sm:text-sm md:text-base font-medium px-2">
-                Donations are processed securely via Wise. Thank you for your support! 🙏
+                {t('pages.financialHelp.donation.footer')}
               </p>
             </div>
           </Card>

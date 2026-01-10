@@ -55,6 +55,7 @@ test.describe('API Error Handling', () => {
 
     test('should handle 404 error for non-existent message', async ({ request }) => {
       // First get a valid token
+      // WARNING: Default password 'admin123' is for testing only
       const loginResponse = await request.post('/api/auth/login', {
         data: {
           username: process.env.ADMIN_USERNAME || 'admin',
