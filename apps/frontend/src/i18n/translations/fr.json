@@ -29,157 +29,157 @@
   },
   "landing": {
     "hero": {
-      "title": "Call for Investor/CoFounder",
-      "subtitle": "Join me on an extraordinary journey from vision to reality.",
-      "subtitleBold": "Great ideas deserve great execution."
+      "title": "Appel à Investisseur/CoFondateur",
+      "subtitle": "Rejoignez-moi dans un voyage extraordinaire de la vision à la réalité.",
+      "subtitleBold": "Les grandes idées méritent une grande exécution."
     },
     "badges": {
-      "visionDriven": "Vision-Driven",
-      "actionOriented": "Action-Oriented",
-      "partnershipFocused": "Partnership-Focused"
+      "visionDriven": "Axé sur la Vision",
+      "actionOriented": "Orienté Action",
+      "partnershipFocused": "Centré sur le Partenariat"
     },
     "personalStory": {
-      "title": "The Story Behind This",
-      "quote": "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products.",
+      "title": "L'Histoire Derrière Tout Cela",
+      "quote": "Pendant des mois, j'ai été piégé dans une boucle d'outils — luttant contre les tutoriels, les builds cassés et les courbes d'apprentissage infinies. Je suis un inventeur dans l'âme, je ne manque ni de capacité ni de vision, mais je manque du pont pour transformer les idées en produits livrés.",
       "name": "Kevin De Vlieger",
-      "location": "41-year-old Belgian, now living in sunny Alicante, Spain",
-      "description": "This project exists because I refuse to let another year pass without proof that my mind can create something real."
+      "location": "Belge de 41 ans, vivant maintenant dans l'ensoleillée Alicante, Espagne",
+      "description": "Ce projet existe parce que je refuse de laisser passer une autre année sans preuve que mon esprit peut créer quelque chose de réel."
     },
     "theCall": {
-      "title": "The Call"
+      "title": "L'Appel"
     },
     "cards": {
       "twoPartners": {
-        "title": "Two partners. One turnaround.",
-        "description": "I need two people to help me break the loop: one financial support partner and one solo developer/mentor. Together we ship the first two apps that prove what I can do."
+        "title": "Deux partenaires. Un retournement.",
+        "description": "J'ai besoin de deux personnes pour m'aider à briser la boucle : un partenaire de soutien financier et un développeur/mentor solo. Ensemble, nous livrons les deux premières applications qui prouvent ce que je peux faire."
       },
       "notAShortcut": {
-        "title": "This is NOT a shortcut",
-        "description": "I'm not one of the millions who thinks apps are easy or AI builds everything. I've fought for months across tools, tutorials, and broken builds. This is serious execution."
+        "title": "Ceci N'EST PAS un raccourci",
+        "description": "Je ne fais pas partie des millions de personnes qui pensent que les applications sont faciles ou que l'IA construit tout. J'ai lutté pendant des mois à travers des outils, des tutoriels et des builds cassés. C'est une exécution sérieuse."
       },
       "ideasAreMyTalent": {
-        "title": "Ideas are my talent",
-        "description": "My strength is app ideation and feature thinking—fast, deep, and constant. What I need is the bridge from architect to shipped product."
+        "title": "Les idées sont mon talent",
+        "description": "Ma force est l'idéation d'applications et la réflexion sur les fonctionnalités — rapide, profonde et constante. Ce dont j'ai besoin, c'est du pont de l'architecte au produit livré."
       },
       "theFightBehindThis": {
-        "title": "The Fight Behind This",
-        "description": "For months I've been trapped in a tooling loop — fighting through tutorials, broken builds, and endless learning curves. I'm an inventor at heart, not lacking in capability or vision, but lacking the bridge to turn ideas into shipped products. This project exists because I refuse to let another year pass without proof that my mind can create something real.",
-        "description2": "I don't underestimate developers' hard work. But I've spent countless hours searching, learning, and becoming deeply frustrated that my thoughts couldn't come alive. This is my last push — to showcase potential, find believers, and finally flip the narrative."
+        "title": "Le Combat Derrière Tout Cela",
+        "description": "Pendant des mois, j'ai été piégé dans une boucle d'outils — luttant contre les tutoriels, les builds cassés et les courbes d'apprentissage infinies. Je suis un inventeur dans l'âme, je ne manque ni de capacité ni de vision, mais je manque du pont pour transformer les idées en produits livrés. Ce projet existe parce que je refuse de laisser passer une autre année sans preuve que mon esprit peut créer quelque chose de réel.",
+        "description2": "Je ne sous-estime pas le travail acharné des développeurs. Mais j'ai passé d'innombrables heures à chercher, apprendre et devenir profondément frustré que mes pensées ne puissent pas prendre vie. C'est ma dernière poussée — pour montrer le potentiel, trouver des croyants et finalement retourner le récit."
       },
       "theQuartet": {
-        "title": "The Quartet",
-        "subtitle": "The magic happens when four forces align:",
-        "architect": "🧠 Architect",
-        "architectDesc": "Me — Ideas, vision, features",
-        "builder": "🛠️ Builder",
-        "builderDesc": "You — Ship, mentor, teach",
-        "investor": "💰 Investor",
-        "investorDesc": "Breathing room",
-        "ai": "🤖 AI",
-        "aiDesc": "Leverage & speed",
-        "footer": "Structure turns it into results."
+        "title": "Le Quatuor",
+        "subtitle": "La magie opère lorsque quatre forces s'alignent :",
+        "architect": "🧠 Architecte",
+        "architectDesc": "Moi — Idées, vision, fonctionnalités",
+        "builder": "🛠️ Constructeur",
+        "builderDesc": "Vous — Livrer, mentorer, enseigner",
+        "investor": "💰 Investisseur",
+        "investorDesc": "Espace de respiration",
+        "ai": "🤖 IA",
+        "aiDesc": "Lever & vitesse",
+        "footer": "La structure le transforme en résultats."
       },
       "chaosToVault": {
-        "title": "Chaos → data vault",
-        "description": "Chats, Raindrops tutorials, 90+ broken repos, and scattered notes become a goldmine once centralized: documentation, workflows, insights, and a reusable idea vault."
+        "title": "Chaos → coffre-fort de données",
+        "description": "Les chats, les tutoriels Raindrops, plus de 90 repos cassés et les notes éparses deviennent une mine d'or une fois centralisés : documentation, workflows, insights et un coffre-fort d'idées réutilisable."
       },
       "theSnowballFlips": {
-        "title": "The snowball flips",
-        "description": "Until now the snowball was negative: stress → fear → delays → debt. With breathing room + mentorship, it flips: structure → shipping → proof → compounding."
+        "title": "La boule de neige se retourne",
+        "description": "Jusqu'à présent, la boule de neige était négative : stress → peur → retards → dette. Avec un espace de respiration + mentorat, elle se retourne : structure → livraison → preuve → cumul."
       }
     },
     "twoApps": {
-      "title": "Two Apps Change Everything",
-      "subtitle": "I don't need ten apps. I need two shipped apps to show proof:",
+      "title": "Deux Applications Changent Tout",
+      "subtitle": "Je n'ai pas besoin de dix applications. J'ai besoin de deux applications livrées pour montrer la preuve :",
       "lifemanagement": {
         "title": "🧬 Lifemanagement Stack",
-        "tagline": "My life back on rails",
-        "description": "A comprehensive system to organize, manage, and optimize all aspects of life—from tasks and goals to habits and long-term planning."
+        "tagline": "Ma vie de retour sur les rails",
+        "description": "Un système complet pour organiser, gérer et optimiser tous les aspects de la vie — des tâches et objectifs aux habitudes et à la planification à long terme."
       },
       "ideafabric": {
         "title": "💡 IdeaFabric",
-        "tagline": "Portable idea blueprint machine",
-        "description": "A powerful tool to shape, refine, and transform ideas into actionable blueprints—helping visionaries like me turn concepts into reality."
+        "tagline": "Machine portable de plan d'idées",
+        "description": "Un outil puissant pour façonner, affiner et transformer les idées en plans d'action — aidant les visionnaires comme moi à transformer les concepts en réalité."
       }
     },
     "myGiveAway": {
-      "title": "My Give Away",
-      "intro": "I was always scared of idea stealing. But months of struggling alone taught me: ideas without execution are just dreams.",
-      "giftIntro": "So this is my gift:",
+      "title": "Mon Cadeau",
+      "intro": "J'ai toujours eu peur du vol d'idées. Mais des mois de lutte solitaire m'ont appris : les idées sans exécution ne sont que des rêves.",
+      "giftIntro": "Voici donc mon cadeau :",
       "items": {
-        "project": "This project and its source code",
-        "mindmap": "A mindmap for an app that helps shape ideas (frontend + n8n backend)",
-        "repos": "90+ repos full of attempts and learnings",
-        "documentation": "Everything I've documented along the way"
+        "project": "Ce projet et son code source",
+        "mindmap": "Une carte mentale pour une application qui aide à façonner les idées (frontend + backend n8n)",
+        "repos": "Plus de 90 repos pleins de tentatives et d'apprentissages",
+        "documentation": "Tout ce que j'ai documenté en cours de route"
       },
-      "footer": "If you believe, these are yours to build with me."
+      "footer": "Si vous croyez, ce sont les vôtres pour construire avec moi."
     },
     "howYouCanHelp": {
-      "title": "How You Can Help",
+      "title": "Comment Vous Pouvez Aider",
       "star": {
         "title": "⭐ Star",
-        "description": "Help others discover this project",
-        "action": "Star on GitHub"
+        "description": "Aidez les autres à découvrir ce projet",
+        "action": "Star sur GitHub"
       },
       "fork": {
         "title": "🍴 Fork",
-        "description": "Take the code, improve it, make it your own",
-        "action": "Fork on GitHub"
+        "description": "Prenez le code, améliorez-le, faites-en le vôtre",
+        "action": "Fork sur GitHub"
       },
       "reachOut": {
-        "title": "💬 Reach out",
-        "description": "Sometimes a conversation sparks great things",
-        "action": "Get in Touch"
+        "title": "💬 Contactez-moi",
+        "description": "Parfois une conversation déclenche de grandes choses",
+        "action": "Prendre contact"
       },
       "partner": {
-        "title": "🤝 Partner",
-        "description": "Become the co-founder or investor I'm looking for",
-        "action": "Learn More"
+        "title": "🤝 Partenaire",
+        "description": "Devenez le co-fondateur ou l'investisseur que je recherche",
+        "action": "En savoir plus"
       }
     },
     "openSource": {
-      "title": "Open Source, Open Hearts",
-      "description": "This project is a work in progress, built with passion but still growing. After months of fighting through stress and anxiety, I'm reaching out to developers, GitHub fans, and empathic souls who might want to help make this vision a reality.",
+      "title": "Open Source, Cœurs Ouverts",
+      "description": "Ce projet est un travail en cours, construit avec passion mais toujours en croissance. Après des mois de lutte contre le stress et l'anxiété, je m'adresse aux développeurs, aux fans de GitHub et aux âmes empathiques qui pourraient vouloir aider à faire de cette vision une réalité.",
       "badges": {
-        "workInProgress": "Work in Progress",
-        "contributorsWelcome": "Contributors Welcome",
-        "forkAndImprove": "Fork & Improve"
+        "workInProgress": "Travail en Cours",
+        "contributorsWelcome": "Contributeurs Bienvenus",
+        "forkAndImprove": "Fork & Améliorer"
       },
-      "footer": "Whether you want to fork the repo and contribute code, or simply connect and offer guidance from a distance — your support means everything.",
-      "forkOnGitHub": "Fork on GitHub"
+      "footer": "Que vous souhaitiez forker le repo et contribuer au code, ou simplement vous connecter et offrir des conseils à distance — votre soutien signifie tout.",
+      "forkOnGitHub": "Fork sur GitHub"
     },
     "cta": {
-      "title": "Ready to Make an Impact?",
-      "description": "Whether you're an investor, technical co-founder, or supporter, your partnership can help turn vision into reality.",
-      "learnMore": "Learn More"
+      "title": "Prêt à Faire une Différence ?",
+      "description": "Que vous soyez investisseur, co-fondateur technique ou supporter, votre partenariat peut aider à transformer la vision en réalité.",
+      "learnMore": "En savoir plus"
     },
     "exploreJourney": {
-      "title": "Explore My Journey"
+      "title": "Explorez Mon Parcours"
     },
     "navCards": {
       "myStory": {
-        "title": "My Story",
-        "description": "Learn about my journey"
+        "title": "Mon Histoire",
+        "description": "Découvrez mon parcours"
       },
       "whatILookFor": {
-        "title": "What I Look For",
-        "description": "Investors & CoFounders"
+        "title": "Ce que je recherche",
+        "description": "Investisseurs & CoFondateurs"
       },
       "developerHelp": {
-        "title": "Developer Help",
+        "title": "Aide aux développeurs",
         "description": "IDEs, n8n, Vibe Coding"
       },
       "financialSupport": {
-        "title": "Financial Support",
-        "description": "Instant donation via Wise"
+        "title": "Soutien financier",
+        "description": "Don instantané via Wise"
       },
       "supportMessages": {
         "title": "Support & Messages",
-        "description": "Share your thoughts"
+        "description": "Partagez vos pensées"
       },
       "adhdAries": {
-        "title": "ADHD + Aries",
-        "description": "Understanding my strengths"
+        "title": "TDAH + Bélier",
+        "description": "Comprendre mes forces"
       }
     }
   },
