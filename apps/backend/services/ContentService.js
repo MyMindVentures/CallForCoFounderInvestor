@@ -51,6 +51,9 @@ const defaultContent = {
     es: '<h1>TDAH + Aries</h1><p>La importancia del TDAH combinado con las fortalezas de Aries.</p>'
   },
   qrRedirectUrl: process.env.APP_URL || 'https://example.com',
+  'video-script-story': '',
+  'video-script-proposal': '',
+  'video-script-proof': '',
   mindmap: `mindmap
   root((IdeaFabric))
     Vision

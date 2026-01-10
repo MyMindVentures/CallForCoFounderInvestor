@@ -5,6 +5,17 @@ import { checkDatabase } from '../middleware/dbCheck.js';
 
 const router = express.Router();
 
+const protectedPageIds = [
+  'video-script-story',
+  'video-script-proposal',
+  'video-script-proof'
+];
+
+// Get content for protected pages (admin only)
+protectedPageIds.forEach((pageId) => {
+  router.get(`/${pageId}`, authenticateToken, (req, res) => contentController.getContent(req, res));
+});
+
 // Get content for a page
 router.get('/:pageId', (req, res) => contentController.getContent(req, res));
 
