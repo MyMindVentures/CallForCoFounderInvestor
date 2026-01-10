@@ -88,9 +88,27 @@ const runMigrations = () => {
     )
   `);
 
+  // Outreach contacts table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS outreach_contacts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      category TEXT NOT NULL,
+      url TEXT,
+      contactDetails TEXT,
+      sentMessage TEXT,
+      sentAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      repliedAt DATETIME,
+      replyMessage TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Create index for media table
   try {
     db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_outreach_category ON outreach_contacts(category)`);
   } catch (e) {
     // Index might already exist
   }
@@ -174,12 +192,30 @@ const initializeTables = () => {
     )
   `);
 
+  // Outreach contacts table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS outreach_contacts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      category TEXT NOT NULL,
+      url TEXT,
+      contactDetails TEXT,
+      sentMessage TEXT,
+      sentAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      repliedAt DATETIME,
+      replyMessage TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Create indexes
   try {
     db.run(`CREATE INDEX IF NOT EXISTS idx_messages_published ON messages(isPublished, isPositive)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_donations_created ON donations(createdAt)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_content_pageId ON content(pageId)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_outreach_category ON outreach_contacts(category)`);
   } catch (e) {
     // Indexes might already exist
   }
