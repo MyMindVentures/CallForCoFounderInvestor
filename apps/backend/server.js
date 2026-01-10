@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import getDB from './config/database.js';
 import authRoutes from './routes/auth.js';
 import messageRoutes from './routes/messages.js';
+import commentRoutes from './routes/comments.js';
 import donationRoutes from './routes/donations.js';
 import contentRoutes from './routes/content.js';
 import mediaRoutes from './routes/media.js';
@@ -71,6 +72,7 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/comments', commentRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/media', mediaRoutes);

@@ -54,6 +54,12 @@ const defaultContent = {
   'video-script-story': '',
   'video-script-proposal': '',
   'video-script-proof': '',
+  'video-subtitles-story': '',
+  'video-subtitles-proposal': '',
+  'video-subtitles-proof': '',
+  'video-transcript-story': '',
+  'video-transcript-proposal': '',
+  'video-transcript-proof': '',
   mindmap: `mindmap
   root((IdeaFabric))
     Vision

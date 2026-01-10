@@ -12,62 +12,20 @@ import { assets } from '@/utils/assets';
 import MermaidDiagram from '@/components/MermaidDiagram';
 import { DEFAULT_MINDMAP } from '@/utils/mindmap';
 import { useLanguage } from '@/i18n/LanguageContext';
+import { cn } from '@/lib/utils';
 
 function Storytelling() {
   const [content, setContent] = useState('');
   const [media, setMedia] = useState({});
   const [mindmapContent, setMindmapContent] = useState(DEFAULT_MINDMAP);
   const [appProjects, setAppProjects] = useState([]);
+  const [videoCaptions, setVideoCaptions] = useState({});
+  const [storyComments, setStoryComments] = useState([]);
+  const [commentsOpen, setCommentsOpen] = useState(false);
+  const [commentForm, setCommentForm] = useState({ name: '', comment: '' });
+  const [commentStatus, setCommentStatus] = useState({ state: 'idle', message: '' });
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
-
-  useEffect(() => {
-    fetchData();
-  }, [language]);
-
-  const fetchData = async () => {
-    try {
-      const [contentRes, mediaRes, projectsRes, mindmapRes] = await Promise.all([
-        axios.get('/api/content/storytelling', { params: { lang: language.toLowerCase() } }),
-        axios.get('/api/media/all'),
-        axios.get('/api/media/projects'),
-        axios.get('/api/content/mindmap')
-      ]);
-      setContent(contentRes.data.content);
-      setMedia(mediaRes.data);
-      setAppProjects(projectsRes.data || []);
-      const mindmapValue = (mindmapRes.data?.content || '').trim();
-      const sanitizedMindmap = mindmapValue.startsWith('<') ? '' : mindmapValue;
-      setMindmapContent(sanitizedMindmap || DEFAULT_MINDMAP);
-    } catch (error) {
-      logger.error('Error fetching data:', error);
-      setContent('<h1>My Story</h1><p>Content coming soon...</p>');
-      setAppProjects([]);
-      setMindmapContent(DEFAULT_MINDMAP);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          <img
-            src={assets.ui.loadingSpinner}
-            alt=""
-            className="w-12 h-12 mx-auto mb-4 animate-spin"
-            aria-hidden="true"
-          />
-          <p className="text-gray-400">Loading...</p>
-        </motion.div>
-      </div>
-    );
-  }
 
   const videoSections = [
     {
@@ -92,6 +50,101 @@ function Storytelling() {
       gradient: 'from-orange-500 via-amber-500 to-yellow-500',
     },
   ];
+
+  const captionConfig = [
+    { id: 'video-story', subtitlesPageId: 'video-subtitles-story', transcriptPageId: 'video-transcript-story' },
+    { id: 'video-proposal', subtitlesPageId: 'video-subtitles-proposal', transcriptPageId: 'video-transcript-proposal' },
+    { id: 'video-proof', subtitlesPageId: 'video-subtitles-proof', transcriptPageId: 'video-transcript-proof' }
+  ];
+
+  useEffect(() => {
+    fetchData();
+  }, [language]);
+
+  const fetchData = async () => {
+    try {
+      const [contentRes, mediaRes, projectsRes, mindmapRes, commentsRes, ...captionRes] = await Promise.all([
+        axios.get('/api/content/storytelling', { params: { lang: language.toLowerCase() } }),
+        axios.get('/api/media/all'),
+        axios.get('/api/media/projects'),
+        axios.get('/api/content/mindmap'),
+        axios.get('/api/comments/public', { params: { lang: language.toLowerCase() } }),
+        ...captionConfig.flatMap((config) => ([
+          axios.get(`/api/content/${config.subtitlesPageId}`, { params: { lang: language.toLowerCase() } }),
+          axios.get(`/api/content/${config.transcriptPageId}`, { params: { lang: language.toLowerCase() } })
+        ]))
+      ]);
+      setContent(contentRes.data.content);
+      setMedia(mediaRes.data);
+      setAppProjects(projectsRes.data || []);
+      setStoryComments(commentsRes.data || []);
+      const mindmapValue = (mindmapRes.data?.content || '').trim();
+      const sanitizedMindmap = mindmapValue.startsWith('<') ? '' : mindmapValue;
+      setMindmapContent(sanitizedMindmap || DEFAULT_MINDMAP);
+
+      const captionMap = {};
+      captionConfig.forEach((config, index) => {
+        const subtitlesRes = captionRes[index * 2];
+        const transcriptRes = captionRes[index * 2 + 1];
+        captionMap[config.id] = {
+          subtitles: subtitlesRes?.data?.content || '',
+          transcript: transcriptRes?.data?.content || ''
+        };
+      });
+      setVideoCaptions(captionMap);
+    } catch (error) {
+      logger.error('Error fetching data:', error);
+      setContent('<h1>My Story</h1><p>Content coming soon...</p>');
+      setAppProjects([]);
+      setMindmapContent(DEFAULT_MINDMAP);
+      setStoryComments([]);
+      setVideoCaptions({});
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+    setCommentStatus({ state: 'loading', message: '' });
+    try {
+      await axios.post('/api/comments', {
+        name: commentForm.name.trim(),
+        comment: commentForm.comment.trim(),
+        language: language.toLowerCase()
+      });
+      setCommentForm({ name: '', comment: '' });
+      setCommentStatus({ state: 'success', message: 'Thanks for your comment!' });
+      const refreshed = await axios.get('/api/comments/public', {
+        params: { lang: language.toLowerCase() }
+      });
+      setStoryComments(refreshed.data || []);
+    } catch (error) {
+      logger.error('Error submitting comment:', error);
+      setCommentStatus({ state: 'error', message: 'Unable to submit comment. Please try again.' });
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <img
+            src={assets.ui.loadingSpinner}
+            alt=""
+            className="w-12 h-12 mx-auto mb-4 animate-spin"
+            aria-hidden="true"
+          />
+          <p className="text-gray-400">Loading...</p>
+        </motion.div>
+      </div>
+    );
+  }
+
   const profileUrl = media?.profile?.url;
   const webviewSlots = Array.from({ length: 3 }, (_, index) => appProjects[index] || null);
 
@@ -134,6 +187,12 @@ function Storytelling() {
           {videoSections.map((section, index) => {
             const Icon = section.icon;
             const videoData = media[section.id];
+            const captions = videoCaptions[section.id] || {};
+            const subtitleText = (captions.subtitles || '').trim();
+            const transcriptText = (captions.transcript || '').trim();
+            const subtitleSrc = subtitleText
+              ? `data:text/vtt;charset=utf-8,${encodeURIComponent(subtitleText)}`
+              : null;
             
             return (
               <motion.div
@@ -162,12 +221,137 @@ function Storytelling() {
                   <VideoPlayer
                     src={videoData?.url}
                     showPlaceholder={true}
+                    tracks={
+                      subtitleSrc
+                        ? [
+                            {
+                              src: subtitleSrc,
+                              label: `${section.title} subtitles`,
+                              language: language.toLowerCase(),
+                              default: true
+                            }
+                          ]
+                        : []
+                    }
                   />
+
+                  {transcriptText && (
+                    <div className="mt-6 rounded-2xl border border-white/10 bg-dark-300/60 p-4">
+                      <h3 className="text-sm font-semibold text-gray-200 mb-2">Transcript</h3>
+                      <p className="text-sm text-gray-300 whitespace-pre-wrap leading-relaxed">
+                        {transcriptText}
+                      </p>
+                    </div>
+                  )}
                 </Card>
               </motion.div>
             );
           })}
         </div>
+
+        {/* Comments Section */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <Card variant="glass" size="lg" className="overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setCommentsOpen((prev) => !prev)}
+              className="w-full flex items-center justify-between gap-4 text-left px-4 sm:px-6 py-4 border-b border-white/10"
+              aria-expanded={commentsOpen}
+            >
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-100">Community Comments</h2>
+                <p className="text-sm text-gray-400">Share your thoughts or encouragement.</p>
+              </div>
+              <span className="text-sm font-semibold text-teal-300">
+                {commentsOpen ? 'Hide' : 'Show'}
+              </span>
+            </button>
+
+            {commentsOpen && (
+              <div className="space-y-6 px-4 sm:px-6 py-6">
+                <form className="space-y-4" onSubmit={handleCommentSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <label className="text-sm font-semibold text-gray-300">
+                      Your name
+                      <input
+                        type="text"
+                        value={commentForm.name}
+                        onChange={(event) => setCommentForm((prev) => ({ ...prev, name: event.target.value }))}
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-dark-300/60 px-3 py-2 text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20"
+                        required
+                      />
+                    </label>
+                    <label className="text-sm font-semibold text-gray-300">
+                      Language
+                      <input
+                        type="text"
+                        value={language}
+                        readOnly
+                        className="mt-2 w-full rounded-xl border border-white/10 bg-dark-300/40 px-3 py-2 text-gray-400"
+                      />
+                    </label>
+                  </div>
+                  <label className="text-sm font-semibold text-gray-300">
+                    Comment
+                    <textarea
+                      value={commentForm.comment}
+                      onChange={(event) => setCommentForm((prev) => ({ ...prev, comment: event.target.value }))}
+                      className="mt-2 w-full min-h-[120px] rounded-xl border border-white/10 bg-dark-300/60 px-3 py-2 text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20"
+                      required
+                    />
+                  </label>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      type="submit"
+                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold"
+                      disabled={commentStatus.state === 'loading'}
+                    >
+                      {commentStatus.state === 'loading' ? 'Submitting...' : 'Submit Comment'}
+                    </button>
+                    {commentStatus.message && (
+                      <span
+                        className={cn(
+                          'text-sm',
+                          commentStatus.state === 'success' ? 'text-green-400' : 'text-red-400'
+                        )}
+                      >
+                        {commentStatus.message}
+                      </span>
+                    )}
+                  </div>
+                </form>
+
+                <div className="space-y-4">
+                  {storyComments.length === 0 ? (
+                    <p className="text-sm text-gray-500">Be the first to leave a comment.</p>
+                  ) : (
+                    storyComments.map((comment) => (
+                      <div
+                        key={comment.id || comment._id}
+                        className="rounded-2xl border border-white/10 bg-dark-300/60 p-4"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                          <span className="font-semibold text-gray-100">{comment.name}</span>
+                          <span className="text-xs text-gray-500">
+                            {new Date(comment.createdAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-300 whitespace-pre-wrap">
+                          {comment.comment}
+                        </p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+          </Card>
+        </motion.div>
 
         {/* Profile & Mindmap */}
         <motion.div

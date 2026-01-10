@@ -10,6 +10,7 @@ function VideoPlayer({
   poster,
   className,
   showPlaceholder = true,
+  tracks = [],
 }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -69,6 +70,8 @@ function VideoPlayer({
 
   if (!src) return null;
 
+  const resolvedTracks = Array.isArray(tracks) ? tracks.filter((track) => track?.src) : [];
+
   return (
     <div className={cn('relative', className)}>
       {title && (
@@ -88,7 +91,18 @@ function VideoPlayer({
           onEnded={handleVideoEnd}
           onClick={togglePlay}
           playsInline
-        />
+        >
+          {resolvedTracks.map((track, index) => (
+            <track
+              key={`${track.label || 'track'}-${track.language || index}`}
+              src={track.src}
+              kind={track.kind || 'subtitles'}
+              srcLang={track.language || 'en'}
+              label={track.label || 'Subtitles'}
+              default={track.default || false}
+            />
+          ))}
+        </video>
 
         {/* Play button overlay (when paused) */}
         {!isPlaying && (

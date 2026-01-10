@@ -35,8 +35,15 @@
 - Admin → Media → Videos includes a teleprompter view, scroll speed selector, and a Record & Upload workflow that sends recorded clips to Cloudinary using the existing media upload endpoint.
 - Video script content endpoints are admin-protected and require a valid admin token.
 
+## Storytelling Subtitles, Transcripts, and Comments
+- Video subtitles are stored in the `content` table under pageId `video-subtitles-story`, `video-subtitles-proposal`, and `video-subtitles-proof` (language-specific).
+- Video transcripts are stored in the `content` table under pageId `video-transcript-story`, `video-transcript-proposal`, and `video-transcript-proof` (language-specific).
+- Storytelling comments are stored in the `story_comments` table and can be curated (positive/published) in Admin → Comments.
+
 ## How to test
 - `curl -i http://localhost:3000/api/health` and confirm it returns HTTP 200 with `status` set to `OK` or `DEGRADED` depending on database connectivity.
 - Paste Mermaid source in Admin → Media → Mindmap, save, then visit `/storytelling` and click the mindmap to confirm the full-screen viewer renders and supports zoom/pan.
-- In Admin → Media → Videos, paste scripts, verify teleprompter scrolling speed changes, record a clip, and confirm the video replaces the existing Cloudinary-hosted media.
+- In Admin → Media → Videos, paste scripts, verify teleprompter scroll speed slider changes, record a clip, delete the recording if needed, and confirm the video replaces the existing Cloudinary-hosted media.
+- In Admin → Media → Videos, paste WebVTT subtitles and transcripts for each video language, save, and confirm subtitles appear on `/storytelling` with the transcript displayed beneath each video.
+- In `/storytelling`, open the comments panel, submit a new comment, and in Admin → Comments toggle Positive/Publish to confirm visibility updates.
 - Verify `/api/content/video-script-story` returns HTTP 401 without an admin token and succeeds when authenticated.

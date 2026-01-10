@@ -6,20 +6,16 @@ import {
   Play,
   RotateCcw,
   Square,
+  Trash2,
   Video
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-const SPEED_OPTIONS = [
-  { value: 0.5, label: '0.5x (Slow)' },
-  { value: 0.8, label: '0.8x' },
-  { value: 1, label: '1x (Normal)' },
-  { value: 1.25, label: '1.25x' },
-  { value: 1.5, label: '1.5x (Fast)' },
-  { value: 2, label: '2x (Faster)' }
-];
+const SPEED_MIN = 0.2;
+const SPEED_MAX = 3;
+const SPEED_STEP = 0.1;
 
 const getSupportedMimeType = () => {
   if (typeof MediaRecorder === 'undefined') {
@@ -41,6 +37,7 @@ function VideoScriptRecorder({
   script,
   onScriptSave,
   onUploadRecorded,
+  onDeleteRecording,
   title,
   description,
   className
@@ -50,6 +47,7 @@ function VideoScriptRecorder({
   const [saveMessage, setSaveMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [recordingError, setRecordingError] = useState('');
   const [scrollSpeed, setScrollSpeed] = useState(1);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -241,6 +239,27 @@ function VideoScriptRecorder({
     }
   };
 
+  const handleDeleteRecording = async () => {
+    setRecordingError('');
+    if (recordedPreviewUrl) {
+      URL.revokeObjectURL(recordedPreviewUrl);
+    }
+    setRecordedPreviewUrl('');
+
+    if (!onDeleteRecording) {
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      await onDeleteRecording(mediaType);
+    } catch (error) {
+      setRecordingError(error.message || 'Delete failed.');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className={cn('space-y-4', className)}>
       <div>
@@ -279,19 +298,19 @@ function VideoScriptRecorder({
         <div className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <label className="block text-sm font-semibold text-gray-300">Teleprompter view</label>
-            <div className="flex items-center gap-2 text-xs text-gray-400">
+            <div className="flex items-center gap-3 text-xs text-gray-400">
               <span>Scroll speed</span>
-              <select
+              <input
+                type="range"
+                min={SPEED_MIN}
+                max={SPEED_MAX}
+                step={SPEED_STEP}
                 value={scrollSpeed}
                 onChange={(event) => setScrollSpeed(Number(event.target.value))}
-                className="rounded-lg border border-white/10 bg-dark-300/60 px-2 py-1 text-xs text-gray-200 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20"
-              >
-                {SPEED_OPTIONS.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+                className="h-2 w-32 cursor-pointer accent-teal-400"
+                aria-label="Teleprompter scroll speed"
+              />
+              <span className="text-gray-200 font-semibold">{scrollSpeed.toFixed(1)}x</span>
             </div>
           </div>
 
@@ -395,6 +414,17 @@ function VideoScriptRecorder({
             ) : (
               <p className="text-sm text-gray-500">Record a clip to preview it here.</p>
             )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={handleDeleteRecording}
+              disabled={!recordedPreviewUrl || isDeleting}
+            >
+              <Trash2 className="w-4 h-4 mr-2" />
+              {isDeleting ? 'Deleting...' : 'Delete Recording'}
+            </Button>
           </div>
         </div>
       </div>

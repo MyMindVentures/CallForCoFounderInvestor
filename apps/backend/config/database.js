@@ -88,9 +88,29 @@ const runMigrations = () => {
     )
   `);
 
+  // Storytelling comments table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS story_comments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      comment TEXT NOT NULL,
+      language TEXT,
+      isPositive INTEGER DEFAULT 1,
+      isPublished INTEGER DEFAULT 1,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Create index for media table
   try {
     db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
+  } catch (e) {
+    // Index might already exist
+  }
+
+  try {
+    db.run(`CREATE INDEX IF NOT EXISTS idx_story_comments_visibility ON story_comments(isPublished, isPositive)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_story_comments_language ON story_comments(language)`);
   } catch (e) {
     // Index might already exist
   }
@@ -149,6 +169,19 @@ const initializeTables = () => {
     )
   `);
 
+  // Storytelling comments table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS story_comments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      comment TEXT NOT NULL,
+      language TEXT,
+      isPositive INTEGER DEFAULT 1,
+      isPublished INTEGER DEFAULT 1,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
   // Media table (for videos, profile picture, mindmap)
   db.run(`
     CREATE TABLE IF NOT EXISTS media (
@@ -180,6 +213,8 @@ const initializeTables = () => {
     db.run(`CREATE INDEX IF NOT EXISTS idx_donations_created ON donations(createdAt)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_content_pageId ON content(pageId)`);
     db.run(`CREATE INDEX IF NOT EXISTS idx_media_type ON media(type)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_story_comments_visibility ON story_comments(isPublished, isPositive)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_story_comments_language ON story_comments(language)`);
   } catch (e) {
     // Indexes might already exist
   }

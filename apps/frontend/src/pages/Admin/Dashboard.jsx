@@ -4,7 +4,7 @@ import axios from 'axios';
 import logger from '@/utils/logger';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  LogOut, FileText, MessageSquare, DollarSign, Save, Loader2,
+  LogOut, FileText, MessageCircle, MessageSquare, DollarSign, Save, Loader2,
   TrendingUp, Users, Calendar, Check, X, Image, Video, User, 
   Network, Link2, Plus, Trash2, ExternalLink, QrCode
 } from 'lucide-react';
@@ -17,22 +17,26 @@ import { cn } from '@/lib/utils';
 import { normalizeUrl, isValidUrl } from '@/utils/url';
 import FileUpload from '@/components/FileUpload';
 import VideoScriptRecorder from '@/components/admin/VideoScriptRecorder';
+import VideoCaptionsEditor from '@/components/admin/VideoCaptionsEditor';
 import { assets } from '@/utils/assets';
 import { useLanguage, languageOptions } from '@/i18n/LanguageContext';
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('content');
   const [messages, setMessages] = useState([]);
+  const [storyComments, setStoryComments] = useState([]);
   const [donations, setDonations] = useState(null);
   const [selectedPage, setSelectedPage] = useState('storytelling');
   const [pageContent, setPageContent] = useState('');
   const [contentLanguage, setContentLanguage] = useState('EN');
+  const [mediaLanguage, setMediaLanguage] = useState('EN');
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState({});
   const [mindmapContent, setMindmapContent] = useState('');
   const [mindmapDraft, setMindmapDraft] = useState('');
   const [mindmapSaving, setMindmapSaving] = useState(false);
   const [videoScripts, setVideoScripts] = useState({});
+  const [videoCaptions, setVideoCaptions] = useState({});
   const [appProjects, setAppProjects] = useState([]);
   const [newProject, setNewProject] = useState({ name: '', url: '', description: '' });
   const [qrRedirectUrl, setQrRedirectUrl] = useState('');
@@ -61,6 +65,27 @@ function AdminDashboard() {
     }
   ];
 
+  const videoCaptionConfig = [
+    {
+      mediaType: 'video-story',
+      subtitlesPageId: 'video-subtitles-story',
+      transcriptPageId: 'video-transcript-story',
+      title: 'My Story'
+    },
+    {
+      mediaType: 'video-proposal',
+      subtitlesPageId: 'video-subtitles-proposal',
+      transcriptPageId: 'video-transcript-proposal',
+      title: 'My Proposal'
+    },
+    {
+      mediaType: 'video-proof',
+      subtitlesPageId: 'video-subtitles-proof',
+      transcriptPageId: 'video-transcript-proof',
+      title: 'Proof of Mind'
+    }
+  ];
+
   const pages = [
     { id: 'storytelling', name: 'Storytelling' },
     { id: 'whatILookFor', name: 'What I Look For' },
@@ -73,12 +98,14 @@ function AdminDashboard() {
   const tabs = [
     { id: 'content', label: 'Content', icon: FileText },
     { id: 'media', label: 'Media', icon: Image },
+    { id: 'comments', label: 'Comments', icon: MessageCircle, count: storyComments.length },
     { id: 'messages', label: 'Messages', icon: MessageSquare, count: messages.length },
     { id: 'donations', label: 'Donations', icon: DollarSign }
   ];
 
   useEffect(() => {
     setContentLanguage(language);
+    setMediaLanguage(language);
   }, [language]);
 
   useEffect(() => {
@@ -92,7 +119,9 @@ function AdminDashboard() {
       return;
     }
 
-    if (activeTab === 'messages') {
+    if (activeTab === 'comments') {
+      fetchStoryComments();
+    } else if (activeTab === 'messages') {
       fetchMessages();
     } else if (activeTab === 'donations') {
       fetchDonations();
@@ -102,10 +131,11 @@ function AdminDashboard() {
       fetchMedia();
       fetchMindmap();
       fetchVideoScripts();
+      fetchVideoCaptions();
       fetchAppProjects();
       fetchQrRedirectUrl();
     }
-  }, [activeTab, selectedPage, contentLanguage, navigate]);
+  }, [activeTab, selectedPage, contentLanguage, mediaLanguage, navigate]);
 
   const fetchMessages = async () => {
     try {
@@ -116,6 +146,19 @@ function AdminDashboard() {
       setMessages(response.data);
     } catch (error) {
       logger.error('Error fetching messages:', error);
+      if (error.response?.status === 401) navigate('/admin/login');
+    }
+  };
+
+  const fetchStoryComments = async () => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await axios.get('/api/comments', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setStoryComments(response.data);
+    } catch (error) {
+      logger.error('Error fetching story comments:', error);
       if (error.response?.status === 401) navigate('/admin/login');
     }
   };
@@ -182,6 +225,37 @@ function AdminDashboard() {
     } catch (error) {
       logger.error('Error fetching video scripts:', error);
       if (error.response?.status === 401) navigate('/admin/login');
+    }
+  };
+
+  const fetchVideoCaptions = async () => {
+    try {
+      const results = await Promise.allSettled(
+        videoCaptionConfig.map((config) => Promise.all([
+          axios.get(`/api/content/${config.subtitlesPageId}`, {
+            params: { lang: mediaLanguage.toLowerCase() }
+          }),
+          axios.get(`/api/content/${config.transcriptPageId}`, {
+            params: { lang: mediaLanguage.toLowerCase() }
+          })
+        ]))
+      );
+      const nextCaptions = {};
+      results.forEach((result, index) => {
+        const { mediaType } = videoCaptionConfig[index];
+        if (result.status === 'fulfilled') {
+          const [subtitlesRes, transcriptRes] = result.value;
+          nextCaptions[mediaType] = {
+            subtitles: subtitlesRes.data?.content || '',
+            transcript: transcriptRes.data?.content || ''
+          };
+        } else {
+          nextCaptions[mediaType] = { subtitles: '', transcript: '' };
+        }
+      });
+      setVideoCaptions(nextCaptions);
+    } catch (error) {
+      logger.error('Error fetching video captions:', error);
     }
   };
 
@@ -288,6 +362,25 @@ function AdminDashboard() {
     setVideoScripts((prev) => ({ ...prev, [mediaType]: content }));
   };
 
+  const handleCaptionSave = async (mediaType, type, content) => {
+    const config = videoCaptionConfig.find((item) => item.mediaType === mediaType);
+    if (!config) return;
+    const token = localStorage.getItem('adminToken');
+    const pageId = type === 'subtitles' ? config.subtitlesPageId : config.transcriptPageId;
+    await axios.put(
+      `/api/content/${pageId}`,
+      { content, language: mediaLanguage },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    setVideoCaptions((prev) => ({
+      ...prev,
+      [mediaType]: {
+        ...prev[mediaType],
+        [type]: content
+      }
+    }));
+  };
+
   const handleAddProject = async () => {
     if (!newProject.name || !newProject.url) return;
     if (appProjects.length >= 3) {
@@ -377,6 +470,20 @@ function AdminDashboard() {
       fetchMessages();
     } catch (error) {
       logger.error('Error curating message:', error);
+    }
+  };
+
+  const curateStoryComment = async (commentId, isPositive, isPublished) => {
+    try {
+      const token = localStorage.getItem('adminToken');
+      await axios.put(
+        `/api/comments/${commentId}/curate`,
+        { isPositive, isPublished },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchStoryComments();
+    } catch (error) {
+      logger.error('Error curating story comment:', error);
     }
   };
 
@@ -546,6 +653,23 @@ function AdminDashboard() {
                       <Video className="w-6 h-6 text-purple-400" />
                       <h3 className="text-lg font-semibold text-gray-200">Videos</h3>
                     </div>
+
+                    <div className="max-w-sm">
+                      <label className="block text-sm font-semibold text-gray-300 mb-2">
+                        Subtitle & Transcript Language:
+                      </label>
+                      <select
+                        value={mediaLanguage}
+                        onChange={(e) => setMediaLanguage(e.target.value)}
+                        className="w-full px-4 py-3 min-h-[44px] backdrop-blur-md bg-dark-200/60 border border-teal-500/20 rounded-xl text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 focus:outline-none"
+                      >
+                        {languageOptions.map(option => (
+                          <option key={option.code} value={option.code}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                     
                     <div className="space-y-6">
                       {videoScriptConfig.map((config) => (
@@ -568,10 +692,19 @@ function AdminDashboard() {
                               script={videoScripts[config.mediaType] || ''}
                               onScriptSave={(content) => handleVideoScriptSave(config.mediaType, content)}
                               onUploadRecorded={handleMediaUpload}
+                              onDeleteRecording={handleMediaDelete}
                               title={`${config.title} Script`}
                               description={config.description}
                             />
                           </div>
+
+                          <VideoCaptionsEditor
+                            title={config.title}
+                            subtitles={videoCaptions[config.mediaType]?.subtitles || ''}
+                            transcript={videoCaptions[config.mediaType]?.transcript || ''}
+                            onSaveSubtitles={(content) => handleCaptionSave(config.mediaType, 'subtitles', content)}
+                            onSaveTranscript={(content) => handleCaptionSave(config.mediaType, 'transcript', content)}
+                          />
                         </div>
                       ))}
                     </div>
@@ -824,6 +957,63 @@ function AdminDashboard() {
                                 type="checkbox"
                                 checked={msg.isPublished || false}
                                 onChange={(e) => curateMessage(msg.id || msg._id, msg.isPositive, e.target.checked)}
+                                className="w-4 h-4 rounded border-gray-600 bg-dark-300 text-teal-500 focus:ring-teal-500"
+                              />
+                              <span className="text-sm text-gray-300">Publish</span>
+                            </label>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'comments' && (
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-6 text-gray-100">Storytelling Comments</h2>
+                  {storyComments.length === 0 ? (
+                    <div className="text-center py-12">
+                      <MessageCircle className="w-12 h-12 text-gray-500 mx-auto mb-4" />
+                      <p className="text-gray-400">No comments yet.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {storyComments.map((comment, index) => (
+                        <motion.div
+                          key={comment.id || comment._id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="backdrop-blur-md bg-dark-300/50 rounded-xl p-5 border-l-4 border-teal-500"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <strong className="text-gray-100">{comment.name}</strong>
+                              {comment.language && (
+                                <Badge variant="mixed">{comment.language.toUpperCase()}</Badge>
+                              )}
+                            </div>
+                            <span className="text-xs text-gray-500">
+                              {new Date(comment.createdAt).toLocaleString()}
+                            </span>
+                          </div>
+                          <p className="text-gray-300 mb-4 leading-relaxed">{comment.comment}</p>
+                          <div className="flex flex-wrap gap-4">
+                            <label className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={comment.isPositive || false}
+                                onChange={(e) => curateStoryComment(comment.id || comment._id, e.target.checked, comment.isPublished)}
+                                className="w-4 h-4 rounded border-gray-600 bg-dark-300 text-teal-500 focus:ring-teal-500"
+                              />
+                              <span className="text-sm text-gray-300">Positive</span>
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={comment.isPublished || false}
+                                onChange={(e) => curateStoryComment(comment.id || comment._id, comment.isPositive, e.target.checked)}
                                 className="w-4 h-4 rounded border-gray-600 bg-dark-300 text-teal-500 focus:ring-teal-500"
                               />
                               <span className="text-sm text-gray-300">Publish</span>
