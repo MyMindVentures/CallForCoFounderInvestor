@@ -35,8 +35,13 @@
 - Admin → Media → Videos includes a teleprompter view, scroll speed selector, and a Record & Upload workflow that sends recorded clips to Cloudinary using the existing media upload endpoint.
 - Video script content endpoints are admin-protected and require a valid admin token.
 
+## Outreach Tracking Dashboard
+- Admin → Outreach tracks support call messages sent to contacts, websites, and YouTube channels, along with replies and response time stats.
+- Data persistence: outreach entries are stored in the `outreach_contacts` table in the SQLite database.
+
 ## How to test
 - `curl -i http://localhost:3000/api/health` and confirm it returns HTTP 200 with `status` set to `OK` or `DEGRADED` depending on database connectivity.
 - Paste Mermaid source in Admin → Media → Mindmap, save, then visit `/storytelling` and click the mindmap to confirm the full-screen viewer renders and supports zoom/pan.
 - In Admin → Media → Videos, paste scripts, verify teleprompter scrolling speed changes, record a clip, and confirm the video replaces the existing Cloudinary-hosted media.
 - Verify `/api/content/video-script-story` returns HTTP 401 without an admin token and succeeds when authenticated.
+- In Admin → Outreach, add an entry with a sent time and reply time, save it, and confirm the response time stats and grouping update.

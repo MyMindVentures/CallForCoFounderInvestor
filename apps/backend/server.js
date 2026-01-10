@@ -9,6 +9,7 @@ import messageRoutes from './routes/messages.js';
 import donationRoutes from './routes/donations.js';
 import contentRoutes from './routes/content.js';
 import mediaRoutes from './routes/media.js';
+import outreachRoutes from './routes/outreach.js';
 import authService from './services/AuthService.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -74,6 +75,7 @@ app.use('/api/messages', messageRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/api/outreach', outreachRoutes);
 
 // Health check endpoints (must be before static file serving)
 // Backend health check endpoint for Railway

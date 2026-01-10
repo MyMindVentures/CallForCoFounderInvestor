@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LogOut, FileText, MessageSquare, DollarSign, Save, Loader2,
   TrendingUp, Users, Calendar, Check, X, Image, Video, User, 
-  Network, Link2, Plus, Trash2, ExternalLink, QrCode
+  Network, Link2, Plus, Trash2, ExternalLink, QrCode, Send, Clock
 } from 'lucide-react';
 import { PageTransition } from '@/components/ui/page-transition';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -37,6 +37,19 @@ function AdminDashboard() {
   const [newProject, setNewProject] = useState({ name: '', url: '', description: '' });
   const [qrRedirectUrl, setQrRedirectUrl] = useState('');
   const [qrSaving, setQrSaving] = useState(false);
+  const [outreachEntries, setOutreachEntries] = useState([]);
+  const [outreachLoading, setOutreachLoading] = useState(false);
+  const [outreachSavingIds, setOutreachSavingIds] = useState([]);
+  const [newOutreach, setNewOutreach] = useState({
+    name: '',
+    category: 'contacts',
+    url: '',
+    contactDetails: '',
+    sentMessage: '',
+    sentAt: '',
+    repliedAt: '',
+    replyMessage: ''
+  });
   const navigate = useNavigate();
   const { language } = useLanguage();
 
@@ -74,12 +87,60 @@ function AdminDashboard() {
     { id: 'content', label: 'Content', icon: FileText },
     { id: 'media', label: 'Media', icon: Image },
     { id: 'messages', label: 'Messages', icon: MessageSquare, count: messages.length },
-    { id: 'donations', label: 'Donations', icon: DollarSign }
+    { id: 'donations', label: 'Donations', icon: DollarSign },
+    { id: 'outreach', label: 'Outreach', icon: Send }
   ];
+
+  const outreachCategories = [
+    { id: 'contacts', label: 'Contacts' },
+    { id: 'websites', label: 'Websites' },
+    { id: 'youtube', label: 'YouTube Channels' }
+  ];
+
+  const getNowInput = () => {
+    const now = new Date();
+    const offset = now.getTimezoneOffset();
+    const local = new Date(now.getTime() - offset * 60000);
+    return local.toISOString().slice(0, 16);
+  };
+
+  const formatDateTimeInput = (value) => {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    const offset = date.getTimezoneOffset();
+    const local = new Date(date.getTime() - offset * 60000);
+    return local.toISOString().slice(0, 16);
+  };
+
+  const normalizeDateInput = (value) => {
+    if (!value) return null;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+    return date.toISOString();
+  };
+
+  const formatDuration = (ms) => {
+    if (!ms || ms < 0) return '—';
+    const totalMinutes = Math.floor(ms / 60000);
+    const days = Math.floor(totalMinutes / (60 * 24));
+    const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+    const minutes = totalMinutes % 60;
+    if (days > 0) return `${days}d ${hours}h`;
+    if (hours > 0) return `${hours}h ${minutes}m`;
+    return `${minutes}m`;
+  };
 
   useEffect(() => {
     setContentLanguage(language);
   }, [language]);
+
+  useEffect(() => {
+    setNewOutreach((prev) => ({
+      ...prev,
+      sentAt: prev.sentAt || getNowInput()
+    }));
+  }, []);
 
   useEffect(() => {
     setMindmapDraft(mindmapContent);
@@ -104,6 +165,8 @@ function AdminDashboard() {
       fetchVideoScripts();
       fetchAppProjects();
       fetchQrRedirectUrl();
+    } else if (activeTab === 'outreach') {
+      fetchOutreach();
     }
   }, [activeTab, selectedPage, contentLanguage, navigate]);
 
@@ -201,6 +264,22 @@ function AdminDashboard() {
       setQrRedirectUrl(normalized || '');
     } catch (error) {
       logger.error('Error fetching QR redirect URL:', error);
+    }
+  };
+
+  const fetchOutreach = async () => {
+    setOutreachLoading(true);
+    try {
+      const token = localStorage.getItem('adminToken');
+      const response = await axios.get('/api/outreach', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setOutreachEntries(response.data);
+    } catch (error) {
+      logger.error('Error fetching outreach entries:', error);
+      if (error.response?.status === 401) navigate('/admin/login');
+    } finally {
+      setOutreachLoading(false);
     }
   };
 
@@ -347,6 +426,91 @@ function AdminDashboard() {
     }
   };
 
+  const handleOutreachChange = (id, field, value) => {
+    setOutreachEntries((prev) => prev.map((entry) => (
+      entry.id === id ? { ...entry, [field]: value } : entry
+    )));
+  };
+
+  const handleAddOutreach = async () => {
+    if (!newOutreach.name || !newOutreach.category) return;
+    try {
+      const token = localStorage.getItem('adminToken');
+      const payload = {
+        ...newOutreach,
+        sentAt: normalizeDateInput(newOutreach.sentAt),
+        repliedAt: normalizeDateInput(newOutreach.repliedAt)
+      };
+      const response = await axios.post('/api/outreach', payload, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setOutreachEntries((prev) => [response.data, ...prev]);
+      setNewOutreach({
+        name: '',
+        category: newOutreach.category || 'contacts',
+        url: '',
+        contactDetails: '',
+        sentMessage: '',
+        sentAt: getNowInput(),
+        repliedAt: '',
+        replyMessage: ''
+      });
+    } catch (error) {
+      logger.error('Error adding outreach entry:', error);
+      alert('Error adding outreach entry.');
+      if (error.response?.status === 401) navigate('/admin/login');
+    }
+  };
+
+  const handleSaveOutreach = async (entry) => {
+    setOutreachSavingIds((prev) => [...prev, entry.id]);
+    try {
+      const token = localStorage.getItem('adminToken');
+      const payload = {
+        name: entry.name,
+        category: entry.category,
+        url: entry.url,
+        contactDetails: entry.contactDetails,
+        sentMessage: entry.sentMessage,
+        sentAt: normalizeDateInput(entry.sentAt),
+        repliedAt: normalizeDateInput(entry.repliedAt),
+        replyMessage: entry.replyMessage
+      };
+      const response = await axios.put(`/api/outreach/${entry.id}`, payload, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setOutreachEntries((prev) => prev.map((item) => (
+        item.id === entry.id ? response.data : item
+      )));
+    } catch (error) {
+      logger.error('Error saving outreach entry:', error);
+      alert('Error saving outreach entry.');
+      if (error.response?.status === 401) navigate('/admin/login');
+    } finally {
+      setOutreachSavingIds((prev) => prev.filter((id) => id !== entry.id));
+    }
+  };
+
+  const handleDeleteOutreach = async (entryId) => {
+    if (!window.confirm('Delete this outreach entry?')) return;
+    try {
+      const token = localStorage.getItem('adminToken');
+      await axios.delete(`/api/outreach/${entryId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setOutreachEntries((prev) => prev.filter((entry) => entry.id !== entryId));
+    } catch (error) {
+      logger.error('Error deleting outreach entry:', error);
+      alert('Error deleting outreach entry.');
+      if (error.response?.status === 401) navigate('/admin/login');
+    }
+  };
+
+  const handleMarkRepliedNow = (entryId) => {
+    const nowInput = getNowInput();
+    handleOutreachChange(entryId, 'repliedAt', nowInput);
+  };
+
   const saveContent = async () => {
     setLoading(true);
     try {
@@ -385,6 +549,26 @@ function AdminDashboard() {
     localStorage.removeItem('adminUsername');
     navigate('/admin/login');
   };
+
+  const repliedEntries = outreachEntries.filter((entry) => entry.repliedAt);
+  const responseTimes = repliedEntries
+    .map((entry) => {
+      const sent = entry.sentAt ? new Date(entry.sentAt) : null;
+      const replied = entry.repliedAt ? new Date(entry.repliedAt) : null;
+      if (!sent || !replied || Number.isNaN(sent.getTime()) || Number.isNaN(replied.getTime())) {
+        return null;
+      }
+      return replied.getTime() - sent.getTime();
+    })
+    .filter((value) => value !== null && value >= 0);
+  const averageResponseMs = responseTimes.length
+    ? responseTimes.reduce((sum, value) => sum + value, 0) / responseTimes.length
+    : null;
+
+  const groupedOutreach = outreachCategories.reduce((acc, category) => {
+    acc[category.id] = outreachEntries.filter((entry) => entry.category === category.id);
+    return acc;
+  }, {});
 
   return (
     <PageTransition className="relative min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8">
@@ -831,6 +1015,301 @@ function AdminDashboard() {
                           </div>
                         </motion.div>
                       ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'outreach' && (
+                <div className="space-y-8">
+                  <div className="flex items-center gap-3">
+                    <Send className="w-6 h-6 text-indigo-400" />
+                    <div>
+                      <h2 className="text-xl sm:text-2xl font-bold text-gray-100">Outreach Tracking</h2>
+                      <p className="text-sm text-gray-400">Track who received your call for support and who replied.</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {[
+                      {
+                        label: 'Total Sent',
+                        value: outreachEntries.length,
+                        icon: Users,
+                        color: 'from-blue-500/20 to-indigo-500/20 border-blue-500/30',
+                        textColor: 'text-blue-400'
+                      },
+                      {
+                        label: 'Replies Received',
+                        value: repliedEntries.length,
+                        icon: Check,
+                        color: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/30',
+                        textColor: 'text-emerald-400'
+                      },
+                      {
+                        label: 'Avg. Response Time',
+                        value: averageResponseMs ? formatDuration(averageResponseMs) : '—',
+                        icon: Clock,
+                        color: 'from-purple-500/20 to-pink-500/20 border-purple-500/30',
+                        textColor: 'text-purple-400'
+                      }
+                    ].map((stat) => (
+                      <div
+                        key={stat.label}
+                        className={cn('backdrop-blur-md bg-gradient-to-br', stat.color, 'rounded-xl p-5 border')}
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <stat.icon className={cn('w-5 h-5', stat.textColor)} />
+                          <h3 className="text-xs font-semibold text-gray-400 uppercase">{stat.label}</h3>
+                        </div>
+                        <p className={cn('text-2xl font-bold', stat.textColor)}>{stat.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="backdrop-blur-md bg-dark-300/50 rounded-xl p-5 border border-dark-400/50 space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-200">Add Outreach Entry</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-300 mb-2">Category</label>
+                        <select
+                          value={newOutreach.category}
+                          onChange={(event) => setNewOutreach((prev) => ({ ...prev, category: event.target.value }))}
+                          className="w-full px-4 py-3 min-h-[44px] backdrop-blur-md bg-dark-200/60 border border-teal-500/20 rounded-xl text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 focus:outline-none"
+                        >
+                          {outreachCategories.map((category) => (
+                            <option key={category.id} value={category.id}>{category.label}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-300 mb-2">Name</label>
+                        <Input
+                          value={newOutreach.name}
+                          onChange={(event) => setNewOutreach((prev) => ({ ...prev, name: event.target.value }))}
+                          placeholder="Contact or channel name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-300 mb-2">URL</label>
+                        <Input
+                          value={newOutreach.url}
+                          onChange={(event) => setNewOutreach((prev) => ({ ...prev, url: event.target.value }))}
+                          placeholder="https://"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-300 mb-2">Contact Details</label>
+                      <Textarea
+                        value={newOutreach.contactDetails}
+                        onChange={(event) => setNewOutreach((prev) => ({ ...prev, contactDetails: event.target.value }))}
+                        className="min-h-[80px]"
+                        placeholder="Email, social handle, notes..."
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-300 mb-2">Sent At</label>
+                        <Input
+                          type="datetime-local"
+                          value={formatDateTimeInput(newOutreach.sentAt)}
+                          onChange={(event) => setNewOutreach((prev) => ({ ...prev, sentAt: event.target.value }))}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-300 mb-2">Reply Received At (optional)</label>
+                        <Input
+                          type="datetime-local"
+                          value={formatDateTimeInput(newOutreach.repliedAt)}
+                          onChange={(event) => setNewOutreach((prev) => ({ ...prev, repliedAt: event.target.value }))}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-300 mb-2">Message Sent</label>
+                      <Textarea
+                        value={newOutreach.sentMessage}
+                        onChange={(event) => setNewOutreach((prev) => ({ ...prev, sentMessage: event.target.value }))}
+                        className="min-h-[120px]"
+                        placeholder="Paste the call for support message you sent..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-300 mb-2">Reply Message (optional)</label>
+                      <Textarea
+                        value={newOutreach.replyMessage}
+                        onChange={(event) => setNewOutreach((prev) => ({ ...prev, replyMessage: event.target.value }))}
+                        className="min-h-[120px]"
+                        placeholder="Paste the response you received..."
+                      />
+                    </div>
+                    <Button
+                      onClick={handleAddOutreach}
+                      disabled={!newOutreach.name}
+                      variant="default"
+                      size="sm"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add Outreach Entry
+                    </Button>
+                  </div>
+
+                  {outreachLoading ? (
+                    <div className="flex items-center justify-center py-12">
+                      <Loader2 className="w-8 h-8 text-gray-500 animate-spin" />
+                    </div>
+                  ) : outreachEntries.length === 0 ? (
+                    <div className="text-center py-12">
+                      <Send className="w-12 h-12 text-gray-500 mx-auto mb-4" />
+                      <p className="text-gray-400">No outreach entries yet.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-8">
+                      {outreachCategories.map((category) => {
+                        const entries = groupedOutreach[category.id] || [];
+                        if (entries.length === 0) return null;
+                        return (
+                          <div key={category.id} className="space-y-4">
+                            <h3 className="text-lg font-semibold text-gray-200">{category.label}</h3>
+                            <div className="space-y-4">
+                              {entries.map((entry) => {
+                                const responseTime = entry.sentAt && entry.repliedAt
+                                  ? formatDuration(new Date(entry.repliedAt).getTime() - new Date(entry.sentAt).getTime())
+                                  : '—';
+                                const isSaving = outreachSavingIds.includes(entry.id);
+                                return (
+                                  <div
+                                    key={entry.id}
+                                    className="backdrop-blur-md bg-dark-300/50 rounded-xl p-5 border border-dark-400/50 space-y-4"
+                                  >
+                                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+                                      <div className="flex items-center gap-2">
+                                        <Badge variant={entry.repliedAt ? 'teal' : 'warning'}>
+                                          {entry.repliedAt ? 'Replied' : 'Pending'}
+                                        </Badge>
+                                        <span className="text-xs text-gray-500">
+                                          Response time: {responseTime}
+                                        </span>
+                                      </div>
+                                      <div className="flex flex-wrap gap-2">
+                                        <Button
+                                          onClick={() => handleSaveOutreach(entry)}
+                                          disabled={isSaving}
+                                          size="sm"
+                                          variant="default"
+                                        >
+                                          {isSaving ? (
+                                            <>
+                                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                              Saving...
+                                            </>
+                                          ) : (
+                                            <>
+                                              <Save className="w-4 h-4 mr-2" />
+                                              Save
+                                            </>
+                                          )}
+                                        </Button>
+                                        <Button
+                                          onClick={() => handleMarkRepliedNow(entry.id)}
+                                          size="sm"
+                                          variant="ghost"
+                                        >
+                                          <Check className="w-4 h-4 mr-2" />
+                                          Mark Reply Now
+                                        </Button>
+                                        <Button
+                                          onClick={() => handleDeleteOutreach(entry.id)}
+                                          size="sm"
+                                          variant="destructive"
+                                        >
+                                          <Trash2 className="w-4 h-4" />
+                                        </Button>
+                                      </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                      <div>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">Name</label>
+                                        <Input
+                                          value={entry.name || ''}
+                                          onChange={(event) => handleOutreachChange(entry.id, 'name', event.target.value)}
+                                        />
+                                      </div>
+                                      <div>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">Category</label>
+                                        <select
+                                          value={entry.category}
+                                          onChange={(event) => handleOutreachChange(entry.id, 'category', event.target.value)}
+                                          className="w-full px-4 py-3 min-h-[44px] backdrop-blur-md bg-dark-200/60 border border-teal-500/20 rounded-xl text-gray-100 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 focus:outline-none"
+                                        >
+                                          {outreachCategories.map((item) => (
+                                            <option key={item.id} value={item.id}>{item.label}</option>
+                                          ))}
+                                        </select>
+                                      </div>
+                                      <div>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">URL</label>
+                                        <Input
+                                          value={entry.url || ''}
+                                          onChange={(event) => handleOutreachChange(entry.id, 'url', event.target.value)}
+                                        />
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-sm font-semibold text-gray-300 mb-2">Contact Details</label>
+                                      <Textarea
+                                        value={entry.contactDetails || ''}
+                                        onChange={(event) => handleOutreachChange(entry.id, 'contactDetails', event.target.value)}
+                                        className="min-h-[80px]"
+                                      />
+                                    </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                      <div>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">Sent At</label>
+                                        <Input
+                                          type="datetime-local"
+                                          value={formatDateTimeInput(entry.sentAt)}
+                                          onChange={(event) => handleOutreachChange(entry.id, 'sentAt', event.target.value)}
+                                        />
+                                      </div>
+                                      <div>
+                                        <label className="block text-sm font-semibold text-gray-300 mb-2">Reply Received At</label>
+                                        <Input
+                                          type="datetime-local"
+                                          value={formatDateTimeInput(entry.repliedAt)}
+                                          onChange={(event) => handleOutreachChange(entry.id, 'repliedAt', event.target.value)}
+                                        />
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-sm font-semibold text-gray-300 mb-2">Message Sent</label>
+                                      <Textarea
+                                        value={entry.sentMessage || ''}
+                                        onChange={(event) => handleOutreachChange(entry.id, 'sentMessage', event.target.value)}
+                                        className="min-h-[120px]"
+                                      />
+                                    </div>
+
+                                    <div>
+                                      <label className="block text-sm font-semibold text-gray-300 mb-2">Reply Message</label>
+                                      <Textarea
+                                        value={entry.replyMessage || ''}
+                                        onChange={(event) => handleOutreachChange(entry.id, 'replyMessage', event.target.value)}
+                                        className="min-h-[120px]"
+                                      />
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
